@@ -1,0 +1,40 @@
+{
+  "company": {
+    "name": "Limmatquell Privatkliniken AG",
+    "industry": "Private hospital and outpatient clinic network",
+    "description": "Fictional Swiss healthcare provider operating private hospitals, outpatient clinics and diagnostic centres, with reporting currency CHF."
+  },
+  "generator_model": "openai/gpt-5.6-sol",
+  "languages": {
+    "P2P-H01": "en",
+    "P2P-H02": "de",
+    "P2P-H03": "en",
+    "P2P-H04": "de",
+    "P2P-H05": "en",
+    "O2C-H06": "en",
+    "O2C-H07": "de",
+    "O2C-H08": "en",
+    "O2C-H09": "de",
+    "O2C-H10": "en",
+    "TRE-H11": "en",
+    "TRE-H12": "de",
+    "TRE-H13": "en",
+    "TRE-H14": "en",
+    "TRE-H15": "en",
+    "R2R-H16": "en",
+    "R2R-H17": "de",
+    "R2R-H18": "en",
+    "R2R-H19": "de",
+    "R2R-H20": "en",
+    "ITG-H21": "en",
+    "ITG-H22": "de",
+    "ITG-H23": "en",
+    "ITG-H24": "en",
+    "ITG-H25": "en",
+    "HRP-H26": "en",
+    "HRP-H27": "de",
+    "HRP-H28": "en",
+    "HRP-H29": "de",
+    "HRP-H30": "en"
+  }
+}
