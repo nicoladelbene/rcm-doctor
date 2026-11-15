@@ -13,7 +13,8 @@ import { chromium, type Page } from "@playwright/test";
 const BASE = process.env.RECORD_URL ?? "http://localhost:3100";
 /** RECORD_FLOW=testscript records the Week 2 flow into docs/media/week-2-*. */
 const FLOW = process.env.RECORD_FLOW ?? "review";
-const PREFIX = FLOW === "testscript" ? "week-2-" : "";
+/** RECORD_FLOW=automation records the Week 4 flow into docs/media/week-4-*. */
+const PREFIX = FLOW === "testscript" ? "week-2-" : FLOW === "automation" ? "week-4-" : "";
 const OUT = join(process.cwd(), "docs/media");
 const W = 1280;
 const H = 800;
@@ -61,7 +62,35 @@ await page.getByTestId("results").waitFor();
 await page.waitForTimeout(FLOW === "testscript" ? 1600 : 2400); // summary animates
 const drawer = page.getByTestId("drawer");
 
-if (FLOW === "testscript") {
+if (FLOW === "automation") {
+  // 2) Switch to the heatmap
+  await glideClick(page, '[data-testid="view-automation"]', 300);
+  await page.getByTestId("heatmap").waitFor();
+  await page.evaluate(() => document.querySelector('[data-testid="results"]')?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  await page.waitForTimeout(1800);
+  for (const cell of ["Procure-to-Pay|Preventive", "Treasury|Detective", "Order-to-Cash|Detective"]) {
+    await moveTo(page, `[data-cell="${cell}"]`, 14);
+    await page.waitForTimeout(500);
+  }
+  // 3) Change an assumption: daily controls take 60 minutes, not 30 — everything recalculates
+  await glideClick(page, '[data-testid="assume-min-daily"]', 250);
+  await page.keyboard.press("ControlOrMeta+a");
+  await page.keyboard.type("60", { delay: 180 });
+  await moveTo(page, '[data-testid="total-hours"]', 16);
+  await page.waitForTimeout(1600);
+  await glideClick(page, '[data-testid="reset-assumptions"]', 250);
+  await page.waitForTimeout(900);
+  // 4) Drill into a cell: Treasury detective controls and their business cases
+  await glideClick(page, '[data-cell="Treasury|Detective"]', 300);
+  await page.waitForTimeout(500);
+  await page.locator('[data-testid="case-card"]').first().evaluate((el) => el.scrollIntoView({ behavior: "smooth", block: "center" }));
+  await page.waitForTimeout(1200);
+  await moveTo(page, '[data-testid="case-card"] mark.cite-test >> nth=0', 16);
+  await page.waitForTimeout(1300);
+  await moveTo(page, '[data-testid="case-card"] [data-testid="case-math"] >> nth=0', 16);
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: join(OUT, `${PREFIX}screenshot-case.png`) });
+} else if (FLOW === "testscript") {
   // 2) A clean monthly control: sample size + traced attributes
   await glideClick(page, '[data-id="P2P-05"]', 300);
   await drawer.waitFor();
@@ -124,9 +153,16 @@ await ctx.close();
 // Hi-DPI still of the drawer for README / social preview
 const still = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
 const sp = await still.newPage();
-await sp.goto(`${BASE}/?demo`);
+await sp.goto(`${BASE}/?demo${FLOW === "automation" ? "&view=automation" : ""}`);
 await sp.getByTestId("results").waitFor();
 await sp.waitForTimeout(1500);
+if (FLOW === "automation") {
+  await sp.evaluate(() => document.querySelector('[data-testid="results"]')?.scrollIntoView({ block: "start" }));
+  await sp.waitForTimeout(400);
+  await sp.screenshot({ path: join(OUT, `${PREFIX}screenshot.png`) });
+  await still.close();
+  await browser.close();
+} else {
 await sp.locator(`[data-id="${FLOW === "testscript" ? "P2P-05" : "TRE-03"}"]`).click();
 await sp.getByTestId("drawer").waitFor();
 if (FLOW === "testscript") await sp.getByTestId("tab-test").click();
@@ -138,13 +174,14 @@ await sp.waitForTimeout(400);
 await sp.screenshot({ path: join(OUT, `${PREFIX}screenshot-results.png`) });
 await still.close();
 await browser.close();
+}
 
 const webm = join(OUT, `${PREFIX}demo.webm`);
 renameSync(videoPath, webm);
 const ff = (args: string[]) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: "inherit" });
 ff(["-i", webm, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "slow", "-movflags", "+faststart", "-r", "30", join(OUT, `${PREFIX}demo.mp4`)]);
 const palette = join(tmp, "palette.png");
-const vf = FLOW === "testscript" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
+const vf = FLOW !== "review" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
 ff(["-i", webm, "-vf", `${vf},palettegen=max_colors=128:stats_mode=diff`, palette]);
 ff(["-i", webm, "-i", palette, "-lavfi", `${vf} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle`, join(OUT, `${PREFIX}demo.gif`)]);
 rmSync(webm);
