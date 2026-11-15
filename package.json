@@ -17,9 +17,12 @@
     "gen:holdout": "tsx scripts/generate-holdout.ts",
     "review:holdout": "tsx scripts/precompute-demo.ts --input data/holdout/holdout-rcm.xlsx --out data/holdout/holdout-results.json",
     "eval:holdout": "tsx scripts/eval.ts --set holdout",
-    "precompute:testscripts": "tsx scripts/precompute-testscripts.ts"
+    "precompute:testscripts": "tsx scripts/precompute-testscripts.ts",
+    "mcp": "tsx mcp/server.ts",
+    "build:mcp": "esbuild mcp/server.ts --bundle --platform=node --format=esm --target=node22 --outfile=mcp/dist/rcm-doctor-mcp.mjs --banner:js=\"import { createRequire as __cr } from 'node:module'; const require = __cr(import.meta.url);\" --minify --legal-comments=none --log-level=warning && chmod +x mcp/dist/rcm-doctor-mcp.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -32,6 +35,7 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "esbuild": "^0.28.2",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
@@ -41,5 +45,8 @@
   },
   "description": "Open-source AI reviewer for Risk & Control Matrices (internal controls / IKS).",
   "license": "Apache-2.0",
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "rcm-doctor-mcp": "mcp/dist/rcm-doctor-mcp.mjs"
+  }
 }

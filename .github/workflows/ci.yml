@@ -24,6 +24,8 @@ jobs:
       - run: npm ci
       - name: Lint
         run: npm run lint
+      - name: MCP bundle is up to date
+        run: npm run build:mcp && git diff --exit-code mcp/dist
       - name: Unit tests
         run: npm test
       - name: Eval (offline, committed results — no API key)
