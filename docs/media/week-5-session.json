@@ -1,0 +1,29 @@
+{
+ "note": "Real Claude Code session (claude -p, headless) with the rcm-doctor MCP server and skill, 2026-11-15. Paths shortened to ~/my-project; tool results truncated; ToolSearch step omitted.",
+ "prompt": "Review the Treasury controls in my RCM (my-rcm.xlsx). What should I fix first?",
+ "duration_s": 111,
+ "claude_code_cost_usd": 0.29,
+ "steps": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "rcm-doctor"
+   }
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "ls -la",
+    "description": "List files in project directory"
+   }
+  },
+  {
+   "tool": "mcp__rcm-doctor__review_rcm",
+   "input": {
+    "path": "~/my-project/my-rcm.xlsx"
+   },
+   "summary": "40 controls · 9 fail · 7 weak · 24 pass · mode ai (anthropic/claude-sonnet-5.5)"
+  }
+ ],
+ "answer": "## Treasury controls in my-rcm.xlsx: what to fix first\n\nThe review ran in **AI mode** (the review model plus the six fixed rule checks). Across all 40 controls in the file, 9 fail, 7 are weak and 24 pass.\n\n**Treasury (TRE-01 to TRE-08): 1 fail, 3 weak, 4 pass**\n\n| Priority | Control | Status | Main issue |\n|---|---|---|---|\n| **1** | TRE-03 Manual payments | **Fail** | The same person prepares and approves the payment |\n| **2** | TRE-05 Bank reconciliation | Weak | Done only once a year, with no rule for which reconciling items get investigated |\n| **3** | TRE-06 FX hedge approval | Weak | Owner is a named person, and no approver is named for deals up to CHF 5m |\n| 4 | TRE-04 Cash forecast | Weak | No deadline for the Group Treasurer's review |\n| — | TRE-01, 02, 07, 08 | Pass | No findings |\n\n### 1. TRE-03: fix this first\nThis is the only Treasury control that fails, and it covers money leaving the bank outside the normal payment run.\n- **Segregation of duties (high):** *\"prepares and approves\"*. One role both prepares and approves manual payments, so one person can create and release a payment alone.\n- **Evidence (med):** *\"evidence is kept in e-banking\"*. This doesn't name what is kept (approval record, invoice) or where in e-banking.\n- **Precision (med):** *\"above CHF 1,000\"* only sets which payments are in scope. It doesn't say what the approver checks, such as agreeing the amount and beneficiary to the invoice.\n- **When (low):** *\"outside the payment run\"*. It doesn't say the approval must happen before the payment is released.\n\nSuggested rewrite:\n> Before releasing any manual (urgent) payment above CHF 1,000 outside the payment run, the Treasury Manager prepares it in the e-banking portal with the supporting invoice, and **[independent approver role]** approves it after agreeing amount and beneficiary to the invoice. Each payment is handled this way. The payment record, approval and invoice are retained in **[e-banking evidence location]**.\n\nYou need to pick the second approver (for example the Group Treasurer). Also check that the e-banking platform actually enforces two different users, as it already does for the payment run in TRE-02.\n\n### 2. TRE-05: reconcile monthly, not annually\n- **Frequency:** *\"annually\"*. The tool rated this low severity. **My own view is that it's more serious than that:** if bank balances are reconciled only once a year, an unauthorised payment could go unnoticed for up to 12 months. I'd treat it as nearly as urgent as TRE-03.\n- **Precision (med):** *\"all bank account balances\"*. The scope is complete, but nothing says which reconciling items must be investigated (for example, older than 30 days or above CHF 10,000).\n- Suggested rewrite: monthly, within 10 business days after period-end, the Treasury Accountant reconciles and investigates items over a set threshold, and the Group Treasurer signs off.\n\n### 3. TRE-06: owner and approval\n- **Owner (med):** *\"Martin Keller\"*. This is a person's name, not a role, so the control breaks when that person leaves. Replace it with the role (for example Group Treasurer).\n- **Who (med):** *\"deals above CHF 5m require CFO approval\"*. Nobody is named to approve deals up to CHF 5m. Name that approver, and state that they are not the dealer who enters the deal.\n\n### 4. TRE-04: quick fix\n- **When (low):** *\"Every Monday by 12:00\"*. This is the deadline for preparing the forecast only. Add one for the Group Treasurer's review (for example Tuesday 12:00).\n\n### Suggested order\n1. Change TRE-03 to need two people.\n2. Make TRE-05 monthly and add an investigation threshold.\n3. Replace the named owner in TRE-06 with a role and name the approver for smaller deals.\n4. Add the review deadline to TRE-04.\n\nFixes 3 and 4 are wording changes; 1 and 2 change how the work is done.\n\nOutside Treasury, the other failing controls are P2P-03, P2P-06, O2C-02, O2C-04, O2C-07, R2R-04, ITG-03 and ITG-04. P2P-06 has the same problem as TRE-03: *\"creates and approves\"*.\n\nOnce the Treasury fixes are in, I can draft test scripts for these controls. TRE-03 would currently come back as blocked until its design is fixed. This is a design-review aid, not audit advice."
+}

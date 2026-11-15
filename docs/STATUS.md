@@ -8,6 +8,12 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   generator: ToD walkthrough + ToE attributes traced to source spans, sample size by frequency, "remediate first" blockers,
   /api/testscript, drawer "Test script" tab, "Test scripts" export sheet, precomputed demo scripts, ADR 0012,
   media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
+- **Week 5 is READY on branch `week-5`** (from origin/main incl. Week 2; parallel session 15 Nov; not merged): MCP
+  server (stdio, `npx -y github:nicoladelbene/rcm-doctor`, bundled `mcp/dist/rcm-doctor-mcp.mjs`) with `review_rcm` +
+  `generate_test_scripts` over src/core, Claude skill `skills/rcm-doctor/SKILL.md`, README setup for Claude Code /
+  Desktop, integration test `tests/mcp.test.ts`, ADR 0014, video `docs/media/week-5-demo.*` (replay of a real
+  `claude -p` session), post `docs/posts/2027-01-week-5.md`. Note: the npx command points at main → works after merge
+  (tested with `#week-5`).
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
   labelled by openai/gpt-5.6-sol before review; review prompt frozen (sha256 in data/holdout/review-prompt.sha256).
 - GitHub profile: bio set, "Current project" section added to nicoladelbene/nicoladelbene README.
@@ -35,5 +41,6 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - Demo eval: recall 100 % (33/33) · FP 0 % (0/25) · precision 89 % (anthropic/claude-sonnet-5.5, review.v1)
 - Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
 - Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
+- Week 5: real Claude Code session 111 s, USD 0.29 (Claude Code) + one live 40-control review on OpenRouter
 - OpenRouter spend today: USD 1.91 of the USD 5 key limit
 - GitHub stars: __ · LinkedIn post views: __ (Nicola fills)
