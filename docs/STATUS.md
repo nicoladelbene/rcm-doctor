@@ -1,82 +1,42 @@
 # STATUS
-_Last session: 2026-11-15 (Week 1 + Week 2 + Week 1.1, stopped mid-session at ~16:30 on usage limit) · Nicola in Japan 19–30 Nov_
+_Last session: 2026-11-15 (launch v0.5.0) · Next session: 2026-12-05/06 · **Nicola in Japan until 30/11**_
 
 ## Where we are
-- **Launch branch `release/launch`** (15 Nov, from origin/main + week-4 + week-5 + week-3; not merged — the main session
-  merges it at 18:30): lifecycle home (Review → Test → Evidence → Automate + "Use it inside Claude (MCP)", each step deep-links
-  to its demo view), version badge v0.5.0 (package.json), Open Graph image `src/app/opengraph-image.png` (copy for GitHub
-  social preview: `docs/media/og-image.png`, upload by hand), launch video `docs/media/launch-lifecycle-{16x9,4x5}.mp4` +
-  GIF (`npm run record:lifecycle`). ADRs: week-3 = 0014, week-5 renumbered to 0015. Still to do: re-merge origin/main
-  (Week 1.1); e2e + video on the Vercel preview need the Vercel connector authorised for the team (preview is protected).
-- **Week 1 is live** on main → https://rcm-doctor.vercel.app (demo: /?demo). Auto-deploy: Vercel Git integration,
-  every push to main deploys production; other branches get (protected) previews. CI (lint, unit, eval, eval:holdout) on every push/PR.
-- **Week 2 is READY on branch `week-2`. On 6 Dec only polish, merge and publish remain.** It contains the test-script
-  generator: ToD walkthrough + ToE attributes traced to source spans, sample size by frequency, "remediate first" blockers,
-  /api/testscript, drawer "Test script" tab, "Test scripts" export sheet, precomputed demo scripts, ADR 0012,
-  media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
-- **Week 3 is BUILT on branch `week-3`** (parallel session, 15 Nov; not merged, prod untouched): evidence tester — upload
-  PDF/screenshot/CSV, tick & tie every sample item × test attribute, boxes on the evidence + link to the description span.
-  Synthetic evidence for 5 demo controls (2 with planted exceptions), `npm run eval:evidence` (in `npm run eval`), ADR 0014,
-  10-min demo `docs/demo-week-3.md`, media `docs/media/week-3-*`, post draft `docs/posts/2026-12-13-week-3.md`.
-  Merge order: week-2 first, then `git switch week-3 && git merge main`.
-- **Week 4 is READY on branch `week-4`** (parallel session, 15 Nov; not merged, prod untouched): automation heatmap
-  (process × control type) + business case per control with score ≥ 4 (hours/yr, CHF, ITAC vs RPA/script with cited cue,
-  prerequisites, payback), all assumptions editable in the UI, kept in localStorage and exported (sheet "Automation").
-  Phase 1 review approved by Nicola (15 Nov): per-transaction controls excluded from totals until a volume is entered;
-  "illustrative" banner + label. ADR 0013,
-  10-min demo `docs/demos/week-4-demo.md`, post `docs/posts/2026-12-20-week-4.md`, media `docs/media/week-4-*`. CI green.
-  Merge order: week-2 → (week-3) → week-4; expect trivial conflicts in README/STATUS/e2e sheet names.
-- **Week 5 is READY on branch `week-5`** (from origin/main incl. Week 2; parallel session 15 Nov; not merged): MCP
-  server (stdio, `npx -y github:nicoladelbene/rcm-doctor`, bundled `mcp/dist/rcm-doctor-mcp.mjs`) with `review_rcm` +
-  `generate_test_scripts` over src/core, Claude skill `skills/rcm-doctor/SKILL.md`, README setup for Claude Code /
-  Desktop, integration test `tests/mcp.test.ts`, ADR 0015, video `docs/media/week-5-demo.*` (replay of a real
-  `claude -p` session), post `docs/posts/2027-01-week-5.md`. Note: the npx command points at main → works after merge
-  (tested with `#week-5`).
-- **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
-  labelled by openai/gpt-5.6-sol before review; review prompt frozen (sha256 in data/holdout/review-prompt.sha256).
-- GitHub profile: bio set, "Current project" section added to nicoladelbene/nicoladelbene README.
-- **Week 2 is LIVE** on production (week-2 fast-forward merged into main, prod e2e 6/6). https://rcm-doctor.vercel.app/?demo → "Test script" tab.
-- **Week 1.1 is LIVE** (pushed to main 2026-11-15 ~18:10): German rules (`Leiter …` = role, `manuell`,
-  German departments), extra SoD patterns, SoD assessed by the AI in prompt `review.v2`, eval sets
-  `holdout-v1-rerun` / `holdout2` / `holdout2-baseline` in scripts/eval.ts.
-- **Holdout v2** (data/holdout-v2): HelvetiaMedTech AG, 30 controls (10 DE, 12 clean, 63 defects), generated and labelled
-  by google/gemini-4-argon, committed before any review. The reviewer was frozen first (frozen-reviewer.sha256).
-  Rejected attempts are documented in GENERATION-LOG.md.
-- week-3 / week-4 branches (parallel sessions) were not touched.
+- **v0.5.0 is on main and live** → https://rcm-doctor.vercel.app (demo: /?demo). Every push to main deploys production
+  (Vercel Git integration); CI (lint, unit, MCP bundle check, eval, eval:holdout, eval:holdout2) on every push.
+- On main: Review (Week 1 + 1.1), Test scripts (Week 2), Evidence tester (Week 3), Automation heatmap (Week 4),
+  MCP server + Claude skill (Week 5), lifecycle home, OG image, full-lifecycle video. See CHANGELOG.md.
+- **Not on main: `week-6`** (AI-governance pack, 26 controls). Functional, but its AI run stopped when the OpenRouter
+  credit ran out (7/26 controls rules-only, test scripts deterministic only). Handoff: `docs/handoff/week-6.md` on
+  that branch. Its ADR is numbered 0015, which main already uses (Week 1.1): renumber to 0017 when merging.
+- ADRs on main: 0013 automation (W4), 0014 evidence (W3), 0015 Week 1.1, 0016 MCP (W5).
+- Launch post: `docs/posts/2026-11-15-launch.md` (2 variants + first comment), video `docs/media/launch-lifecycle-4x5.mp4`.
 
-## Next exact step
-1. At the 18:30 code freeze: merge week-3 then week-4 into main, full e2e (local + prod), record the ~30 s "full lifecycle" video, /wrap-up.
-2. Next fix target: English false positives (frequency/when), then a holdout v3 to measure it.
+## Next exact step (5 Dec)
+1. **Top up the OpenRouter credit** (it is exhausted; demo and rules-only work without it). Check the key limit.
+2. `git fetch && git switch week-6 && git merge main` → resolve docs conflicts → rename its ADR 0015 → 0017.
+3. Run the AI pack precompute from `docs/handoff/week-6.md` (step 1), then `npm run eval:ai`, update numbers, re-record.
+4. `npm run lint && npm test && npm run eval`, merge into main, prod e2e: `E2E_BASE_URL=https://rcm-doctor.vercel.app npx playwright test`.
+5. Then English false positives + holdout v3 (ROADMAP "Week of 5–6 Dec").
 
 ## Open questions for Nicola
-- LinkedIn post format (Week 1 / Week 2 drafts). The Week 2 post must now say "published", not "6 Dec".
-- Pin rcm-doctor and upload the social preview (no API).
+- Pick a launch post variant (A/B) and post it with `launch-lifecycle-4x5.mp4`; link in the first comment.
+- Upload `docs/media/og-image.png` as GitHub social preview and pin the repo (no API).
+- npm publish of the MCP server: yes/no (needs your npm login).
 
 ## Known issues / tech debt
-- Week 4: ITAC/RPA choice is a cue-word heuristic (not measured). Assumptions persist
-  in localStorage (per browser); per-control overrides do not. Default assumptions remain illustrative (ADR 0013).
-- **German (holdout):** recall 70%, FP 50% on clean German controls. Causes: owner rule treats "Leiter …" as a person
-  name (4 FP) and misses German departments; nature rule misses "manuell". Not fixed on purpose (holdout integrity).
-- **SoD regex** misses "prepares … and then approves the same …" (2/2 holdout misses, English). The review prompt
-  delegates SoD to rules, so the AI does not catch it either. Fix in rules + re-measure on a new holdout.
-- English FP on holdout v2 still 43 % (3/7), mostly strict frequency/when readings; freq_mismatch rule catches 1/3.
-- OpenRouter: account credits almost used up (~USD 0.5 left of 10); new-account limit of 20 requests per minute.
-- Gemini generator: it reports the German count inaccurately (it needed a positional instruction).
-- Demo eval set is authored with the prompt (regression test, not a benchmark). Holdout labels contain generator noise.
-- No rate limiting on /api/* (BYOK); input limits ≤10 controls, ≤4000 chars/field, ≤200 KB. Dark mode not implemented.
+- English false positives on holdout v2: 43% (3/7 clean), strict "frequency"/"when" readings.
+- `llm.ts` no longer matches `frozen-reviewer.sha256` (documented transport fix; prompt and rules match).
+- Demo and evidence eval sets are regression tests, not benchmarks. Holdout labels contain generator noise.
+- Automation: ITAC/RPA choice is a cue-word heuristic (not measured); assumptions are illustrative defaults.
+- MCP server via `npx github:` downloads the whole package (~15 s first start) until published on npm.
+- No rate limiting on /api/* (BYOK); per-request input limits. Dark mode not implemented.
 
 ## Metrics
-- Demo eval: recall 100 % (33/33) · FP 0 % (0/25) · precision 89 % (anthropic/claude-sonnet-5.5, review.v1)
-- Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
-- Week 3 (branch): 5 controls, 163 checks in 51 s · 3/3 planted exceptions boxed · 0/160 false exceptions · 139/139 tied to a verified box/cell
-- Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
-- Week 4 (branch, demo, default assumptions): 15 candidates (7 priced, 8 per-transaction need a volume) · 295 h/yr (≈0.17 FTE) · CHF 32k · 560 build h (≈23 months) · 4 already automated · 4 blocked by design
-- Week 5: real Claude Code session 111 s, USD 0.29 (Claude Code) + one live 40-control review on OpenRouter
-- OpenRouter spend today: USD 1.91 of the USD 5 key limit
+- Demo eval (review.v2): recall 100% (33/33) · FP 4% (1/25) · precision 85%
+- Holdout v2 (never seen, Week 1.1): recall 92% (58/63) · FP 25% (3/12) · DE 95% / 0% · EN 90% / 43%
+- Holdout v1 (Week 1, first measurement): recall 82% · FP 17% · EN 89% / 0% · DE 70% / 50%
+- Evidence: planted exceptions 3/3 (with box) · false exceptions 0/186 · conclusions 5/5
+- Automation (demo, defaults): 15 candidates (7 priced, 8 need a volume) · 295 h/yr · CHF 32k · 4 already automated
+- OpenRouter: credit exhausted, **top up before resuming**
 - GitHub stars: __ · LinkedIn post views: __ (Nicola fills)
-- Demo eval (review.v2, sonnet-5.5): recall 100 % (33/33) · FP 4 % (1/25) · precision 85 %
-- Holdout v1, first measurement (review.v1): recall 82 % · FP 17 % · EN 89 %/0 % · DE 70 %/50 %
-- Holdout v1 re-run with Week 1.1: recall 100 % · FP 0 % (SEEN set, not a holdout)
-- Holdout v2, Week 1 baseline: recall 86 % (54/63) · FP 58 % · precision 76 % · DE 81 %/80 % · EN 88 %/43 %
-- Holdout v2, Week 1.1: recall 92 % (58/63) · FP 25 % (3/12) · precision 84 % · DE 95 %/0 % · EN 90 %/43 %
-- Demo test scripts: 29/40 ToE-ready · 95 % (177/187) attributes traced

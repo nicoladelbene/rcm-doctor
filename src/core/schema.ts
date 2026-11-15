@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** Canonical RCM columns (BOOTSTRAP §4.1). */
+/** Canonical RCM columns (docs/history/BOOTSTRAP.md §4.1). */
 export const CONTROL_FIELDS = [
   "control_id",
   "process",
