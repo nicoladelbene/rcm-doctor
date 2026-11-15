@@ -17,6 +17,8 @@
     "gen:holdout": "tsx scripts/generate-holdout.ts",
     "review:holdout": "tsx scripts/precompute-demo.ts --input data/holdout/holdout-rcm.xlsx --out data/holdout/holdout-results.json",
     "eval:holdout": "tsx scripts/eval.ts --set holdout",
+    "eval:holdout2": "tsx scripts/eval.ts --set holdout2 && tsx scripts/eval.ts --set holdout2-baseline",
+    "review:holdout2": "tsx scripts/precompute-demo.ts --input data/holdout-v2/holdout-rcm.xlsx --out data/holdout-v2/holdout-results.json --concurrency 1",
     "precompute:testscripts": "tsx scripts/precompute-testscripts.ts"
   },
   "dependencies": {

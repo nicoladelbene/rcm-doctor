@@ -482,7 +482,7 @@ function Hero({
             <span className="font-semibold text-ink tnum">{pct(evalHeadline.cleanFpRate)}</span> false positives on clean controls ({evalHeadline.model}).
             {holdout && (
               <>
-                {" "}On an independent holdout ({holdout.controls} controls by another model family, a third in German):{" "}
+                {" "}On an unseen holdout ({holdout.controls} controls written by another model family, a third in German):{" "}
                 <span className="font-semibold text-ink tnum">{pct(holdout.recall)}</span> recall,{" "}
                 <span className="font-semibold text-ink tnum">{pct(holdout.cleanFpRate)}</span> false positives.
               </>

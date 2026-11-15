@@ -98,6 +98,15 @@ describe("reviewBatchWithLlm", () => {
     await reviewBatchWithLlm(controls, { apiKey: "k", fetchImpl });
     expect(JSON.parse(fetchImpl.mock.calls[1][1].body).response_format.type).toBe("json_object");
   });
+  it("reports truncation (finish_reason length) as a budget error, not a JSON error", async () => {
+    const fetchImpl = vi.fn(async () => new Response(JSON.stringify({ choices: [{ finish_reason: "length", message: { content: '{"results": [{"control_id": "A", "attr' } }] })));
+    await expect(reviewBatchWithLlm(controls, { apiKey: "k", fetchImpl })).rejects.toThrow(/truncated at max_tokens/);
+  });
+  it("budgets tokens for reasoning on top of the answer", async () => {
+    const fetchImpl = vi.fn(async () => respond(JSON.stringify({ results: [llmResult("A")] })));
+    await reviewBatchWithLlm(controls, { apiKey: "k", fetchImpl });
+    expect(JSON.parse((fetchImpl.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).max_tokens).toBeGreaterThanOrEqual(6000);
+  });
   it("surfaces auth errors", async () => {
     const fetchImpl = vi.fn(async () => respond("No auth credentials found", 401));
     await expect(reviewBatchWithLlm(controls, { apiKey: "bad", fetchImpl })).rejects.toThrow(/401/);

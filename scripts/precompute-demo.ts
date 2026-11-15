@@ -20,12 +20,26 @@ const out = process.argv.includes("--out") ? process.argv[process.argv.indexOf("
 
 const input = process.argv.includes("--input") ? process.argv[process.argv.indexOf("--input") + 1] : "data/demo-rcm.xlsx";
 const controls = loadControls(readFileSync(input), input);
+// OpenRouter returns 402 while in-flight requests still reserve credit, 429 on the per-minute cap: wait and retry (offline script only).
+function withCreditRetry<A extends unknown[], R>(fn: (...a: A) => Promise<R>) {
+  return async (...a: A): Promise<R> => {
+    for (let i = 0; ; i++) {
+      try {
+        return await fn(...a);
+      } catch (e) {
+        const m = (e as Error).message;
+        if (i >= 8 || !/OpenRouter (402|429)/.test(m)) throw e;
+        await new Promise((r) => setTimeout(r, /429/.test(m) ? 60000 : 15000));
+      }
+    }
+  };
+}
 const t0 = Date.now();
 const reviews = await reviewControls(controls, {
-  llm: openRouterBatchFn({ apiKey: key, model }),
+  llm: withCreditRetry(openRouterBatchFn({ apiKey: key, model })),
   model,
   batchSize: 5,
-  concurrency: 4,
+  concurrency: process.argv.includes("--concurrency") ? Number(process.argv[process.argv.indexOf("--concurrency") + 1]) : 4,
   onProgress: (done, total) => process.stdout.write(`\r${done.length}/${total} reviewed`),
 });
 const secs = ((Date.now() - t0) / 1000).toFixed(1);

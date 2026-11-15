@@ -12,5 +12,5 @@ function readEval(file: string): EvalHeadline | null {
 }
 
 export default function Page() {
-  return <App evalHeadline={readEval("eval-latest.json")} holdout={readEval("eval-holdout.json")} />;
+  return <App evalHeadline={readEval("eval-latest.json")} holdout={readEval("eval-holdout-v2.json")} />;
 }

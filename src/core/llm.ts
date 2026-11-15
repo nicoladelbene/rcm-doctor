@@ -163,6 +163,9 @@ export async function post(opts: LlmCallOptions, body: Record<string, unknown>) 
   }
   const json = JSON.parse(text);
   const content: string | undefined = json?.choices?.[0]?.message?.content;
+  // Reasoning tokens count against max_tokens: a truncated answer is a budget problem, not a format problem.
+  if (json?.choices?.[0]?.finish_reason === "length")
+    throw new LlmError(`Model output truncated at max_tokens (${body.max_tokens}); raise the token budget or the batch is too large`);
   if (!content) throw new LlmError(`Empty response from model${json?.error?.message ? `: ${json.error.message}` : ""}`);
   return content;
 }
@@ -220,7 +223,8 @@ export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptio
     messages: (repair) => buildMessages(controls, repair),
     itemSchema: LlmControlResultSchema,
     jsonSchema: RESPONSE_JSON_SCHEMA,
-    maxTokens: 1200 * controls.length + 500,
+    // Budget includes the model's reasoning tokens (~3.5k observed on Sonnet 5.5) and longer German output.
+    maxTokens: 2000 * controls.length + 4000,
     opts,
   });
 }
@@ -312,7 +316,7 @@ export async function testScriptBatchWithLlm(items: TestScriptInput[], opts: Llm
     messages: (repair) => buildTestScriptMessages(items, repair),
     itemSchema: LlmTestScriptSchema,
     jsonSchema: TESTSCRIPT_JSON_SCHEMA,
-    maxTokens: 1500 * items.length + 500,
+    maxTokens: 2000 * items.length + 4000,
     opts,
   });
 }
