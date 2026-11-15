@@ -1,4 +1,5 @@
 "use client";
+import type { Assumptions, Heatmap } from "@/core/automation";
 import { cacheKey, reviewControls, type LlmResult } from "@/core/review";
 import type { Control, Review } from "@/core/schema";
 import { generateTestScripts, type LlmTestScript, type TestScript } from "@/core/testscript";
@@ -75,9 +76,15 @@ export async function runTestScripts(
   return generateTestScripts(controls, reviews, { llm, model: opts.model, batchSize: 5, concurrency: 3, onProgress: opts.onProgress });
 }
 
-export async function downloadReport(controls: Control[], reviews: Review[], source: string, scripts?: TestScript[]) {
+export async function downloadReport(
+  controls: Control[],
+  reviews: Review[],
+  source: string,
+  scripts?: TestScript[],
+  automation?: { heatmap: Heatmap; assumptions: Assumptions },
+) {
   const { buildReportXlsx } = await import("@/core/export");
-  const bytes = buildReportXlsx(controls, reviews, { source }, scripts);
+  const bytes = buildReportXlsx(controls, reviews, { source }, scripts, automation);
   const blob = new Blob([bytes as BlobPart], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

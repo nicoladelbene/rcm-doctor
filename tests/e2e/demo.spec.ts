@@ -21,7 +21,7 @@ test("demo: results render, drawer shows cited spans, report downloads", async (
   const [download] = await Promise.all([page.waitForEvent("download"), page.getByTestId("download-report").click()]);
   expect(download.suggestedFilename()).toMatch(/^rcm-review-\d{4}-\d{2}-\d{2}\.xlsx$/);
   const wb = XLSX.read(readFileSync((await download.path())!), { type: "buffer" });
-  expect(wb.SheetNames).toEqual(["Review", "Findings", "Test scripts", "Summary"]);
+  expect(wb.SheetNames).toEqual(["Review", "Findings", "Test scripts", "Automation", "Summary"]);
   expect(XLSX.utils.sheet_to_json(wb.Sheets.Review)).toHaveLength(40);
 });
 
@@ -83,4 +83,38 @@ test("api: testscript route enforces key and limits", async ({ request }) => {
   expect((await request.post("/api/testscript", { data: { items: [] } })).status()).toBe(401);
   const bad = await request.post("/api/testscript", { headers: { "x-openrouter-key": "sk-or-v1-" + "a".repeat(40) }, data: { items: [] } });
   expect(bad.status()).toBe(400);
+});
+
+test("week 4: automation heatmap, business cases and editable assumptions", async ({ page }) => {
+  await page.goto("/?demo");
+  await expect(page.getByTestId("result-row")).toHaveCount(40);
+  await page.getByTestId("view-automation").click();
+  const auto = page.getByTestId("automation");
+  await expect(auto.getByTestId("heatmap")).toBeVisible();
+  await expect(auto.getByTestId("heat-cell").first()).toBeVisible();
+  const cards = auto.getByTestId("case-card");
+  const total = await cards.count();
+  expect(total).toBeGreaterThan(5);
+  // Every card cites the source text behind its approach (or says why it cannot).
+  await expect(auto.locator('[data-id="TRE-08"] mark.cite-test')).toHaveText("reconciles");
+
+  // Assumptions drive the numbers.
+  const hours = page.getByTestId("total-hours");
+  const before = await hours.textContent();
+  await page.getByTestId("assume-min-daily").fill("60");
+  await expect(hours).not.toHaveText(before!);
+  await page.getByTestId("reset-assumptions").click();
+  await expect(hours).toHaveText(before!);
+
+  // Threshold 5 leaves only score-5 candidates; a cell filters the list.
+  await page.getByTestId("assume-threshold").selectOption("5");
+  await expect(cards).toHaveCount(0);
+  await page.getByTestId("assume-threshold").selectOption("4");
+  await expect(cards).toHaveCount(total);
+  await auto.locator('[data-cell="Treasury|Detective"]').click();
+  await expect(cards.first()).toContainText("Treasury");
+
+  // Card ID opens the control in the review drawer.
+  await cards.first().getByRole("button").first().click();
+  await expect(page.getByTestId("drawer")).toBeVisible();
 });

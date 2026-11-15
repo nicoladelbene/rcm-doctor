@@ -70,7 +70,7 @@ export const APPROACH_LABELS: Record<Approach, string> = {
 /** Wording that points to a check the system itself can enforce at entry. */
 const ITAC_CUES = /\b(three-way match|match(es|ing)?|block(s|ed)?|tolerance|duplicate|validat\w*|mandatory field|workflow|approv\w*|release[sd]?|authori[sz]\w*|limit|access|password|segregat\w*|lock(s|ed)?)\b/i;
 /** Wording that points to a repeatable comparison over system data, done after the fact. */
-const RPA_CUES = /\b(reconcil\w*|compares?|compared|agrees?|ties?|ageing|aging|report|listing|extract\w*|download\w*|exports?|analy[sz]\w*|recalculat\w*|monitor\w*|review(s|ed)?)\b/i;
+const RPA_CUES = /\b(reconcil\w*|compares?|compared|agrees?|ties?|ageing|aging|report|listing|extract\w*|download\w*|exports?|analy[sz](?:e|es|ed|is|ing)|checks? whether|recalculat\w*|monitor\w*|review(s|ed)?)\b/i;
 /** Systems that are document stores rather than systems of record: nothing to configure an ITAC in. */
 const NOT_A_SYSTEM = /^(sharepoint|excel|e-?mail|outlook|paper|word|teams|file share)$/i;
 
@@ -82,7 +82,7 @@ export function isAlreadyAutomated(c: Control, review?: Review | null): boolean 
 
 export function recordSystems(c: Control): string[] {
   return c.systems
-    .split(/[,;/]+/)
+    .split(/[,;]+/)
     .map((s) => s.trim())
     .filter((s) => s && !NOT_A_SYSTEM.test(s));
 }
