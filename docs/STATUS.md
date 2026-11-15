@@ -8,6 +8,10 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   generator: ToD walkthrough + ToE attributes traced to source spans, sample size by frequency, "remediate first" blockers,
   /api/testscript, drawer "Test script" tab, "Test scripts" export sheet, precomputed demo scripts, ADR 0012,
   media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
+- **Week 6 is BUILT on branch `week-6`** (from origin/main, 15 Nov; not merged): AI systems controls pack — 26 controls,
+  references verified on the web (log docs/research/ai-governance-references.md), second demo RCM (`/?demo=ai`), ADR 0015,
+  demo docs/demo-week-6.md, media docs/media/week-6-*, post draft docs/posts/2027-01-week-6.md. OPEN: 7/26 reviewed by
+  rules only and test scripts deterministic only (OpenRouter account credit exhausted) — rerun with credit (ADR 0015).
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
   labelled by openai/gpt-5.6-sol before review; review prompt frozen (sha256 in data/holdout/review-prompt.sha256).
 - GitHub profile: bio set, "Current project" section added to nicoladelbene/nicoladelbene README.

@@ -31,5 +31,14 @@ VERIFIED topic (summary wording): GOVERN 2.2, 3.2, 4.3, 5.1, 6.1, 6.2; MAP 2.1, 
 MEASURE 2.5, 2.7, 2.8, 2.9, 2.10, 2.11 (fairness/bias), 3.1; MANAGE 2.3, 2.4, 3.1, 3.2, 4.1, 4.3 (incidents communicated).
 
 ## FINMA
-Guidance 08/2024 (AI governance): NOT verified — finma.ch listings are client-rendered; PDF not reached. Leave FINMA
-mappings empty until the document is read. Confirmed: FINMA guidance "does not have legal impact" (not binding).
+VERIFIED from the PDF (finma.ch, FINMA Guidance 08/2024 "Governance and risk management when using artificial
+intelligence", 18 Dec 2024): 2 Findings from supervision — 2.1 Governance (incl. inventory, responsibilities, training,
+outsourcing: additional tests, controls, contractual clauses) · 2.2 Inventory and risk classification · 2.3 Data
+quality · 2.4 Tests and ongoing monitoring (accuracy, robustness, stability, bias; thresholds; data drift; analysis of
+outputs ignored or changed by users) · 2.5 Documentation · 2.6 Explainability · 2.7 Independent review.
+FINMA guidance "does not have legal impact" (not binding): it states supervisory observations.
+
+## Decision for the pack
+ISO/IEC 42001 Annex A IDs are used although only one public listing could be read (ISO's own pages are paywalled /
+blocked); a second check (Drata, Vanta: 404; ISO: 403) failed. They are flagged as such in ADR 0015 — re-check against
+a licensed copy of the standard before relying on them.

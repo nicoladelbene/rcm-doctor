@@ -13,7 +13,7 @@ import { chromium, type Page } from "@playwright/test";
 const BASE = process.env.RECORD_URL ?? "http://localhost:3100";
 /** RECORD_FLOW=testscript records the Week 2 flow into docs/media/week-2-*. */
 const FLOW = process.env.RECORD_FLOW ?? "review";
-const PREFIX = FLOW === "testscript" ? "week-2-" : "";
+const PREFIX = FLOW === "testscript" ? "week-2-" : FLOW === "ai" ? "week-6-" : "";
 const OUT = join(process.cwd(), "docs/media");
 const W = 1280;
 const H = 800;
@@ -55,13 +55,37 @@ await page.waitForLoadState("networkidle");
 await page.mouse.move(520, 420);
 await page.waitForTimeout(1300);
 
-// 1) Try the demo
-await glideClick(page, '[data-testid="try-demo"]');
+// 1) Try the demo (or the AI systems controls pack)
+await glideClick(page, FLOW === "ai" ? '[data-testid="try-ai-pack"]' : '[data-testid="try-demo"]');
 await page.getByTestId("results").waitFor();
 await page.waitForTimeout(FLOW === "testscript" ? 1600 : 2400); // summary animates
 const drawer = page.getByTestId("drawer");
 
-if (FLOW === "testscript") {
+if (FLOW === "ai") {
+  // 2) A well-designed oversight control: framework mapping + design review
+  await glideClick(page, '[data-id="AIH-01"]', 300);
+  await drawer.waitFor();
+  await page.waitForTimeout(900);
+  await moveTo(page, '[data-testid="framework-refs"]', 18);
+  await page.waitForTimeout(2200);
+  await glideClick(page, '[data-testid="tab-test"]', 250);
+  await page.waitForTimeout(1800);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(400);
+  // 3) A vague AI-literacy control fails with cited findings
+  await glideClick(page, '[data-id="AIG-05"]', 300);
+  await drawer.waitFor();
+  await page.waitForTimeout(1200);
+  await moveTo(page, 'mark.cite-fail >> nth=0', 18);
+  await page.waitForTimeout(1500);
+  for (let y = 0; y <= 700; y += 40) {
+    await drawer.evaluate((el, top) => el.scrollTo({ top }), y);
+    await page.waitForTimeout(28);
+  }
+  await page.waitForTimeout(1800);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(500);
+} else if (FLOW === "testscript") {
   // 2) A clean monthly control: sample size + traced attributes
   await glideClick(page, '[data-id="P2P-05"]', 300);
   await drawer.waitFor();
@@ -124,10 +148,10 @@ await ctx.close();
 // Hi-DPI still of the drawer for README / social preview
 const still = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
 const sp = await still.newPage();
-await sp.goto(`${BASE}/?demo`);
+await sp.goto(`${BASE}/?demo${FLOW === "ai" ? "=ai" : ""}`);
 await sp.getByTestId("results").waitFor();
 await sp.waitForTimeout(1500);
-await sp.locator(`[data-id="${FLOW === "testscript" ? "P2P-05" : "TRE-03"}"]`).click();
+await sp.locator(`[data-id="${FLOW === "ai" ? "AIH-01" : FLOW === "testscript" ? "P2P-05" : "TRE-03"}"]`).click();
 await sp.getByTestId("drawer").waitFor();
 if (FLOW === "testscript") await sp.getByTestId("tab-test").click();
 await sp.waitForTimeout(600);
@@ -144,7 +168,7 @@ renameSync(videoPath, webm);
 const ff = (args: string[]) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: "inherit" });
 ff(["-i", webm, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "slow", "-movflags", "+faststart", "-r", "30", join(OUT, `${PREFIX}demo.mp4`)]);
 const palette = join(tmp, "palette.png");
-const vf = FLOW === "testscript" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
+const vf = FLOW !== "review" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
 ff(["-i", webm, "-vf", `${vf},palettegen=max_colors=128:stats_mode=diff`, palette]);
 ff(["-i", webm, "-i", palette, "-lavfi", `${vf} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle`, join(OUT, `${PREFIX}demo.gif`)]);
 rmSync(webm);

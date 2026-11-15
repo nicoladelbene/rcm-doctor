@@ -11,5 +11,5 @@ Pause: 22 and 29 Nov (Japan, 19–30 Nov).
 | 3 | 13 Dec | Evidence tester v0: upload evidence (PDF/screenshot/CSV) and the agent ticks & ties each attribute to its source, with boxes on the evidence | "Tick & tie, automated — with receipts" |
 | 4 | 20 Dec | Automation-opportunity heatmap + business case per control (hours saved, ITAC candidate) | "Which of your controls should a robot do?" |
 | 5 | Jan | MCP server + Claude skill (`rcm-doctor` usable inside Claude/Claude Code) | "Your RCM, inside your AI assistant" |
-| 6 | Jan | AI-governance pack: controls for AI systems (EU AI Act / ISO 42001 / FINMA expectations) as a ready RCM module | "Who controls the AI that runs your controls?" |
+| 6 🟡 | Jan | **Built on branch `week-6` (15 Nov).** AI-governance pack: controls for AI systems (EU AI Act / ISO 42001 / FINMA expectations) as a ready RCM module | "Who controls the AI that runs your controls?" |
 | 7+ | — | Treasury module (payments, bank accounts, camt.053 reconciliation controls), CLI, multilingual RCMs (DE/FR/IT) | — |

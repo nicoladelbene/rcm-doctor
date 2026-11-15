@@ -99,7 +99,7 @@ One increment per weekend ([full roadmap](docs/ROADMAP.md)):
 - **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source
 - **Week 4:** automation-opportunity heatmap and business case per control
 - **Week 5:** MCP server + Claude skill
-- **Week 6:** AI-governance control pack (EU AI Act / ISO 42001 / FINMA expectations)
+- **Week 6:** AI-governance control pack (EU AI Act / ISO 42001 / NIST AI RMF / FINMA Guidance 08/2024): 26 controls with verified references, second demo RCM (built, on branch `week-6`)
 
 ## Disclaimer
 
