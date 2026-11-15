@@ -1,0 +1,40 @@
+{
+  "company": {
+    "name": "HelvetiaMedTech AG",
+    "industry": "Medtech (Medical Devices & Diagnostics)",
+    "description": "Mid-sized Swiss developer and distributor of orthopedic implants and diagnostic equipment headquartered in Zug, operating in CHF under Swiss CO (OR) and ISO 13485 quality standards."
+  },
+  "generator_model": "google/gemini-4-argon",
+  "languages": {
+    "P2P-H01": "en",
+    "P2P-H02": "de",
+    "P2P-H03": "en",
+    "P2P-H04": "de",
+    "P2P-H05": "en",
+    "O2C-H01": "en",
+    "O2C-H02": "de",
+    "O2C-H03": "en",
+    "O2C-H04": "de",
+    "O2C-H05": "en",
+    "TRE-H01": "de",
+    "TRE-H02": "en",
+    "TRE-H03": "en",
+    "TRE-H04": "de",
+    "TRE-H05": "en",
+    "R2R-H01": "en",
+    "R2R-H02": "de",
+    "R2R-H03": "en",
+    "R2R-H04": "de",
+    "R2R-H05": "en",
+    "ITG-H01": "en",
+    "ITG-H02": "de",
+    "ITG-H03": "en",
+    "ITG-H04": "en",
+    "ITG-H05": "de",
+    "HRP-H01": "de",
+    "HRP-H02": "en",
+    "HRP-H03": "en",
+    "HRP-H04": "de",
+    "HRP-H05": "en"
+  }
+}
