@@ -26,3 +26,17 @@ describe("export", () => {
     expect(summary.find((r) => r[0] === "Controls reviewed")?.[1]).toBe(40);
   });
 });
+
+describe("export with test scripts", () => {
+  it("adds a Test scripts sheet with one row per attribute", async () => {
+    const { TestScriptRunSchema } = await import("@/core/testscript");
+    const controls = loadControls(readFileSync("data/demo-rcm.xlsx"), "demo-rcm.xlsx");
+    const reviews = await reviewControls(controls);
+    const run = TestScriptRunSchema.parse(JSON.parse(readFileSync("data/demo-testscripts.json", "utf8")));
+    const wb = XLSX.read(buildReportXlsx(controls, reviews, {}, run.scripts), { type: "array" });
+    expect(wb.SheetNames).toEqual(["Review", "Findings", "Test scripts", "Summary"]);
+    const rows = XLSX.utils.sheet_to_json<Record<string, string>>(wb.Sheets["Test scripts"]);
+    expect(rows.length).toBe(run.scripts.reduce((n, s) => n + Math.max(1, s.attributes.length), 0));
+    expect(rows.find((r) => r["Control ID"] === "TRE-03" && r["ToE status"])?.["ToE status"]).toMatch(/Blocked/);
+  });
+});

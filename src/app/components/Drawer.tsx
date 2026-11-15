@@ -10,6 +10,10 @@ import {
 } from "@/core/schema";
 import { AutomationMeter, SeverityTag, StatusGlyph, StatusPill } from "./bits";
 import { Highlighted, WithPlaceholders, type Cite } from "./Highlighted";
+import type { TestScript } from "@/core/testscript";
+import { TestScriptPanel } from "./TestScriptPanel";
+
+export type DrawerTab = "review" | "test";
 
 /** Phrased as the property being checked, so a ✓ reads naturally. */
 const RULE_PASS_LABEL: Record<(typeof RULE_CHECKS)[number], string> = {
@@ -37,6 +41,9 @@ export function Drawer({
   onPrev,
   onNext,
   position,
+  script,
+  tab = "review",
+  onTab,
 }: {
   control: Control;
   review: Review;
@@ -44,6 +51,9 @@ export function Drawer({
   onPrev?: () => void;
   onNext?: () => void;
   position: string;
+  script?: TestScript;
+  tab?: DrawerTab;
+  onTab?: (t: DrawerTab) => void;
 }) {
   // Hovered finding number, scoped to the control it was set on (resets on navigation without an effect).
   const [hover, setHover] = useState<{ id: string; n: number } | null>(null);
@@ -151,8 +161,40 @@ export function Drawer({
               </button>
             </div>
           </div>
+          {onTab && (
+            <div className="-mb-4 mt-3 flex gap-5 text-[13.5px]" role="tablist">
+              {(
+                [
+                  ["review", "Design review"],
+                  ["test", "Test script"],
+                ] as const
+              ).map(([t, label]) => (
+                <button
+                  key={t}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === t}
+                  data-testid={`tab-${t}`}
+                  onClick={() => onTab(t)}
+                  className={`border-b-2 pb-2 font-medium transition-colors ${tab === t ? "border-ink text-ink" : "border-transparent text-muted hover:text-ink"}`}
+                >
+                  {label}
+                  {t === "test" && script && (
+                    <span className={`ml-1.5 rounded-full px-1.5 text-[11px] ${script.toe_ready ? "bg-pass-soft text-pass" : "bg-fail-soft text-fail"}`}>
+                      {script.toe_ready ? `n=${script.sample.size}` : "blocked"}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
+        {tab === "test" ? (
+          <div className="px-6 py-6 sm:px-8">
+            <TestScriptPanel control={control} script={script} />
+          </div>
+        ) : (
         <div className="space-y-8 px-6 py-6 sm:px-8">
           {/* Description with cited spans */}
           <section>
@@ -314,6 +356,7 @@ export function Drawer({
             {review.llm_error && <span className="text-fail"> · AI step failed: {review.llm_error} (rules shown only)</span>}
           </footer>
         </div>
+        )}
       </div>
     </div>
   );

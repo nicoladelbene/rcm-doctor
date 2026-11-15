@@ -21,7 +21,7 @@ test("demo: results render, drawer shows cited spans, report downloads", async (
   const [download] = await Promise.all([page.waitForEvent("download"), page.getByTestId("download-report").click()]);
   expect(download.suggestedFilename()).toMatch(/^rcm-review-\d{4}-\d{2}-\d{2}\.xlsx$/);
   const wb = XLSX.read(readFileSync((await download.path())!), { type: "buffer" });
-  expect(wb.SheetNames).toEqual(["Review", "Findings", "Summary"]);
+  expect(wb.SheetNames).toEqual(["Review", "Findings", "Test scripts", "Summary"]);
   expect(XLSX.utils.sheet_to_json(wb.Sheets.Review)).toHaveLength(40);
 });
 
@@ -45,4 +45,42 @@ test("api: rejects requests without a key and oversized batches", async ({ reque
     data: { controls: Array.from({ length: 11 }, (_, i) => ({ control_id: `C${i}`, control_description: "x" })) },
   });
   expect(tooMany.status()).toBe(400);
+});
+
+test("week 2: test script tab shows sample size, traced attributes and blockers; export has the sheet", async ({ page }) => {
+  await page.goto("/?demo");
+  await expect(page.getByTestId("result-row")).toHaveCount(40);
+  await expect(page.getByTestId("testscript-summary")).toContainText("ready");
+
+  await page.locator('[data-id="P2P-05"]').click();
+  await page.getByTestId("tab-test").click();
+  const ts = page.getByTestId("testscript");
+  await expect(ts.getByTestId("sample-size")).toHaveText("2");
+  await expect(ts.locator("mark.cite-test").first()).toBeVisible();
+  // Tab persists while navigating; a control with an SoD conflict is blocked.
+  await page.keyboard.press("Escape");
+  await page.locator('[data-id="TRE-03"]').click();
+  await expect(page.getByTestId("testscript")).toContainText("Blocked");
+  await page.keyboard.press("Escape");
+
+  const [download] = await Promise.all([page.waitForEvent("download"), page.getByTestId("download-report").click()]);
+  const wb = XLSX.read(readFileSync((await download.path())!), { type: "buffer" });
+  expect(wb.SheetNames).toContain("Test scripts");
+});
+
+test("upload without a key gives deterministic test scripts", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Upload your RCM" }).click();
+  await page.getByTestId("file-input").setInputFiles("data/demo-rcm.csv");
+  await page.getByRole("button", { name: "Run rules-only review" }).click();
+  await expect(page.getByTestId("testscript-summary")).toBeVisible();
+  await page.locator('[data-id="P2P-08"]').click();
+  await page.getByTestId("tab-test").click();
+  await expect(page.getByTestId("sample-size")).toHaveText("2");
+});
+
+test("api: testscript route enforces key and limits", async ({ request }) => {
+  expect((await request.post("/api/testscript", { data: { items: [] } })).status()).toBe(401);
+  const bad = await request.post("/api/testscript", { headers: { "x-openrouter-key": "sk-or-v1-" + "a".repeat(40) }, data: { items: [] } });
+  expect(bad.status()).toBe(400);
 });

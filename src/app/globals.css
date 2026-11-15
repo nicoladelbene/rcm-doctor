@@ -91,6 +91,10 @@ mark.cite-ok {
   background: transparent;
   box-shadow: inset 0 -1.5px 0 color-mix(in srgb, var(--pass) 70%, transparent);
 }
+mark.cite-test {
+  background: var(--accent-soft);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
 mark.cite.is-active {
   outline: 2px solid var(--ink);
   outline-offset: 1px;

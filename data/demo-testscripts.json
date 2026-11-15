@@ -1,0 +1,3100 @@
+{
+  "generated_at": "2026-11-15T14:36:50.722Z",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt_version": "testscript.v1",
+  "source": "data/demo-rcm.xlsx",
+  "duration_seconds": 76.9,
+  "scripts": [
+    {
+      "control_id": "P2P-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from SAP S/4HANA the complete list of vendor master data creations and changes (change documents and workflow items) for the period, including all bank detail changes and unblock events.",
+      "tod_steps": [
+        "Inquire with the Head of AP Operations and the AP Master Data Specialist how create/change requests are received, approved, compared and unblocked.",
+        "Observe a vendor change in SAP, including the block, the field-by-field comparison of the SAP change report with the request form, and the unblock.",
+        "Inquire how the independent phone number is sourced for bank detail call-backs and how it is kept separate from the request form.",
+        "Inspect one bank detail change and one other change, with the workflow item, call-back log and change report, to confirm the control addresses fictitious vendor and fraud risk.",
+        "Inquire how mismatches are rejected and logged, and inspect one rejected example if available."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Bank change: call-back made to independently sourced phone number",
+          "procedure": "For bank detail changes, inspect the call-back log for the call-back before unblock. Confirm the number came from an independent source, not the request form.",
+          "evidence": "Call-back log in SAP; source of phone number",
+          "span": {
+            "field": "control_description",
+            "text": "For bank detail changes, the AP Master Data Specialist first performs a call-back to the vendor using a phone number from an independent source",
+            "start": 205,
+            "end": 348
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Change report compared field by field to approved request form by Head of AP Operations",
+          "procedure": "Agree each field in the SAP change report to the approved request form. Confirm the Head of AP Operations performed the comparison and that the request was approved.",
+          "evidence": "SAP change report; approved request form; workflow item",
+          "span": {
+            "field": "control_description",
+            "text": "the Head of AP Operations compares the SAP change report field by field with the approved request form",
+            "start": 58,
+            "end": 160
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Comparison completed before vendor unblocked for payment",
+          "procedure": "Compare the workflow approval timestamp with the unblock timestamp in the SAP change documents. Confirm no payment was made before the unblock.",
+          "evidence": "SAP workflow item timestamp; change document log",
+          "span": {
+            "field": "control_description",
+            "text": "before the vendor is unblocked for payment",
+            "start": 161,
+            "end": 203
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Any mismatch rejected and logged",
+          "procedure": "Identify mismatches between the change report and the request form. Confirm any mismatch was rejected and logged, and not unblocked.",
+          "evidence": "Workflow rejection log; change report vs request form",
+          "span": {
+            "field": "control_description",
+            "text": "Any mismatch is rejected and logged",
+            "start": 350,
+            "end": 385
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Workflow item and call-back log retained in SAP",
+          "procedure": "Confirm the approved workflow item and, for bank changes, the call-back log are retrievable in SAP for the sampled change.",
+          "evidence": "SAP workflow item; call-back log",
+          "span": {
+            "field": "control_description",
+            "text": "The approved workflow item and the call-back log are retained in SAP",
+            "start": 387,
+            "end": 455
+          }
+        }
+      ],
+      "exception_definition": "Any sampled change unblocked without a field-by-field comparison, without a prior independent call-back (bank changes), with an unrejected mismatch, or without retained workflow and call-back evidence.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Obtain from SAP S/4HANA the listing of invoices posted in the period, including those blocked for price or quantity variance, plus the tolerance key configuration report from the ITGC baseline ([system/report] for the listing).",
+      "tod_steps": [
+        "Inquire with the AP Process Owner how the three-way match and the tolerance keys operate at invoice posting.",
+        "Inspect the SAP tolerance key report to confirm the price variance limit of 2% or CHF 500 and the quantity variance setting.",
+        "Observe or inspect a test or live invoice with a variance to confirm the automatic payment block and the release via the price-variance workflow.",
+        "Inquire how changes to tolerance configuration are controlled and confirm ITGC change management coverage for this configuration.",
+        "Confirm that the match and block address the risk of paying for goods not received or at unagreed prices."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Tolerance configuration agrees to stated thresholds",
+          "procedure": "Inspect the tolerance key report from the ITGC baseline. Agree the price variance limit to 2% or CHF 500 and confirm that any quantity variance blocks. Confirm the configuration was unchanged in the period.",
+          "evidence": "SAP tolerance key report; ITGC configuration baseline",
+          "span": {
+            "field": "control_description",
+            "text": "The tolerance configuration is evidenced by the SAP tolerance key report retained in the ITGC configuration baseline",
+            "start": 284,
+            "end": 400
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Invoice automatically matched to PO and goods receipt at posting",
+          "procedure": "For the sampled invoice, inspect the PO, goods receipt and invoice documents. Confirm SAP performed the three-way match at posting.",
+          "evidence": "SAP invoice document with PO and GR references",
+          "span": {
+            "field": "control_description",
+            "text": "SAP S/4HANA performs an automated three-way match of purchase order, goods receipt and invoice",
+            "start": 20,
+            "end": 114
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Variance invoices blocked for payment",
+          "procedure": "For sampled invoices above the price tolerance or with any quantity variance, confirm the payment block was set automatically and payment was not made while it was in place.",
+          "evidence": "SAP invoice block status; payment history",
+          "span": {
+            "field": "control_description",
+            "text": "Invoices with a price variance above 2% or CHF 500, or any quantity variance, are automatically blocked for payment",
+            "start": 116,
+            "end": 231
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Block released only through price-variance workflow",
+          "procedure": "Inspect the workflow item for each blocked sampled invoice. Confirm release occurred through the price-variance workflow by an authorised approver, before payment.",
+          "evidence": "Price-variance workflow log",
+          "span": {
+            "field": "control_description",
+            "text": "until released through the price-variance workflow",
+            "start": 232,
+            "end": 282
+          }
+        }
+      ],
+      "exception_definition": "Any configuration deviating from the stated tolerances, or any sampled variance invoice not blocked, paid before release, or released outside the price-variance workflow.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-03",
+      "toe_ready": false,
+      "blockers": [
+        "evidence: No evidence artefact or location is stated; add sign-off, ticket or system log and where it is kept.",
+        "precision: No check criteria or tolerance are given; define what makes an invoice 'correct' and the threshold."
+      ],
+      "sample": {
+        "frequency": "daily",
+        "size": 20,
+        "label": "Daily",
+        "basis": "Daily control: test 20 of ~250 days, selected randomly across the period."
+      },
+      "population": "Obtain from [system/report] in SAP S/4HANA the listing of supplier invoices paid in the period; the population of checks cannot be defined from the control text, as no evidence of the check is stated.",
+      "tod_steps": [
+        "Inquire with Finance which role checks supplier invoices and what they check, as the control names only a department.",
+        "Ask what 'correct' means (e.g. match to PO and goods receipt, price, tax, bank) and whether a threshold applies; none is stated.",
+        "Observe how an invoice is checked in SAP before payment and whether the check is system-enforced or manual.",
+        "Ask what evidence of the check exists and where it is kept; none is defined, so note this as a design gap.",
+        "Assess whether the control as written addresses the risk of paying incorrect invoices."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Accountable role performing check cannot be identified",
+          "procedure": "Identify who performed the check on each sampled item. Owner 'Finance' is a department, so the performer's authority cannot be verified as written.",
+          "evidence": "Sign-off or SAP user log, if any exists",
+          "span": {
+            "field": "control_description",
+            "text": "Finance ensures",
+            "start": 0,
+            "end": 15
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Invoice checked against defined criteria",
+          "procedure": "Re-perform the check on the sampled invoice against [check criteria]. Criteria and tolerance are not defined, so 'correct' cannot be verified as written.",
+          "evidence": "Invoice, PO, goods receipt; [criteria not defined]",
+          "span": {
+            "field": "control_description",
+            "text": "supplier invoices are checked and are correct",
+            "start": 21,
+            "end": 66
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Check completed before payment",
+          "procedure": "Compare the check date with the payment date. Without a defined check record, the timing cannot be verified as written.",
+          "evidence": "Check record timestamp; payment run record",
+          "span": {
+            "field": "control_description",
+            "text": "before payment",
+            "start": 67,
+            "end": 81
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Evidence of check retained",
+          "procedure": "Request evidence of the check for the sampled invoice. No evidence artefact or location is defined, so the tester cannot verify this as written.",
+          "evidence": "[evidence not defined]",
+          "span": null
+        }
+      ],
+      "exception_definition": "Any sampled invoice paid without a documented check by an identifiable role before payment, or found incorrect against [criteria]; inability to evidence the check is reported as a design deficiency.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from SAP S/4HANA the workflow log or listing of purchase requisitions above CHF 5,000 created and converted to POs in the period, including those above CHF 100,000.",
+      "tod_steps": [
+        "Inquire with the Cost Centre Manager and procurement how requisitions are routed and approved in the SAP workflow.",
+        "Inspect the approval matrix and the workflow configuration to confirm the CHF 5,000 and CHF 100,000 thresholds and CFO routing.",
+        "Observe or inspect a requisition above CHF 5,000 to confirm the PO cannot be released before approval is complete.",
+        "Inspect one requisition above CHF 100,000 for the additional CFO approval in the workflow log.",
+        "Confirm the approval history is retained in the SAP workflow log and addresses the risk of unauthorised purchases."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Requisition above CHF 5,000 routed to responsible Cost Centre Manager per matrix",
+          "procedure": "For the sampled requisition, agree the approver in the workflow to the Cost Centre Manager responsible under the approval matrix.",
+          "evidence": "SAP workflow log; approval matrix",
+          "span": {
+            "field": "control_description",
+            "text": "SAP S/4HANA routes each purchase requisition above CHF 5,000 to the responsible Cost Centre Manager for approval according to the approval matrix",
+            "start": 41,
+            "end": 186
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Cost Centre Manager approved or rejected in workflow",
+          "procedure": "Inspect the workflow history for the approval decision by the Cost Centre Manager, including date and user.",
+          "evidence": "SAP workflow approval history",
+          "span": {
+            "field": "control_description",
+            "text": "The Cost Centre Manager approves or rejects the requisition in the workflow",
+            "start": 254,
+            "end": 329
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "CFO approval obtained above CHF 100,000",
+          "procedure": "For sampled requisitions above CHF 100,000, confirm CFO approval is recorded in the workflow in addition to the Cost Centre Manager approval.",
+          "evidence": "SAP workflow log showing CFO approval",
+          "span": {
+            "field": "control_description",
+            "text": "requisitions above CHF 100,000 additionally require CFO approval",
+            "start": 188,
+            "end": 252
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "PO released only after approval complete",
+          "procedure": "Compare the completion timestamp of all required approvals with the PO release timestamp. Confirm release did not precede approval.",
+          "evidence": "Workflow completion time; PO release log",
+          "span": {
+            "field": "control_description",
+            "text": "the PO cannot be released until approval is complete",
+            "start": 335,
+            "end": 387
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Approval history retained in SAP workflow log",
+          "procedure": "Confirm the approval history for the sampled requisition is retrievable in the SAP workflow log.",
+          "evidence": "SAP workflow log",
+          "span": {
+            "field": "control_description",
+            "text": "Approval history is retained in the SAP workflow log",
+            "start": 389,
+            "end": 441
+          }
+        }
+      ],
+      "exception_definition": "Any sampled requisition above threshold not routed to the correct approver, lacking required Cost Centre Manager or CFO approval, or with a PO released before approval was complete.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the list of month-end closes in the period from the month-end close folder on SharePoint, with the GR/IR clearing account ageing report generated from SAP S/4HANA for each month.",
+      "tod_steps": [
+        "Inquire with the AP Team Lead how the GR/IR ageing report is generated, reviewed and followed up each month-end.",
+        "Observe the ageing report run in SAP S/4HANA and confirm it covers the full GR/IR clearing account and shows item ages and amounts.",
+        "Inspect one month's signed ageing report and investigation notes for open items over 90 days or above CHF 25,000.",
+        "Inspect one correction posting and the Accounting Manager approval that preceded it.",
+        "Confirm the filing in the month-end close folder on SharePoint and the 5th business day deadline."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Ageing report reviewed by AP Team Lead by 5th business day",
+          "procedure": "Inspect the signature and date on the ageing report. Agree the date to the 5th business day after month-end. Confirm the report covers the full GR/IR account.",
+          "evidence": "Signed GR/IR ageing report",
+          "span": {
+            "field": "control_description",
+            "text": "By the 5th business day after month-end, the AP Team Lead reviews the GR/IR clearing account ageing report from SAP S/4HANA",
+            "start": 0,
+            "end": 123
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "All items over 90 days or CHF 25,000 investigated",
+          "procedure": "Re-perform the selection of open items older than 90 days or above CHF 25,000 from the report. Agree each to investigation notes with a conclusion.",
+          "evidence": "Ageing report; investigation notes",
+          "span": {
+            "field": "control_description",
+            "text": "investigates all open items older than 90 days or above CHF 25,000",
+            "start": 128,
+            "end": 194
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Corrections posted only after Accounting Manager approval",
+          "procedure": "For each correction posted, inspect the Accounting Manager approval and confirm it predates the posting date in SAP.",
+          "evidence": "Approval record; SAP correction posting document",
+          "span": {
+            "field": "control_description",
+            "text": "corrections are posted only after Accounting Manager approval",
+            "start": 196,
+            "end": 257
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Signed report and notes filed on SharePoint",
+          "procedure": "Confirm the signed ageing report and the investigation notes are in the month-end close folder on SharePoint for the sampled month.",
+          "evidence": "SharePoint month-end close folder",
+          "span": {
+            "field": "control_description",
+            "text": "The signed ageing report and investigation notes are filed in the month-end close folder on SharePoint",
+            "start": 259,
+            "end": 361
+          }
+        }
+      ],
+      "exception_definition": "Any sampled month where the review was late or unsigned, a qualifying open item was not investigated, a correction was posted without Accounting Manager approval, or the evidence was not filed.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-06",
+      "toe_ready": false,
+      "blockers": [
+        "sod_conflict: The same role appears to both perform and approve/review the activity. Separate preparer and reviewer."
+      ],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from SAP S/4HANA the complete listing of purchase orders above CHF 10,000 for non-catalogue items created in the period, together with the SAP release strategy log entries for each PO.",
+      "tod_steps": [
+        "Inquire with the Purchasing Manager how non-catalogue POs above CHF 10,000 are created, approved and released, and who else can approve them.",
+        "Observe in SAP the release strategy configuration for the CHF 10,000 threshold and non-catalogue items, and check whether the approver can differ from the creator.",
+        "Inspect one PO in the release strategy log to confirm approver, approval date and release status are recorded.",
+        "Assess whether the same person creating and approving (SoD) and the absence of a stated approval-before-release trigger leave the risk of unauthorised purchases uncovered."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "PO is above threshold and for a non-catalogue item",
+          "procedure": "For each sampled PO, confirm value exceeds CHF 10,000 and the item is non-catalogue, so it falls in scope of the control.",
+          "evidence": "SAP PO document and item details",
+          "span": {
+            "field": "control_description",
+            "text": "purchase orders above CHF 10,000 for non-catalogue items",
+            "start": 44,
+            "end": 100
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "PO created and approved by the Purchasing Manager",
+          "procedure": "Compare creator and approver user IDs on the PO and release log. As written, no independent approver is required, so SoD cannot be verified.",
+          "evidence": "SAP PO header and release strategy log",
+          "span": {
+            "field": "control_description",
+            "text": "The Purchasing Manager creates and approves",
+            "start": 0,
+            "end": 43
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Approval documented in SAP release strategy log",
+          "procedure": "Inspect the release strategy log for the sampled PO and confirm an approval entry with user ID and date exists.",
+          "evidence": "SAP release strategy log entry",
+          "span": {
+            "field": "control_description",
+            "text": "Approval is documented in the SAP release strategy log",
+            "start": 102,
+            "end": 156
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Approval occurred before PO release to vendor",
+          "procedure": "Compare the approval timestamp to the PO release/issue date. The description states no timing, so tester cannot verify against a defined requirement.",
+          "evidence": "Release log timestamp and PO output date",
+          "span": null
+        }
+      ],
+      "exception_definition": "A PO above CHF 10,000 for a non-catalogue item that has no release strategy log approval, was approved by someone other than the Purchasing Manager, or was released to the vendor before approval.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-07",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Given the continuous automated control, obtain the SAP S/4HANA duplicate-check configuration settings and the ITGC configuration baseline for the period, plus the change log for those settings.",
+      "tod_steps": [
+        "Inquire with the AP Process Owner how the SAP duplicate invoice check is configured and who can change it.",
+        "Observe in SAP the duplicate-check settings for vendor, invoice reference, amount and invoice date, and the error message type.",
+        "Inspect the configuration screenshot retained in the ITGC configuration baseline and agree it to the live settings.",
+        "Re-perform by attempting to enter a test invoice that exactly matches a posted one in a test or controlled environment, and confirm the hard error blocks posting."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Check compares vendor, reference, amount, date over 24 months",
+          "procedure": "Inspect the configuration and baseline screenshot for the selected date and confirm all four fields and the lookback match the description.",
+          "evidence": "Configuration screenshot in ITGC baseline; live SAP settings",
+          "span": {
+            "field": "control_description",
+            "text": "compares vendor, invoice reference, amount and invoice date with all invoices posted in the last 24 months",
+            "start": 30,
+            "end": 136
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Exact match is blocked by hard error message",
+          "procedure": "Re-perform or inspect the message-type setting to confirm an exact match produces an error that blocks posting, not a warning.",
+          "evidence": "SAP message control settings; test posting result",
+          "span": {
+            "field": "control_description",
+            "text": "blocks posting of any exact match with a hard error message",
+            "start": 141,
+            "end": 200
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Configuration screenshot retained in ITGC baseline",
+          "procedure": "Confirm the screenshot is in the baseline for the period and that the change log shows no unapproved changes to the settings.",
+          "evidence": "ITGC configuration baseline; configuration change log",
+          "span": {
+            "field": "control_description",
+            "text": "The duplicate-check settings are evidenced by a configuration screenshot retained in the ITGC configuration baseline",
+            "start": 202,
+            "end": 318
+          }
+        }
+      ],
+      "exception_definition": "The duplicate-check configuration differs from the described fields, lookback or hard-error setting, an exact duplicate can be posted, or the baseline evidence is missing or inconsistent with live settings.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-08",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the quarterly SAP reports of all payments to one-time vendor accounts for each quarter in the period, and the signed copies from the AP SharePoint folder; clarify with the owner that the control runs quarterly although the frequency column says Monthly.",
+      "tod_steps": [
+        "Inquire with the AP Team Lead about the quarterly review, including the frequency conflict with the Monthly entry, and how the one-time vendor report is run.",
+        "Observe the SAP report parameters to confirm it captures all payments to one-time vendor accounts for the quarter.",
+        "Inspect one signed quarterly report and trace payments above CHF 2,000 to the supporting invoice and approval.",
+        "Conclude whether the review addresses the risk of one-time vendor accounts being used to bypass onboarding controls."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Report covers all one-time vendor payments for the quarter",
+          "procedure": "Re-run or inspect the report parameters and agree completeness to the SAP payment data for one-time vendor accounts for the quarter.",
+          "evidence": "SAP one-time vendor payment report and parameters",
+          "span": {
+            "field": "control_description",
+            "text": "the SAP report of all payments to one-time vendor accounts",
+            "start": 82,
+            "end": 140
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Review performed within 10 business days after quarter-end",
+          "procedure": "Compare the sign-off date to the quarter-end date and count business days.",
+          "evidence": "Signed report with date",
+          "span": {
+            "field": "control_description",
+            "text": "within 10 business days after quarter-end",
+            "start": 14,
+            "end": 55
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Every payment above CHF 2,000 investigated against invoice and approval",
+          "procedure": "For all payments above CHF 2,000 on the report, inspect the documented investigation and agree to the supporting invoice and approval.",
+          "evidence": "Annotated report, invoices, approval records",
+          "span": {
+            "field": "control_description",
+            "text": "investigates every payment above CHF 2,000 against the supporting invoice and approval",
+            "start": 145,
+            "end": 231
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Signed report retained in AP SharePoint folder",
+          "procedure": "Confirm the signed report by the AP Team Lead is stored in the AP SharePoint folder for the quarter.",
+          "evidence": "Signed report in AP SharePoint folder",
+          "span": {
+            "field": "control_description",
+            "text": "The signed report is retained in the AP SharePoint folder",
+            "start": 233,
+            "end": 290
+          }
+        }
+      ],
+      "exception_definition": "A quarterly review that was not performed, not completed within 10 business days, based on an incomplete report, missing investigation of a payment above CHF 2,000, or not signed and retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-09",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the list of month-end closes in the period from the close checklist tool, with the related SAP GR/IR reports, accrual calculations and sign-off records.",
+      "tod_steps": [
+        "Inquire with the AP Accountant and Accounting Manager about how the GRNI accrual is prepared from the SAP GR/IR report and reviewed.",
+        "Observe the SAP GR/IR report run and how the accrual calculation is derived from it.",
+        "Inspect one month's accrual, the movement analysis versus the prior month and the close checklist sign-off.",
+        "Confirm the review occurs before posting and addresses incomplete or inaccurate accruals."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Accrual prepared by business day 3 from SAP GR/IR report",
+          "procedure": "Agree the accrual to the GR/IR report and compare preparation date to business day 3 after month-end.",
+          "evidence": "GR/IR report, accrual workpaper with date",
+          "span": {
+            "field": "control_description",
+            "text": "By business day 3 after month-end, the AP Accountant prepares the accrual for goods received not invoiced from the SAP GR/IR report",
+            "start": 0,
+            "end": 131
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Accounting Manager reviewed accrual against the report",
+          "procedure": "Inspect the review evidence showing the accrual was compared to the GR/IR report by the Accounting Manager.",
+          "evidence": "Reviewed accrual workpaper, review notes",
+          "span": {
+            "field": "control_description",
+            "text": "The Accounting Manager reviews the accrual against the report",
+            "start": 133,
+            "end": 194
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Movements above CHF 50,000 or 10% investigated",
+          "procedure": "Recalculate movements versus prior month, identify those above CHF 50,000 or 10%, and inspect the investigation and explanation for each.",
+          "evidence": "Movement analysis with explanations",
+          "span": {
+            "field": "control_description",
+            "text": "investigates movements above CHF 50,000 or 10% versus the prior month",
+            "start": 199,
+            "end": 268
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Review completed before the entry is posted",
+          "procedure": "Compare the sign-off timestamp to the accrual journal posting date.",
+          "evidence": "Checklist sign-off timestamp; SAP journal posting date",
+          "span": {
+            "field": "control_description",
+            "text": "before the entry is posted",
+            "start": 269,
+            "end": 295
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Review evidenced by sign-off in close checklist tool",
+          "procedure": "Inspect the close checklist tool for the reviewer's sign-off on the sampled month.",
+          "evidence": "Close checklist tool sign-off record",
+          "span": {
+            "field": "control_description",
+            "text": "The review is evidenced by sign-off in the close checklist tool",
+            "start": 297,
+            "end": 360
+          }
+        }
+      ],
+      "exception_definition": "A month where the accrual was not prepared or reviewed on time, was not reconciled to the GR/IR report, had an uninvestigated movement above CHF 50,000 or 10%, was posted before review, or lacks checklist sign-off.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "P2P-10",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "quarterly",
+        "size": 2,
+        "label": "Quarterly",
+        "basis": "Quarterly control: test 2 of 4 quarters (include the year-end quarter if relied on)."
+      },
+      "population": "Obtain the quarterly reconciliation packs for the period from the AP SharePoint folder and agree them to the list of the 20 largest vendors by spend per quarter from SAP; the spend period basis for ranking is not defined.",
+      "tod_steps": [
+        "Inquire with the AP Accountant and AP Team Lead about how the 20 largest vendors are selected and the reconciliation to SAP is performed.",
+        "Observe how supplier statements are compared to the SAP vendor ledger balances.",
+        "Inspect one quarterly reconciliation pack for completeness of the 20 vendors, investigated differences and the Team Lead signature.",
+        "Conclude whether the reconciliation addresses the risk of misstated vendor liabilities."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Pack covers the 20 largest vendors reconciled to SAP ledger",
+          "procedure": "Recompute the top 20 vendors by spend from SAP and agree to the pack; confirm each statement is reconciled to the vendor ledger balance.",
+          "evidence": "SAP spend report, supplier statements, reconciliation pack",
+          "span": {
+            "field": "control_description",
+            "text": "reconciles the supplier statements of the 20 largest vendors by spend to the SAP vendor ledger",
+            "start": 66,
+            "end": 160
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Reconciliation completed within 15 business days after quarter-end",
+          "procedure": "Compare reconciliation and sign-off dates to quarter-end and count business days.",
+          "evidence": "Reconciliation pack with preparation and sign-off dates",
+          "span": {
+            "field": "control_description",
+            "text": "Within 15 business days after each quarter-end",
+            "start": 0,
+            "end": 46
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Differences above CHF 1,000 investigated",
+          "procedure": "Identify all differences above CHF 1,000 in the pack and inspect the investigation and resolution for each.",
+          "evidence": "Reconciliation pack difference analysis",
+          "span": {
+            "field": "control_description",
+            "text": "investigates differences above CHF 1,000",
+            "start": 165,
+            "end": 205
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "AP Team Lead reviewed and signed the pack",
+          "procedure": "Inspect the pack for the AP Team Lead's signature and date.",
+          "evidence": "Signed reconciliation pack",
+          "span": {
+            "field": "control_description",
+            "text": "The AP Team Lead reviews and signs the reconciliation pack",
+            "start": 207,
+            "end": 265
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Pack stored in AP SharePoint folder",
+          "procedure": "Confirm the signed pack for the quarter is stored in the AP SharePoint folder.",
+          "evidence": "AP SharePoint folder listing",
+          "span": {
+            "field": "control_description",
+            "text": "which is stored in the AP SharePoint folder",
+            "start": 267,
+            "end": 310
+          }
+        }
+      ],
+      "exception_definition": "A quarter where the reconciliation omits any of the top 20 vendors, is late, leaves differences above CHF 1,000 uninvestigated, lacks AP Team Lead signature, or is not stored in the AP SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Obtain the complete SAP credit management block-and-release log for the period from SAP S/4HANA, listing all sales orders blocked by the credit check and their releases, plus the credit-check configuration report from the ITGC configuration baseline.",
+      "tod_steps": [
+        "Inquire with the Credit Manager how the credit check works at sales order save and who can release blocked orders.",
+        "Inspect the credit-check configuration report in the ITGC configuration baseline to confirm exposure is checked against the approved credit limit and orders are blocked.",
+        "Observe or inspect a test or live sales order that exceeds the credit limit being blocked on save.",
+        "Inspect the release authorisation setup and one block-and-release log entry to confirm only the Credit Manager can release."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Credit-check configuration blocks orders above approved limit",
+          "procedure": "Inspect the configuration report from the baseline and confirm the exposure check and block are active; confirm it was unchanged during the period (ITGC baseline).",
+          "evidence": "Credit-check configuration report from ITGC configuration baseline",
+          "span": {
+            "field": "control_description",
+            "text": "The credit-check configuration is evidenced by the configuration report in the ITGC configuration baseline",
+            "start": 278,
+            "end": 384
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Order exceeding credit limit was automatically blocked on save",
+          "procedure": "For the sampled order, recompute total customer exposure against the approved credit limit and confirm the system block was set when the order was saved.",
+          "evidence": "SAP credit management block-and-release log; customer exposure and credit limit data",
+          "span": {
+            "field": "control_description",
+            "text": "SAP S/4HANA automatically blocks any order that would take the customer's total exposure above the approved credit limit",
+            "start": 29,
+            "end": 149
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Blocked order released only by the Credit Manager",
+          "procedure": "Trace the release entry to the user ID and confirm it belongs to the Credit Manager or an authorised role.",
+          "evidence": "Release log entry with user ID; SAP authorisation or role listing",
+          "span": {
+            "field": "control_description",
+            "text": "Blocked orders can only be released by the Credit Manager",
+            "start": 151,
+            "end": 208
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Block-and-release log retained in SAP credit management",
+          "procedure": "Confirm the block and release for the sampled order are recorded in the log with date, user and order number.",
+          "evidence": "SAP credit management block-and-release log",
+          "span": {
+            "field": "control_description",
+            "text": "the block-and-release log is retained in SAP credit management",
+            "start": 214,
+            "end": 276
+          }
+        }
+      ],
+      "exception_definition": "An order above the approved credit limit that was not blocked, a release by anyone other than the Credit Manager, a missing log entry, or a configuration that does not enforce the block.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-02",
+      "toe_ready": false,
+      "blockers": [
+        "nature_mismatch: Nature is \"Automated\", but the description describes a manual step (\"manually\")."
+      ],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Obtain the list of all monthly billing runs in the period from SAP S/4HANA [billing run log] and the corresponding initialled price comparisons from the billing folder on SharePoint.",
+      "tod_steps": [
+        "Inquire with the Billing Specialist how the comparison of SAP price conditions to signed customer price lists is performed before each billing run.",
+        "Note the design finding: nature is recorded as Automated although the description says manual; confirm with the control owner and test as manual unless an automated step is shown.",
+        "Inspect one month's Excel comparison, the signed price lists and the SAP price conditions to confirm the scope and the 0.5% tolerance are applied.",
+        "Inspect the SharePoint billing folder to confirm the initialled comparison is filed and dated before the billing run."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Comparison completed before the monthly billing run",
+          "procedure": "Compare the initial date or file date of the comparison with the billing run date in SAP [billing run log] and confirm it is earlier.",
+          "evidence": "Initialled price comparison; SAP billing run log",
+          "span": {
+            "field": "control_description",
+            "text": "Before the monthly billing run",
+            "start": 0,
+            "end": 30
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "SAP price conditions compared with signed customer price lists",
+          "procedure": "Re-perform a selection of lines: agree SAP price conditions and the signed price lists to the comparison and confirm the comparison covers the customers in scope.",
+          "evidence": "Excel comparison; signed customer price lists; SAP price conditions extract",
+          "span": {
+            "field": "control_description",
+            "text": "manually compares the SAP price conditions with the signed customer price lists in Excel",
+            "start": 55,
+            "end": 143
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Differences above 0.5% corrected before billing",
+          "procedure": "Identify differences above 0.5% in the comparison and confirm SAP price conditions were corrected, with change evidence dated before the billing run.",
+          "evidence": "Comparison with flagged differences; SAP condition change log",
+          "span": {
+            "field": "control_description",
+            "text": "corrects differences above 0.5% before billing",
+            "start": 148,
+            "end": 194
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Comparison initialled and filed in SharePoint billing folder",
+          "procedure": "Confirm the comparison for the sampled month carries the Billing Specialist's initials and is stored in the billing folder.",
+          "evidence": "Initialled comparison in SharePoint billing folder",
+          "span": {
+            "field": "control_description",
+            "text": "The initialled comparison is filed in the billing folder on SharePoint",
+            "start": 196,
+            "end": 266
+          }
+        }
+      ],
+      "exception_definition": "A billing run without a completed comparison before billing, a difference above 0.5% not corrected before billing, or a comparison not initialled or not filed.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the list of month-end closes in the period with their cut-off checklists from the month-end close folder, and the delivery and billing data from SAP S/4HANA [report] for the last 5 and first 5 business days of each period.",
+      "tod_steps": [
+        "Inquire with the Revenue Accountant how the proof-of-delivery date is compared with the billing date and how wrong-period shipments are identified.",
+        "Inspect one month's cut-off checklist to confirm the 5 plus 5 business day window and the CHF 20,000 investigation threshold are applied.",
+        "Re-perform the comparison for a few deliveries using SAP data to confirm it identifies wrong-period billing.",
+        "Inspect one adjustment for Accounting Manager approval before posting and the signed checklist in the close folder."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Review performed within 3 business days after month-end",
+          "procedure": "Compare the checklist sign-off date with the month-end date and count business days to confirm completion within 3.",
+          "evidence": "Signed cut-off checklist; close calendar",
+          "span": {
+            "field": "control_description",
+            "text": "Within 3 business days after each month-end",
+            "start": 0,
+            "end": 43
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "All deliveries in the 5 plus 5 day window compared",
+          "procedure": "Obtain an independent SAP delivery listing for the window and agree it to the population on the checklist; re-perform the proof-of-delivery to billing date comparison for selected lines.",
+          "evidence": "SAP delivery and billing listing; cut-off checklist",
+          "span": {
+            "field": "control_description",
+            "text": "compares the proof-of-delivery date with the billing date for all deliveries in the last 5 and first 5 business days of the period",
+            "start": 68,
+            "end": 198
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Shipments above CHF 20,000 in wrong period investigated",
+          "procedure": "Identify shipments above CHF 20,000 billed in the wrong period from the listing and confirm each was investigated and documented.",
+          "evidence": "Cut-off checklist; investigation notes; delivery listing",
+          "span": {
+            "field": "control_description",
+            "text": "investigates any shipment above CHF 20,000 billed in the wrong period",
+            "start": 203,
+            "end": 272
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Adjustments approved by Accounting Manager before posting",
+          "procedure": "For each adjustment, compare the approval date and approver with the posting date in SAP.",
+          "evidence": "Approved adjustment entry; SAP posting date",
+          "span": {
+            "field": "control_description",
+            "text": "Adjustments are approved by the Accounting Manager before posting",
+            "start": 274,
+            "end": 339
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Cut-off checklist signed and retained in close folder",
+          "procedure": "Confirm the checklist is signed by the preparer and retained in the month-end close folder for the sampled period.",
+          "evidence": "Signed cut-off checklist in month-end close folder",
+          "span": {
+            "field": "control_description",
+            "text": "The cut-off checklist with sign-off is retained in the month-end close folder",
+            "start": 341,
+            "end": 418
+          }
+        }
+      ],
+      "exception_definition": "A review performed after 3 business days or not at all, deliveries in the window not covered, a shipment above CHF 20,000 billed in the wrong period not investigated or adjusted, an adjustment not approved before posting, or a missing sign-off.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-04",
+      "toe_ready": false,
+      "blockers": [
+        "who: Passive voice; the description names no role who performs the review.",
+        "frequency: Frequency is not stated: define it before a sample can be selected."
+      ],
+      "sample": {
+        "frequency": "unknown",
+        "size": null,
+        "label": "Unknown",
+        "basis": "Frequency is not stated: define it before a sample can be selected."
+      },
+      "population": "Obtain the customer master data change log from SAP S/4HANA [system/report] for the full period and the signed change log printouts from the O2C master data binder; because no frequency is defined, the number of review occurrences cannot be determined as written.",
+      "tod_steps": [
+        "Inquire with the Sales Operations Manager who performs the review, how often, and what counts as appropriate or unauthorised, noting the description defines none of these.",
+        "Inspect one signed change log printout and the supporting documents to see what the reviewer compared.",
+        "Inspect how any unauthorised change would be followed up and look for an example of follow-up.",
+        "Assess whether the review covers payment terms, credit limits and bank data changes and whether the log is complete."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Review performed by an identified, appropriate reviewer",
+          "procedure": "Identify the reviewer from the signature; the description names no role, so the tester cannot verify the reviewer is the intended one without a defined role [role].",
+          "evidence": "Signed change log printout",
+          "span": null
+        },
+        {
+          "id": "B",
+          "attribute": "Change log complete for the review period",
+          "procedure": "Compare the printout with an independent SAP change log extract for the same period to confirm all customer master changes are included; the review period is not defined.",
+          "evidence": "Signed printout; SAP customer master change log extract",
+          "span": null
+        },
+        {
+          "id": "C",
+          "attribute": "Changes reviewed against supporting documents",
+          "procedure": "For sampled changes, agree each to supporting documents such as an approved request [document type]; the criteria for appropriateness are not defined, so the tester applies [criteria to be agreed].",
+          "evidence": "Change log printout; supporting change documents",
+          "span": {
+            "field": "control_description",
+            "text": "Customer master data changes are reviewed for appropriateness against supporting documents",
+            "start": 0,
+            "end": 90
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Unauthorised changes followed up",
+          "procedure": "Identify changes without support or approval in the sampled log and confirm follow-up and resolution are documented; timeliness cannot be assessed because no timing is defined.",
+          "evidence": "Follow-up documentation; change log annotations",
+          "span": {
+            "field": "control_description",
+            "text": "any unauthorised change is followed up",
+            "start": 95,
+            "end": 133
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Change log printout signed and filed in binder",
+          "procedure": "Confirm the printout is signed and dated and filed in the O2C master data binder.",
+          "evidence": "Signed change log printout in O2C master data binder",
+          "span": {
+            "field": "control_description",
+            "text": "A change log printout is signed and filed in the O2C master data binder",
+            "start": 135,
+            "end": 206
+          }
+        }
+      ],
+      "exception_definition": "A change with no supporting document or approval [exception criteria to be defined], an unauthorised change not followed up, an incomplete log, or a printout not signed or not filed.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from SAP S/4HANA [credit note posting report] all credit notes above CHF 5,000 posted in the period, with the SAP workflow approval history for each.",
+      "tod_steps": [
+        "Inquire with the Head of Customer Service how credit note approval requests are routed in the SAP workflow.",
+        "Inspect the workflow configuration to confirm the CHF 5,000 and CHF 50,000 thresholds and approver roles.",
+        "Observe or inspect a test credit note to confirm the system prevents posting without the required approvals.",
+        "Inspect the workflow approval history of one credit note above CHF 5,000 and one above CHF 50,000."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Credit note above CHF 5,000 approved by Head of Customer Service",
+          "procedure": "For the sampled credit note, confirm in the workflow history that the approver is the Head of Customer Service or the authorised substitute [delegation rules].",
+          "evidence": "SAP workflow approval history",
+          "span": {
+            "field": "control_description",
+            "text": "every credit note above CHF 5,000 must be approved in the SAP workflow by the Head of Customer Service",
+            "start": 16,
+            "end": 118
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Credit note above CHF 50,000 also approved by CFO",
+          "procedure": "For sampled credit notes above CHF 50,000, confirm a CFO approval step is recorded in the workflow in addition to the Head of Customer Service.",
+          "evidence": "SAP workflow approval history",
+          "span": {
+            "field": "control_description",
+            "text": "credit notes above CHF 50,000 additionally require CFO approval",
+            "start": 120,
+            "end": 183
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Approvals obtained before posting",
+          "procedure": "Compare the approval timestamps with the posting date and time of the credit note.",
+          "evidence": "Workflow approval timestamps; SAP posting document",
+          "span": {
+            "field": "control_description",
+            "text": "Before posting",
+            "start": 0,
+            "end": 14
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "System prevents posting without required approvals",
+          "procedure": "Inspect the workflow and posting configuration, or test a credit note without approval, to confirm posting is blocked; check for bypass of the workflow.",
+          "evidence": "Workflow configuration; test result or posting block evidence",
+          "span": {
+            "field": "control_description",
+            "text": "The system prevents posting without the required approvals",
+            "start": 185,
+            "end": 243
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Workflow approval history retained in SAP",
+          "procedure": "Confirm the complete approval history is available in SAP for the sampled credit note.",
+          "evidence": "SAP workflow approval history",
+          "span": {
+            "field": "control_description",
+            "text": "The workflow approval history is retained in SAP",
+            "start": 245,
+            "end": 293
+          }
+        }
+      ],
+      "exception_definition": "A credit note above CHF 5,000 posted without Head of Customer Service approval, one above CHF 50,000 without CFO approval, approval after posting, or a missing approval history.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-06",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the list of 12 month-end close folders (or close checklist) for the period and the SAP S/4HANA AR ageing report for each month-end to confirm one review per month.",
+      "tod_steps": [
+        "Inquire with the Credit Manager how the SAP AR ageing report is run and how balances overdue >90 days or >CHF 50,000 are selected.",
+        "Walk through one month-end: observe the report being run and the recoverability assessment for selected balances.",
+        "Inspect the provision proposal and the Group Controller's approval, and confirm approval occurs before posting.",
+        "Inspect the signed ageing review and provision calculation in the month-end close folder and confirm they address the risk of overstated receivables."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Ageing review performed by business day 5 after month-end",
+          "procedure": "Compare the review sign-off date on the ageing review with the month-end date and calculate the business day; confirm it is within day 5.",
+          "evidence": "Signed ageing review with date; close calendar",
+          "span": {
+            "field": "control_description",
+            "text": "By business day 5 after month-end, the Credit Manager reviews the SAP AR ageing report",
+            "start": 0,
+            "end": 86
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "All balances >90 days or >CHF 50,000 assessed for recoverability",
+          "procedure": "Re-run or inspect the SAP ageing report, filter balances meeting either criterion, and agree each to an assessment in the review/provision calculation.",
+          "evidence": "SAP AR ageing report; provision calculation",
+          "span": {
+            "field": "control_description",
+            "text": "assesses every balance overdue more than 90 days or above CHF 50,000 for recoverability",
+            "start": 88,
+            "end": 175
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Provision adjustments proposed for assessed balances",
+          "procedure": "Agree the proposed adjustments to the recoverability assessments and recompute the provision calculation for arithmetic accuracy.",
+          "evidence": "Provision calculation",
+          "span": {
+            "field": "control_description",
+            "text": "proposes provision adjustments",
+            "start": 181,
+            "end": 211
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Group Controller approved adjustments before posting",
+          "procedure": "Inspect the approval and compare its date with the posting date of the provision journal in SAP.",
+          "evidence": "Approval evidence; SAP provision journal entry",
+          "span": {
+            "field": "control_description",
+            "text": "which the Group Controller approves before posting",
+            "start": 213,
+            "end": 263
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Signed review and calculation stored in close folder",
+          "procedure": "Inspect the month-end close folder for the signed ageing review and the provision calculation for the sampled month.",
+          "evidence": "Month-end close folder contents",
+          "span": {
+            "field": "control_description",
+            "text": "The signed ageing review and the provision calculation are stored in the month-end close folder",
+            "start": 265,
+            "end": 360
+          }
+        }
+      ],
+      "exception_definition": "Review is late (after business day 5), any balance meeting the criteria is not assessed, adjustments are posted without Group Controller approval, or the signed review or calculation is missing from the close folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-07",
+      "toe_ready": false,
+      "blockers": [
+        "evidence: State what evidence is retained (e.g. signed exception report) and where it is stored."
+      ],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the SAP S/4HANA report or listing of all pricing exceptions with discounts above 15% for each month in the period, plus the related monthly review emails.",
+      "tod_steps": [
+        "Inquire with the Sales Director what 'monitors' and 'looked at' mean in practice and what action is taken on discounts above 15%.",
+        "Ask how the list of discounts above 15% is generated from SAP and who ensures it is complete.",
+        "Inspect one month's email evidence and determine whether it shows what was reviewed, the conclusion and any follow-up.",
+        "Assess whether the control as written, with its vague wording and undefined evidence location, adequately addresses the risk of excessive discounts eroding margin."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Sales Director performed the pricing exception review",
+          "procedure": "Inspect the email for the sampled month to confirm it originates from or is confirmed by the Sales Director; the nature of the review is not defined as written.",
+          "evidence": "Email from or to Sales Director",
+          "span": {
+            "field": "control_description",
+            "text": "The Sales Director monitors pricing exceptions",
+            "start": 0,
+            "end": 46
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Review covers all discounts above 15% and is timely",
+          "procedure": "Re-run the SAP listing of discounts above 15% and agree items to those reviewed; compare the email date with business day 5 after month-end.",
+          "evidence": "SAP discount exception listing; email with date",
+          "span": {
+            "field": "control_description",
+            "text": "Discounts above 15% are looked at within 5 business days after month-end",
+            "start": 87,
+            "end": 159
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Appropriateness of discounts assessed and follow-up documented",
+          "procedure": "Determine what appropriateness criteria were applied and whether challenged items were resolved; the criteria and the required action are not defined, so this cannot be verified against a standard.",
+          "evidence": "Email content; supporting discount justification",
+          "span": {
+            "field": "control_description",
+            "text": "to make sure discounts are appropriate",
+            "start": 47,
+            "end": 85
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Evidence retained in a defined location",
+          "procedure": "Cannot verify retention requirement as written: the description does not state what evidence is kept or where; only 'Email' is listed. Ask for the location and inspect it.",
+          "evidence": "Email archive or [evidence location not defined]",
+          "span": null
+        }
+      ],
+      "exception_definition": "A discount above 15% is not reviewed within 5 business days after month-end, no evidence of the review exists, or an inappropriate discount is identified without documented follow-up.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-08",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "daily",
+        "size": 20,
+        "label": "Daily",
+        "basis": "Daily control: test 20 of ~250 days, selected randomly across the period."
+      },
+      "population": "Obtain the SAP unapplied-cash reports for every business day in the period from the AR SharePoint folder, and agree the dates to the business day calendar to identify missing days.",
+      "tod_steps": [
+        "Inquire with the AR Team Lead how the SAP unapplied-cash report is produced from the camt.053 bank statement import and when it is reviewed.",
+        "Observe the report being run and the review of items open more than 3 business days or above CHF 10,000.",
+        "Inspect one e-signed report in the AR SharePoint folder, including how investigated items were followed up.",
+        "Confirm the control addresses the risk of unapplied or misapplied customer payments."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Report generated from the camt.053 bank statement import",
+          "procedure": "Agree the report's items and totals to the camt.053 bank statement import for the sampled day to confirm completeness.",
+          "evidence": "SAP unapplied-cash report; camt.053 import log",
+          "span": {
+            "field": "control_description",
+            "text": "(generated from the camt.053 bank statement import)",
+            "start": 84,
+            "end": 135
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Report reviewed by AR Team Lead by 12:00",
+          "procedure": "Inspect the e-signature timestamp and signer on the report and confirm it is the AR Team Lead and before 12:00 on the business day.",
+          "evidence": "E-signed report with timestamp",
+          "span": {
+            "field": "control_description",
+            "text": "Every business day by 12:00, the AR Team Lead reviews the SAP unapplied-cash report",
+            "start": 0,
+            "end": 83
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Items over 3 days or over CHF 10,000 investigated",
+          "procedure": "Identify all items meeting either criterion on the report and inspect evidence of investigation and resolution for each.",
+          "evidence": "Report annotations; SAP clearing documents; follow-up notes",
+          "span": {
+            "field": "control_description",
+            "text": "investigates any item open for more than 3 business days or above CHF 10,000",
+            "start": 140,
+            "end": 216
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Reviewed report saved with e-signature in SharePoint",
+          "procedure": "Inspect the AR SharePoint folder for the sampled day's report bearing an e-signature.",
+          "evidence": "AR SharePoint folder; e-signed report",
+          "span": {
+            "field": "control_description",
+            "text": "The reviewed report is saved with e-signature in the AR SharePoint folder",
+            "start": 218,
+            "end": 291
+          }
+        }
+      ],
+      "exception_definition": "The report is not reviewed by 12:00 on the business day, not reviewed by the AR Team Lead, a qualifying item is not investigated, or the e-signed report is missing from the AR SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-09",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the close folder listing or close checklist for each month-end in the period, with the monthly revenue analysis and its sign-off from SAP S/4HANA revenue reporting.",
+      "tod_steps": [
+        "Inquire with the Revenue Accountant how the revenue analytics by customer and product are produced and compared with budget and prior year.",
+        "Ask how an 'unusual fluctuation' is judged, since no quantitative threshold is defined, and how follow-up is documented.",
+        "Inspect one month's signed revenue analysis in the close folder and trace a fluctuation to its follow-up.",
+        "Assess whether the control links to a specific risk or control objective, as the description gives only a general 'Revenue is misstated' risk."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Analysis by customer and product versus budget and prior year, timely",
+          "procedure": "Inspect the analysis to confirm it covers customer and product against budget and prior year, and that the review date is within business day 4.",
+          "evidence": "Revenue analysis with review date; close calendar",
+          "span": {
+            "field": "control_description",
+            "text": "The Revenue Accountant reviews the monthly revenue analytics by customer and product versus budget and prior year within 4 business days after month-end",
+            "start": 0,
+            "end": 152
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Unusual fluctuations followed up and explained",
+          "procedure": "Identify significant variances, using the tester's own [threshold] since none is defined; the control cannot be verified against a set threshold. Inspect explanations and corroboration.",
+          "evidence": "Variance explanations; supporting documentation",
+          "span": {
+            "field": "control_description",
+            "text": "follows up unusual fluctuations",
+            "start": 157,
+            "end": 188
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Revenue analysis signed off and stored in close folder",
+          "procedure": "Inspect the close folder for the revenue analysis bearing the Revenue Accountant's sign-off and date.",
+          "evidence": "Signed revenue analysis in close folder",
+          "span": {
+            "field": "control_description",
+            "text": "Review is evidenced by sign-off on the revenue analysis in the close folder",
+            "start": 190,
+            "end": 265
+          }
+        }
+      ],
+      "exception_definition": "The analysis is not completed within 4 business days, lacks a customer/product comparison against budget and prior year, a significant fluctuation lacks documented follow-up, or the sign-off is missing.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "O2C-10",
+      "toe_ready": false,
+      "blockers": [
+        "frequency: Frequency is not stated: define it before a sample can be selected."
+      ],
+      "sample": {
+        "frequency": "unknown",
+        "size": null,
+        "label": "Unknown",
+        "basis": "Frequency is not stated: define it before a sample can be selected."
+      },
+      "population": "Obtain the CRM listing of all customer contracts signed in the period with annual value and payment terms, then filter for annual value above CHF 250,000 or payment terms beyond 60 days.",
+      "tod_steps": [
+        "Inquire with the Head of Sales and Legal Counsel how contracts above the thresholds are identified and routed for review before signature.",
+        "Walk through one qualifying contract from CRM record to the review against the contract policy checklist.",
+        "Inspect an instance where a deviation was escalated to the CFO and the approval obtained.",
+        "Inspect the signed checklist attached to the CRM contract record and confirm it addresses non-standard terms affecting revenue recognition."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Contract meets threshold and review preceded signature",
+          "procedure": "Confirm the contract's annual value or payment terms exceed the thresholds and that the checklist date precedes the contract signature date.",
+          "evidence": "CRM contract record; contract signature date; checklist date",
+          "span": {
+            "field": "control_description",
+            "text": "Before any customer contract with annual value above CHF 250,000 or payment terms beyond 60 days is signed",
+            "start": 0,
+            "end": 106
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Legal Counsel and Head of Sales reviewed against checklist",
+          "procedure": "Inspect the checklist for completion of all items and signatures by both Legal Counsel and the Head of Sales.",
+          "evidence": "Signed contract policy checklist",
+          "span": {
+            "field": "control_description",
+            "text": "the Legal Counsel and the Head of Sales review it against the contract policy checklist",
+            "start": 108,
+            "end": 195
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Deviations escalated to CFO and approved",
+          "procedure": "Identify deviations noted on the checklist or contract and inspect CFO approval for each before signing.",
+          "evidence": "CFO approval; checklist deviation notes",
+          "span": {
+            "field": "control_description",
+            "text": "escalate any deviation to the CFO for approval",
+            "start": 200,
+            "end": 246
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Signed checklist attached to CRM contract record",
+          "procedure": "Inspect the CRM contract record for the attached signed checklist.",
+          "evidence": "CRM contract record attachment",
+          "span": {
+            "field": "control_description",
+            "text": "The signed checklist is attached to the contract record in the CRM",
+            "start": 248,
+            "end": 314
+          }
+        }
+      ],
+      "exception_definition": "A qualifying contract was signed without the checklist review by both reviewers, a deviation lacked CFO approval before signing, or the signed checklist is not attached in the CRM.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain the full list of bank account open, close and modify requests for the period from the bank account register and treasury SharePoint folder, and reconcile it to bank confirmations received.",
+      "tod_steps": [
+        "Inquire with the Group Treasurer and Treasury Analyst about how account opening, closing and modification requests are raised, approved and instructed to the bank.",
+        "Inspect the request form template to confirm it has signature fields for both the Group Treasurer and the CFO.",
+        "Walk through one recent request from form to signed approval, bank instruction, bank confirmation and register update.",
+        "Inspect the treasury SharePoint folder to confirm the approved request and updated register are retained.",
+        "Assess whether dual approval before the bank instruction addresses the risk of unauthorised accounts."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Request approved before bank was instructed",
+          "procedure": "Compare approval signature dates with the date of the bank instruction or the bank's request receipt; confirm approval came first.",
+          "evidence": "Signed request form; bank instruction or correspondence",
+          "span": {
+            "field": "control_description",
+            "text": "Before the bank is instructed to open, close or modify any bank account",
+            "start": 0,
+            "end": 71
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Both Group Treasurer and CFO signed the request form",
+          "procedure": "Inspect the request form for the signatures of both the Group Treasurer and the CFO; confirm they are two different people.",
+          "evidence": "Signed request form",
+          "span": {
+            "field": "control_description",
+            "text": "the Group Treasurer and the CFO both approve the request form with their signatures",
+            "start": 73,
+            "end": 156
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Register updated within 2 business days of bank confirmation",
+          "procedure": "Compare the bank confirmation date with the register update date (version history or change log) and count the business days.",
+          "evidence": "Bank confirmation; bank account register with version history",
+          "span": {
+            "field": "control_description",
+            "text": "Within 2 business days after the bank confirms, the Treasury Analyst updates the bank account register",
+            "start": 158,
+            "end": 260
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Approved request and updated register retained in SharePoint",
+          "procedure": "Locate the approved request and the updated register entry in the treasury SharePoint folder for the sampled item.",
+          "evidence": "Treasury SharePoint folder copy of request and register",
+          "span": {
+            "field": "control_description",
+            "text": "The approved request and the updated register are retained in the treasury SharePoint folder",
+            "start": 262,
+            "end": 354
+          }
+        }
+      ],
+      "exception_definition": "A request lacks either signature or is signed after the bank was instructed, the register is updated later than 2 business days after confirmation or not at all, or the documents are not retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-02",
+      "toe_ready": false,
+      "blockers": [
+        "frequency: Frequency is not stated: define it before a sample can be selected."
+      ],
+      "sample": {
+        "frequency": "unknown",
+        "size": null,
+        "label": "Unknown",
+        "basis": "Frequency is not stated: define it before a sample can be selected."
+      },
+      "population": "Obtain the e-banking platform release log (audit trail) of all payment runs for the period and agree it to the list of SAP payment proposals and payment files for the same period.",
+      "tod_steps": [
+        "Inquire with the Treasury Analyst and the second signatory about how a payment file is uploaded and released for each run.",
+        "Observe or inspect an upload of the SAP payment file and its release by a second user on the e-banking platform.",
+        "Inspect the approved SAP payment proposal and the comparison of total amount and number of payments to the file.",
+        "Confirm in the platform configuration or with IT that release by two different users is enforced and a difference stops the release.",
+        "Inspect the e-banking audit trail to confirm the release log is retained."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Payment file uploaded to e-banking by Treasury Analyst",
+          "procedure": "Inspect the e-banking audit trail for the upload event and confirm the uploading user is the Treasury Analyst.",
+          "evidence": "E-banking release log (upload event)",
+          "span": {
+            "field": "control_description",
+            "text": "the Treasury Analyst uploads the SAP payment file to the e-banking platform",
+            "start": 23,
+            "end": 98
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Released by authorised second signatory after agreeing totals",
+          "procedure": "Inspect the release log to confirm the releaser is the Group Treasurer or Treasury Manager. Agree total and payment count to the approved SAP proposal. The evidence of this agreement is not defined, so confirm what exists.",
+          "evidence": "E-banking release log; approved SAP payment proposal; file totals",
+          "span": {
+            "field": "control_description",
+            "text": "a second authorised signatory (Group Treasurer or Treasury Manager) releases it only after agreeing the total amount and number of payments to the approved SAP payment proposal",
+            "start": 104,
+            "end": 280
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Differences stopped the release",
+          "procedure": "Identify runs where the file differed from the proposal and confirm the release was stopped and resolved before release. If none, inspect the release log for the stop function or ask for examples.",
+          "evidence": "E-banking release log; difference follow-up records",
+          "span": {
+            "field": "control_description",
+            "text": "any difference stops the release",
+            "start": 282,
+            "end": 314
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Upload and release done by two different users",
+          "procedure": "Compare user IDs of the upload and release events in the audit trail and confirm they differ.",
+          "evidence": "E-banking audit trail user IDs",
+          "span": {
+            "field": "control_description",
+            "text": "The bank platform enforces release by two different users",
+            "start": 316,
+            "end": 373
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Release log retained in e-banking audit trail",
+          "procedure": "Retrieve the release log entry for the sampled run directly from the e-banking audit trail.",
+          "evidence": "E-banking audit trail entry",
+          "span": {
+            "field": "control_description",
+            "text": "The release log is retained in the e-banking audit trail",
+            "start": 375,
+            "end": 431
+          }
+        }
+      ],
+      "exception_definition": "A payment run is released without a second, different authorised signatory, released despite a difference to the approved SAP proposal, or lacks a retained release log.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-03",
+      "toe_ready": false,
+      "blockers": [
+        "sod_conflict: The same role appears to both perform and approve/review the activity. Separate preparer and reviewer."
+      ],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain the e-banking portal listing of all payments made outside the payment run for the period, and compare it to the bank statement payments to confirm completeness. Include payments at or below CHF 1,000 to check the threshold.",
+      "tod_steps": [
+        "Inquire with the Treasury Manager about when and why urgent manual payments are made outside the payment run, and who prepares and approves them.",
+        "Walk through one urgent payment in the e-banking portal from preparation to approval and release.",
+        "Assess segregation of duties: the text names the Treasury Manager as both preparer and approver, so determine whether any independent second approver exists.",
+        "Inspect the invoice support and where evidence is stored in e-banking, as the artefact and location are not precisely defined.",
+        "Confirm whether approval occurs before release to the bank, since no trigger is stated."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Manual payment above CHF 1,000 processed outside payment run",
+          "procedure": "Confirm the sampled payment is above CHF 1,000 and made outside the payment run. Check the full listing for payments split to avoid the threshold.",
+          "evidence": "E-banking payment record; bank statement",
+          "span": {
+            "field": "control_description",
+            "text": "manual (urgent) payments above CHF 1,000 outside the payment run in the e-banking portal",
+            "start": 43,
+            "end": 131
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Prepared and approved by Treasury Manager (independence not verifiable)",
+          "procedure": "Inspect the payment record for preparer and approver. The same role performs both, so independent review cannot be verified as written. Report the user IDs.",
+          "evidence": "E-banking payment record with preparer and approver IDs",
+          "span": {
+            "field": "control_description",
+            "text": "The Treasury Manager prepares and approves manual (urgent) payments above CHF 1,000 outside the payment run in the e-banking portal",
+            "start": 0,
+            "end": 131
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Approval timed before release to the bank",
+          "procedure": "Compare the approval timestamp with the release timestamp. The description states no trigger, so the tester cannot verify the timing requirement as written.",
+          "evidence": "E-banking payment record timestamps",
+          "span": null
+        },
+        {
+          "id": "D",
+          "attribute": "Payment supported by an invoice",
+          "procedure": "Agree payee, amount and currency of the payment to the supporting invoice.",
+          "evidence": "Invoice copy attached in e-banking",
+          "span": {
+            "field": "control_description",
+            "text": "Each payment is supported by an invoice",
+            "start": 133,
+            "end": 172
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Evidence kept in e-banking",
+          "procedure": "Confirm the invoice and approval record are stored in e-banking for the sampled payment. The exact artefact and location are not defined, so note what was found.",
+          "evidence": "E-banking payment record and attachments",
+          "span": {
+            "field": "control_description",
+            "text": "evidence is kept in e-banking",
+            "start": 177,
+            "end": 206
+          }
+        }
+      ],
+      "exception_definition": "A manual payment above CHF 1,000 outside the payment run has no invoice support, no retained evidence in e-banking, or no approval before release, or the same person prepared and approved it with no independent review.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "weekly",
+        "size": 5,
+        "label": "Weekly",
+        "basis": "Weekly control: test 5 of ~52 weeks, spread across the period."
+      },
+      "population": "Obtain the listing of weekly 13-week cash forecast files for the period from the treasury SharePoint folder, and confirm there is one for every Monday.",
+      "tod_steps": [
+        "Inquire with the Treasury Analyst about how the forecast is prepared from the TMS each Monday.",
+        "Inquire with the Group Treasurer about the review and how variances above CHF 500,000 or 10% are investigated.",
+        "Inspect one forecast file, including the TMS source data and the prior-week actual-versus-forecast comparison.",
+        "Inspect the variance explanations in the forecast file and the approved version saved in the treasury SharePoint folder.",
+        "Assess whether the review addresses the risk of liquidity shortfalls not being identified in time."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Forecast prepared from TMS by Monday 12:00",
+          "procedure": "Inspect the file creation or save timestamp and agree the forecast data to the TMS. Confirm it covers 13 weeks and was prepared by 12:00 on Monday.",
+          "evidence": "Forecast file with timestamp; TMS report",
+          "span": {
+            "field": "control_description",
+            "text": "Every Monday by 12:00, the Treasury Analyst prepares the 13-week rolling cash forecast from the TMS",
+            "start": 0,
+            "end": 99
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Forecast reviewed by Group Treasurer",
+          "procedure": "Inspect the forecast file for evidence of the Group Treasurer's review, such as sign-off, approval note or email. The form of review evidence is not defined.",
+          "evidence": "Forecast file with review sign-off",
+          "span": {
+            "field": "control_description",
+            "text": "The Group Treasurer reviews it",
+            "start": 101,
+            "end": 131
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Variances above threshold investigated and explained",
+          "procedure": "Recalculate actual versus prior-week forecast variances and confirm each above CHF 500,000 or 10% has a documented explanation in the forecast file.",
+          "evidence": "Forecast file variance analysis and comments",
+          "span": {
+            "field": "control_description",
+            "text": "investigates variances between actuals and the prior-week forecast above CHF 500,000 or 10%, documenting explanations in the forecast file",
+            "start": 136,
+            "end": 274
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Approved forecast saved in treasury SharePoint folder",
+          "procedure": "Locate the approved forecast for the sampled week in the treasury SharePoint folder.",
+          "evidence": "Treasury SharePoint folder copy of approved forecast",
+          "span": {
+            "field": "control_description",
+            "text": "The approved forecast is saved in the treasury SharePoint folder",
+            "start": 276,
+            "end": 340
+          }
+        }
+      ],
+      "exception_definition": "A weekly forecast is missing, prepared after Monday 12:00, not reviewed by the Group Treasurer, lacks explanations for variances above CHF 500,000 or 10%, or is not saved in the SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "annual",
+        "size": 1,
+        "label": "Annual",
+        "basis": "Annual control: test the one occurrence in the period."
+      },
+      "population": "Obtain the SAP list of all bank accounts (house banks and GL accounts) as at year-end and confirm that a signed reconciliation exists for each one in the treasury close folder.",
+      "tod_steps": [
+        "Inquire with the Treasury Accountant about how SAP bank balances are reconciled to bank statements at year-end.",
+        "Inspect one reconciliation, tracing the SAP balance and bank statement balance to source and reviewing the reconciling items.",
+        "Inquire with the Group Treasurer about the review performed and how reconciling items are investigated or cleared, as no criterion is stated.",
+        "Confirm that the reconciliations cover all bank accounts and are filed in the treasury close folder.",
+        "Evaluate the annual frequency against the risk, since annual reconciliation may be too infrequent to detect misstatement or unauthorised transactions in time."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "All bank accounts reconciled, SAP to bank statement",
+          "procedure": "Agree the SAP balance and bank statement balance to source for the sampled account and recompute the difference. Confirm that every account on the SAP list is covered.",
+          "evidence": "Bank reconciliation; SAP balance report; year-end bank statement",
+          "span": {
+            "field": "control_description",
+            "text": "The Treasury Accountant reconciles all bank account balances in SAP to the bank statements",
+            "start": 0,
+            "end": 90
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Reconciliation completed within 10 business days after year-end",
+          "procedure": "Compare the preparation date with year-end and count business days to confirm completion within 10.",
+          "evidence": "Signed reconciliation with preparation date",
+          "span": {
+            "field": "control_description",
+            "text": "within 10 business days after year-end",
+            "start": 101,
+            "end": 139
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Reconciling items investigated and cleared (criterion undefined)",
+          "procedure": "Inspect reconciling items for explanation and clearing. No criterion is defined, so the tester cannot conclude on appropriateness as written. Report items found and their ageing.",
+          "evidence": "Reconciliation reconciling items list",
+          "span": null
+        },
+        {
+          "id": "D",
+          "attribute": "Reconciliation reviewed by Group Treasurer",
+          "procedure": "Inspect the reconciliation for the Group Treasurer's signature and date, and confirm the reviewer is not the preparer.",
+          "evidence": "Signed reconciliation",
+          "span": {
+            "field": "control_description",
+            "text": "the Group Treasurer reviews the reconciliation",
+            "start": 145,
+            "end": 191
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Signed reconciliation filed in treasury close folder",
+          "procedure": "Locate the signed reconciliation for the sampled account in the treasury close folder.",
+          "evidence": "Treasury close folder copy of signed reconciliation",
+          "span": {
+            "field": "control_description",
+            "text": "Signed reconciliations are filed in the treasury close folder",
+            "start": 193,
+            "end": 254
+          }
+        }
+      ],
+      "exception_definition": "A bank account is not reconciled, the reconciliation is completed later than 10 business days after year-end, is unreviewed or unsigned by the Group Treasurer, or is not filed in the treasury close folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-06",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from the TMS the complete listing of all FX hedge deal tickets executed in the period, with deal date, amount in CHF, approval status and approver.",
+      "tod_steps": [
+        "Inquire with Treasury how an FX hedge is proposed, checked against the hedging policy and approved before execution, and who approves deals up to CHF 5m.",
+        "Obtain the hedging policy and confirm it sets the 50–80% hedge ratio over a 12-month forecast horizon.",
+        "Observe in the TMS whether a deal can be executed without a recorded approval, and whether deals above CHF 5m route to the CFO.",
+        "Inspect one deal ticket at or below CHF 5m and one above CHF 5m for approval timestamps before execution and the exposure forecast used.",
+        "Assess whether pre-execution approval addresses the risk of speculative positions outside policy."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Hedge approved before execution against hedging policy",
+          "procedure": "Compare the approval timestamp with the execution timestamp on the deal ticket. Confirm an approver is recorded. The approver for deals up to CHF 5m is not defined, so tester cannot verify authority.",
+          "evidence": "TMS deal ticket with approval and execution timestamps",
+          "span": {
+            "field": "control_description",
+            "text": "FX hedges are approved before execution against the hedging policy",
+            "start": 0,
+            "end": 66
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Resulting hedge ratio within 50–80% of 12-month forecast exposure",
+          "procedure": "Recalculate the hedge ratio including this deal using the forecast exposure at deal date. Confirm it is within the range. The forecast source is not defined.",
+          "evidence": "Deal ticket and exposure forecast at deal date [source]",
+          "span": {
+            "field": "control_description",
+            "text": "hedge ratio 50–80% of forecast exposures over the next 12 months",
+            "start": 68,
+            "end": 132
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Deals above CHF 5m approved by CFO",
+          "procedure": "For deals above CHF 5m, confirm the approval on the ticket is by the CFO and was given before execution.",
+          "evidence": "TMS deal ticket showing CFO approval",
+          "span": {
+            "field": "control_description",
+            "text": "deals above CHF 5m require CFO approval",
+            "start": 135,
+            "end": 174
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Approved deal ticket stored in TMS",
+          "procedure": "Confirm the deal ticket with its approvals is retrievable in the TMS and complete for the sampled deal.",
+          "evidence": "TMS deal ticket record",
+          "span": {
+            "field": "control_description",
+            "text": "Deal tickets with approvals are stored in the TMS",
+            "start": 176,
+            "end": 225
+          }
+        }
+      ],
+      "exception_definition": "A hedge executed without prior approval, outside the 50–80% hedge ratio without documented authorisation, above CHF 5m without CFO approval, or with no approved ticket in the TMS.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-07",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "quarterly",
+        "size": 2,
+        "label": "Quarterly",
+        "basis": "Quarterly control: test 2 of 4 quarters (include the year-end quarter if relied on)."
+      },
+      "population": "Obtain from the treasury SharePoint folder all quarterly signatory comparisons for the period, and a list of all banks to confirm each bank is covered each quarter.",
+      "tod_steps": [
+        "Inquire with the Treasury Manager how bank signatory lists are obtained directly from each bank and compared with the approved signatory matrix and HR leaver list.",
+        "Inspect the approved signatory matrix and HR leaver list used, and confirm who maintains them.",
+        "Walk through one quarter's comparison: bank-sourced lists, differences identified, and removal requests raised.",
+        "Inspect one removal request for signatures by the Group Treasurer and CFO and confirmation from the bank.",
+        "Assess whether the comparison and removal timeline addresses the risk of former or unauthorised signatories."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Comparison performed within 10 business days of quarter-end",
+          "procedure": "Compare the comparison date with the quarter-end date and count business days.",
+          "evidence": "Signed signatory comparison with date",
+          "span": {
+            "field": "control_description",
+            "text": "Each quarter, within 10 business days after quarter-end",
+            "start": 0,
+            "end": 55
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Bank-sourced lists compared with matrix and HR leaver list",
+          "procedure": "Agree the signatory lists to bank-originated documents for every bank. Re-perform the comparison against the matrix and HR leaver list and agree to the result.",
+          "evidence": "Bank signatory lists, signatory matrix, HR leaver list, comparison",
+          "span": {
+            "field": "control_description",
+            "text": "the Treasury Manager compares the signatory lists obtained directly from each bank with the approved signatory matrix and the HR leaver list",
+            "start": 57,
+            "end": 197
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Unauthorised or departed signatories removed within 5 business days with dual signature",
+          "procedure": "For each difference, inspect the removal request for Group Treasurer and CFO signatures and the bank confirmation. Count business days from identification to removal.",
+          "evidence": "Signed removal request and bank confirmation of removal",
+          "span": {
+            "field": "control_description",
+            "text": "Any signatory not in the matrix, or who has left, is removed within 5 business days through a request signed by the Group Treasurer and the CFO",
+            "start": 199,
+            "end": 342
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Signed comparison retained in treasury SharePoint folder",
+          "procedure": "Confirm the signed comparison is in the treasury SharePoint folder and signed by the Treasury Manager.",
+          "evidence": "Signed comparison in treasury SharePoint folder",
+          "span": {
+            "field": "control_description",
+            "text": "The signed comparison is retained in the treasury SharePoint folder",
+            "start": 344,
+            "end": 411
+          }
+        }
+      ],
+      "exception_definition": "A quarterly comparison performed late, incomplete (bank missing or not bank-sourced), or unsigned; a difference not removed within 5 business days or without Group Treasurer and CFO signatures; or evidence not retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "TRE-08",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "daily",
+        "size": 20,
+        "label": "Daily",
+        "basis": "Daily control: test 20 of ~250 days, selected randomly across the period."
+      },
+      "population": "Obtain from the TMS the daily reconciliation exception reports and the TMS exception log for all business days in the period, and the business-day calendar to check no day is missing.",
+      "tod_steps": [
+        "Inquire with the Treasury Analyst about the daily camt.053 import, TMS reconciliation to SAP cash accounts and exception handling.",
+        "Observe in the TMS the reconciliation run, its parameters (CHF 1 difference threshold) and the generated exception report.",
+        "Inspect one day's exception report against the camt.053 balances and SAP cash accounts to confirm completeness of the differences reported.",
+        "Inspect the TMS exception log for the same day for investigation, resolution and clearing date.",
+        "Assess whether next-business-day clearing addresses the risk of undetected differences between bank and ledger."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Reconciliation run on the business day using camt.053 and SAP cash accounts",
+          "procedure": "Confirm a reconciliation run exists for the sampled day, imported camt.053 balances and SAP cash accounts. Agree a sample of balances to source.",
+          "evidence": "TMS reconciliation run log and imported camt.053 balances",
+          "span": {
+            "field": "control_description",
+            "text": "Every business day, the TMS reconciles the bank balances imported via camt.053 with the SAP cash accounts",
+            "start": 0,
+            "end": 105
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Exception report lists all differences above CHF 1",
+          "procedure": "Recompute differences between bank balances and SAP cash accounts for the sampled day. Agree all differences above CHF 1 to the exception report.",
+          "evidence": "TMS exception report, bank balances, SAP cash account balances",
+          "span": {
+            "field": "control_description",
+            "text": "generates an exception report of all differences above CHF 1",
+            "start": 110,
+            "end": 170
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Every exception investigated and cleared by end of next business day",
+          "procedure": "For each exception on the report, compare clearing date with the report date and count business days.",
+          "evidence": "TMS exception log with clearing timestamps",
+          "span": {
+            "field": "control_description",
+            "text": "The Treasury Analyst investigates and clears every exception by the end of the next business day",
+            "start": 172,
+            "end": 268
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Resolution documented in TMS exception log",
+          "procedure": "Inspect the log entry for a clear description of cause and resolution and the analyst who cleared it.",
+          "evidence": "TMS exception log entry",
+          "span": {
+            "field": "control_description",
+            "text": "documents the resolution in the TMS exception log",
+            "start": 273,
+            "end": 322
+          }
+        }
+      ],
+      "exception_definition": "A business day without a completed reconciliation, a difference above CHF 1 missing from the exception report, or an exception not cleared by the end of the next business day or not documented in the TMS exception log.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from SAP S/4HANA the complete list of manual journal entries posted in the period above CHF 10,000, with preparer, approver and workflow history.",
+      "tod_steps": [
+        "Inquire with an Accounting Manager and the Group Controller about the manual journal entry approval workflow and its thresholds (CHF 10,000 and CHF 1m).",
+        "Observe in SAP the workflow configuration, including blocking of self-approval and posting before approval.",
+        "Attempt, or inspect configuration evidence of, a self-approval to confirm the system prevents it.",
+        "Inspect one entry above CHF 10,000 and one above CHF 1m for workflow history: preparer, approver, timestamps.",
+        "Assess whether the preventive approval addresses the risk of erroneous or fraudulent entries."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Entry above CHF 10,000 approved by Accounting Manager before posting",
+          "procedure": "Inspect the workflow history for an approval by an Accounting Manager with a timestamp earlier than the posting timestamp.",
+          "evidence": "SAP workflow history for the journal entry",
+          "span": {
+            "field": "control_description",
+            "text": "Before posting, every manual journal entry above CHF 10,000 is approved in the SAP workflow by an Accounting Manager",
+            "start": 0,
+            "end": 116
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Approver differs from the person who entered the entry",
+          "procedure": "Compare the user ID of the preparer with the approver ID in the workflow history. Inspect system configuration for the self-approval block.",
+          "evidence": "SAP workflow history; SAP workflow configuration",
+          "span": {
+            "field": "control_description",
+            "text": "other than the person who entered it",
+            "start": 117,
+            "end": 153
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "System prevents self-approval",
+          "procedure": "Inspect the SAP workflow configuration (once, with IT) confirming self-approval is blocked and unchanged during the period.",
+          "evidence": "SAP workflow configuration and change log",
+          "span": {
+            "field": "control_description",
+            "text": "the system prevents self-approval",
+            "start": 155,
+            "end": 188
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Entry above CHF 1m also approved by Group Controller",
+          "procedure": "For entries above CHF 1m, confirm an additional approval step by the Group Controller before posting.",
+          "evidence": "SAP workflow history showing Group Controller approval",
+          "span": {
+            "field": "control_description",
+            "text": "Entries above CHF 1m additionally require Group Controller approval",
+            "start": 190,
+            "end": 257
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Workflow history retained in SAP",
+          "procedure": "Confirm the complete workflow history for the entry is retrievable in SAP.",
+          "evidence": "SAP workflow history",
+          "span": {
+            "field": "control_description",
+            "text": "The workflow history is retained in SAP",
+            "start": 259,
+            "end": 298
+          }
+        }
+      ],
+      "exception_definition": "A manual journal entry above CHF 10,000 posted without prior Accounting Manager approval, approved by its preparer, above CHF 1m without Group Controller approval, or without retrievable workflow history.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain the list of period-end reviews (each quarter-end, and each month-end if monthly is confirmed) with the e-mail sign-offs from the consolidation folder; the cadence must first be clarified with the owner.",
+      "tod_steps": [
+        "Inquire with the Group Controller whether the review is quarterly or monthly, as the description and frequency column conflict.",
+        "Obtain the consolidated balance sheet and P&L flux analysis and ask how variances are identified and which are followed up.",
+        "Inspect one review: the flux analysis, the sign-off e-mail and its date relative to period end.",
+        "Inspect evidence of follow-up of a variance, and ask what quantitative threshold defines 'significant'.",
+        "Assess whether the review addresses the risk of undetected material misstatements in the consolidated accounts."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Group Controller reviewed consolidated BS and P&L flux analysis",
+          "procedure": "Inspect the flux analysis and sign-off for review by the Group Controller. The cadence conflicts (quarterly vs monthly), so the periods required cannot be verified until clarified.",
+          "evidence": "Flux analysis and Group Controller sign-off e-mail",
+          "span": {
+            "field": "control_description",
+            "text": "The Group Controller reviews the consolidated balance sheet and P&L flux analysis quarterly",
+            "start": 0,
+            "end": 91
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Review completed within 8 business days after period end",
+          "procedure": "Compare the sign-off e-mail date with the period-end date and count business days.",
+          "evidence": "Sign-off e-mail with date",
+          "span": {
+            "field": "control_description",
+            "text": "within 8 business days after period end",
+            "start": 93,
+            "end": 132
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Significant variances followed up",
+          "procedure": "Identify variances in the flux analysis and inspect follow-up for each one the Group Controller treated as significant. 'Significant' has no threshold ([threshold]), so completeness of follow-up cannot be verified.",
+          "evidence": "Flux analysis, variance explanations, follow-up correspondence",
+          "span": {
+            "field": "control_description",
+            "text": "follows up significant variances",
+            "start": 138,
+            "end": 170
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "E-mail sign-off stored in consolidation folder",
+          "procedure": "Confirm the sign-off e-mail from the Group Controller is stored in the consolidation folder.",
+          "evidence": "E-mail sign-off in consolidation folder",
+          "span": {
+            "field": "control_description",
+            "text": "Review evidenced by e-mail sign-off stored in the consolidation folder",
+            "start": 172,
+            "end": 242
+          }
+        }
+      ],
+      "exception_definition": "A required period-end review not performed or not signed off by the Group Controller, signed off later than 8 business days after period end, variances above [threshold] not followed up, or sign-off not stored in the consolidation folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain from the reconciliation tool the full listing of balance sheet account reconciliations for each month-end in the period, and agree the in-scope accounts (above CHF 100,000) to the SAP S/4HANA trial balance.",
+      "tod_steps": [
+        "Inquire with the Senior Accountant and Accounting Manager how in-scope accounts above CHF 100,000 are identified and reconciled each month-end.",
+        "Observe in the reconciliation tool how preparer and reviewer sign-offs are recorded and timestamped.",
+        "Inspect one reconciliation to confirm it is agreed to a sub-ledger or third-party evidence and that the sign-off dates meet the deadlines.",
+        "Inspect how the Accounting Manager documents investigation of unreconciled differences above CHF 5,000 or items older than 60 days.",
+        "Confirm the control addresses the risk of unreconciled or unsupported balances by covering all accounts above the threshold."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Every balance sheet account above CHF 100,000 has a reconciliation",
+          "procedure": "Compare the SAP trial balance for the month to the reconciliation tool listing and confirm each account above the threshold has a reconciliation.",
+          "evidence": "SAP trial balance; reconciliation tool account listing",
+          "span": {
+            "field": "control_description",
+            "text": "reconciles every balance sheet account above CHF 100,000",
+            "start": 57,
+            "end": 113
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Reconciliation agreed to sub-ledger or third-party evidence",
+          "procedure": "Agree the GL balance and the supporting balance on the reconciliation to the sub-ledger or third-party statement.",
+          "evidence": "Reconciliation with attached sub-ledger or third-party support",
+          "span": {
+            "field": "control_description",
+            "text": "to sub-ledgers or third-party evidence",
+            "start": 114,
+            "end": 152
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Preparer sign-off by Senior Accountant by business day 7",
+          "procedure": "Inspect the preparer sign-off timestamp in the tool and compare it to business day 7 after month-end.",
+          "evidence": "Preparer sign-off and timestamp in reconciliation tool",
+          "span": {
+            "field": "control_description",
+            "text": "By business day 7 after month-end, the Senior Accountant reconciles every balance sheet account above CHF 100,000 to sub-ledgers or third-party evidence",
+            "start": 0,
+            "end": 152
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Accounting Manager reviewed the reconciliation",
+          "procedure": "Inspect the reviewer sign-off by the Accounting Manager and confirm it follows the preparer sign-off. The deadline for the review is not defined, so timeliness cannot be tested.",
+          "evidence": "Reviewer sign-off and timestamp in reconciliation tool",
+          "span": {
+            "field": "control_description",
+            "text": "The Accounting Manager then reviews each reconciliation",
+            "start": 154,
+            "end": 209
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Differences above CHF 5,000 or items older than 60 days investigated",
+          "procedure": "Identify differences above CHF 5,000 and items older than 60 days, then inspect the documented investigation and resolution or action plan.",
+          "evidence": "Reconciliation open-item listing with reviewer comments or follow-up",
+          "span": {
+            "field": "control_description",
+            "text": "investigates unreconciled differences above CHF 5,000 or items older than 60 days",
+            "start": 214,
+            "end": 295
+          }
+        },
+        {
+          "id": "F",
+          "attribute": "Both sign-offs recorded in reconciliation tool",
+          "procedure": "Confirm that both the preparer and reviewer sign-offs are recorded in the tool for the sampled reconciliation.",
+          "evidence": "Sign-off log of reconciliation tool",
+          "span": {
+            "field": "control_description",
+            "text": "Both sign-offs are recorded in the reconciliation tool",
+            "start": 297,
+            "end": 351
+          }
+        }
+      ],
+      "exception_definition": "An in-scope account has no reconciliation, a missing or late preparer or reviewer sign-off, an unsupported balance, or an uninvestigated difference above CHF 5,000 or item older than 60 days.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain from SharePoint all month-end close checklists with sign-off for each month-end in the period, and confirm that there is one for every month.",
+      "tod_steps": [
+        "Inquire with the Accounting team who completes and signs off the close checklist, as no control owner is named.",
+        "Walk through the close checklist on SharePoint and ask what 'complete' means for entries and what happens to open or missing items.",
+        "Inspect one month's checklist to see whether tasks and sign-off are dated and whether the sign-off falls within 5 business days.",
+        "Assess whether the control as written (no named role, no definition of complete) addresses the risk of an incomplete close."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Close checklist used for the month-end",
+          "procedure": "Inspect that a close checklist exists for the sampled month and that the tasks are completed on it.",
+          "evidence": "Close checklist on SharePoint",
+          "span": {
+            "field": "control_description",
+            "text": "using the close checklist",
+            "start": 128,
+            "end": 153
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Close completed within 5 business days after month-end",
+          "procedure": "Compare the checklist completion and sign-off date with business day 5 after month-end.",
+          "evidence": "Dated checklist sign-off on SharePoint",
+          "span": {
+            "field": "control_description",
+            "text": "within 5 business days after month-end",
+            "start": 88,
+            "end": 126
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Completeness of entries confirmed on checklist",
+          "procedure": "Inspect that all checklist items are completed or explained. The definition of 'complete' and the open items to investigate are not stated, so the tester cannot verify the quality of the check as written.",
+          "evidence": "Completed close checklist",
+          "span": {
+            "field": "control_description",
+            "text": "to ensure all entries are complete",
+            "start": 52,
+            "end": 86
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Monitoring performed by an identifiable individual",
+          "procedure": "Identify the person who signed off the checklist. The description names only a team and no owner, so the tester cannot verify the performer's role or authority as written.",
+          "evidence": "Checklist sign-off name and date",
+          "span": {
+            "field": "control_description",
+            "text": "monitored by the Accounting team",
+            "start": 19,
+            "end": 51
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Checklist sign-off retained on SharePoint",
+          "procedure": "Confirm the signed checklist is saved on SharePoint and was not changed after sign-off.",
+          "evidence": "SharePoint file and version history",
+          "span": {
+            "field": "control_description",
+            "text": "Checklist sign-off kept on SharePoint",
+            "start": 155,
+            "end": 192
+          }
+        },
+        {
+          "id": "F",
+          "attribute": "Open or late items investigated and resolved",
+          "procedure": "Inspect any open or missing items for follow-up evidence. The description defines no investigation step, so the tester cannot verify this as written.",
+          "evidence": "Checklist comments or follow-up documentation",
+          "span": null
+        }
+      ],
+      "exception_definition": "The checklist is missing, incomplete, not signed off within 5 business days after month-end, signed off by an unidentifiable person, or not retained on SharePoint, or open items are not followed up.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain from the consolidation system and the consolidation folder the signed intercompany matching reports for every month-end in the period, and agree the entity list to the consolidation scope.",
+      "tod_steps": [
+        "Inquire with the Group Reporting Accountant and Group Reporting Manager how intercompany balances are reconciled each month before consolidation.",
+        "Observe the intercompany matching report in the consolidation system and how differences are identified.",
+        "Inspect one month's report for differences above CHF 10,000, the agreement with the counterpart entity controller, and the manager's sign-off.",
+        "Confirm that the report is retained in the consolidation folder and that the control addresses the risk of intercompany balances not eliminating."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Intercompany reconciliation done by business day 4, before consolidation",
+          "procedure": "Compare the report run or preparation date with business day 4 and the consolidation start date.",
+          "evidence": "Intercompany matching report with date; consolidation timeline",
+          "span": {
+            "field": "control_description",
+            "text": "By business day 4 after month-end and before consolidation",
+            "start": 0,
+            "end": 58
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "All entities' intercompany balances reconciled",
+          "procedure": "Compare the entities on the matching report with the consolidation scope listing and confirm every entity pair is included.",
+          "evidence": "Intercompany matching report; consolidation entity list",
+          "span": {
+            "field": "control_description",
+            "text": "reconciles intercompany balances between all entities in the consolidation system",
+            "start": 91,
+            "end": 172
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Differences above CHF 10,000 agreed with counterpart controller",
+          "procedure": "Select differences above CHF 10,000 and inspect the correspondence or adjustments agreed with the counterpart entity controller.",
+          "evidence": "Matching report differences; emails or adjusting entries",
+          "span": {
+            "field": "control_description",
+            "text": "agrees every difference above CHF 10,000 with the counterpart entity controller",
+            "start": 177,
+            "end": 256
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Group Reporting Manager reviewed and signed the report",
+          "procedure": "Inspect the manager's signature and date on the matching report. No deadline is stated for the review, so timeliness cannot be tested.",
+          "evidence": "Signed intercompany matching report",
+          "span": {
+            "field": "control_description",
+            "text": "The Group Reporting Manager reviews and signs off the intercompany matching report",
+            "start": 258,
+            "end": 340
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Signed report retained in the consolidation folder",
+          "procedure": "Confirm the signed report is saved in the consolidation folder for the sampled month.",
+          "evidence": "Consolidation folder file listing",
+          "span": {
+            "field": "control_description",
+            "text": "which is retained in the consolidation folder",
+            "start": 342,
+            "end": 387
+          }
+        }
+      ],
+      "exception_definition": "The reconciliation is late or after consolidation, an entity is missing, a difference above CHF 10,000 is not agreed with the counterpart controller, or the report is unsigned or not retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "R2R-06",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "annual",
+        "size": 1,
+        "label": "Annual",
+        "basis": "Annual control: test the one occurrence in the period."
+      },
+      "population": "Obtain the annual list of cash-generating units from the [system/report] impairment model (Excel or consolidation system) and the year-end impairment memo; the population is the single annual review covering all CGUs.",
+      "tod_steps": [
+        "Inquire with the Group Controller how the impairment test for each cash-generating unit is reviewed and what inputs are challenged.",
+        "Inspect the impairment model (Excel) and the comparison of carrying amount with value in use for one CGU.",
+        "Walk through how headroom below 10% is identified and escalated to the CFO and Audit Committee.",
+        "Inspect the approved impairment memo and its filing in the year-end close folder, and confirm it addresses the risk of missed impairment."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Group Controller reviewed the impairment test for each CGU",
+          "procedure": "Agree the CGU list to the consolidation structure and inspect review evidence for each CGU's test. The extent of review of assumptions is not defined.",
+          "evidence": "Impairment model; review sign-off or memo; CGU listing",
+          "span": {
+            "field": "control_description",
+            "text": "reviews the impairment test for each cash-generating unit",
+            "start": 71,
+            "end": 128
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Carrying amount compared with value in use",
+          "procedure": "Re-perform the comparison per CGU and agree the carrying amounts to the consolidation system and value in use to the model.",
+          "evidence": "Impairment model; consolidation carrying amounts",
+          "span": {
+            "field": "control_description",
+            "text": "compares carrying amount with value in use",
+            "start": 130,
+            "end": 172
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Review completed within 20 business days after year-end",
+          "procedure": "Compare the review and approval date with business day 20 after year-end.",
+          "evidence": "Dated memo approval or review sign-off",
+          "span": {
+            "field": "control_description",
+            "text": "within 20 business days after year-end",
+            "start": 10,
+            "end": 48
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Units with headroom below 10% escalated to CFO and Audit Committee",
+          "procedure": "Recalculate headroom per CGU, identify those below 10%, and inspect the escalation to the CFO and Audit Committee.",
+          "evidence": "Headroom calculation; escalation email; Audit Committee minutes or papers",
+          "span": {
+            "field": "control_description",
+            "text": "escalates any unit with headroom below 10% to the CFO and the Audit Committee",
+            "start": 178,
+            "end": 255
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Approved impairment memo filed in year-end close folder",
+          "procedure": "Inspect the approved memo and confirm it is stored in the year-end close folder.",
+          "evidence": "Approved impairment memo in year-end close folder",
+          "span": {
+            "field": "control_description",
+            "text": "The approved impairment memo is filed in the year-end close folder",
+            "start": 257,
+            "end": 323
+          }
+        }
+      ],
+      "exception_definition": "A CGU's test is not reviewed, the comparison is wrong or missing, the review is after business day 20, a unit with headroom below 10% is not escalated, or the approved memo is not filed.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "quarterly",
+        "size": 2,
+        "label": "Quarterly",
+        "basis": "Quarterly control: test 2 of 4 quarters (include the year-end quarter if relied on)."
+      },
+      "population": "Obtain from ServiceNow the quarterly access review records and removal tickets for the period, and from SAP S/4HANA the user access listing with sensitive roles per quarter to confirm all such users are in the review.",
+      "tod_steps": [
+        "Inquire with a Business Application Owner and the IT Security Officer how the quarterly SAP access review and removals work.",
+        "Observe the SAP user access listing and how sensitive roles (e.g. vendor master maintenance, payment release) are identified.",
+        "Inspect one quarter's signed review, including flagged access, and trace flagged items to ServiceNow removal tickets.",
+        "Confirm that the review covers 100% of sensitive-role users and addresses the risk of inappropriate access."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Business Application Owner reviewed access listing within 15 business days",
+          "procedure": "Inspect the signed review for the area and compare the sign-off date with business day 15 after quarter-end.",
+          "evidence": "Signed access review in ServiceNow",
+          "span": {
+            "field": "control_description",
+            "text": "Each quarter, within 15 business days after quarter-end, each Business Application Owner reviews the SAP user access listing for their area against job roles",
+            "start": 0,
+            "end": 157
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "All sensitive-role users included in the review",
+          "procedure": "Compare a system-generated SAP list of sensitive-role users at quarter-end with the reviewed listing and confirm none are omitted. Listing completeness is not specified.",
+          "evidence": "SAP sensitive-role user report; reviewed access listing",
+          "span": {
+            "field": "control_description",
+            "text": "covering 100% of users with sensitive roles",
+            "start": 159,
+            "end": 202
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Inconsistent access flagged",
+          "procedure": "Compare a sample of users' roles with their job roles and confirm that inconsistent access was flagged in the review.",
+          "evidence": "Reviewed listing with flags; job role data",
+          "span": {
+            "field": "control_description",
+            "text": "flags any access not consistent with the user's role",
+            "start": 258,
+            "end": 310
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Flagged access removed within 5 business days",
+          "procedure": "For each flagged item, compare the ticket date with the SAP removal date and confirm removal within 5 business days.",
+          "evidence": "ServiceNow ticket; SAP user role change log",
+          "span": {
+            "field": "control_description",
+            "text": "The IT Security Officer removes flagged access within 5 business days",
+            "start": 312,
+            "end": 381
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Removals tracked to closure and evidence retained in ServiceNow",
+          "procedure": "Inspect that each removal has a closed ServiceNow ticket and that the signed review is stored in ServiceNow.",
+          "evidence": "Closed ServiceNow tickets; signed review in ServiceNow",
+          "span": {
+            "field": "control_description",
+            "text": "tracks each removal to closure in a ServiceNow ticket",
+            "start": 386,
+            "end": 439
+          }
+        }
+      ],
+      "exception_definition": "The review is missing, unsigned or late, a sensitive-role user is not covered, inconsistent access is not flagged, flagged access is not removed within 5 business days, or a ticket is not closed or retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "Obtain from [ServiceNow] the complete list of change tickets for SAP production, and from SAP transport management the log of all transports imported to production in the period, and reconcile the two.",
+      "tod_steps": [
+        "Ask the IT Change Manager to walk through a change from ticket creation, testing and CAB approval to the production transport.",
+        "Observe in ServiceNow how test results are attached and how the CAB approval is recorded.",
+        "Observe or inspect SAP transport management to confirm that a transport without an approved change ticket is rejected.",
+        "Inspect the production import authorisations to confirm developers do not hold them.",
+        "Select one recent change and trace the ticket, test evidence, CAB approval and import record end to end."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Test results documented in the change ticket",
+          "procedure": "Open the sampled ticket and confirm test results are documented and relate to the transported change.",
+          "evidence": "ServiceNow change ticket with test evidence",
+          "span": {
+            "field": "control_description",
+            "text": "based on documented test results",
+            "start": 100,
+            "end": 132
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "CAB approved the change before the production transport",
+          "procedure": "Compare the CAB approval date and approver in the ticket with the production import date in the transport log.",
+          "evidence": "ServiceNow CAB approval record; SAP transport import log",
+          "span": {
+            "field": "control_description",
+            "text": "the Change Advisory Board approves the change in ServiceNow",
+            "start": 40,
+            "end": 99
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Transport imported to production is linked to the approved ticket",
+          "procedure": "Trace the sampled transport in the import log to the approved change ticket number.",
+          "evidence": "SAP transport management log with ticket reference",
+          "span": {
+            "field": "control_description",
+            "text": "SAP transport management only accepts transports linked to an approved change ticket",
+            "start": 134,
+            "end": 218
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Developers cannot import into production",
+          "procedure": "Inspect the import user in the transport log and the production import authorisations for the period; confirm the importer is not a developer.",
+          "evidence": "SAP transport log; user and role listing for production import",
+          "span": {
+            "field": "control_description",
+            "text": "developers have no access to import into production",
+            "start": 224,
+            "end": 275
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Ticket, test evidence and approval retained in ServiceNow",
+          "procedure": "Confirm the sampled ticket still holds the test evidence and CAB approval and is retrievable.",
+          "evidence": "ServiceNow change ticket",
+          "span": {
+            "field": "control_description",
+            "text": "The ticket with test evidence and CAB approval is retained in ServiceNow",
+            "start": 277,
+            "end": 349
+          }
+        }
+      ],
+      "exception_definition": "A production transport without an approved ticket, without documented test results, approved after import, imported by a developer, or with the ticket evidence not retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-03",
+      "toe_ready": false,
+      "blockers": [
+        "nature_mismatch: Nature is \"Automated\", but the description describes a manual step (\"checks whether\")."
+      ],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Obtain the list of all business days in the period from the company calendar, together with the [job monitoring dashboard] history of failed or delayed overnight batch and bank interface jobs, and the ServiceNow incident list.",
+      "tod_steps": [
+        "Ask the IT Operations Analyst to explain the daily check of the overnight SAP batch and bank interface jobs.",
+        "Observe the job monitoring dashboard and how failed or delayed jobs are identified.",
+        "Observe how a ServiceNow incident is opened for a failed or delayed job.",
+        "Inspect one completed daily checklist with initials in the IT operations SharePoint folder.",
+        "Note that the control is classified as Automated but describes a manual check; test it as a manual control and ask management to confirm the nature."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Daily check performed by 09:00 and checklist initialled",
+          "procedure": "Inspect the checklist for the sampled business day for initials and a completion time or date no later than 09:00; if no time is recorded, state that timing cannot be verified.",
+          "evidence": "Initialled daily job checklist, SharePoint folder",
+          "span": {
+            "field": "control_description",
+            "text": "Every business day by 09:00, the IT Operations Analyst checks whether the overnight SAP batch jobs and bank interface jobs completed",
+            "start": 0,
+            "end": 132
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Check covers SAP batch and bank interface jobs",
+          "procedure": "Compare the jobs listed on the checklist with the dashboard job history for the sampled night.",
+          "evidence": "Checklist; job monitoring dashboard history",
+          "span": {
+            "field": "control_description",
+            "text": "using the job monitoring dashboard",
+            "start": 134,
+            "end": 168
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Incident opened for each failed or delayed job",
+          "procedure": "Identify failed or delayed jobs for the sampled day on the dashboard history and trace each to a ServiceNow incident.",
+          "evidence": "Dashboard job history; ServiceNow incident list",
+          "span": {
+            "field": "control_description",
+            "text": "opens a ServiceNow incident for every failed or delayed job",
+            "start": 174,
+            "end": 233
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Incident resolved within 1 business day",
+          "procedure": "Compare incident creation and resolution timestamps and confirm the difference is within 1 business day.",
+          "evidence": "ServiceNow incident record with timestamps",
+          "span": {
+            "field": "control_description",
+            "text": "which is resolved within 1 business day",
+            "start": 235,
+            "end": 274
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Checklist retained in IT operations SharePoint folder",
+          "procedure": "Confirm the sampled day's checklist is stored in the specified folder.",
+          "evidence": "IT operations SharePoint folder",
+          "span": {
+            "field": "control_description",
+            "text": "daily checklist with initials in the IT operations SharePoint folder",
+            "start": 286,
+            "end": 354
+          }
+        }
+      ],
+      "exception_definition": "A business day with no initialled checklist or a check after 09:00, a failed or delayed job without a ServiceNow incident, or an incident not resolved within 1 business day.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-04",
+      "toe_ready": false,
+      "blockers": [
+        "evidence: State the artefact retained, e.g. ticket or system log, and where it is stored.",
+        "frequency: Frequency is not stated: define it before a sample can be selected."
+      ],
+      "sample": {
+        "frequency": "unknown",
+        "size": null,
+        "label": "Unknown",
+        "basis": "Frequency is not stated: define it before a sample can be selected."
+      },
+      "population": "Obtain the complete list of leavers with termination dates for the period from [HR system/report], and the Active Directory and SAP S/4HANA user listings with account disable dates.",
+      "tod_steps": [
+        "Ask the IT Service Desk Lead how HR notifies leavers and who performs the account deactivation.",
+        "Walk through one leaver from HR notification to disabling the network and SAP accounts.",
+        "Observe in Active Directory and SAP how account status and disable date are shown.",
+        "Ask what artefact is retained and where; none is defined in the control, so record this as a design gap.",
+        "Inspect one leaver instance and note which evidence is available."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "HR notification received for the leaver",
+          "procedure": "Confirm the sampled leaver appears on the HR leaver list and that a notification to IT exists; if no notification record is defined, state that it cannot be verified.",
+          "evidence": "HR leaver notification; HR leaver list",
+          "span": {
+            "field": "control_description",
+            "text": "Upon notification from HR of each leaver",
+            "start": 0,
+            "end": 40
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Network account disabled",
+          "procedure": "Inspect the Active Directory account status and disable date for the sampled leaver.",
+          "evidence": "Active Directory account properties or log",
+          "span": {
+            "field": "control_description",
+            "text": "disables the leaver's network and SAP accounts",
+            "start": 62,
+            "end": 108
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "SAP account disabled or locked",
+          "procedure": "Inspect SAP user master status and lock date for the sampled leaver.",
+          "evidence": "SAP user master record or change log",
+          "span": {
+            "field": "control_description",
+            "text": "disables the leaver's network and SAP accounts",
+            "start": 62,
+            "end": 108
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Accounts disabled within 1 business day of termination date",
+          "procedure": "Compare the termination date from HR with both disable dates and confirm the difference is no more than 1 business day.",
+          "evidence": "HR termination date; AD and SAP disable timestamps",
+          "span": {
+            "field": "control_description",
+            "text": "within 1 business day of the termination date",
+            "start": 109,
+            "end": 154
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Evidence of deactivation retained and performer identifiable",
+          "procedure": "No evidence or performer is defined; the tester cannot verify who disabled the accounts or the retained artefact as written, and must rely on system logs.",
+          "evidence": "None defined; system logs as a fallback",
+          "span": null
+        }
+      ],
+      "exception_definition": "A leaver whose network or SAP account was not disabled, or was disabled more than 1 business day after the termination date, or whose deactivation cannot be evidenced.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "Obtain from SAP S/4HANA the complete log of superuser and firefighter sessions for each month in the period, and the related ServiceNow tickets and the signed monthly reviews.",
+      "tod_steps": [
+        "Ask the IT Security Officer to explain the monthly review of superuser and firefighter sessions and how it addresses the risk of privileged access misuse (no control objective is documented).",
+        "Observe how the SAP session log is produced and confirm it includes all superuser and firefighter sessions.",
+        "Observe how each session is matched to an approved ServiceNow ticket.",
+        "Inspect one signed monthly log review and how a session without a ticket is escalated to the CIO.",
+        "Confirm where the signed review is stored in ServiceNow."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Review performed within 10 business days after month-end",
+          "procedure": "Compare the review sign-off date with month-end and confirm it falls within 10 business days.",
+          "evidence": "Signed log review with date",
+          "span": {
+            "field": "control_description",
+            "text": "within 10 business days after month-end",
+            "start": 12,
+            "end": 51
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "Review covered the complete session log",
+          "procedure": "Compare the sessions on the reviewed log with an independent SAP extract for the month to confirm all superuser and firefighter sessions are included.",
+          "evidence": "Reviewed session log; independent SAP session extract",
+          "span": {
+            "field": "control_description",
+            "text": "the IT Security Officer reviews the log of all SAP superuser and firefighter sessions",
+            "start": 53,
+            "end": 138
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Each session verified against an approved ticket",
+          "procedure": "Reperform the match of the sampled month's sessions to ServiceNow tickets and confirm each ticket was approved and the review result agrees.",
+          "evidence": "Session log; ServiceNow tickets and approvals",
+          "span": {
+            "field": "control_description",
+            "text": "verifies each session against an approved ServiceNow ticket",
+            "start": 140,
+            "end": 199
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Sessions without ticket escalated to CIO within 2 business days",
+          "procedure": "Identify sessions without a ticket and inspect the escalation to the CIO and its date versus the review date.",
+          "evidence": "Escalation email or ticket to CIO",
+          "span": {
+            "field": "control_description",
+            "text": "escalates any session without a ticket to the CIO within 2 business days",
+            "start": 205,
+            "end": 277
+          }
+        },
+        {
+          "id": "E",
+          "attribute": "Signed review retained in ServiceNow",
+          "procedure": "Confirm the signed review for the sampled month is stored in ServiceNow.",
+          "evidence": "ServiceNow record with signed log review",
+          "span": {
+            "field": "control_description",
+            "text": "The signed log review is retained in ServiceNow",
+            "start": 279,
+            "end": 326
+          }
+        }
+      ],
+      "exception_definition": "A month where the review is missing, unsigned or late, the log is incomplete, a session is not verified against an approved ticket, or an unticketed session is not escalated to the CIO within 2 business days.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    },
+    {
+      "control_id": "ITG-06",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "Obtain the SAP S/4HANA system parameter extracts for the period from the ITGC configuration baseline, plus the list of SAP upgrades in the period from [change/release log].",
+      "tod_steps": [
+        "Ask the IT Security Officer how the password parameters are configured in SAP S/4HANA and how they are compared to the security standard after upgrades.",
+        "Obtain the security standard and confirm it specifies 12 characters, complexity, 90-day expiry and lock after 5 attempts.",
+        "Inspect the current SAP parameter settings or system parameter extract against the standard.",
+        "Inspect the ITGC configuration baseline for the stored extract and the post-upgrade comparison.",
+        "Optionally observe a logon attempt to confirm enforcement."
+      ],
+      "attributes": [
+        {
+          "id": "A",
+          "attribute": "Password parameters configured per the security standard",
+          "procedure": "Inspect the live SAP parameter settings for minimum length, complexity, expiry and lockout, and compare each to the stated value.",
+          "evidence": "System parameter extract; security standard",
+          "span": {
+            "field": "control_description",
+            "text": "minimum 12 characters, complexity rules, 90-day expiry and account lock after 5 failed attempts",
+            "start": 62,
+            "end": 157
+          }
+        },
+        {
+          "id": "B",
+          "attribute": "SAP enforces parameters at logon",
+          "procedure": "Confirm the parameters are active system settings applied at logon, for example by a test logon or inspecting the active profile.",
+          "evidence": "SAP active parameter display; test logon result",
+          "span": {
+            "field": "control_description",
+            "text": "At every logon, SAP S/4HANA enforces the password parameters",
+            "start": 0,
+            "end": 60
+          }
+        },
+        {
+          "id": "C",
+          "attribute": "Parameter extract stored in the ITGC baseline",
+          "procedure": "Confirm a current extract exists in the baseline and agrees to the live settings.",
+          "evidence": "ITGC configuration baseline extract",
+          "span": {
+            "field": "control_description",
+            "text": "a system parameter extract stored in the ITGC configuration baseline",
+            "start": 199,
+            "end": 267
+          }
+        },
+        {
+          "id": "D",
+          "attribute": "Settings compared to the standard after each upgrade",
+          "procedure": "For each upgrade in the period, inspect the comparison performed by the IT Security Officer, its date and its sign-off, and confirm any differences were resolved.",
+          "evidence": "Post-upgrade comparison record; upgrade list",
+          "span": {
+            "field": "control_description",
+            "text": "which the IT Security Officer compares to the security standard after every SAP upgrade",
+            "start": 269,
+            "end": 356
+          }
+        }
+      ],
+      "exception_definition": "A parameter that deviates from the stated requirement, not enforced at logon, no extract in the baseline, or no comparison to the standard after an SAP upgrade.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "testscript.v1"
+    }
+  ]
+}

@@ -42,6 +42,8 @@ rcm-doctor finds these problems, shows where they are in the text and proposes a
 
 **Per control:** status (pass / weak / fail), findings with severity, an **automation score** from 0 (pure judgment) to 5 (system-enforceable, ITAC candidate), and a **suggested rewrite** that invents nothing material. Missing facts become `[placeholders]`.
 
+**Test scripts (Week 2):** for each control, a test of design (walkthrough steps) and a test of operating effectiveness. The sample size comes from the frequency (illustrative minimums you can configure). Each test attribute carries its procedure and evidence, and points to the phrase of the control it tests. Controls with high-severity design findings are marked "remediate first" instead of being tested. Everything is included in the Excel export.
+
 **Traceability:** the model quotes the text, and code locates the quote in your RCM. A quote that cannot be found is dropped, never shown. The Excel export records each cited span with its field and character offsets.
 
 ## Evaluation
@@ -93,7 +95,7 @@ Layout: the review logic is plain TypeScript in [`src/core`](src/core) (parse, r
 One increment per weekend ([full roadmap](docs/ROADMAP.md)):
 
 - **Week 1:** RCM review, demo mode, Excel export, eval ✅
-- **Week 2:** test-script generator (test of design + operating effectiveness, sample sizes by frequency)
+- **Week 2:** test-script generator (test of design + operating effectiveness, sample sizes by frequency) ✅
 - **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source
 - **Week 4:** automation-opportunity heatmap and business case per control
 - **Week 5:** MCP server + Claude skill

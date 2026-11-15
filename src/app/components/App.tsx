@@ -3,8 +3,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHECK_LABELS, CHECK_IDS, type CheckId, type Control, type Review, type ReviewRun, type Severity, type Status } from "@/core/schema";
 import { summarize } from "@/core/summary";
-import { downloadReport, runReview } from "../lib/client";
-import { Drawer } from "./Drawer";
+import type { TestScript, TestScriptRun } from "@/core/testscript";
+import { downloadReport, runReview, runTestScripts } from "../lib/client";
+import { Drawer, type DrawerTab } from "./Drawer";
 import { Highlighted } from "./Highlighted";
 import { ResultsTable } from "./ResultsTable";
 import { SummaryBar } from "./SummaryBar";
@@ -25,6 +26,8 @@ interface Dataset {
   model: string;
   note?: string;
   demo: boolean;
+  /** Week 2 test scripts, when generated. */
+  scripts?: TestScript[];
 }
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
@@ -37,6 +40,10 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
   const [openId, setOpenId] = useState<string | null>(null);
   const [sort, setSort] = useState<"worst" | "rcm">("worst");
   const [toast, setToast] = useState<string | null>(null);
+  const [tab, setTab] = useState<DrawerTab>("review");
+  // Held in memory for this tab only, so test scripts can be drafted after the review. Never persisted.
+  const keyRef = useRef<{ apiKey?: string; model: string } | null>(null);
+  const [canDraft, setCanDraft] = useState(false);
   const [f, setF] = useState<{ process: string; status: Status | "all"; severity: Severity | "all"; check: CheckId | null; keyOnly: boolean; q: string }>({
     process: "all",
     status: "all",
@@ -56,11 +63,18 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
     try {
       const res = await fetch("/demo-data");
       if (!res.ok) throw new Error(`Demo data unavailable (${res.status})`);
-      const { controls, run } = (await res.json()) as { controls: Control[]; run: ReviewRun & { duration_seconds?: number } };
+      const { controls, run, testscripts } = (await res.json()) as {
+        controls: Control[];
+        run: ReviewRun & { duration_seconds?: number };
+        testscripts: TestScriptRun | null;
+      };
+      keyRef.current = null;
+      setCanDraft(false);
       setF((x) => ({ ...x, process: "all", status: "all", severity: "all", check: null, keyOnly: false, q: "" }));
       setData({
         controls,
         reviews: run.reviews,
+        scripts: testscripts?.scripts,
         label: "Demo RCM · Alpenfirn Industries AG (fictional)",
         model: run.model,
         note: `Precomputed with ${run.model} on ${run.generated_at.slice(0, 10)}${run.duration_seconds ? ` · live run took ${Math.round(run.duration_seconds)} s` : ""}`,
@@ -98,6 +112,10 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
         onProgress: (done, total) => setLoading({ done: done.length, total, label }),
       });
       const failed = reviews.filter((x) => x.llm_error);
+      keyRef.current = { apiKey: r.apiKey, model: r.model };
+      setCanDraft(!!r.apiKey);
+      // Without a key, the deterministic part of the test scripts (sample size, blockers) is free and instant.
+      const scripts = r.apiKey ? undefined : await runTestScripts(r.controls, reviews, { model: "rules-only" });
       setF((x) => ({ ...x, process: "all", status: "all", severity: "all", check: null, keyOnly: false, q: "" }));
       setData({
         controls: r.controls,
@@ -110,11 +128,31 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
             : `Reviewed live with ${r.model}`
           : "Rules-only review (no API key): the six deterministic consistency checks. Add a key for the design attributes, automation score and rewrite.",
         demo: false,
+        scripts,
       });
       setOpenId(null);
       scrollToResults();
     } catch (e) {
       if (!ac.signal.aborted) setError((e as Error).message);
+    } finally {
+      setLoading(null);
+    }
+  }
+
+  async function draftScripts() {
+    if (!data || !keyRef.current?.apiKey) return;
+    const { apiKey, model } = keyRef.current;
+    const label = `Drafting test scripts with ${model}`;
+    setLoading({ done: 0, total: data.controls.length, label });
+    setError(null);
+    try {
+      const scripts = await runTestScripts(data.controls, data.reviews, { apiKey, model, onProgress: (done, total) => setLoading({ done, total, label }) });
+      setData((d) => (d ? { ...d, scripts } : d));
+      const failed = scripts.filter((t) => t.llm_error).length;
+      setToast(failed ? `Test scripts drafted; AI step failed for ${failed} controls` : "Test scripts drafted · open a control and choose “Test script”");
+      setTimeout(() => setToast(null), 3500);
+    } catch (e) {
+      setError((e as Error).message);
     } finally {
       setLoading(null);
     }
@@ -184,11 +222,30 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
                 <h2 className="font-serif text-[24px] font-semibold text-ink">{data.label}</h2>
                 {data.note && <p className="mt-0.5 text-[13px] text-muted">{data.note}</p>}
               </div>
+              <div className="flex flex-wrap items-center gap-3">
+              {data.scripts ? (
+                <span className="text-[13px] text-ink-2" data-testid="testscript-summary">
+                  <span className="font-medium text-ink">Test scripts:</span> {data.scripts.filter((t) => t.toe_ready).length} ready ·{" "}
+                  {data.scripts.filter((t) => !t.toe_ready).length} blocked by design
+                </span>
+              ) : (
+                canDraft && (
+                  <button
+                    type="button"
+                    disabled={!!loading}
+                    onClick={draftScripts}
+                    data-testid="draft-testscripts"
+                    className="rounded-md bg-ink px-3.5 py-2 text-[14px] font-medium text-paper hover:bg-ink-2 disabled:opacity-50"
+                  >
+                    Draft test scripts
+                  </button>
+                )
+              )}
               <button
                 type="button"
                 onClick={async () => {
-                  const name = await downloadReport(data.controls, data.reviews, data.label);
-                  setToast(`${name} downloaded · original columns + status, findings, score, rewrite`);
+                  const name = await downloadReport(data.controls, data.reviews, data.label, data.scripts);
+                  setToast(`${name} downloaded · findings, scores, rewrites${data.scripts ? " and test scripts" : ""}`);
                   setTimeout(() => setToast(null), 3500);
                 }}
                 data-testid="download-report"
@@ -199,6 +256,7 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
                 </svg>
                 Download report (.xlsx)
               </button>
+              </div>
             </div>
 
             <SummaryBar summary={summary} activeCheck={f.check} onPickCheck={(check) => setF((x) => ({ ...x, check }))} />
@@ -270,6 +328,9 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
           control={open.control}
           review={open.review}
           position={openIdx >= 0 ? `${openIdx + 1} / ${rows.length}` : ""}
+          script={data?.scripts?.find((t) => t.control_id === open.control.control_id)}
+          tab={tab}
+          onTab={setTab}
           onClose={() => setOpenId(null)}
           onPrev={openIdx > 0 ? () => setOpenId(rows[openIdx - 1].control.control_id) : undefined}
           onNext={openIdx >= 0 && openIdx < rows.length - 1 ? () => setOpenId(rows[openIdx + 1].control.control_id) : undefined}

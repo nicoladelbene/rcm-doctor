@@ -14,7 +14,8 @@ const nextConfig: NextConfig = {
   // The review prompt and demo data are read from disk at runtime / build time.
   outputFileTracingIncludes: {
     "/api/review": ["./src/core/prompts/**/*"],
-    "/demo-data": ["./data/demo-rcm.xlsx", "./data/demo-results.json"],
+    "/api/testscript": ["./src/core/prompts/**/*"],
+    "/demo-data": ["./data/demo-rcm.xlsx", "./data/demo-results.json", "./data/demo-testscripts.json"],
   },
   async headers() {
     return [

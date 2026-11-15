@@ -1,6 +1,7 @@
 import * as XLSX from "xlsx";
 import { CHECK_LABELS, CONTROL_FIELDS, type Control, type Review } from "./schema";
 import { summarize } from "./summary";
+import type { TestScript } from "./testscript";
 
 const HEADER_LABELS: Record<(typeof CONTROL_FIELDS)[number], string> = {
   control_id: "Control ID",
@@ -38,7 +39,12 @@ function findingsText(r: Review): string {
 }
 
 /** Build the report workbook: original columns + review columns, a findings sheet and a summary. */
-export function buildReportWorkbook(controls: Control[], reviews: Review[], meta: { source?: string; generatedAt?: string } = {}): XLSX.WorkBook {
+export function buildReportWorkbook(
+  controls: Control[],
+  reviews: Review[],
+  meta: { source?: string; generatedAt?: string } = {},
+  scripts?: TestScript[],
+): XLSX.WorkBook {
   const byId = new Map(reviews.map((r) => [r.control_id, r]));
   const wb = XLSX.utils.book_new();
 
@@ -72,6 +78,20 @@ export function buildReportWorkbook(controls: Control[], reviews: Review[], meta
   fws["!cols"] = [10, 26, 16, 9, 7, 70, 50, 20, 6, 6].map((wch) => ({ wch }));
   XLSX.utils.book_append_sheet(wb, fws, "Findings");
 
+  if (scripts?.length) {
+    const tRows = scripts.flatMap((t) => {
+      const head = [t.control_id, t.toe_ready ? "Ready" : "Blocked — remediate design first", t.blockers.join("\n"), t.sample.label, t.sample.size ?? "n/a", t.sample.basis, t.population, t.tod_steps.map((x, i) => `${i + 1}. ${x}`).join("\n"), t.exception_definition];
+      if (!t.attributes.length) return [[...head, "", "", "", "", ""]];
+      return t.attributes.map((a, i) => [...(i === 0 ? head : head.map((_, k) => (k === 0 ? t.control_id : ""))), a.id, a.attribute, a.procedure, a.evidence, a.span?.text ?? "(not stated in the description)"]);
+    });
+    const tws = XLSX.utils.aoa_to_sheet([
+      ["Control ID", "ToE status", "Blockers", "Frequency", "Sample size", "Sample basis", "Population", "Test of design (walkthrough)", "Exception definition", "Attr.", "Attribute", "Procedure", "Evidence to inspect", "Tests this text"],
+      ...tRows,
+    ]);
+    tws["!cols"] = [10, 16, 40, 14, 8, 40, 45, 60, 45, 5, 35, 50, 30, 50].map((wch) => ({ wch }));
+    XLSX.utils.book_append_sheet(wb, tws, "Test scripts");
+  }
+
   const s = summarize(reviews);
   XLSX.utils.book_append_sheet(
     wb,
@@ -96,7 +116,7 @@ export function buildReportWorkbook(controls: Control[], reviews: Review[], meta
   return wb;
 }
 
-export function buildReportXlsx(controls: Control[], reviews: Review[], meta?: { source?: string; generatedAt?: string }): Uint8Array {
-  const wb = buildReportWorkbook(controls, reviews, meta);
+export function buildReportXlsx(controls: Control[], reviews: Review[], meta?: { source?: string; generatedAt?: string }, scripts?: TestScript[]): Uint8Array {
+  const wb = buildReportWorkbook(controls, reviews, meta, scripts);
   return new Uint8Array(XLSX.write(wb, { type: "array", bookType: "xlsx", compression: true }));
 }

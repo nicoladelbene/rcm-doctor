@@ -1,6 +1,7 @@
 "use client";
 import { cacheKey, reviewControls, type LlmResult } from "@/core/review";
 import type { Control, Review } from "@/core/schema";
+import { generateTestScripts, type LlmTestScript, type TestScript } from "@/core/testscript";
 
 const LS_PREFIX = "rcm-doctor:llm:";
 
@@ -50,9 +51,33 @@ export async function runReview(
 
 export { cacheKey };
 
-export async function downloadReport(controls: Control[], reviews: Review[], source: string) {
+/** Week 2: test scripts. Without a key only the deterministic part (sample size, blockers) is produced. */
+export async function runTestScripts(
+  controls: Control[],
+  reviews: Review[],
+  opts: { apiKey?: string; model: string; onProgress?: (done: number, total: number) => void; signal?: AbortSignal },
+): Promise<TestScript[]> {
+  if (!opts.apiKey) return generateTestScripts(controls, reviews, { onProgress: opts.onProgress });
+  const llm = async (items: { control: Control; review: Review | null }[]) => {
+    const res = await fetch("/api/testscript", {
+      method: "POST",
+      signal: opts.signal,
+      headers: { "Content-Type": "application/json", "x-openrouter-key": opts.apiKey! },
+      body: JSON.stringify({
+        model: opts.model,
+        items: items.map((i) => ({ control: i.control, review: i.review ? { findings: i.review.findings.map((f) => ({ check: f.check, severity: f.severity, message: f.message })) } : null })),
+      }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(json.error ?? `Test-script generation failed (${res.status})`);
+    return json.results as LlmTestScript[];
+  };
+  return generateTestScripts(controls, reviews, { llm, model: opts.model, batchSize: 5, concurrency: 3, onProgress: opts.onProgress });
+}
+
+export async function downloadReport(controls: Control[], reviews: Review[], source: string, scripts?: TestScript[]) {
   const { buildReportXlsx } = await import("@/core/export");
-  const bytes = buildReportXlsx(controls, reviews, { source });
+  const bytes = buildReportXlsx(controls, reviews, { source }, scripts);
   const blob = new Blob([bytes as BlobPart], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

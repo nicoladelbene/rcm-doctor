@@ -8,13 +8,14 @@ export { DEFAULT_MODEL, PROMPT_VERSION };
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
-let promptCache: string | null = null;
-export function loadPrompt(): string {
-  if (!promptCache) {
-    const raw = readFileSync(join(process.cwd(), "src/core/prompts", `${PROMPT_VERSION}.md`), "utf8");
-    promptCache = raw.replace(/^<!--[\s\S]*?-->\s*/, "");
+const promptCache = new Map<string, string>();
+/** Load a versioned prompt from src/core/prompts (default: the review prompt). */
+export function loadPrompt(version: string = PROMPT_VERSION): string {
+  if (!promptCache.has(version)) {
+    const raw = readFileSync(join(process.cwd(), "src/core/prompts", `${version}.md`), "utf8");
+    promptCache.set(version, raw.replace(/^<!--[\s\S]*?-->\s*/, ""));
   }
-  return promptCache;
+  return promptCache.get(version)!;
 }
 
 /* ------------------------------------------------------------------ */
@@ -35,7 +36,6 @@ export const LlmControlResultSchema = z.object({
   suggested_rewrite: z.string(),
 });
 export type LlmControlResult = z.infer<typeof LlmControlResultSchema>;
-const LlmBatchSchema = z.object({ results: z.array(LlmControlResultSchema) });
 
 const attrJson = {
   type: "object",
@@ -132,7 +132,7 @@ export function extractJson(text: string): unknown {
   return JSON.parse(body.slice(start, end + 1));
 }
 
-async function post(opts: LlmCallOptions, body: Record<string, unknown>) {
+export async function post(opts: LlmCallOptions, body: Record<string, unknown>) {
   const f = opts.fetchImpl ?? fetch;
   const res = await f(OPENROUTER_URL, {
     method: "POST",
@@ -160,25 +160,28 @@ async function post(opts: LlmCallOptions, body: Record<string, unknown>) {
 }
 
 /**
- * Review a batch of controls with one LLM call. Structured output via JSON schema;
- * falls back to json_object for models without schema support; validates with zod
+ * Generic structured batch call: one request returns {"results": [...]} with one item per control_id.
+ * JSON-schema output; falls back to json_object for models without schema support; validates with zod
  * and retries once with the validation error on failure.
  */
-export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptions): Promise<LlmControlResult[]> {
+export async function structuredBatch<T extends { control_id: string }>(args: {
+  ids: string[];
+  messages: (repairNote?: string) => { role: string; content: string }[];
+  itemSchema: z.ZodType<T>;
+  jsonSchema: Record<string, unknown>;
+  maxTokens: number;
+  opts: LlmCallOptions;
+}): Promise<T[]> {
+  const { ids, opts } = args;
   const model = opts.model || DEFAULT_MODEL;
-  let format: Record<string, unknown> = { type: "json_schema", json_schema: RESPONSE_JSON_SCHEMA };
+  const batchSchema = z.object({ results: z.array(args.itemSchema) });
+  let format: Record<string, unknown> = { type: "json_schema", json_schema: args.jsonSchema };
   let repairNote: string | undefined;
 
   for (let attempt = 0; attempt < 3; attempt++) {
     let content: string;
     try {
-      content = await post(opts, {
-        model,
-        temperature: 0,
-        max_tokens: 1200 * controls.length + 500,
-        response_format: format,
-        messages: buildMessages(controls, repairNote),
-      });
+      content = await post(opts, { model, temperature: 0, max_tokens: args.maxTokens, response_format: format, messages: args.messages(repairNote) });
     } catch (e) {
       // Some models reject json_schema; downgrade once to json_object.
       if (e instanceof LlmError && e.status === 400 && format.type === "json_schema" && /response_format|schema|structured/i.test(e.message)) {
@@ -188,11 +191,11 @@ export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptio
       throw e;
     }
     try {
-      const parsed = LlmBatchSchema.parse(extractJson(content));
-      const ids = new Set(controls.map((c) => c.control_id));
-      const results = parsed.results.filter((r) => ids.has(r.control_id));
-      const missing = controls.filter((c) => !results.some((r) => r.control_id === c.control_id));
-      if (missing.length) throw new Error(`missing results for ${missing.map((m) => m.control_id).join(", ")}`);
+      const parsed = batchSchema.parse(extractJson(content));
+      const wanted = new Set(ids);
+      const results = parsed.results.filter((r) => wanted.has(r.control_id));
+      const missing = ids.filter((id) => !results.some((r) => r.control_id === id));
+      if (missing.length) throw new Error(`missing results for ${missing.join(", ")}`);
       return results;
     } catch (e) {
       if (repairNote) throw new LlmError(`Model output failed validation twice: ${(e as Error).message.slice(0, 200)}`);
@@ -202,7 +205,106 @@ export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptio
   throw new LlmError("Model output could not be obtained");
 }
 
+/** Review a batch of controls with one LLM call (prompt review.v1). */
+export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptions): Promise<LlmControlResult[]> {
+  return structuredBatch({
+    ids: controls.map((c) => c.control_id),
+    messages: (repair) => buildMessages(controls, repair),
+    itemSchema: LlmControlResultSchema,
+    jsonSchema: RESPONSE_JSON_SCHEMA,
+    maxTokens: 1200 * controls.length + 500,
+    opts,
+  });
+}
+
 /** Adapter for review.ts: a batch function bound to a key and model. */
 export function openRouterBatchFn(opts: LlmCallOptions) {
   return (controls: Control[]) => reviewBatchWithLlm(controls, opts);
+}
+
+/* ------------------------------------------------------------------ */
+/* Week 2: test scripts (prompt testscript.v1)                         */
+/* ------------------------------------------------------------------ */
+
+const LlmTestScriptSchema = z.object({
+  control_id: z.string(),
+  population: z.string(),
+  tod_steps: z.array(z.string()).min(1).max(8),
+  toe_attributes: z
+    .array(z.object({ attribute: z.string(), procedure: z.string(), evidence: z.string(), quote: z.string().nullable() }))
+    .min(1)
+    .max(10),
+  exception_definition: z.string(),
+});
+
+const TESTSCRIPT_JSON_SCHEMA = {
+  name: "rcm_test_scripts",
+  strict: true,
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: ["results"],
+    properties: {
+      results: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["control_id", "population", "tod_steps", "toe_attributes", "exception_definition"],
+          properties: {
+            control_id: { type: "string" },
+            population: { type: "string" },
+            tod_steps: { type: "array", items: { type: "string" } },
+            toe_attributes: {
+              type: "array",
+              items: {
+                type: "object",
+                additionalProperties: false,
+                required: ["attribute", "procedure", "evidence", "quote"],
+                properties: {
+                  attribute: { type: "string" },
+                  procedure: { type: "string" },
+                  evidence: { type: "string" },
+                  quote: { type: ["string", "null"] },
+                },
+              },
+            },
+            exception_definition: { type: "string" },
+          },
+        },
+      },
+    },
+  },
+};
+
+export interface TestScriptInput {
+  control: Control;
+  review: { findings: { check: string; severity: string; message: string }[] } | null;
+}
+
+export function buildTestScriptMessages(items: TestScriptInput[], repairNote?: string) {
+  const payload = items.map(({ control, review }) => ({
+    ...controlForPrompt(control),
+    systems: control.systems,
+    review_findings: (review?.findings ?? []).map((f) => `${f.severity} · ${f.check}: ${f.message}`),
+  }));
+  const user =
+    `Draft test scripts for these ${items.length} controls. Respond with JSON {"results": [...]} containing exactly one result per control_id.\n\n` +
+    JSON.stringify(payload, null, 1) +
+    (repairNote ? `\n\nYour previous answer was invalid: ${repairNote}\nReturn valid JSON only.` : "");
+  return [
+    { role: "system", content: loadPrompt("testscript.v1") },
+    { role: "user", content: user },
+  ];
+}
+
+export async function testScriptBatchWithLlm(items: TestScriptInput[], opts: LlmCallOptions) {
+  return structuredBatch({
+    ids: items.map((i) => i.control.control_id),
+    messages: (repair) => buildTestScriptMessages(items, repair),
+    itemSchema: LlmTestScriptSchema,
+    jsonSchema: TESTSCRIPT_JSON_SCHEMA,
+    maxTokens: 1500 * items.length + 500,
+    opts,
+  });
 }

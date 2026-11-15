@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export type CiteKind = "fail" | "weak" | "ok";
+export type CiteKind = "fail" | "weak" | "ok" | "test";
 export interface Cite {
   start: number;
   end: number;
@@ -8,9 +8,11 @@ export interface Cite {
   label: string;
   /** Footnote number for findings (shown as superscript). */
   n?: number;
+  /** Footnote label shown instead of n (e.g. test attribute letter). */
+  tag?: string;
 }
 
-const PRIORITY: Record<CiteKind, number> = { fail: 3, weak: 2, ok: 1 };
+const PRIORITY: Record<CiteKind, number> = { fail: 3, weak: 2, test: 2, ok: 1 };
 
 /**
  * Render text with cited spans. Overlaps resolve by priority (fail > weak > ok),
@@ -43,8 +45,8 @@ export function Highlighted({ text, cites, active }: { text: string; cites: Cite
             <mark className={`cite cite-${c.kind} ${active != null && c.n === active ? "is-active" : ""}`} title={c.label} data-cite={c.n ?? ""}>
               {t}
             </mark>
-            {isEnd && c.n != null && (
-              <sup className={`ml-px font-mono text-[10px] font-medium ${c.kind === "fail" ? "text-fail" : "text-weak"}`}>{c.n}</sup>
+            {isEnd && (c.tag ?? c.n) != null && (
+              <sup className={`ml-px font-mono text-[10px] font-medium ${c.kind === "fail" ? "text-fail" : c.kind === "test" ? "text-accent" : "text-weak"}`}>{c.tag ?? c.n}</sup>
             )}
           </Fragment>
         );
