@@ -9,6 +9,9 @@ _Last session: 2026-11-15 (launch v0.5.0) · Next session: 2026-12-05/06 · **Ni
 - **Not on main: `week-6`** (AI-governance pack, 26 controls). Functional, but its AI run stopped when the OpenRouter
   credit ran out (7/26 controls rules-only, test scripts deterministic only). Handoff: `docs/handoff/week-6.md` on
   that branch. Its ADR is numbered 0015, which main already uses (Week 1.1): renumber to 0017 when merging.
+- Verified at close (15 Nov, ~18:25): Vercel production deploy ✅ · prod e2e 13/13 ✅ on https://rcm-doctor.vercel.app ·
+  launch video re-recorded on production · CI green on main. Branches left: `main`, `week-6` (+ local worktree
+  `../rcm-doctor-w6`). Merged branches and worktrees deleted; handoffs kept in `docs/history/`.
 - ADRs on main: 0013 automation (W4), 0014 evidence (W3), 0015 Week 1.1, 0016 MCP (W5).
 - Launch post: `docs/posts/2026-11-15-launch.md` (2 variants + first comment), video `docs/media/launch-lifecycle-4x5.mp4`.
 
