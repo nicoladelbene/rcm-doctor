@@ -16,7 +16,8 @@ prerequisites. Assumptions must be declared and editable in the UI. Traceability
   Payback = build hours (ITAC 40 h, RPA/script 80 h) ÷ hours saved. Verdict: strong ≤ 12 months, moderate ≤ 36, else weak.
 - **All numbers are `DEFAULT_ASSUMPTIONS`, illustrative and generic**, shown in an Assumptions panel where each can be
   changed (plus per-control overrides of volume and minutes, since "per transaction" volume is unknowable from an RCM).
-  The assumptions are exported with the cases (sheet "Automation"). No firm methodology or benchmark is used.
+  The assumptions are exported with the cases (sheet "Automation") and kept in the viewer's browser (localStorage,
+  sanitised on load; "Reset defaults" clears it). No firm methodology or benchmark is used.
 - **Approach by rule, with a citation.** ITAC when the control is preventive, runs in a system of record (not
   SharePoint/Excel/e-mail) and the text names an enforceable check (match, block, tolerance, approval, workflow…);
   otherwise RPA/script. The cue word is cited as a verified span of the control description, like every finding.

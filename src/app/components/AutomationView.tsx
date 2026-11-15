@@ -348,7 +348,7 @@ function AssumptionsPanel({ a, onChange, overrides, onClearOverrides }: { a: Ass
           </button>
         )}
       </div>
-      <p className="mt-1 text-[12.5px] leading-snug text-muted">Illustrative, generic defaults. Change any number: the heatmap and every business case recalculate.</p>
+      <p className="mt-1 text-[12.5px] leading-snug text-muted">Illustrative, generic defaults. Change any number: the heatmap and every business case recalculate. Your changes are kept in this browser.</p>
 
       <div className="mt-3 space-y-2.5 text-[13px]">
         <Row label="Business case for score ≥">

@@ -19,4 +19,4 @@ Run: `git switch week-4 && npm ci && npm run build && PORT=3300 npm start` → h
 Decisions to take: defaults OK? (ADR 0013 — 10 min per event, 30 daily, 180 monthly…; 60 %/90 % removed; CHF 110/h;
 ITAC 40 h / RPA 80 h). Post: 3 lines in `docs/posts/2026-12-20-week-4.md`.
 Known limits: approach rule is a cue-word heuristic (not measured on the holdout); "per transaction" volume is a placeholder;
-assumptions live in memory (reset on reload); the header badge still says "week 1".
+assumptions are kept in this browser (localStorage), per-control overrides reset on reload.

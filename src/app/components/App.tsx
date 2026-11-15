@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHECK_LABELS, CHECK_IDS, type CheckId, type Control, type Review, type ReviewRun, type Severity, type Status } from "@/core/schema";
 import { summarize } from "@/core/summary";
 import type { TestScript, TestScriptRun } from "@/core/testscript";
-import { buildHeatmap, DEFAULT_ASSUMPTIONS, type Assumptions, type Overrides } from "@/core/automation";
+import { buildHeatmap, DEFAULT_ASSUMPTIONS, sanitizeAssumptions, type Assumptions, type Overrides } from "@/core/automation";
 import { downloadReport, runReview, runTestScripts } from "../lib/client";
 import { AutomationView } from "./AutomationView";
 import { Drawer, type DrawerTab } from "./Drawer";
@@ -33,6 +33,7 @@ interface Dataset {
 }
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
+const ASSUMPTIONS_KEY = "rcm-doctor:automation-assumptions:v1";
 
 export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | null; holdout?: EvalHeadline | null }) {
   const [data, setData] = useState<Dataset | null>(null);
@@ -47,6 +48,29 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
   const [view, setView] = useState<"review" | "automation">("review");
   const [assumptions, setAssumptions] = useState<Assumptions>(DEFAULT_ASSUMPTIONS);
   const [overrides, setOverrides] = useState<Overrides>({});
+  // Assumptions survive a reload in this browser only (per-viewer convenience; storage may be unavailable).
+  const assumptionsLoaded = useRef(false);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      try {
+        const raw = localStorage.getItem(ASSUMPTIONS_KEY);
+        if (raw) setAssumptions(sanitizeAssumptions(JSON.parse(raw)));
+      } catch {
+        /* private mode or corrupt value: keep defaults */
+      }
+      assumptionsLoaded.current = true;
+    }, 0);
+    return () => clearTimeout(t);
+  }, []);
+  useEffect(() => {
+    if (!assumptionsLoaded.current) return;
+    try {
+      if (JSON.stringify(assumptions) === JSON.stringify(DEFAULT_ASSUMPTIONS)) localStorage.removeItem(ASSUMPTIONS_KEY);
+      else localStorage.setItem(ASSUMPTIONS_KEY, JSON.stringify(assumptions));
+    } catch {
+      /* storage blocked: assumptions still work for this session */
+    }
+  }, [assumptions]);
   // Held in memory for this tab only, so test scripts can be drafted after the review. Never persisted.
   const keyRef = useRef<{ apiKey?: string; model: string } | null>(null);
   const [canDraft, setCanDraft] = useState(false);
@@ -406,7 +430,7 @@ function Header() {
         <Link href="/" className="flex items-center gap-2.5">
           <Logo />
           <span className="font-mono text-[15px] font-medium tracking-tight text-ink">rcm-doctor</span>
-          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline">week 1</span>
+          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline">week 4</span>
         </Link>
         <nav className="flex items-center gap-5 text-[13.5px] text-ink-2">
           <a href={`${GITHUB}/blob/main/docs/eval-latest.md`} className="hidden hover:text-ink sm:inline">

@@ -54,6 +54,29 @@ export const DEFAULT_ASSUMPTIONS: Assumptions = {
   buildHours: { itac: 40, rpa: 80 },
 };
 
+/**
+ * Rebuild assumptions from untrusted stored JSON (e.g. localStorage): every field falls back to the default
+ * unless it is a finite, non-negative number; shares are clamped to 0–1 and the threshold to 3–5.
+ */
+export function sanitizeAssumptions(raw: unknown): Assumptions {
+  const d = DEFAULT_ASSUMPTIONS;
+  const o = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  const n = (v: unknown, fb: number, max = Infinity) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.min(v, max) : fb);
+  const rec = (v: unknown) => (v && typeof v === "object" ? (v as Record<string, unknown>) : {});
+  const byFreq = (v: unknown, fb: Record<RunFreq, number>) =>
+    Object.fromEntries(RUN_FREQS.map((f) => [f, n(rec(v)[f], fb[f])])) as Record<RunFreq, number>;
+  const t = n(o.threshold, d.threshold);
+  return {
+    threshold: [3, 4, 5].includes(t) ? t : d.threshold,
+    runsPerYear: byFreq(o.runsPerYear, d.runsPerYear),
+    minutesPerRun: byFreq(o.minutesPerRun, d.minutesPerRun),
+    shareRemoved: { 4: n(rec(o.shareRemoved)[4], d.shareRemoved[4], 1), 5: n(rec(o.shareRemoved)[5], d.shareRemoved[5], 1) },
+    hourlyRate: n(o.hourlyRate, d.hourlyRate),
+    hoursPerFte: n(o.hoursPerFte, d.hoursPerFte),
+    buildHours: { itac: n(rec(o.buildHours).itac, d.buildHours.itac), rpa: n(rec(o.buildHours).rpa, d.buildHours.rpa) },
+  };
+}
+
 /** Per-control overrides set in the UI (e.g. the real transaction volume of a per-invoice control). */
 export type Overrides = Record<string, { runsPerYear?: number; minutesPerRun?: number }>;
 

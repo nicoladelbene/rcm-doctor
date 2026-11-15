@@ -28,8 +28,8 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - Pin rcm-doctor and upload the social preview (no API).
 
 ## Known issues / tech debt
-- Week 4: ITAC/RPA choice is a cue-word heuristic (not measured); "per transaction" volume is a placeholder; assumptions
-  reset on reload; header badge still says "week 1". Nicola to confirm default assumptions (ADR 0013).
+- Week 4: ITAC/RPA choice is a cue-word heuristic (not measured); "per transaction" volume is a placeholder. Assumptions persist
+  in localStorage (per browser); per-control overrides do not. Nicola to confirm default assumptions (ADR 0013).
 - **German (holdout):** recall 70%, FP 50% on clean German controls. Causes: owner rule treats "Leiter …" as a person
   name (4 FP) and misses German departments; nature rule misses "manuell". Not fixed on purpose (holdout integrity).
 - **SoD regex** misses "prepares … and then approves the same …" (2/2 holdout misses, English). The review prompt

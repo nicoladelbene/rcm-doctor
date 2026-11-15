@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
-  assumptionRows, buildHeatmap, businessCase, chooseApproach, DEFAULT_ASSUMPTIONS, runFrequency, type Assumptions,
+  assumptionRows, buildHeatmap, sanitizeAssumptions, businessCase, chooseApproach, DEFAULT_ASSUMPTIONS, runFrequency, type Assumptions,
 } from "@/core/automation";
 import { loadControls } from "@/core/parse";
 import { ControlSchema, ReviewRunSchema, type Control, type Finding, type Review } from "@/core/schema";
@@ -134,5 +134,19 @@ describe("export", () => {
     const rows = XLSX.utils.sheet_to_json<unknown[]>(wb.Sheets.Automation, { header: 1 });
     expect(rows.some((r) => r[0] === "Hourly rate (CHF, fully loaded)" && r[1] === 95)).toBe(true);
     expect(rows.filter((r) => typeof r[0] === "string" && /^[A-Z0-9]+-\d\d$/.test(r[0] as string)).length).toBe(buildHeatmap(controls, run.reviews, a).totals.candidates);
+  });
+});
+
+describe("stored assumptions", () => {
+  it("round-trips valid values and falls back field by field on garbage", () => {
+    const a = { ...DEFAULT_ASSUMPTIONS, hourlyRate: 95, threshold: 5 };
+    expect(sanitizeAssumptions(JSON.parse(JSON.stringify(a)))).toEqual(a);
+    const bad = sanitizeAssumptions({ hourlyRate: -3, threshold: 9, shareRemoved: { 4: 7 }, runsPerYear: { daily: "x", weekly: 50 } });
+    expect(bad.hourlyRate).toBe(DEFAULT_ASSUMPTIONS.hourlyRate);
+    expect(bad.threshold).toBe(4);
+    expect(bad.shareRemoved[4]).toBe(1);
+    expect(bad.runsPerYear.daily).toBe(250);
+    expect(bad.runsPerYear.weekly).toBe(50);
+    expect(sanitizeAssumptions(null)).toEqual(DEFAULT_ASSUMPTIONS);
   });
 });

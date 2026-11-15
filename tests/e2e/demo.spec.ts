@@ -103,6 +103,12 @@ test("week 4: automation heatmap, business cases and editable assumptions", asyn
   const before = await hours.textContent();
   await page.getByTestId("assume-min-daily").fill("60");
   await expect(hours).not.toHaveText(before!);
+  const changed = await hours.textContent();
+  // Survives a reload (localStorage), then reset restores the defaults.
+  await page.reload();
+  await page.getByTestId("view-automation").click();
+  await expect(page.getByTestId("assume-min-daily")).toHaveValue("60");
+  await expect(hours).toHaveText(changed!);
   await page.getByTestId("reset-assumptions").click();
   await expect(hours).toHaveText(before!);
 
