@@ -79,7 +79,7 @@ export function evaluate(reviews: Review[], truth: GroundTruth): EvalReport {
 
 const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
 
-export function evalMarkdown(r: EvalReport, meta: { model: string; promptVersion: string; source: string; date: string }): string {
+export function evalMarkdown(r: EvalReport, meta: { model: string; promptVersion: string; source: string; date: string; truthPath?: string; command?: string }): string {
   const lines = [
     "# Eval — latest",
     "",
@@ -107,7 +107,7 @@ export function evalMarkdown(r: EvalReport, meta: { model: string; promptVersion
     "",
     ...(r.falsePositives.length ? r.falsePositives.map((f) => `- ${f.control_id}: \`${f.check}\` — ${f.message}`) : ["- none"]),
     "",
-    "Ground truth: `data/demo-rcm.ground-truth.json`. Reproduce: `npm run eval` (set `OPENROUTER_API_KEY` for a live run).",
+    `Ground truth: \`${meta.truthPath ?? "data/demo-rcm.ground-truth.json"}\`. Reproduce: \`${meta.command ?? "npm run eval"}\` (set \`OPENROUTER_API_KEY\` and add \`-- --live\` for a live run).`,
     "",
   ];
   return lines.join("\n");

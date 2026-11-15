@@ -38,4 +38,4 @@ Evaluated on **40 synthetic controls** with **33 planted defects** (15 defective
 - TRE-03: `evidence` — Name the artefact (e.g. approval record, invoice copy) and its exact location.
 - ITG-04: `who` — A team is named rather than a role; specify who performs the deactivation, e.g. Service Desk Agent.
 
-Ground truth: `data/demo-rcm.ground-truth.json`. Reproduce: `npm run eval` (set `OPENROUTER_API_KEY` for a live run).
+Ground truth: `data/demo-rcm.ground-truth.json`. Reproduce: `npm run eval` (set `OPENROUTER_API_KEY` and add `-- --live` for a live run).

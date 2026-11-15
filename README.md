@@ -46,17 +46,21 @@ rcm-doctor finds these problems, shows where they are in the text and proposes a
 
 ## Evaluation
 
-Evaluated on **40 synthetic controls with 33 planted defects** (15 defective controls, 25 clean ones), prompt `review.v1`:
+Two synthetic sets, both reviewed with the default model (`anthropic/claude-sonnet-5.5`) and prompt `review.v1`:
 
-| Model | Recall | False positives on clean controls | Precision | Cost per 40 controls |
-|---|---:|---:|---:|---:|
-| `anthropic/claude-sonnet-5.5` (default) | **100%** (33/33) | **0%** (0/25) | 89% | ~USD 0.41 |
-| `anthropic/claude-haiku-5.5` | 82% (27/33) | 4% (1/25) | 93% | ~USD 0.04 |
-| Rules only (no AI) | 39% (13/33) | 0% | 100% | free |
+| Set | Controls | Labelled defects | Recall | False positives on clean controls | Precision |
+|---|---:|---:|---:|---:|---:|
+| **Demo** (authored with the prompt; regression test) | 40 (EN) | 33 | **100%** (33/33) | **0%** (0/25) | 89% |
+| **Holdout** (independent, see below) | 30 | 28 | **82%** (23/28) | **17%** (2/12) | 82% |
+| ↳ English | 20 | 18 | 89% (16/18) | 0% (0/8) | 94% |
+| ↳ German (Swiss IKS terminology) | 10 | 10 | 70% (7/10) | 50% (2/4) | 64% |
 
-Details per check: [`docs/eval-latest.md`](docs/eval-latest.md) · model comparison: [`docs/eval-models.md`](docs/eval-models.md) · ground truth: [`data/demo-rcm.ground-truth.json`](data/demo-rcm.ground-truth.json).
+**Holdout methodology:** `openai/gpt-5.6-sol` (a non-Claude model) generated 30 controls for a different fictional company, 10 of them in German, and labelled their defects in the same call. The labels were committed before any review ran, the review prompt was frozen (its SHA-256 is in `data/holdout/`), and nothing was tuned afterwards, so the numbers include the generator's own label noise.
 
-Caveats: this is a small synthetic set, written by the same author as the prompt. It is a regression test that keeps the tool honest, not a benchmark. Extra findings that are not in the ground truth are listed in the eval report so you can judge them yourself.
+**Known limits shown by the holdout:** the six AI attribute checks found all 15 labelled attribute defects. All 5 misses come from the deterministic rules. The owner and nature rules are English-only: they treat German roles such as "Leiter Kreditorenbuchhaltung" as person names (4 false positives) and miss German departments and "manuell". The segregation-of-duties pattern misses phrasings like "prepares … and then approves the same reconciliation". These will be fixed and then measured on a *new* holdout.
+
+Other models on the demo set: Haiku 5.5 reaches 82% recall with 4% false positives (~USD 0.04 per 40 controls, vs ~USD 0.41 for Sonnet). Rules alone reach 39% recall with 0% false positives.
+Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`](docs/eval-holdout.md) · [`docs/eval-models.md`](docs/eval-models.md). Reproduce offline: `npm run eval` and `npm run eval:holdout`. Both run in CI.
 
 ## Use your own RCM
 

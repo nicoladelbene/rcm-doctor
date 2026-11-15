@@ -1,0 +1,431 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v1",
+  "source": "data/holdout/holdout-results.json (2026-11-15)",
+  "controls": 30,
+  "cleanControls": 12,
+  "plantedDefects": 28,
+  "detected": 23,
+  "recall": 0.8214285714285714,
+  "cleanFpRate": 0.16666666666666666,
+  "extraFindings": 5,
+  "precision": 0.8214285714285714,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "what",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "when",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "frequency",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "precision",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 2,
+      "tp": 1,
+      "fn": 1,
+      "fp": 0,
+      "recall": 0.5
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 3,
+      "tp": 1,
+      "fn": 2,
+      "fp": 4,
+      "recall": 0.3333333333333333
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 2,
+      "tp": 0,
+      "fn": 2,
+      "fp": 0,
+      "recall": 0
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [
+    {
+      "control_id": "P2P-H02",
+      "check": "owner_invalid"
+    },
+    {
+      "control_id": "TRE-H12",
+      "check": "nature_mismatch"
+    },
+    {
+      "control_id": "TRE-H13",
+      "check": "sod_conflict"
+    },
+    {
+      "control_id": "HRP-H27",
+      "check": "owner_invalid"
+    },
+    {
+      "control_id": "HRP-H28",
+      "check": "sod_conflict"
+    }
+  ],
+  "falsePositives": [
+    {
+      "control_id": "P2P-H04",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Kreditorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "O2C-H07",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Debitorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "R2R-H19",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Hauptbuch\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "ITG-H22",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Informationssicherheit\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "HRP-H28",
+      "check": "when",
+      "message": "Linked to the payroll run, but the timing of approval relative to bank release is not explicit."
+    }
+  ],
+  "byLanguage": {
+    "de": {
+      "controls": 10,
+      "cleanControls": 4,
+      "plantedDefects": 10,
+      "detected": 7,
+      "recall": 0.7,
+      "cleanFpRate": 0.5,
+      "extraFindings": 4,
+      "precision": 0.6363636363636364,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "frequency",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 0,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 2,
+          "tp": 0,
+          "fn": 2,
+          "fp": 4,
+          "recall": 0
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "P2P-H02",
+          "check": "owner_invalid"
+        },
+        {
+          "control_id": "TRE-H12",
+          "check": "nature_mismatch"
+        },
+        {
+          "control_id": "HRP-H27",
+          "check": "owner_invalid"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "P2P-H04",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Kreditorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "O2C-H07",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Debitorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "R2R-H19",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Hauptbuch\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "ITG-H22",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Informationssicherheit\" looks like a person's name. Use a role, so the control survives staff changes."
+        }
+      ]
+    },
+    "en": {
+      "controls": 20,
+      "cleanControls": 8,
+      "plantedDefects": 18,
+      "detected": 16,
+      "recall": 0.8888888888888888,
+      "cleanFpRate": 0,
+      "extraFindings": 1,
+      "precision": 0.9411764705882353,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 2,
+          "tp": 0,
+          "fn": 2,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "TRE-H13",
+          "check": "sod_conflict"
+        },
+        {
+          "control_id": "HRP-H28",
+          "check": "sod_conflict"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "HRP-H28",
+          "check": "when",
+          "message": "Linked to the payroll run, but the timing of approval relative to bank release is not explicit."
+        }
+      ]
+    }
+  }
+}

@@ -29,7 +29,7 @@ interface Dataset {
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
 
-export function App({ evalHeadline }: { evalHeadline: EvalHeadline | null }) {
+export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | null; holdout?: EvalHeadline | null }) {
   const [data, setData] = useState<Dataset | null>(null);
   const [loading, setLoading] = useState<null | { done: number; total: number; label: string }>(null);
   const [error, setError] = useState<string | null>(null);
@@ -166,6 +166,7 @@ export function App({ evalHeadline }: { evalHeadline: EvalHeadline | null }) {
           onDemo={loadDemo}
           onUpload={() => setUpload(true)}
           evalHeadline={evalHeadline}
+          holdout={holdout ?? null}
           busy={!!loading}
         />
 
@@ -327,7 +328,19 @@ function Logo() {
 
 const SPECIMEN = "The Treasury Manager prepares and approves manual (urgent) payments above CHF 1,000 outside the payment run in the e-banking portal.";
 
-function Hero({ onDemo, onUpload, evalHeadline, busy }: { onDemo: () => void; onUpload: () => void; evalHeadline: EvalHeadline | null; busy: boolean }) {
+function Hero({
+  onDemo,
+  onUpload,
+  evalHeadline,
+  holdout,
+  busy,
+}: {
+  onDemo: () => void;
+  onUpload: () => void;
+  evalHeadline: EvalHeadline | null;
+  holdout: EvalHeadline | null;
+  busy: boolean;
+}) {
   const pct = (x: number) => `${Math.round(x * 100)}%`;
   return (
     <section className="mx-auto grid max-w-[1240px] gap-10 px-4 pt-12 pb-10 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:pt-16 lg:pb-14">
@@ -405,9 +418,16 @@ function Hero({ onDemo, onUpload, evalHeadline, busy }: { onDemo: () => void; on
           <p className="mt-4 text-[13px] leading-relaxed text-ink-2">
             <span className="font-semibold text-ink">Measured, not claimed.</span> On {evalHeadline.controls} synthetic controls with {evalHeadline.plantedDefects} planted
             defects: <span className="font-semibold text-ink tnum">{pct(evalHeadline.recall)}</span> recall,{" "}
-            <span className="font-semibold text-ink tnum">{pct(evalHeadline.cleanFpRate)}</span> false positives on clean controls ({evalHeadline.model}).{" "}
-            <a href={`${GITHUB}/blob/main/docs/eval-latest.md`} className="text-accent underline underline-offset-2">
-              See the eval
+            <span className="font-semibold text-ink tnum">{pct(evalHeadline.cleanFpRate)}</span> false positives on clean controls ({evalHeadline.model}).
+            {holdout && (
+              <>
+                {" "}On an independent holdout ({holdout.controls} controls by another model family, a third in German):{" "}
+                <span className="font-semibold text-ink tnum">{pct(holdout.recall)}</span> recall,{" "}
+                <span className="font-semibold text-ink tnum">{pct(holdout.cleanFpRate)}</span> false positives.
+              </>
+            )}{" "}
+            <a href={`${GITHUB}#evaluation`} className="text-accent underline underline-offset-2">
+              Methodology and limits
             </a>
           </p>
         )}

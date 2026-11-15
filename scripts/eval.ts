@@ -1,54 +1,99 @@
 /**
- * Evaluates the reviewer against the demo RCM ground truth and writes docs/eval-latest.md.
- * Live run if OPENROUTER_API_KEY is set (model via --model), otherwise uses data/demo-results.json.
- *   npm run eval            # offline, committed results
- *   npm run eval -- --live  # force live (needs key)
+ * Evaluates the reviewer against ground truth and writes a markdown report.
+ *   npm run eval                 # demo set, committed results → docs/eval-latest.md
+ *   npm run eval:holdout         # holdout set, committed results → docs/eval-holdout.md
+ *   npm run eval -- --live [--model id]   # live run (needs OPENROUTER_API_KEY)
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { evalMarkdown, evaluate, type GroundTruth } from "../src/core/evaluate";
+import { evalMarkdown, evaluate, type EvalReport, type GroundTruth } from "../src/core/evaluate";
 import { DEFAULT_MODEL, PROMPT_VERSION } from "../src/core/models";
 import { loadControls } from "../src/core/parse";
 import { reviewControls } from "../src/core/review";
 import { ReviewRunSchema, type Review } from "../src/core/schema";
 
-const truth: GroundTruth = JSON.parse(readFileSync("data/demo-rcm.ground-truth.json", "utf8"));
-const controls = loadControls(readFileSync("data/demo-rcm.xlsx"), "demo-rcm.xlsx");
+const arg = (name: string) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
+const set = arg("--set") ?? "demo";
+const SETS = {
+  demo: { rcm: "data/demo-rcm.xlsx", truth: "data/demo-rcm.ground-truth.json", results: "data/demo-results.json", out: "docs/eval-latest", gate: true },
+  holdout: { rcm: "data/holdout/holdout-rcm.xlsx", truth: "data/holdout/holdout.ground-truth.json", results: "data/holdout/holdout-results.json", out: "docs/eval-holdout", gate: false },
+} as const;
+const cfg = SETS[set as keyof typeof SETS];
+if (!cfg) throw new Error(`Unknown --set ${set}`);
+if (!existsSync(cfg.truth)) {
+  console.log(`No ground truth for set "${set}" yet — skipping.`);
+  process.exit(0);
+}
+
+const truth: GroundTruth = JSON.parse(readFileSync(cfg.truth, "utf8"));
+const controls = loadControls(readFileSync(cfg.rcm), cfg.rcm);
 const key = process.env.OPENROUTER_API_KEY;
-const live = !!key && (process.argv.includes("--live") || !existsSync("data/demo-results.json"));
-const mi = process.argv.indexOf("--model");
-const model = mi > 0 ? process.argv[mi + 1] : DEFAULT_MODEL;
+const live = !!key && (process.argv.includes("--live") || !existsSync(cfg.results));
+const model = arg("--model") ?? DEFAULT_MODEL;
 
 let reviews: Review[];
 let meta: { model: string; promptVersion: string; source: string };
 if (live) {
   const { openRouterBatchFn } = await import("../src/core/llm");
   reviews = await reviewControls(controls, { llm: openRouterBatchFn({ apiKey: key!, model }), model, batchSize: 5, concurrency: 4 });
-  meta = { model, promptVersion: PROMPT_VERSION, source: "live run on data/demo-rcm.xlsx" };
-} else if (existsSync("data/demo-results.json")) {
-  const run = ReviewRunSchema.parse(JSON.parse(readFileSync("data/demo-results.json", "utf8")));
-  // Re-apply current rules to the stored LLM output is not possible without raw output, so evaluate as stored.
+  meta = { model, promptVersion: PROMPT_VERSION, source: `live run on ${cfg.rcm}` };
+} else if (existsSync(cfg.results)) {
+  const run = ReviewRunSchema.parse(JSON.parse(readFileSync(cfg.results, "utf8")));
   reviews = run.reviews;
-  meta = { model: run.model, promptVersion: run.prompt_version, source: `data/demo-results.json (${run.generated_at.slice(0, 10)})` };
+  meta = { model: run.model, promptVersion: run.prompt_version, source: `${cfg.results} (${run.generated_at.slice(0, 10)})` };
 } else {
   reviews = await reviewControls(controls);
-  meta = { model: "rules-only", promptVersion: "rules", source: "rules only (no demo-results.json, no key)" };
+  meta = { model: "rules-only", promptVersion: "rules", source: `rules only (no ${cfg.results}, no key)` };
 }
 
 const report = evaluate(reviews, truth);
-const md = evalMarkdown(report, { ...meta, date: new Date().toISOString().slice(0, 10) });
-writeFileSync("docs/eval-latest.md", md);
-writeFileSync("docs/eval-latest.json", JSON.stringify({ ...meta, ...report }, null, 2) + "\n");
-
 const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
-console.log(`model ${meta.model} · ${meta.source}`);
+let md = evalMarkdown(report, { ...meta, date: new Date().toISOString().slice(0, 10), truthPath: cfg.truth, command: set === "demo" ? "npm run eval" : "npm run eval:holdout" });
+
+// Per-language breakdown (holdout has a language map).
+const metaPath = "data/holdout/holdout.meta.json";
+let byLanguage: Record<string, EvalReport> | undefined;
+if (set === "holdout" && existsSync(metaPath)) {
+  const hm = JSON.parse(readFileSync(metaPath, "utf8"));
+  const langs: Record<string, string> = hm.languages;
+  byLanguage = {};
+  for (const lang of [...new Set(Object.values(langs))].sort()) {
+    const sub = Object.fromEntries(Object.entries(truth).filter(([id]) => langs[id] === lang));
+    byLanguage[lang] = evaluate(reviews, sub as GroundTruth);
+  }
+  const rows = Object.entries(byLanguage).map(
+    ([l, r]) => `| ${l === "de" ? "German" : "English"} | ${r.controls} | ${r.plantedDefects} | ${pct(r.recall)} (${r.detected}/${r.plantedDefects}) | ${pct(r.cleanFpRate)} (clean: ${r.cleanControls}) | ${pct(r.precision)} |`,
+  );
+  md = md.replace("# Eval — latest", "# Eval — holdout set") +
+    [
+      "## By language",
+      "",
+      "| Language | Controls | Labelled defects | Recall | FP on clean | Precision |",
+      "|---|---:|---:|---:|---:|---:|",
+      ...rows,
+      "",
+      "## Methodology",
+      "",
+      `Company: ${hm.company.name} (${hm.company.industry}), fictional. Controls and ground-truth labels were generated by \`${hm.generator_model}\``,
+      "in one call, with a labeling guide written independently of the review prompt, and committed before any review ran.",
+      "The review prompt (`review.v1`, SHA-256 in `data/holdout/review-prompt.sha256`) was not changed after the holdout was generated.",
+      "Labels were not edited after seeing results, so disagreements include label noise from the generator as well as reviewer errors.",
+      "",
+    ].join("\n");
+}
+
+writeFileSync(`${cfg.out}.md`, md);
+writeFileSync(`${cfg.out}.json`, JSON.stringify({ ...meta, ...report, ...(byLanguage ? { byLanguage } : {}) }, null, 2) + "\n");
+
+console.log(`[${set}] model ${meta.model} · ${meta.source}`);
 console.log(`recall ${pct(report.recall)} (${report.detected}/${report.plantedDefects}) · FP on clean ${pct(report.cleanFpRate)} · precision ${pct(report.precision)}`);
 for (const m of report.perCheck) console.log(`  ${m.check.padEnd(18)} ${m.tp}/${m.expected}  extra ${m.fp}`);
-console.log("wrote docs/eval-latest.md");
+if (byLanguage) for (const [l, r] of Object.entries(byLanguage)) console.log(`  [${l}] recall ${pct(r.recall)} · FP on clean ${pct(r.cleanFpRate)} · precision ${pct(r.precision)}`);
+console.log(`wrote ${cfg.out}.md`);
 
-// Regression gate (only meaningful once LLM results exist).
+// Regression gate on the demo set only; the holdout is a measurement, not a gate.
 const MIN_RECALL = 0.8;
 const MAX_FP = 0.2;
-if (meta.model !== "rules-only" && (report.recall < MIN_RECALL || report.cleanFpRate > MAX_FP)) {
+if (cfg.gate && meta.model !== "rules-only" && (report.recall < MIN_RECALL || report.cleanFpRate > MAX_FP)) {
   console.error(`Eval gate failed: recall must be ≥ ${pct(MIN_RECALL)} and clean FP ≤ ${pct(MAX_FP)}.`);
   process.exit(1);
 }
