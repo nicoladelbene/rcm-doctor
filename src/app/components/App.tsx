@@ -36,6 +36,7 @@ export function App({ evalHeadline }: { evalHeadline: EvalHeadline | null }) {
   const [upload, setUpload] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const [sort, setSort] = useState<"worst" | "rcm">("worst");
+  const [toast, setToast] = useState<string | null>(null);
   const [f, setF] = useState<{ process: string; status: Status | "all"; severity: Severity | "all"; check: CheckId | null; keyOnly: boolean; q: string }>({
     process: "all",
     status: "all",
@@ -184,7 +185,11 @@ export function App({ evalHeadline }: { evalHeadline: EvalHeadline | null }) {
               </div>
               <button
                 type="button"
-                onClick={() => downloadReport(data.controls, data.reviews, data.label)}
+                onClick={async () => {
+                  const name = await downloadReport(data.controls, data.reviews, data.label);
+                  setToast(`${name} downloaded · original columns + status, findings, score, rewrite`);
+                  setTimeout(() => setToast(null), 3500);
+                }}
                 data-testid="download-report"
                 className="inline-flex items-center gap-2 rounded-md border border-ink bg-surface px-3.5 py-2 text-[14px] font-medium text-ink hover:bg-sunken"
               >
@@ -270,6 +275,11 @@ export function App({ evalHeadline }: { evalHeadline: EvalHeadline | null }) {
         />
       )}
       {upload && <UploadPanel onClose={() => setUpload(false)} onRun={startRun} />}
+      {toast && (
+        <div role="status" className="anim-rise fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-md bg-ink px-4 py-2.5 text-[13.5px] text-paper shadow-lg">
+          {toast}
+        </div>
+      )}
     </div>
   );
 }

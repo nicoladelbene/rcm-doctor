@@ -57,9 +57,11 @@ export async function downloadReport(controls: Control[], reviews: Review[], sou
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `rcm-review-${new Date().toISOString().slice(0, 10)}.xlsx`;
+  const name = `rcm-review-${new Date().toISOString().slice(0, 10)}.xlsx`;
+  a.download = name;
   document.body.appendChild(a);
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return name;
 }
