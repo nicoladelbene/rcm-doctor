@@ -16,6 +16,8 @@ Weekly increments → Sunday LinkedIn post. Read docs/ROADMAP.md for the plan.
 - Demo mode must always work without an API key. Never log or persist user API keys.
 - Run `npm run lint && npm test && npm run eval` before declaring a task done.
 - Keep the README "Try it in 30 seconds" link working.
+- Anything doable via CLI or API (gh, vercel, OpenRouter) Claude does itself. Leave Nicola only logins,
+  authorizations and things with no API (e.g. pinning repos, social preview image).
 
 ## Session protocol
 - Start of session: run /resume.

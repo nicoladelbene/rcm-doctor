@@ -1,5 +1,7 @@
 # rcm-doctor
 
+[![CI](https://github.com/nicoladelbene/rcm-doctor/actions/workflows/ci.yml/badge.svg)](https://github.com/nicoladelbene/rcm-doctor/actions/workflows/ci.yml)
+
 **An open-source reviewer for Risk & Control Matrices (internal controls / IKS / SOX).**
 It reviews each control the way a senior controls reviewer would. Every finding cites the exact text behind it, and the tool is evaluated against ground truth.
 
