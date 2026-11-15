@@ -1,0 +1,7117 @@
+[
+ {
+  "control_id": "P2P-05",
+  "samples": [
+   "2026-03",
+   "2026-09"
+  ],
+  "files": [
+   {
+    "file_id": "F1",
+    "name": "GRIR-ageing-2026-03-signed.pdf",
+    "kind": "pdf",
+    "src": "/demo-evidence/P2P-05/GRIR-ageing-2026-03-signed.pdf",
+    "pages": [
+     {
+      "image": "/demo-evidence/P2P-05/GRIR-ageing-2026-03-signed.p1.png",
+      "aspect": 1.4143576826196473
+     }
+    ],
+    "tokens": [
+     {
+      "id": "F1-t1",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 0,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t2",
+      "text": "Alpenfirn Industries AG",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t3",
+      "text": "Accounts Payable · Month-end close",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.1033,
+       0.2494,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t4",
+      "text": "Page 1 of 1",
+      "page": 0,
+      "box": [
+       0.8472,
+       0.1033,
+       0.0773,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t5",
+      "text": "GR/IR clearing account 191100 — ageing report",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.146,
+       0.6005,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t6",
+      "text": "Period",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.187,
+       0.0476,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t7",
+      "text": "March 2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.187,
+       0.0871,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t8",
+      "text": "Report run",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2075,
+       0.0779,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t9",
+      "text": "01.04.2026 07:02",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2075,
+       0.1275,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t10",
+      "text": "Source",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.228,
+       0.0519,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t11",
+      "text": "SAP S/4HANA, company code 1000",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.228,
+       0.2657,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t12",
+      "text": "Selection",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0679,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t13",
+      "text": "All open items, account 191100",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2484,
+       0.2311,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t14",
+      "text": "Document",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.2934,
+       0.0874,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t15",
+      "text": "Vendor",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.2934,
+       0.0632,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t16",
+      "text": "Age (days)",
+      "page": 0,
+      "box": [
+       0.3671,
+       0.2876,
+       0.0493,
+       0.0232
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t17",
+      "text": "Amount CHF",
+      "page": 0,
+      "box": [
+       0.4617,
+       0.2876,
+       0.066,
+       0.0232
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t18",
+      "text": "Investigation note",
+      "page": 0,
+      "box": [
+       0.5741,
+       0.2934,
+       0.1607,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t19",
+      "text": "5000018822",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.3241,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t20",
+      "text": "Brennwald Logistik AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.3241,
+       0.1341,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t21",
+      "text": "124",
+      "page": 0,
+      "box": [
+       0.4153,
+       0.3241,
+       0.0263,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t22",
+      "text": "8,450.00",
+      "page": 0,
+      "box": [
+       0.4927,
+       0.3241,
+       0.0613,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t23",
+      "text": "GR posted, invoice outstanding; vendor reminded 01.04.2026",
+      "page": 0,
+      "box": [
+       0.5741,
+       0.3241,
+       0.2797,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t24",
+      "text": "5000019310",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.3642,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t25",
+      "text": "Talwerk Metall GmbH",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.3642,
+       0.1504,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t26",
+      "text": "47",
+      "page": 0,
+      "box": [
+       0.4241,
+       0.3642,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t27",
+      "text": "31,200.00",
+      "page": 0,
+      "box": [
+       0.4839,
+       0.3642,
+       0.07,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t28",
+      "text": "Price difference CHF 1,200; credit note requested",
+      "page": 0,
+      "box": [
+       0.5741,
+       0.3642,
+       0.2736,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t29",
+      "text": "5000019544",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.4043,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t30",
+      "text": "Seetal Verpackungen AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.4043,
+       0.149,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t31",
+      "text": "22",
+      "page": 0,
+      "box": [
+       0.4241,
+       0.4043,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t32",
+      "text": "4,310.50",
+      "page": 0,
+      "box": [
+       0.4927,
+       0.4043,
+       0.0613,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t33",
+      "text": "5000019601",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.4443,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t34",
+      "text": "Nordhang Elektro AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.4443,
+       0.1493,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t35",
+      "text": "96",
+      "page": 0,
+      "box": [
+       0.4241,
+       0.4443,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t36",
+      "text": "2,980.00",
+      "page": 0,
+      "box": [
+       0.4927,
+       0.4443,
+       0.0613,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t37",
+      "text": "Duplicate goods receipt; reversal JE 4900007712",
+      "page": 0,
+      "box": [
+       0.5741,
+       0.4443,
+       0.2534,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t38",
+      "text": "5000019720",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.4844,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t39",
+      "text": "Alpwerk Druckluft AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.4844,
+       0.1513,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t40",
+      "text": "15",
+      "page": 0,
+      "box": [
+       0.4241,
+       0.4844,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t41",
+      "text": "12,775.00",
+      "page": 0,
+      "box": [
+       0.4839,
+       0.4844,
+       0.07,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t42",
+      "text": "Threshold for investigation: open items older than 90 days or above CHF 25,000.",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5138,
+       0.5218,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t43",
+      "text": "Corrections",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.547,
+       0.1324,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t44",
+      "text": "JE 4900007712 (reversal of duplicate GR, CHF 2,980.00): approved by Accounting Manager R. Gasser on 02.04.2026 10:14; posted 02.04.2026 15:40.",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5719,
+       0.771,
+       0.0307
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t45",
+      "text": "Reviewed and signed — AP Team Lead",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.636,
+       0.2662,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t46",
+      "text": "L. Brunner",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.652,
+       0.1616,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t47",
+      "text": "Date: 02.04.2026",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.6877,
+       0.1157,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t48",
+      "text": "Filed: SharePoint › Finance › Month-end close › 2026-03 › GRIR",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.9492,
+       0.407,
+       0.0116
+      ],
+      "cell": null
+     }
+    ],
+    "layer": "generator"
+   },
+   {
+    "file_id": "F2",
+    "name": "GRIR-ageing-2026-09-signed.pdf",
+    "kind": "pdf",
+    "src": "/demo-evidence/P2P-05/GRIR-ageing-2026-09-signed.pdf",
+    "pages": [
+     {
+      "image": "/demo-evidence/P2P-05/GRIR-ageing-2026-09-signed.p1.png",
+      "aspect": 1.4143576826196473
+     }
+    ],
+    "tokens": [
+     {
+      "id": "F2-t1",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 0,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t2",
+      "text": "Alpenfirn Industries AG",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t3",
+      "text": "Accounts Payable · Month-end close",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.1033,
+       0.2494,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t4",
+      "text": "Page 1 of 1",
+      "page": 0,
+      "box": [
+       0.8472,
+       0.1033,
+       0.0773,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t5",
+      "text": "GR/IR clearing account 191100 — ageing report",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.146,
+       0.6005,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t6",
+      "text": "Period",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.187,
+       0.0476,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t7",
+      "text": "September 2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.187,
+       0.1219,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t8",
+      "text": "Report run",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2075,
+       0.0779,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t9",
+      "text": "01.10.2026 06:58",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2075,
+       0.1275,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t10",
+      "text": "Source",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.228,
+       0.0519,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t11",
+      "text": "SAP S/4HANA, company code 1000",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.228,
+       0.2657,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t12",
+      "text": "Selection",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0679,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t13",
+      "text": "All open items, account 191100",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2484,
+       0.2311,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t14",
+      "text": "Document",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.2934,
+       0.0874,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t15",
+      "text": "Vendor",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.2934,
+       0.0632,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t16",
+      "text": "Age (days)",
+      "page": 0,
+      "box": [
+       0.3863,
+       0.2876,
+       0.0493,
+       0.0232
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t17",
+      "text": "Amount CHF",
+      "page": 0,
+      "box": [
+       0.4847,
+       0.2876,
+       0.066,
+       0.0232
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t18",
+      "text": "Investigation note",
+      "page": 0,
+      "box": [
+       0.6002,
+       0.2934,
+       0.1607,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t19",
+      "text": "5000024410",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.3241,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t20",
+      "text": "Talwerk Metall GmbH",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.3241,
+       0.1504,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t21",
+      "text": "103",
+      "page": 0,
+      "box": [
+       0.4382,
+       0.3241,
+       0.0263,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t22",
+      "text": "6,120.00",
+      "page": 0,
+      "box": [
+       0.5188,
+       0.3241,
+       0.0613,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t23",
+      "text": "Partial delivery; remaining GR expected 15.10.2026",
+      "page": 0,
+      "box": [
+       0.6002,
+       0.3241,
+       0.2776,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t24",
+      "text": "5000024532",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.3642,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t25",
+      "text": "Kandersteg Werkzeuge AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.3642,
+       0.1633,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t26",
+      "text": "61",
+      "page": 0,
+      "box": [
+       0.447,
+       0.3642,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t27",
+      "text": "24,980.00",
+      "page": 0,
+      "box": [
+       0.51,
+       0.3642,
+       0.07,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t28",
+      "text": "5000024588",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.4043,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t29",
+      "text": "Brennwald Logistik AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.4043,
+       0.1607,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t30",
+      "text": "33",
+      "page": 0,
+      "box": [
+       0.447,
+       0.4043,
+       0.0175,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t31",
+      "text": "58,400.00",
+      "page": 0,
+      "box": [
+       0.51,
+       0.4043,
+       0.07,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t32",
+      "text": "Invoice received 30.09.2026, matched 02.10.2026",
+      "page": 0,
+      "box": [
+       0.6002,
+       0.4043,
+       0.2678,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t33",
+      "text": "5000024690",
+      "page": 0,
+      "box": [
+       0.0856,
+       0.4443,
+       0.0875,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t34",
+      "text": "Seetal Verpackungen AG",
+      "page": 0,
+      "box": [
+       0.1933,
+       0.4443,
+       0.149,
+       0.0267
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t35",
+      "text": "9",
+      "page": 0,
+      "box": [
+       0.4557,
+       0.4443,
+       0.0088,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t36",
+      "text": "1,940.00",
+      "page": 0,
+      "box": [
+       0.5188,
+       0.4443,
+       0.0613,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t37",
+      "text": "Threshold for investigation: open items older than 90 days or above CHF 25,000.",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.4871,
+       0.5218,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t38",
+      "text": "Corrections",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5203,
+       0.1324,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t39",
+      "text": "No corrections posted for September 2026.",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5452,
+       0.3184,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t40",
+      "text": "Reviewed and signed — AP Team Lead",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5919,
+       0.2662,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t41",
+      "text": "L. Brunner",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.608,
+       0.1616,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t42",
+      "text": "Date: 05.10.2026",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.6436,
+       0.1157,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F2-t43",
+      "text": "Filed: SharePoint › Finance › Month-end close › 2026-09 › GRIR",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.9492,
+       0.407,
+       0.0116
+      ],
+      "cell": null
+     }
+    ],
+    "layer": "generator"
+   }
+  ]
+ },
+ {
+  "control_id": "TRE-01",
+  "samples": [
+   "BAR-2026-01",
+   "BAR-2026-02",
+   "BAR-2026-03",
+   "BAR-2026-04"
+  ],
+  "files": [
+   {
+    "file_id": "F1",
+    "name": "bank-account-requests-2026.pdf",
+    "kind": "pdf",
+    "src": "/demo-evidence/TRE-01/bank-account-requests-2026.pdf",
+    "pages": [
+     {
+      "image": "/demo-evidence/TRE-01/bank-account-requests-2026.p1.png",
+      "aspect": 1.4143576826196473
+     },
+     {
+      "image": "/demo-evidence/TRE-01/bank-account-requests-2026.p2.png",
+      "aspect": 1.4143576826196473
+     },
+     {
+      "image": "/demo-evidence/TRE-01/bank-account-requests-2026.p3.png",
+      "aspect": 1.4143576826196473
+     },
+     {
+      "image": "/demo-evidence/TRE-01/bank-account-requests-2026.p4.png",
+      "aspect": 1.4143576826196473
+     }
+    ],
+    "tokens": [
+     {
+      "id": "F1-t1",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 0,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t2",
+      "text": "Alpenfirn Industries AG",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t3",
+      "text": "Group Treasury",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.1033,
+       0.1033,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t4",
+      "text": "Form TR-07",
+      "page": 0,
+      "box": [
+       0.8432,
+       0.1033,
+       0.0812,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t5",
+      "text": "Bank account request",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.146,
+       0.2773,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t6",
+      "text": "Request no.",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.187,
+       0.0886,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t7",
+      "text": "BAR-2026-01",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.187,
+       0.1004,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t8",
+      "text": "Date of request",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2075,
+       0.1125,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t9",
+      "text": "09.01.2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2075,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t10",
+      "text": "Entity",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.228,
+       0.0412,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t11",
+      "text": "Alpenfirn Industries AG",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.228,
+       0.1689,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t12",
+      "text": "Bank",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0376,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t13",
+      "text": "Bank Seeland AG (fictional)",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2484,
+       0.1992,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t14",
+      "text": "Action",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2689,
+       0.0467,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t15",
+      "text": "Open — EUR operating account",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2689,
+       0.2362,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t16",
+      "text": "Account",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.2894,
+       0.061,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t17",
+      "text": "CH00 0000 0000 0000 0101 E (fictional)",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.2894,
+       0.2903,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t18",
+      "text": "Approval (both signatures required before the bank is instructed)",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.3259,
+       0.7044,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t19",
+      "text": "Group Treasurer",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.3713,
+       0.1086,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t20",
+      "text": "S. Imhof",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.3874,
+       0.1301,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t21",
+      "text": "Signed: 12.01.2026",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t22",
+      "text": "Chief Financial Officer",
+      "page": 0,
+      "box": [
+       0.4534,
+       0.3713,
+       0.1484,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t23",
+      "text": "D. Vogt",
+      "page": 0,
+      "box": [
+       0.4534,
+       0.3874,
+       0.1238,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t24",
+      "text": "Signed: 13.01.2026",
+      "page": 0,
+      "box": [
+       0.4534,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t25",
+      "text": "Execution",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.455,
+       0.105,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t26",
+      "text": "Instruction sent to bank",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.4817,
+       0.1729,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t27",
+      "text": "14.01.2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.4817,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t28",
+      "text": "Bank confirmation received",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5022,
+       0.1999,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t29",
+      "text": "20.01.2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.5022,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t30",
+      "text": "Bank account register updated",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5227,
+       0.226,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t31",
+      "text": "21.01.2026",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.5227,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t32",
+      "text": "Register updated by",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.5432,
+       0.1486,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t33",
+      "text": "Treasury Analyst M. Odermatt",
+      "page": 0,
+      "box": [
+       0.3401,
+       0.5432,
+       0.2172,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t34",
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-01",
+      "page": 0,
+      "box": [
+       0.0756,
+       0.9492,
+       0.4298,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t35",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 1,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t36",
+      "text": "Alpenfirn Industries AG",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t37",
+      "text": "Group Treasury",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.1033,
+       0.1033,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t38",
+      "text": "Form TR-07",
+      "page": 1,
+      "box": [
+       0.8432,
+       0.1033,
+       0.0812,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t39",
+      "text": "Bank account request",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.146,
+       0.2773,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t40",
+      "text": "Request no.",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.187,
+       0.0886,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t41",
+      "text": "BAR-2026-02",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.187,
+       0.1004,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t42",
+      "text": "Date of request",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.2075,
+       0.1125,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t43",
+      "text": "16.03.2026",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.2075,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t44",
+      "text": "Entity",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.228,
+       0.0412,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t45",
+      "text": "Alpenfirn Industries AG",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.228,
+       0.1689,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t46",
+      "text": "Bank",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0376,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t47",
+      "text": "Bank Seeland AG (fictional)",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.2484,
+       0.1992,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t48",
+      "text": "Action",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.2689,
+       0.0467,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t49",
+      "text": "Modify — remove signatory, add signatory",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.2689,
+       0.3096,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t50",
+      "text": "Account",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.2894,
+       0.061,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t51",
+      "text": "CH00 0000 0000 0000 0102 C (fictional)",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.2894,
+       0.2921,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t52",
+      "text": "Approval (both signatures required before the bank is instructed)",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.3259,
+       0.7044,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t53",
+      "text": "Group Treasurer",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.3713,
+       0.1086,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t54",
+      "text": "S. Imhof",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.3874,
+       0.1301,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t55",
+      "text": "Signed: 17.03.2026",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t56",
+      "text": "Chief Financial Officer",
+      "page": 1,
+      "box": [
+       0.4534,
+       0.3713,
+       0.1484,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t57",
+      "text": "D. Vogt",
+      "page": 1,
+      "box": [
+       0.4534,
+       0.3874,
+       0.1238,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t58",
+      "text": "Signed: 17.03.2026",
+      "page": 1,
+      "box": [
+       0.4534,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t59",
+      "text": "Execution",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.455,
+       0.105,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t60",
+      "text": "Instruction sent to bank",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.4817,
+       0.1729,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t61",
+      "text": "18.03.2026",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.4817,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t62",
+      "text": "Bank confirmation received",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.5022,
+       0.1999,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t63",
+      "text": "26.03.2026",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.5022,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t64",
+      "text": "Bank account register updated",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.5227,
+       0.226,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t65",
+      "text": "30.03.2026",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.5227,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t66",
+      "text": "Register updated by",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.5432,
+       0.1486,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t67",
+      "text": "Treasury Analyst M. Odermatt",
+      "page": 1,
+      "box": [
+       0.3401,
+       0.5432,
+       0.2172,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t68",
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-02",
+      "page": 1,
+      "box": [
+       0.0756,
+       0.9492,
+       0.4298,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t69",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 2,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t70",
+      "text": "Alpenfirn Industries AG",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t71",
+      "text": "Group Treasury",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.1033,
+       0.1033,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t72",
+      "text": "Form TR-07",
+      "page": 2,
+      "box": [
+       0.8432,
+       0.1033,
+       0.0812,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t73",
+      "text": "Bank account request",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.146,
+       0.2773,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t74",
+      "text": "Request no.",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.187,
+       0.0886,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t75",
+      "text": "BAR-2026-03",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.187,
+       0.1004,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t76",
+      "text": "Date of request",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.2075,
+       0.1125,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t77",
+      "text": "01.06.2026",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.2075,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t78",
+      "text": "Entity",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.228,
+       0.0412,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t79",
+      "text": "Alpenfirn Industries AG",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.228,
+       0.1689,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t80",
+      "text": "Bank",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0376,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t81",
+      "text": "Bank Seeland AG (fictional)",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.2484,
+       0.1992,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t82",
+      "text": "Action",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.2689,
+       0.0467,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t83",
+      "text": "Close — USD collection account",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.2689,
+       0.2398,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t84",
+      "text": "Account",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.2894,
+       0.061,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t85",
+      "text": "CH00 0000 0000 0000 0103 U (fictional)",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.2894,
+       0.2921,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t86",
+      "text": "Approval (both signatures required before the bank is instructed)",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.3259,
+       0.7044,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t87",
+      "text": "Group Treasurer",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.3713,
+       0.1086,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t88",
+      "text": "S. Imhof",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.3874,
+       0.1301,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t89",
+      "text": "Signed: 02.06.2026",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t90",
+      "text": "Chief Financial Officer",
+      "page": 2,
+      "box": [
+       0.4534,
+       0.3713,
+       0.1484,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t91",
+      "text": "D. Vogt",
+      "page": 2,
+      "box": [
+       0.4534,
+       0.3874,
+       0.1238,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t92",
+      "text": "Signed: 03.06.2026",
+      "page": 2,
+      "box": [
+       0.4534,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t93",
+      "text": "Execution",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.455,
+       0.105,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t94",
+      "text": "Instruction sent to bank",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.4817,
+       0.1729,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t95",
+      "text": "04.06.2026",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.4817,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t96",
+      "text": "Bank confirmation received",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.5022,
+       0.1999,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t97",
+      "text": "10.06.2026",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.5022,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t98",
+      "text": "Bank account register updated",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.5227,
+       0.226,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t99",
+      "text": "18.06.2026",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.5227,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t100",
+      "text": "Register updated by",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.5432,
+       0.1486,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t101",
+      "text": "Treasury Analyst M. Odermatt",
+      "page": 2,
+      "box": [
+       0.3401,
+       0.5432,
+       0.2172,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t102",
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-03",
+      "page": 2,
+      "box": [
+       0.0756,
+       0.9492,
+       0.4298,
+       0.0116
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t103",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 3,
+      "box": [
+       0.0869,
+       0.0543,
+       0.4345,
+       0.0107
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t104",
+      "text": "Alpenfirn Industries AG",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.0846,
+       0.2371,
+       0.0187
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t105",
+      "text": "Group Treasury",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.1033,
+       0.1033,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t106",
+      "text": "Form TR-07",
+      "page": 3,
+      "box": [
+       0.8432,
+       0.1033,
+       0.0812,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t107",
+      "text": "Bank account request",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.146,
+       0.2773,
+       0.0223
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t108",
+      "text": "Request no.",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.187,
+       0.0886,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t109",
+      "text": "BAR-2026-04",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.187,
+       0.1004,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t110",
+      "text": "Date of request",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.2075,
+       0.1125,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t111",
+      "text": "21.09.2026",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.2075,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t112",
+      "text": "Entity",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.228,
+       0.0412,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t113",
+      "text": "Alpenfirn Industries AG",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.228,
+       0.1689,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t114",
+      "text": "Bank",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.2484,
+       0.0376,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t115",
+      "text": "Bank Seeland AG (fictional)",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.2484,
+       0.1992,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t116",
+      "text": "Action",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.2689,
+       0.0467,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t117",
+      "text": "Open — CHF payroll account",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.2689,
+       0.2153,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t118",
+      "text": "Account",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.2894,
+       0.061,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t119",
+      "text": "CH00 0000 0000 0000 0104 P (fictional)",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.2894,
+       0.2909,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t120",
+      "text": "Approval (both signatures required before the bank is instructed)",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.3259,
+       0.7044,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t121",
+      "text": "Group Treasurer",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.3713,
+       0.1086,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t122",
+      "text": "S. Imhof",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.3874,
+       0.1301,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t123",
+      "text": "Signed: 22.09.2026",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t124",
+      "text": "Chief Financial Officer",
+      "page": 3,
+      "box": [
+       0.4534,
+       0.3713,
+       0.1484,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t125",
+      "text": "D. Vogt",
+      "page": 3,
+      "box": [
+       0.4534,
+       0.3874,
+       0.1238,
+       0.0338
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t126",
+      "text": "Signed: 23.09.2026",
+      "page": 3,
+      "box": [
+       0.4534,
+       0.423,
+       0.1313,
+       0.0125
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t127",
+      "text": "Execution",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.455,
+       0.105,
+       0.0142
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t128",
+      "text": "Instruction sent to bank",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.4817,
+       0.1729,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t129",
+      "text": "24.09.2026",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.4817,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t130",
+      "text": "Bank confirmation received",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.5022,
+       0.1999,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t131",
+      "text": "29.09.2026",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.5022,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t132",
+      "text": "Bank account register updated",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.5227,
+       0.226,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t133",
+      "text": "30.09.2026",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.5227,
+       0.0819,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t134",
+      "text": "Register updated by",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.5432,
+       0.1486,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t135",
+      "text": "Treasury Analyst M. Odermatt",
+      "page": 3,
+      "box": [
+       0.3401,
+       0.5432,
+       0.2172,
+       0.0134
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t136",
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-04",
+      "page": 3,
+      "box": [
+       0.0756,
+       0.9492,
+       0.4298,
+       0.0116
+      ],
+      "cell": null
+     }
+    ],
+    "layer": "generator"
+   }
+  ]
+ },
+ {
+  "control_id": "R2R-01",
+  "samples": [
+   "100021",
+   "100025",
+   "100029",
+   "100033",
+   "100037",
+   "100041",
+   "100045",
+   "100049",
+   "100053",
+   "100057",
+   "100061",
+   "100065",
+   "100069",
+   "100073",
+   "100077",
+   "100081",
+   "100085",
+   "100089",
+   "100093",
+   "100097",
+   "100101",
+   "100105",
+   "100109",
+   "100113",
+   "100117"
+  ],
+  "files": [
+   {
+    "file_id": "F1",
+    "name": "SAP-JE-workflow-history-FY2026-sample.csv",
+    "kind": "csv",
+    "src": "/demo-evidence/R2R-01/SAP-JE-workflow-history-FY2026-sample.csv",
+    "pages": [],
+    "tokens": [
+     {
+      "id": "F1-r0c0",
+      "text": "je_number",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       0
+      ]
+     },
+     {
+      "id": "F1-r0c1",
+      "text": "posting_date",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       1
+      ]
+     },
+     {
+      "id": "F1-r0c2",
+      "text": "posting_time",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       2
+      ]
+     },
+     {
+      "id": "F1-r0c3",
+      "text": "amount_chf",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       3
+      ]
+     },
+     {
+      "id": "F1-r0c4",
+      "text": "entered_by",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       4
+      ]
+     },
+     {
+      "id": "F1-r0c5",
+      "text": "approver_1",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       5
+      ]
+     },
+     {
+      "id": "F1-r0c6",
+      "text": "approver_1_role",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       6
+      ]
+     },
+     {
+      "id": "F1-r0c7",
+      "text": "approved_1_at",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       7
+      ]
+     },
+     {
+      "id": "F1-r0c8",
+      "text": "approver_2",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       8
+      ]
+     },
+     {
+      "id": "F1-r0c9",
+      "text": "approver_2_role",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       9
+      ]
+     },
+     {
+      "id": "F1-r0c10",
+      "text": "approved_2_at",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       10
+      ]
+     },
+     {
+      "id": "F1-r0c11",
+      "text": "workflow_status",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       11
+      ]
+     },
+     {
+      "id": "F1-r1c0",
+      "text": "100021",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       0
+      ]
+     },
+     {
+      "id": "F1-r1c1",
+      "text": "2026-01-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       1
+      ]
+     },
+     {
+      "id": "F1-r1c2",
+      "text": "11:00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       2
+      ]
+     },
+     {
+      "id": "F1-r1c3",
+      "text": "18,420.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       3
+      ]
+     },
+     {
+      "id": "F1-r1c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": "F1-r1c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       5
+      ]
+     },
+     {
+      "id": "F1-r1c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       6
+      ]
+     },
+     {
+      "id": "F1-r1c7",
+      "text": "2026-01-03 09:00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       7
+      ]
+     },
+     {
+      "id": "F1-r1c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       11
+      ]
+     },
+     {
+      "id": "F1-r2c0",
+      "text": "100025",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       0
+      ]
+     },
+     {
+      "id": "F1-r2c1",
+      "text": "2026-01-10",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       1
+      ]
+     },
+     {
+      "id": "F1-r2c2",
+      "text": "12:13",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       2
+      ]
+     },
+     {
+      "id": "F1-r2c3",
+      "text": "245,000.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       3
+      ]
+     },
+     {
+      "id": "F1-r2c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       4
+      ]
+     },
+     {
+      "id": "F1-r2c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       5
+      ]
+     },
+     {
+      "id": "F1-r2c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       6
+      ]
+     },
+     {
+      "id": "F1-r2c7",
+      "text": "2026-01-10 10:07",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       7
+      ]
+     },
+     {
+      "id": "F1-r2c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       11
+      ]
+     },
+     {
+      "id": "F1-r3c0",
+      "text": "100029",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       0
+      ]
+     },
+     {
+      "id": "F1-r3c1",
+      "text": "2026-01-17",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       1
+      ]
+     },
+     {
+      "id": "F1-r3c2",
+      "text": "13:26",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       2
+      ]
+     },
+     {
+      "id": "F1-r3c3",
+      "text": "12,980.50",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       3
+      ]
+     },
+     {
+      "id": "F1-r3c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       4
+      ]
+     },
+     {
+      "id": "F1-r3c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       5
+      ]
+     },
+     {
+      "id": "F1-r3c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": "F1-r3c7",
+      "text": "2026-01-17 09:14",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       7
+      ]
+     },
+     {
+      "id": "F1-r3c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       11
+      ]
+     },
+     {
+      "id": "F1-r4c0",
+      "text": "100033",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       0
+      ]
+     },
+     {
+      "id": "F1-r4c1",
+      "text": "2026-02-24",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       1
+      ]
+     },
+     {
+      "id": "F1-r4c2",
+      "text": "14:39",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       2
+      ]
+     },
+     {
+      "id": "F1-r4c3",
+      "text": "1,412,500.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       3
+      ]
+     },
+     {
+      "id": "F1-r4c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       4
+      ]
+     },
+     {
+      "id": "F1-r4c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       5
+      ]
+     },
+     {
+      "id": "F1-r4c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": "F1-r4c7",
+      "text": "2026-02-24 10:21",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       7
+      ]
+     },
+     {
+      "id": "F1-r4c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       11
+      ]
+     },
+     {
+      "id": "F1-r5c0",
+      "text": "100037",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       0
+      ]
+     },
+     {
+      "id": "F1-r5c1",
+      "text": "2026-02-07",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       1
+      ]
+     },
+     {
+      "id": "F1-r5c2",
+      "text": "15:52",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       2
+      ]
+     },
+     {
+      "id": "F1-r5c3",
+      "text": "33,750.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       3
+      ]
+     },
+     {
+      "id": "F1-r5c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       4
+      ]
+     },
+     {
+      "id": "F1-r5c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       5
+      ]
+     },
+     {
+      "id": "F1-r5c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       6
+      ]
+     },
+     {
+      "id": "F1-r5c7",
+      "text": "2026-02-07 09:28",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": "F1-r5c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       11
+      ]
+     },
+     {
+      "id": "F1-r6c0",
+      "text": "100041",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       0
+      ]
+     },
+     {
+      "id": "F1-r6c1",
+      "text": "2026-03-14",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       1
+      ]
+     },
+     {
+      "id": "F1-r6c2",
+      "text": "16:05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       2
+      ]
+     },
+     {
+      "id": "F1-r6c3",
+      "text": "61,200.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       3
+      ]
+     },
+     {
+      "id": "F1-r6c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       4
+      ]
+     },
+     {
+      "id": "F1-r6c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       5
+      ]
+     },
+     {
+      "id": "F1-r6c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       6
+      ]
+     },
+     {
+      "id": "F1-r6c7",
+      "text": "2026-03-14 10:35",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       7
+      ]
+     },
+     {
+      "id": "F1-r6c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       11
+      ]
+     },
+     {
+      "id": "F1-r7c0",
+      "text": "100045",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       0
+      ]
+     },
+     {
+      "id": "F1-r7c1",
+      "text": "2026-03-21",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       1
+      ]
+     },
+     {
+      "id": "F1-r7c2",
+      "text": "11:18",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       2
+      ]
+     },
+     {
+      "id": "F1-r7c3",
+      "text": "10,450.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       3
+      ]
+     },
+     {
+      "id": "F1-r7c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       4
+      ]
+     },
+     {
+      "id": "F1-r7c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       5
+      ]
+     },
+     {
+      "id": "F1-r7c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       6
+      ]
+     },
+     {
+      "id": "F1-r7c7",
+      "text": "2026-03-21 09:42",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       7
+      ]
+     },
+     {
+      "id": "F1-r7c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       11
+      ]
+     },
+     {
+      "id": "F1-r8c0",
+      "text": "100049",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       0
+      ]
+     },
+     {
+      "id": "F1-r8c1",
+      "text": "2026-04-04",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       1
+      ]
+     },
+     {
+      "id": "F1-r8c2",
+      "text": "12:31",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       2
+      ]
+     },
+     {
+      "id": "F1-r8c3",
+      "text": "1,000,000.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       3
+      ]
+     },
+     {
+      "id": "F1-r8c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       4
+      ]
+     },
+     {
+      "id": "F1-r8c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       5
+      ]
+     },
+     {
+      "id": "F1-r8c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       6
+      ]
+     },
+     {
+      "id": "F1-r8c7",
+      "text": "2026-04-04 10:49",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       7
+      ]
+     },
+     {
+      "id": "F1-r8c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       8,
+       11
+      ]
+     },
+     {
+      "id": "F1-r9c0",
+      "text": "100053",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       0
+      ]
+     },
+     {
+      "id": "F1-r9c1",
+      "text": "2026-04-11",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       1
+      ]
+     },
+     {
+      "id": "F1-r9c2",
+      "text": "13:44",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       2
+      ]
+     },
+     {
+      "id": "F1-r9c3",
+      "text": "27,300.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       3
+      ]
+     },
+     {
+      "id": "F1-r9c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       4
+      ]
+     },
+     {
+      "id": "F1-r9c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       5
+      ]
+     },
+     {
+      "id": "F1-r9c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       6
+      ]
+     },
+     {
+      "id": "F1-r9c7",
+      "text": "2026-04-11 09:56",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       7
+      ]
+     },
+     {
+      "id": "F1-r9c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       9,
+       11
+      ]
+     },
+     {
+      "id": "F1-r10c0",
+      "text": "100057",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       0
+      ]
+     },
+     {
+      "id": "F1-r10c1",
+      "text": "2026-04-18",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       1
+      ]
+     },
+     {
+      "id": "F1-r10c2",
+      "text": "14:57",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       2
+      ]
+     },
+     {
+      "id": "F1-r10c3",
+      "text": "2,350,000.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       3
+      ]
+     },
+     {
+      "id": "F1-r10c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       4
+      ]
+     },
+     {
+      "id": "F1-r10c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       5
+      ]
+     },
+     {
+      "id": "F1-r10c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       6
+      ]
+     },
+     {
+      "id": "F1-r10c7",
+      "text": "2026-04-18 10:03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       7
+      ]
+     },
+     {
+      "id": "F1-r10c8",
+      "text": "GC_LEHMANN",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       8
+      ]
+     },
+     {
+      "id": "F1-r10c9",
+      "text": "Group Controller",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       9
+      ]
+     },
+     {
+      "id": "F1-r10c10",
+      "text": "2026-04-18 10:39",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       10
+      ]
+     },
+     {
+      "id": "F1-r10c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       10,
+       11
+      ]
+     },
+     {
+      "id": "F1-r11c0",
+      "text": "100061",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       0
+      ]
+     },
+     {
+      "id": "F1-r11c1",
+      "text": "2026-05-25",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       1
+      ]
+     },
+     {
+      "id": "F1-r11c2",
+      "text": "11:32",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       2
+      ]
+     },
+     {
+      "id": "F1-r11c3",
+      "text": "86,300.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       3
+      ]
+     },
+     {
+      "id": "F1-r11c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       4
+      ]
+     },
+     {
+      "id": "F1-r11c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": "F1-r11c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       6
+      ]
+     },
+     {
+      "id": "F1-r11c7",
+      "text": "2026-05-25 16:05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       7
+      ]
+     },
+     {
+      "id": "F1-r11c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       11,
+       11
+      ]
+     },
+     {
+      "id": "F1-r12c0",
+      "text": "100065",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       0
+      ]
+     },
+     {
+      "id": "F1-r12c1",
+      "text": "2026-05-08",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       1
+      ]
+     },
+     {
+      "id": "F1-r12c2",
+      "text": "16:23",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       2
+      ]
+     },
+     {
+      "id": "F1-r12c3",
+      "text": "14,999.90",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       3
+      ]
+     },
+     {
+      "id": "F1-r12c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       4
+      ]
+     },
+     {
+      "id": "F1-r12c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       5
+      ]
+     },
+     {
+      "id": "F1-r12c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       6
+      ]
+     },
+     {
+      "id": "F1-r12c7",
+      "text": "2026-05-08 10:17",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       7
+      ]
+     },
+     {
+      "id": "F1-r12c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       12,
+       11
+      ]
+     },
+     {
+      "id": "F1-r13c0",
+      "text": "100069",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       0
+      ]
+     },
+     {
+      "id": "F1-r13c1",
+      "text": "2026-06-15",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       1
+      ]
+     },
+     {
+      "id": "F1-r13c2",
+      "text": "11:36",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       2
+      ]
+     },
+     {
+      "id": "F1-r13c3",
+      "text": "402,180.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       3
+      ]
+     },
+     {
+      "id": "F1-r13c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       4
+      ]
+     },
+     {
+      "id": "F1-r13c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       5
+      ]
+     },
+     {
+      "id": "F1-r13c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       6
+      ]
+     },
+     {
+      "id": "F1-r13c7",
+      "text": "2026-06-15 09:24",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       7
+      ]
+     },
+     {
+      "id": "F1-r13c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       13,
+       11
+      ]
+     },
+     {
+      "id": "F1-r14c0",
+      "text": "100073",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       0
+      ]
+     },
+     {
+      "id": "F1-r14c1",
+      "text": "2026-06-22",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       1
+      ]
+     },
+     {
+      "id": "F1-r14c2",
+      "text": "12:49",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       2
+      ]
+     },
+     {
+      "id": "F1-r14c3",
+      "text": "19,875.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       3
+      ]
+     },
+     {
+      "id": "F1-r14c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       4
+      ]
+     },
+     {
+      "id": "F1-r14c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       5
+      ]
+     },
+     {
+      "id": "F1-r14c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       6
+      ]
+     },
+     {
+      "id": "F1-r14c7",
+      "text": "2026-06-22 10:31",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       7
+      ]
+     },
+     {
+      "id": "F1-r14c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       14,
+       11
+      ]
+     },
+     {
+      "id": "F1-r15c0",
+      "text": "100077",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       0
+      ]
+     },
+     {
+      "id": "F1-r15c1",
+      "text": "2026-07-05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       1
+      ]
+     },
+     {
+      "id": "F1-r15c2",
+      "text": "13:02",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       2
+      ]
+     },
+     {
+      "id": "F1-r15c3",
+      "text": "73,640.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       3
+      ]
+     },
+     {
+      "id": "F1-r15c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       4
+      ]
+     },
+     {
+      "id": "F1-r15c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       5
+      ]
+     },
+     {
+      "id": "F1-r15c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       6
+      ]
+     },
+     {
+      "id": "F1-r15c7",
+      "text": "2026-07-05 09:38",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       7
+      ]
+     },
+     {
+      "id": "F1-r15c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       15,
+       11
+      ]
+     },
+     {
+      "id": "F1-r16c0",
+      "text": "100081",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       0
+      ]
+     },
+     {
+      "id": "F1-r16c1",
+      "text": "2026-07-12",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       1
+      ]
+     },
+     {
+      "id": "F1-r16c2",
+      "text": "14:15",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       2
+      ]
+     },
+     {
+      "id": "F1-r16c3",
+      "text": "1,180,400.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       3
+      ]
+     },
+     {
+      "id": "F1-r16c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       4
+      ]
+     },
+     {
+      "id": "F1-r16c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       5
+      ]
+     },
+     {
+      "id": "F1-r16c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       6
+      ]
+     },
+     {
+      "id": "F1-r16c7",
+      "text": "2026-07-12 10:45",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       7
+      ]
+     },
+     {
+      "id": "F1-r16c8",
+      "text": "GC_LEHMANN",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       8
+      ]
+     },
+     {
+      "id": "F1-r16c9",
+      "text": "Group Controller",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       9
+      ]
+     },
+     {
+      "id": "F1-r16c10",
+      "text": "2026-07-12 10:45",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       10
+      ]
+     },
+     {
+      "id": "F1-r16c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       16,
+       11
+      ]
+     },
+     {
+      "id": "F1-r17c0",
+      "text": "100085",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       0
+      ]
+     },
+     {
+      "id": "F1-r17c1",
+      "text": "2026-08-19",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       1
+      ]
+     },
+     {
+      "id": "F1-r17c2",
+      "text": "15:28",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       2
+      ]
+     },
+     {
+      "id": "F1-r17c3",
+      "text": "11,210.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       3
+      ]
+     },
+     {
+      "id": "F1-r17c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       4
+      ]
+     },
+     {
+      "id": "F1-r17c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       5
+      ]
+     },
+     {
+      "id": "F1-r17c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       6
+      ]
+     },
+     {
+      "id": "F1-r17c7",
+      "text": "2026-08-19 09:52",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       7
+      ]
+     },
+     {
+      "id": "F1-r17c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       17,
+       11
+      ]
+     },
+     {
+      "id": "F1-r18c0",
+      "text": "100089",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       0
+      ]
+     },
+     {
+      "id": "F1-r18c1",
+      "text": "2026-08-26",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       1
+      ]
+     },
+     {
+      "id": "F1-r18c2",
+      "text": "16:41",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       2
+      ]
+     },
+     {
+      "id": "F1-r18c3",
+      "text": "58,000.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       3
+      ]
+     },
+     {
+      "id": "F1-r18c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       4
+      ]
+     },
+     {
+      "id": "F1-r18c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       5
+      ]
+     },
+     {
+      "id": "F1-r18c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       6
+      ]
+     },
+     {
+      "id": "F1-r18c7",
+      "text": "2026-08-26 10:59",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       7
+      ]
+     },
+     {
+      "id": "F1-r18c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       18,
+       11
+      ]
+     },
+     {
+      "id": "F1-r19c0",
+      "text": "100093",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       0
+      ]
+     },
+     {
+      "id": "F1-r19c1",
+      "text": "2026-08-09",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       1
+      ]
+     },
+     {
+      "id": "F1-r19c2",
+      "text": "11:54",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       2
+      ]
+     },
+     {
+      "id": "F1-r19c3",
+      "text": "125,900.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       3
+      ]
+     },
+     {
+      "id": "F1-r19c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       4
+      ]
+     },
+     {
+      "id": "F1-r19c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       5
+      ]
+     },
+     {
+      "id": "F1-r19c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       6
+      ]
+     },
+     {
+      "id": "F1-r19c7",
+      "text": "2026-08-09 09:06",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       7
+      ]
+     },
+     {
+      "id": "F1-r19c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       19,
+       11
+      ]
+     },
+     {
+      "id": "F1-r20c0",
+      "text": "100097",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       0
+      ]
+     },
+     {
+      "id": "F1-r20c1",
+      "text": "2026-09-16",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       1
+      ]
+     },
+     {
+      "id": "F1-r20c2",
+      "text": "12:07",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       2
+      ]
+     },
+     {
+      "id": "F1-r20c3",
+      "text": "22,460.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       3
+      ]
+     },
+     {
+      "id": "F1-r20c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       4
+      ]
+     },
+     {
+      "id": "F1-r20c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       5
+      ]
+     },
+     {
+      "id": "F1-r20c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       6
+      ]
+     },
+     {
+      "id": "F1-r20c7",
+      "text": "2026-09-16 10:13",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       7
+      ]
+     },
+     {
+      "id": "F1-r20c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       20,
+       11
+      ]
+     },
+     {
+      "id": "F1-r21c0",
+      "text": "100101",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       0
+      ]
+     },
+     {
+      "id": "F1-r21c1",
+      "text": "2026-09-23",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       1
+      ]
+     },
+     {
+      "id": "F1-r21c2",
+      "text": "13:20",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       2
+      ]
+     },
+     {
+      "id": "F1-r21c3",
+      "text": "39,990.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       3
+      ]
+     },
+     {
+      "id": "F1-r21c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       4
+      ]
+     },
+     {
+      "id": "F1-r21c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       5
+      ]
+     },
+     {
+      "id": "F1-r21c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       6
+      ]
+     },
+     {
+      "id": "F1-r21c7",
+      "text": "2026-09-23 09:20",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       7
+      ]
+     },
+     {
+      "id": "F1-r21c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       21,
+       11
+      ]
+     },
+     {
+      "id": "F1-r22c0",
+      "text": "100105",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       0
+      ]
+     },
+     {
+      "id": "F1-r22c1",
+      "text": "2026-10-06",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       1
+      ]
+     },
+     {
+      "id": "F1-r22c2",
+      "text": "14:33",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       2
+      ]
+     },
+     {
+      "id": "F1-r22c3",
+      "text": "16,700.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       3
+      ]
+     },
+     {
+      "id": "F1-r22c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       4
+      ]
+     },
+     {
+      "id": "F1-r22c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       5
+      ]
+     },
+     {
+      "id": "F1-r22c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       6
+      ]
+     },
+     {
+      "id": "F1-r22c7",
+      "text": "2026-10-06 10:27",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       7
+      ]
+     },
+     {
+      "id": "F1-r22c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       22,
+       11
+      ]
+     },
+     {
+      "id": "F1-r23c0",
+      "text": "100109",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       0
+      ]
+     },
+     {
+      "id": "F1-r23c1",
+      "text": "2026-10-13",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       1
+      ]
+     },
+     {
+      "id": "F1-r23c2",
+      "text": "15:46",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       2
+      ]
+     },
+     {
+      "id": "F1-r23c3",
+      "text": "940,000.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       3
+      ]
+     },
+     {
+      "id": "F1-r23c4",
+      "text": "ACC_ROTH",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       4
+      ]
+     },
+     {
+      "id": "F1-r23c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       5
+      ]
+     },
+     {
+      "id": "F1-r23c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       6
+      ]
+     },
+     {
+      "id": "F1-r23c7",
+      "text": "2026-10-13 09:34",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       7
+      ]
+     },
+     {
+      "id": "F1-r23c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       23,
+       11
+      ]
+     },
+     {
+      "id": "F1-r24c0",
+      "text": "100113",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       0
+      ]
+     },
+     {
+      "id": "F1-r24c1",
+      "text": "2026-11-20",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       1
+      ]
+     },
+     {
+      "id": "F1-r24c2",
+      "text": "16:59",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       2
+      ]
+     },
+     {
+      "id": "F1-r24c3",
+      "text": "45,320.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       3
+      ]
+     },
+     {
+      "id": "F1-r24c4",
+      "text": "ACC_KUNZ",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       4
+      ]
+     },
+     {
+      "id": "F1-r24c5",
+      "text": "AM_FREI",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       5
+      ]
+     },
+     {
+      "id": "F1-r24c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       6
+      ]
+     },
+     {
+      "id": "F1-r24c7",
+      "text": "2026-11-20 10:41",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       7
+      ]
+     },
+     {
+      "id": "F1-r24c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       24,
+       11
+      ]
+     },
+     {
+      "id": "F1-r25c0",
+      "text": "100117",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       0
+      ]
+     },
+     {
+      "id": "F1-r25c1",
+      "text": "2026-11-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       1
+      ]
+     },
+     {
+      "id": "F1-r25c2",
+      "text": "11:12",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       2
+      ]
+     },
+     {
+      "id": "F1-r25c3",
+      "text": "13,050.00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       3
+      ]
+     },
+     {
+      "id": "F1-r25c4",
+      "text": "ACC_MEIER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       4
+      ]
+     },
+     {
+      "id": "F1-r25c5",
+      "text": "AM_GASSER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       5
+      ]
+     },
+     {
+      "id": "F1-r25c6",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       6
+      ]
+     },
+     {
+      "id": "F1-r25c7",
+      "text": "2026-11-03 09:48",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       7
+      ]
+     },
+     {
+      "id": "F1-r25c11",
+      "text": "Approved · Posted",
+      "page": 0,
+      "box": null,
+      "cell": [
+       25,
+       11
+      ]
+     }
+    ],
+    "layer": "csv"
+   },
+   {
+    "file_id": "F2",
+    "name": "SAP-JE-workflow-configuration-extract.csv",
+    "kind": "csv",
+    "src": "/demo-evidence/R2R-01/SAP-JE-workflow-configuration-extract.csv",
+    "pages": [],
+    "tokens": [
+     {
+      "id": "F2-r0c0",
+      "text": "setting",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       0
+      ]
+     },
+     {
+      "id": "F2-r0c1",
+      "text": "value",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       1
+      ]
+     },
+     {
+      "id": "F2-r0c2",
+      "text": "last_changed",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       2
+      ]
+     },
+     {
+      "id": "F2-r0c3",
+      "text": "change_reference",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       3
+      ]
+     },
+     {
+      "id": "F2-r1c0",
+      "text": "Manual JE approval threshold",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       0
+      ]
+     },
+     {
+      "id": "F2-r1c1",
+      "text": "CHF 10,000",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       1
+      ]
+     },
+     {
+      "id": "F2-r1c2",
+      "text": "2025-11-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       2
+      ]
+     },
+     {
+      "id": "F2-r1c3",
+      "text": "CHG0041877",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       3
+      ]
+     },
+     {
+      "id": "F2-r2c0",
+      "text": "Approver group (level 1)",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       0
+      ]
+     },
+     {
+      "id": "F2-r2c1",
+      "text": "Accounting Manager",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       1
+      ]
+     },
+     {
+      "id": "F2-r2c2",
+      "text": "2025-11-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       2
+      ]
+     },
+     {
+      "id": "F2-r2c3",
+      "text": "CHG0041877",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       3
+      ]
+     },
+     {
+      "id": "F2-r3c0",
+      "text": "Self-approval check (approver must differ from entered_by)",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       0
+      ]
+     },
+     {
+      "id": "F2-r3c1",
+      "text": "Active — hard stop",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       1
+      ]
+     },
+     {
+      "id": "F2-r3c2",
+      "text": "2025-11-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       2
+      ]
+     },
+     {
+      "id": "F2-r3c3",
+      "text": "CHG0041877",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       3
+      ]
+     },
+     {
+      "id": "F2-r4c0",
+      "text": "Second approval threshold (Group Controller)",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       0
+      ]
+     },
+     {
+      "id": "F2-r4c1",
+      "text": "above CHF 1,000,000",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       1
+      ]
+     },
+     {
+      "id": "F2-r4c2",
+      "text": "2025-11-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       2
+      ]
+     },
+     {
+      "id": "F2-r4c3",
+      "text": "CHG0041877",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       3
+      ]
+     },
+     {
+      "id": "F2-r5c0",
+      "text": "Changes to these settings in FY2026",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       0
+      ]
+     },
+     {
+      "id": "F2-r5c1",
+      "text": "None (change log extract 2026-11-10)",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       1
+      ]
+     }
+    ],
+    "layer": "csv"
+   }
+  ]
+ },
+ {
+  "control_id": "ITG-05",
+  "samples": [
+   "2026-05",
+   "2026-10"
+  ],
+  "files": [
+   {
+    "file_id": "F1",
+    "name": "FF-session-review-2026-05.csv",
+    "kind": "csv",
+    "src": "/demo-evidence/ITG-05/FF-session-review-2026-05.csv",
+    "pages": [],
+    "tokens": [
+     {
+      "id": "F1-r0c0",
+      "text": "session_id",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       0
+      ]
+     },
+     {
+      "id": "F1-r0c1",
+      "text": "firefighter_id",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       1
+      ]
+     },
+     {
+      "id": "F1-r0c2",
+      "text": "user",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       2
+      ]
+     },
+     {
+      "id": "F1-r0c3",
+      "text": "start",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       3
+      ]
+     },
+     {
+      "id": "F1-r0c4",
+      "text": "end",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       4
+      ]
+     },
+     {
+      "id": "F1-r0c5",
+      "text": "reason",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       5
+      ]
+     },
+     {
+      "id": "F1-r0c6",
+      "text": "ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       6
+      ]
+     },
+     {
+      "id": "F1-r0c7",
+      "text": "ticket_status",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       7
+      ]
+     },
+     {
+      "id": "F1-r0c8",
+      "text": "review_result",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       8
+      ]
+     },
+     {
+      "id": "F1-r0c9",
+      "text": "escalated_to_cio_on",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       9
+      ]
+     },
+     {
+      "id": "F1-r1c0",
+      "text": "FF-0526-01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       0
+      ]
+     },
+     {
+      "id": "F1-r1c1",
+      "text": "FF_BASIS_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       1
+      ]
+     },
+     {
+      "id": "F1-r1c2",
+      "text": "B.HUBER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       2
+      ]
+     },
+     {
+      "id": "F1-r1c3",
+      "text": "2026-05-04 21:10",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       3
+      ]
+     },
+     {
+      "id": "F1-r1c4",
+      "text": "2026-05-04 22:02",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": "F1-r1c5",
+      "text": "Kernel patch",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       5
+      ]
+     },
+     {
+      "id": "F1-r1c6",
+      "text": "CHG0052210",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       6
+      ]
+     },
+     {
+      "id": "F1-r1c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       7
+      ]
+     },
+     {
+      "id": "F1-r1c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       8
+      ]
+     },
+     {
+      "id": "F1-r2c0",
+      "text": "FF-0526-02",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       0
+      ]
+     },
+     {
+      "id": "F1-r2c1",
+      "text": "FF_FI_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       1
+      ]
+     },
+     {
+      "id": "F1-r2c2",
+      "text": "C.WYSS",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       2
+      ]
+     },
+     {
+      "id": "F1-r2c3",
+      "text": "2026-05-12 08:15",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       3
+      ]
+     },
+     {
+      "id": "F1-r2c4",
+      "text": "2026-05-12 08:41",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       4
+      ]
+     },
+     {
+      "id": "F1-r2c5",
+      "text": "Period reopen",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       5
+      ]
+     },
+     {
+      "id": "F1-r2c6",
+      "text": "INC0098812",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       6
+      ]
+     },
+     {
+      "id": "F1-r2c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       7
+      ]
+     },
+     {
+      "id": "F1-r2c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": "F1-r3c0",
+      "text": "FF-0526-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       0
+      ]
+     },
+     {
+      "id": "F1-r3c1",
+      "text": "FF_BASIS_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       1
+      ]
+     },
+     {
+      "id": "F1-r3c2",
+      "text": "B.HUBER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       2
+      ]
+     },
+     {
+      "id": "F1-r3c3",
+      "text": "2026-05-19 19:30",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       3
+      ]
+     },
+     {
+      "id": "F1-r3c4",
+      "text": "2026-05-19 20:05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       4
+      ]
+     },
+     {
+      "id": "F1-r3c5",
+      "text": "Job repair",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       5
+      ]
+     },
+     {
+      "id": "F1-r3c6",
+      "text": "INC0099140",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": "F1-r3c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       7
+      ]
+     },
+     {
+      "id": "F1-r3c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       8
+      ]
+     },
+     {
+      "id": "F1-r4c0",
+      "text": "FF-0526-04",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       0
+      ]
+     },
+     {
+      "id": "F1-r4c1",
+      "text": "FF_SEC_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       1
+      ]
+     },
+     {
+      "id": "F1-r4c2",
+      "text": "A.STEINER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       2
+      ]
+     },
+     {
+      "id": "F1-r4c3",
+      "text": "2026-05-27 17:02",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       3
+      ]
+     },
+     {
+      "id": "F1-r4c4",
+      "text": "2026-05-27 17:20",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       4
+      ]
+     },
+     {
+      "id": "F1-r4c5",
+      "text": "Role fix",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       5
+      ]
+     },
+     {
+      "id": "F1-r4c6",
+      "text": "CHG0052399",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": "F1-r4c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       7
+      ]
+     },
+     {
+      "id": "F1-r4c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       8
+      ]
+     },
+     {
+      "id": "F1-r5c0",
+      "text": "COMPLETENESS",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       0
+      ]
+     },
+     {
+      "id": "F1-r5c1",
+      "text": "Sessions in SAP firefighter log for May 2026: 4",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       1
+      ]
+     },
+     {
+      "id": "F1-r5c2",
+      "text": "Sessions reviewed: 4",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       2
+      ]
+     },
+     {
+      "id": "F1-r6c0",
+      "text": "REVIEW SIGN-OFF",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       0
+      ]
+     },
+     {
+      "id": "F1-r6c1",
+      "text": "IT Security Officer P. Zürcher",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       1
+      ]
+     },
+     {
+      "id": "F1-r6c2",
+      "text": "signed 2026-06-08",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       2
+      ]
+     },
+     {
+      "id": "F1-r6c3",
+      "text": "stored in ServiceNow RITM0072214",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       3
+      ]
+     }
+    ],
+    "layer": "csv"
+   },
+   {
+    "file_id": "F2",
+    "name": "FF-session-review-2026-10.csv",
+    "kind": "csv",
+    "src": "/demo-evidence/ITG-05/FF-session-review-2026-10.csv",
+    "pages": [],
+    "tokens": [
+     {
+      "id": "F2-r0c0",
+      "text": "session_id",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       0
+      ]
+     },
+     {
+      "id": "F2-r0c1",
+      "text": "firefighter_id",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       1
+      ]
+     },
+     {
+      "id": "F2-r0c2",
+      "text": "user",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       2
+      ]
+     },
+     {
+      "id": "F2-r0c3",
+      "text": "start",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       3
+      ]
+     },
+     {
+      "id": "F2-r0c4",
+      "text": "end",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       4
+      ]
+     },
+     {
+      "id": "F2-r0c5",
+      "text": "reason",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       5
+      ]
+     },
+     {
+      "id": "F2-r0c6",
+      "text": "ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       6
+      ]
+     },
+     {
+      "id": "F2-r0c7",
+      "text": "ticket_status",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       7
+      ]
+     },
+     {
+      "id": "F2-r0c8",
+      "text": "review_result",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       8
+      ]
+     },
+     {
+      "id": "F2-r0c9",
+      "text": "escalated_to_cio_on",
+      "page": 0,
+      "box": null,
+      "cell": [
+       0,
+       9
+      ]
+     },
+     {
+      "id": "F2-r1c0",
+      "text": "FF-1026-01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       0
+      ]
+     },
+     {
+      "id": "F2-r1c1",
+      "text": "FF_BASIS_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       1
+      ]
+     },
+     {
+      "id": "F2-r1c2",
+      "text": "B.HUBER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       2
+      ]
+     },
+     {
+      "id": "F2-r1c3",
+      "text": "2026-10-02 22:00",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       3
+      ]
+     },
+     {
+      "id": "F2-r1c4",
+      "text": "2026-10-02 23:15",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": "F2-r1c5",
+      "text": "Support package",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       5
+      ]
+     },
+     {
+      "id": "F2-r1c6",
+      "text": "CHG0055931",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       6
+      ]
+     },
+     {
+      "id": "F2-r1c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       7
+      ]
+     },
+     {
+      "id": "F2-r1c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       1,
+       8
+      ]
+     },
+     {
+      "id": "F2-r2c0",
+      "text": "FF-1026-02",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       0
+      ]
+     },
+     {
+      "id": "F2-r2c1",
+      "text": "FF_FI_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       1
+      ]
+     },
+     {
+      "id": "F2-r2c2",
+      "text": "C.WYSS",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       2
+      ]
+     },
+     {
+      "id": "F2-r2c3",
+      "text": "2026-10-07 07:50",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       3
+      ]
+     },
+     {
+      "id": "F2-r2c4",
+      "text": "2026-10-07 08:10",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       4
+      ]
+     },
+     {
+      "id": "F2-r2c5",
+      "text": "Posting period",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       5
+      ]
+     },
+     {
+      "id": "F2-r2c6",
+      "text": "INC0104410",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       6
+      ]
+     },
+     {
+      "id": "F2-r2c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       7
+      ]
+     },
+     {
+      "id": "F2-r2c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": "F2-r3c0",
+      "text": "FF-1026-03",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       0
+      ]
+     },
+     {
+      "id": "F2-r3c1",
+      "text": "FF_MM_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       1
+      ]
+     },
+     {
+      "id": "F2-r3c2",
+      "text": "D.ODERMATT",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       2
+      ]
+     },
+     {
+      "id": "F2-r3c3",
+      "text": "2026-10-15 14:22",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       3
+      ]
+     },
+     {
+      "id": "F2-r3c4",
+      "text": "2026-10-15 14:58",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       4
+      ]
+     },
+     {
+      "id": "F2-r3c5",
+      "text": "Stuck IDocs",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       5
+      ]
+     },
+     {
+      "id": "F2-r3c6",
+      "text": "INC0104987",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": "F2-r3c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       7
+      ]
+     },
+     {
+      "id": "F2-r3c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       3,
+       8
+      ]
+     },
+     {
+      "id": "F2-r4c0",
+      "text": "FF-1026-04",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       0
+      ]
+     },
+     {
+      "id": "F2-r4c1",
+      "text": "FF_BASIS_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       1
+      ]
+     },
+     {
+      "id": "F2-r4c2",
+      "text": "E.KELLER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       2
+      ]
+     },
+     {
+      "id": "F2-r4c3",
+      "text": "2026-10-21 18:40",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       3
+      ]
+     },
+     {
+      "id": "F2-r4c4",
+      "text": "2026-10-21 18:52",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       4
+      ]
+     },
+     {
+      "id": "F2-r4c5",
+      "text": "Not stated",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       5
+      ]
+     },
+     {
+      "id": "F2-r4c8",
+      "text": "No ticket — escalated",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       8
+      ]
+     },
+     {
+      "id": "F2-r4c9",
+      "text": "2026-11-09",
+      "page": 0,
+      "box": null,
+      "cell": [
+       4,
+       9
+      ]
+     },
+     {
+      "id": "F2-r5c0",
+      "text": "FF-1026-05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       0
+      ]
+     },
+     {
+      "id": "F2-r5c1",
+      "text": "FF_SEC_01",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       1
+      ]
+     },
+     {
+      "id": "F2-r5c2",
+      "text": "A.STEINER",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       2
+      ]
+     },
+     {
+      "id": "F2-r5c3",
+      "text": "2026-10-28 16:05",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       3
+      ]
+     },
+     {
+      "id": "F2-r5c4",
+      "text": "2026-10-28 16:31",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       4
+      ]
+     },
+     {
+      "id": "F2-r5c5",
+      "text": "Role fix",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       5
+      ]
+     },
+     {
+      "id": "F2-r5c6",
+      "text": "CHG0056102",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       6
+      ]
+     },
+     {
+      "id": "F2-r5c7",
+      "text": "Approved",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": "F2-r5c8",
+      "text": "Matched to approved ticket",
+      "page": 0,
+      "box": null,
+      "cell": [
+       5,
+       8
+      ]
+     },
+     {
+      "id": "F2-r6c0",
+      "text": "COMPLETENESS",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       0
+      ]
+     },
+     {
+      "id": "F2-r6c1",
+      "text": "Sessions in SAP firefighter log for October 2026: 5",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       1
+      ]
+     },
+     {
+      "id": "F2-r6c2",
+      "text": "Sessions reviewed: 5",
+      "page": 0,
+      "box": null,
+      "cell": [
+       6,
+       2
+      ]
+     },
+     {
+      "id": "F2-r7c0",
+      "text": "REVIEW SIGN-OFF",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       0
+      ]
+     },
+     {
+      "id": "F2-r7c1",
+      "text": "IT Security Officer P. Zürcher",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       1
+      ]
+     },
+     {
+      "id": "F2-r7c2",
+      "text": "signed 2026-11-06",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       2
+      ]
+     },
+     {
+      "id": "F2-r7c3",
+      "text": "stored in ServiceNow RITM0075530",
+      "page": 0,
+      "box": null,
+      "cell": [
+       7,
+       3
+      ]
+     }
+    ],
+    "layer": "csv"
+   }
+  ]
+ },
+ {
+  "control_id": "ITG-06",
+  "samples": [
+   "PARAM-2026-05-18"
+  ],
+  "files": [
+   {
+    "file_id": "F1",
+    "name": "password-parameters-2026-05-18.png",
+    "kind": "image",
+    "src": "/demo-evidence/ITG-06/password-parameters-2026-05-18.png",
+    "pages": [
+     {
+      "image": "/demo-evidence/ITG-06/password-parameters-2026-05-18.png",
+      "aspect": 0.5625
+     }
+    ],
+    "tokens": [
+     {
+      "id": "F1-t1",
+      "text": "System parameter display — S4P / client 100",
+      "page": 0,
+      "box": [
+       0.0141,
+       0.0167,
+       0.2219,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t2",
+      "text": "Extract 2026-05-18 09:12",
+      "page": 0,
+      "box": [
+       0.8607,
+       0.0167,
+       0.1252,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t3",
+      "text": "SYNTHETIC DEMO EVIDENCE — fictional company, invented data",
+      "page": 0,
+      "box": [
+       0.0258,
+       0.0806,
+       0.2695,
+       0.0167
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t4",
+      "text": "Active profile parameters — password and logon (applied at every logon)",
+      "page": 0,
+      "box": [
+       0.0188,
+       0.1278,
+       0.4874,
+       0.0306
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t5",
+      "text": "Parameter",
+      "page": 0,
+      "box": [
+       0.025,
+       0.1944,
+       0.0625,
+       0.0208
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t6",
+      "text": "Description",
+      "page": 0,
+      "box": [
+       0.3828,
+       0.1944,
+       0.0697,
+       0.0208
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t7",
+      "text": "Active value",
+      "page": 0,
+      "box": [
+       0.7033,
+       0.1944,
+       0.0726,
+       0.0208
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t8",
+      "text": "Status",
+      "page": 0,
+      "box": [
+       0.8815,
+       0.1944,
+       0.0381,
+       0.0208
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t9",
+      "text": "login/min_password_lng",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.2389,
+       0.1185,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t10",
+      "text": "Minimum password length",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.2389,
+       0.1293,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t11",
+      "text": "12",
+      "page": 0,
+      "box": [
+       0.8553,
+       0.2389,
+       0.0122,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t12",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.2389,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t13",
+      "text": "login/min_password_letters",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.2875,
+       0.1339,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t14",
+      "text": "Minimum letters",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.2875,
+       0.0784,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t15",
+      "text": "1",
+      "page": 0,
+      "box": [
+       0.8614,
+       0.2875,
+       0.0061,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t16",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.2875,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t17",
+      "text": "login/min_password_digits",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.3361,
+       0.1302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t18",
+      "text": "Minimum digits",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.3361,
+       0.0748,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t19",
+      "text": "1",
+      "page": 0,
+      "box": [
+       0.8614,
+       0.3361,
+       0.0061,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t20",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.3361,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t21",
+      "text": "login/min_password_specials",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.3847,
+       0.1436,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t22",
+      "text": "Minimum special characters",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.3847,
+       0.1374,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t23",
+      "text": "1",
+      "page": 0,
+      "box": [
+       0.8614,
+       0.3847,
+       0.0061,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t24",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.3847,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t25",
+      "text": "login/password_expiration_time",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.4333,
+       0.1552,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t26",
+      "text": "Password expiry (days)",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.4333,
+       0.113,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t27",
+      "text": "90",
+      "page": 0,
+      "box": [
+       0.8553,
+       0.4333,
+       0.0122,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t28",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.4333,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t29",
+      "text": "login/fails_to_user_lock",
+      "page": 0,
+      "box": [
+       0.0266,
+       0.4819,
+       0.114,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t30",
+      "text": "Failed logons before lock",
+      "page": 0,
+      "box": [
+       0.3844,
+       0.4819,
+       0.1228,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t31",
+      "text": "5",
+      "page": 0,
+      "box": [
+       0.8614,
+       0.4819,
+       0.0061,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t32",
+      "text": "Active",
+      "page": 0,
+      "box": [
+       0.8831,
+       0.4819,
+       0.0302,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t33",
+      "text": "Stored in ITGC configuration baseline: S4P / 2026-05-18 / password-parameters",
+      "page": 0,
+      "box": [
+       0.0188,
+       0.5347,
+       0.3936,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t34",
+      "text": "Post-upgrade comparison to Security Standard ISS-07 v3.1 (upgrade 2026-05-16): no differences",
+      "page": 0,
+      "box": [
+       0.0188,
+       0.5736,
+       0.4766,
+       0.0222
+      ],
+      "cell": null
+     },
+     {
+      "id": "F1-t35",
+      "text": "Compared and signed off by IT Security Officer P. Zürcher on 2026-05-19",
+      "page": 0,
+      "box": [
+       0.0188,
+       0.6125,
+       0.3575,
+       0.0222
+      ],
+      "cell": null
+     }
+    ],
+    "layer": "generator"
+   }
+  ]
+ }
+]

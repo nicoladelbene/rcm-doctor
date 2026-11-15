@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
+import { controlForEvidencePrompt, layerForPrompt, type EvidencePack } from "./evidence";
 import { ATTRIBUTE_CHECKS, type Control } from "./schema";
+import type { TestScript } from "./testscript";
 
 import { DEFAULT_MODEL, PROMPT_VERSION } from "./models";
 export { DEFAULT_MODEL, PROMPT_VERSION };
@@ -166,7 +168,7 @@ export async function post(opts: LlmCallOptions, body: Record<string, unknown>) 
  */
 export async function structuredBatch<T extends { control_id: string }>(args: {
   ids: string[];
-  messages: (repairNote?: string) => { role: string; content: string }[];
+  messages: (repairNote?: string) => { role: string; content: unknown }[];
   itemSchema: z.ZodType<T>;
   jsonSchema: Record<string, unknown>;
   maxTokens: number;
@@ -307,4 +309,151 @@ export async function testScriptBatchWithLlm(items: TestScriptInput[], opts: Llm
     maxTokens: 1500 * items.length + 500,
     opts,
   });
+}
+
+/* ------------------------------------------------------------------ */
+/* Week 3: evidence tester (prompt evidence.v1)                        */
+/* ------------------------------------------------------------------ */
+
+const TICK_RESULTS = ["tick", "exception", "not_evidenced", "n_a"] as const;
+const LlmEvidenceSchema = z.object({
+  control_id: z.string(),
+  samples: z.array(z.string()),
+  items: z.array(
+    z.object({
+      sample_id: z.string(),
+      attribute_id: z.string(),
+      result: z.enum(TICK_RESULTS),
+      refs: z.array(z.string()),
+      quote: z.string().nullable(),
+      note: z.string(),
+    }),
+  ),
+  summary: z.string(),
+});
+
+const EVIDENCE_JSON_SCHEMA = {
+  name: "rcm_tick_and_tie",
+  strict: true,
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: ["results"],
+    properties: {
+      results: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["control_id", "samples", "items", "summary"],
+          properties: {
+            control_id: { type: "string" },
+            samples: { type: "array", items: { type: "string" } },
+            items: {
+              type: "array",
+              items: {
+                type: "object",
+                additionalProperties: false,
+                required: ["sample_id", "attribute_id", "result", "refs", "quote", "note"],
+                properties: {
+                  sample_id: { type: "string" },
+                  attribute_id: { type: "string" },
+                  result: { type: "string", enum: [...TICK_RESULTS] },
+                  refs: { type: "array", items: { type: "string" } },
+                  quote: { type: ["string", "null"] },
+                  note: { type: "string" },
+                },
+              },
+            },
+            summary: { type: "string" },
+          },
+        },
+      },
+    },
+  },
+};
+
+export interface EvidenceInput {
+  control: Control;
+  script: TestScript;
+  pack: EvidencePack;
+}
+
+/** One control per call: the evidence text layer is the bulk of the prompt. Images are attached for screenshots. */
+export function buildEvidenceMessages({ control, script, pack }: EvidenceInput, repairNote?: string) {
+  const files = pack.files.map((f) => `### Evidence ${f.file_id}: ${f.name} (${f.kind}${f.layer === "model-ocr" ? ", text transcribed from the image" : ""})\n${layerForPrompt(f)}`).join("\n\n");
+  const text =
+    `Tick & tie this control. Respond with JSON {"results": [ONE result for control_id ${control.control_id}]}.\n\n` +
+    `## Control and test attributes\n${JSON.stringify(controlForEvidencePrompt(control, script), null, 1)}\n\n` +
+    `## Sample selection\n${pack.samples.length ? JSON.stringify(pack.samples) : "(none given — identify the items in the evidence)"}\n\n` +
+    `## Evidence\n${files}` +
+    (repairNote ? `\n\nYour previous answer was invalid: ${repairNote}\nReturn valid JSON only.` : "");
+  const images = pack.files.filter((f) => f.kind === "image").flatMap((f) => f.pages.map((p) => p.image).filter((u): u is string => !!u && u.startsWith("data:")));
+  const content = images.length ? [{ type: "text", text }, ...images.map((url) => ({ type: "image_url", image_url: { url } }))] : text;
+  return [
+    { role: "system", content: loadPrompt("evidence.v1") },
+    { role: "user", content },
+  ];
+}
+
+export async function evidenceWithLlm(input: EvidenceInput, opts: LlmCallOptions) {
+  const [r] = await structuredBatch({
+    ids: [input.control.control_id],
+    // content may be multimodal (array); structuredBatch passes messages through unchanged.
+    messages: (repair) => buildEvidenceMessages(input, repair),
+    itemSchema: LlmEvidenceSchema,
+    jsonSchema: EVIDENCE_JSON_SCHEMA,
+    maxTokens: 16000,
+    opts,
+  });
+  return r;
+}
+
+/* Screenshot without a text layer: the vision model transcribes it (boxes approximate, flagged as model-ocr). */
+const OcrSchema = z.object({ lines: z.array(z.object({ text: z.string(), box: z.array(z.number()).length(4) })) });
+const OCR_JSON_SCHEMA = {
+  name: "ocr_lines",
+  strict: true,
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: ["lines"],
+    properties: {
+      lines: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["text", "box"],
+          properties: { text: { type: "string" }, box: { type: "array", items: { type: "number" } } },
+        },
+      },
+    },
+  },
+};
+
+export async function transcribeImage(dataUrl: string, opts: LlmCallOptions): Promise<{ text: string; box: [number, number, number, number] }[]> {
+  const content = await post(opts, {
+    model: opts.model || DEFAULT_MODEL,
+    temperature: 0,
+    max_tokens: 8000,
+    response_format: { type: "json_schema", json_schema: OCR_JSON_SCHEMA },
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text:
+              'Transcribe every line or table cell of text in this screenshot, top to bottom, exactly as written. For each, give its bounding box as [x, y, width, height] in fractions of the image size (0..1). Respond with JSON {"lines": [{"text": "...", "box": [x, y, w, h]}]}.',
+          },
+          { type: "image_url", image_url: { url: dataUrl } },
+        ],
+      },
+    ],
+  });
+  const parsed = OcrSchema.parse(extractJson(content));
+  return parsed.lines
+    .filter((l) => l.text.trim())
+    .map((l) => ({ text: l.text.trim(), box: l.box.map((v) => Math.min(1, Math.max(0, v))) as [number, number, number, number] }));
 }

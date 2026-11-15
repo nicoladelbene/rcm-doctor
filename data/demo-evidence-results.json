@@ -1,0 +1,2077 @@
+{
+ "generated_at": "2026-11-15T15:05:42.454Z",
+ "model": "anthropic/claude-sonnet-5.5",
+ "prompt_version": "evidence.v1",
+ "source": "data/evidence/packs.json",
+ "duration_seconds": 50.7,
+ "tests": [
+  {
+   "control_id": "P2P-05",
+   "samples": [
+    "2026-03",
+    "2026-09"
+   ],
+   "ticks": [
+    {
+     "sample_id": "2026-03",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Month-end Tue 31.03.2026; signed by L. Brunner on Thu 02.04.2026 = 2nd business day (≤5); report selection covers all open items on account 191100.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t47"
+      ],
+      "text": "Date: 02.04.2026"
+     }
+    },
+    {
+     "sample_id": "2026-03",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Qualifying items 5000018822 (124 days), 5000019310 (CHF 31,200) and 5000019601 (96 days) all carry investigation notes with a conclusion; the other two items do not qualify.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t28"
+      ],
+      "text": "Price difference CHF 1,200; credit note requested"
+     }
+    },
+    {
+     "sample_id": "2026-03",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Approval at 10:14 predates posting at 15:40 on the same day.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t44"
+      ],
+      "text": "approved by Accounting Manager R. Gasser on 02.04.2026 10:14; posted 02.04.2026 15:40"
+     }
+    },
+    {
+     "sample_id": "2026-03",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Signed report with investigation notes is filed in the March 2026 close folder.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t48"
+      ],
+      "text": "Filed: SharePoint › Finance › Month-end close › 2026-03 › GRIR"
+     }
+    },
+    {
+     "sample_id": "2026-09",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Month-end Wed 30.09.2026; 01.10 Thu = 1, 02.10 Fri = 2, signed Mon 05.10 = 3rd business day (≤5); report covers all open items on account 191100.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-t42"
+      ],
+      "text": "Date: 05.10.2026"
+     }
+    },
+    {
+     "sample_id": "2026-09",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Qualifying items 5000024410 (103 days) and 5000024588 (CHF 58,400) have notes with conclusions; 5000024532 at CHF 24,980 and 61 days is below both thresholds.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-t32"
+      ],
+      "text": "Invoice received 30.09.2026, matched 02.10.2026"
+     }
+    },
+    {
+     "sample_id": "2026-09",
+     "attribute_id": "C",
+     "result": "n_a",
+     "note": "No corrections were posted in September 2026, so there is nothing to approve.",
+     "citation": null
+    },
+    {
+     "sample_id": "2026-09",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Signed report with investigation notes is filed in the September 2026 close folder.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-t43"
+      ],
+      "text": "Filed: SharePoint › Finance › Month-end close › 2026-09 › GRIR"
+     }
+    }
+   ],
+   "conclusion": "no_exceptions",
+   "summary": "Both sampled months (2026-03 and 2026-09) meet all applicable attributes: reviews were signed on the 2nd and 3rd business day, all qualifying items were investigated, and the reports are filed. No exceptions were identified; attribute C is n/a for 2026-09 because no corrections were posted.",
+   "model": "anthropic/claude-sonnet-5.5",
+   "prompt_version": "evidence.v1"
+  },
+  {
+   "control_id": "TRE-01",
+   "samples": [
+    "BAR-2026-01",
+    "BAR-2026-02",
+    "BAR-2026-03",
+    "BAR-2026-04"
+   ],
+   "ticks": [
+    {
+     "sample_id": "BAR-2026-01",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Treasurer signed Mon 12.01 and CFO Tue 13.01, both before the bank instruction on Wed 14.01.2026.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t24"
+      ],
+      "text": "Signed: 13.01.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-01",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Group Treasurer S. Imhof and CFO D. Vogt both signed and are two different people.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t20"
+      ],
+      "text": "S. Imhof"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-01",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Bank confirmed Tue 20.01, register updated Wed 21.01 = 1 business day, within 2.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t31"
+      ],
+      "text": "21.01.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-01",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Approved request is filed in the treasury SharePoint folder, with register update recorded on the form.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t34"
+      ],
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-01"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-02",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Both signatures dated 17.03.2026, before the bank instruction on 18.03.2026.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t55",
+       "F1-t58"
+      ],
+      "text": "Signed: 17.03.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-02",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Group Treasurer S. Imhof and CFO D. Vogt both signed and are two different people.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t57"
+      ],
+      "text": "D. Vogt"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-02",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Confirmed Thu 26.03, updated Mon 30.03 (Fri 27 = 1, Mon 30 = 2) = 2 business days, within 2.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t65"
+      ],
+      "text": "30.03.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-02",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Approved request is filed in the treasury SharePoint folder, with register update recorded on the form.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t68"
+      ],
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-02"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-03",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Signed Tue 02.06 and Wed 03.06, before the bank instruction on Thu 04.06.2026.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t92"
+      ],
+      "text": "Signed: 03.06.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-03",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Group Treasurer S. Imhof and CFO D. Vogt both signed and are two different people.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t88"
+      ],
+      "text": "S. Imhof"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-03",
+     "attribute_id": "C",
+     "result": "exception",
+     "note": "Confirmed Wed 10.06, updated Thu 18.06 = 6 business days (11, 12, 15, 16, 17, 18) > 2.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t99"
+      ],
+      "text": "18.06.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-03",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Approved request is filed in the treasury SharePoint folder, with register update recorded on the form.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t102"
+      ],
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-03"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-04",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Signed Tue 22.09 and Wed 23.09, before the bank instruction on Thu 24.09.2026.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t126"
+      ],
+      "text": "Signed: 23.09.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-04",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Group Treasurer S. Imhof and CFO D. Vogt both signed and are two different people.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t125"
+      ],
+      "text": "D. Vogt"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-04",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Confirmed Tue 29.09, updated Wed 30.09 = 1 business day, within 2.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t133"
+      ],
+      "text": "30.09.2026"
+     }
+    },
+    {
+     "sample_id": "BAR-2026-04",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Approved request is filed in the treasury SharePoint folder, with register update recorded on the form.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t136"
+      ],
+      "text": "Filed: SharePoint › Treasury › Bank accounts › 2026 › BAR-2026-04"
+     }
+    }
+   ],
+   "conclusion": "exceptions",
+   "summary": "The control operated effectively for 3 of 4 samples; approvals by both the Group Treasurer and CFO preceded the bank instruction in all items and all requests are filed in SharePoint. One exception: BAR-2026-03, attribute C, where the register was updated 6 business days after the bank confirmation (10.06 to 18.06.2026) instead of within 2.",
+   "model": "anthropic/claude-sonnet-5.5",
+   "prompt_version": "evidence.v1"
+  },
+  {
+   "control_id": "R2R-01",
+   "samples": [
+    "100021",
+    "100025",
+    "100029",
+    "100033",
+    "100037",
+    "100041",
+    "100045",
+    "100049",
+    "100053",
+    "100057",
+    "100061",
+    "100065",
+    "100069",
+    "100073",
+    "100077",
+    "100081",
+    "100085",
+    "100089",
+    "100093",
+    "100097",
+    "100101",
+    "100105",
+    "100109",
+    "100113",
+    "100117"
+   ],
+   "ticks": [
+    {
+     "sample_id": "100021",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 18,420.00 > 10,000; Accounting Manager approval 09:00 before posting 11:00 on the same day.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r1c7"
+      ],
+      "text": "2026-01-03 09:00"
+     }
+    },
+    {
+     "sample_id": "100021",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r1c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100021",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100021",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 18,420.00 is not above CHF 1m; no Group Controller approval required.",
+     "citation": null
+    },
+    {
+     "sample_id": "100021",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable with status Approved · Posted.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r1c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100025",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 245,000.00 > 10,000; approval 10:07 before posting 12:13.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r2c7"
+      ],
+      "text": "2026-01-10 10:07"
+     }
+    },
+    {
+     "sample_id": "100025",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r2c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100025",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100025",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 245,000.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100025",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r2c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100029",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 12,980.50 > 10,000; approval 09:14 before posting 13:26.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r3c7"
+      ],
+      "text": "2026-01-17 09:14"
+     }
+    },
+    {
+     "sample_id": "100029",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r3c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100029",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100029",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 12,980.50 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100029",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r3c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100033",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Accounting Manager approval 10:21 before posting 14:39.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r4c7"
+      ],
+      "text": "2026-02-24 10:21"
+     }
+    },
+    {
+     "sample_id": "100033",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r4c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100033",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100033",
+     "attribute_id": "D",
+     "result": "exception",
+     "note": "CHF 1,412,500.00 > 1m but only the Accounting Manager approved; no Group Controller approval recorded (approver_2 blank) before posting.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r4c3"
+      ],
+      "text": "1,412,500.00"
+     }
+    },
+    {
+     "sample_id": "100033",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r4c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100037",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 33,750.00 > 10,000; approval 09:28 before posting 15:52.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r5c7"
+      ],
+      "text": "2026-02-07 09:28"
+     }
+    },
+    {
+     "sample_id": "100037",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r5c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100037",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100037",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 33,750.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100037",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r5c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100041",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 61,200.00 > 10,000; approval 10:35 before posting 16:05.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r6c7"
+      ],
+      "text": "2026-03-14 10:35"
+     }
+    },
+    {
+     "sample_id": "100041",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r6c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100041",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100041",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 61,200.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100041",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r6c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100045",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 10,450.00 > 10,000; approval 09:42 before posting 11:18.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r7c7"
+      ],
+      "text": "2026-03-21 09:42"
+     }
+    },
+    {
+     "sample_id": "100045",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r7c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100045",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100045",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 10,450.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100045",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r7c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100049",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 1,000,000.00 > 10,000; approval 10:49 before posting 12:31.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r8c7"
+      ],
+      "text": "2026-04-04 10:49"
+     }
+    },
+    {
+     "sample_id": "100049",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r8c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100049",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100049",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 1,000,000.00 is exactly 1m, not strictly above, so Group Controller approval is not required.",
+     "citation": null
+    },
+    {
+     "sample_id": "100049",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r8c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100053",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 27,300.00 > 10,000; approval 09:56 before posting 13:44.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r9c7"
+      ],
+      "text": "2026-04-11 09:56"
+     }
+    },
+    {
+     "sample_id": "100053",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r9c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100053",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100053",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 27,300.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100053",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r9c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100057",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Accounting Manager approval 10:03 before posting 14:57.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r10c7"
+      ],
+      "text": "2026-04-18 10:03"
+     }
+    },
+    {
+     "sample_id": "100057",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_FREI (and GC_LEHMANN).",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r10c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100057",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100057",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "CHF 2,350,000.00 > 1m; Group Controller GC_LEHMANN approved 10:39 before posting 14:57.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r10c10"
+      ],
+      "text": "2026-04-18 10:39"
+     }
+    },
+    {
+     "sample_id": "100057",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r10c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100061",
+     "attribute_id": "A",
+     "result": "exception",
+     "note": "CHF 86,300.00 > 10,000; approval at 16:05 is after posting at 11:32 on the same day, so not approved before posting.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r11c7"
+      ],
+      "text": "2026-05-25 16:05"
+     }
+    },
+    {
+     "sample_id": "100061",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r11c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100061",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100061",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 86,300.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100061",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r11c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100065",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 14,999.90 > 10,000; approval 10:17 before posting 16:23.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r12c7"
+      ],
+      "text": "2026-05-08 10:17"
+     }
+    },
+    {
+     "sample_id": "100065",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r12c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100065",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100065",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 14,999.90 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100065",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r12c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100069",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 402,180.00 > 10,000; approval 09:24 before posting 11:36.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r13c7"
+      ],
+      "text": "2026-06-15 09:24"
+     }
+    },
+    {
+     "sample_id": "100069",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r13c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100069",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100069",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 402,180.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100069",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r13c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100073",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 19,875.00 > 10,000; approval 10:31 before posting 12:49.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r14c7"
+      ],
+      "text": "2026-06-22 10:31"
+     }
+    },
+    {
+     "sample_id": "100073",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r14c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100073",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100073",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 19,875.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100073",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r14c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100077",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 73,640.00 > 10,000; approval 09:38 before posting 13:02.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r15c7"
+      ],
+      "text": "2026-07-05 09:38"
+     }
+    },
+    {
+     "sample_id": "100077",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r15c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100077",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100077",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 73,640.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100077",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r15c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100081",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Accounting Manager approval 10:45 before posting 14:15.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r16c7"
+      ],
+      "text": "2026-07-12 10:45"
+     }
+    },
+    {
+     "sample_id": "100081",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approvers AM_FREI and GC_LEHMANN.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r16c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100081",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100081",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "CHF 1,180,400.00 > 1m; Group Controller approved 10:45 before posting 14:15.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r16c10"
+      ],
+      "text": "2026-07-12 10:45"
+     }
+    },
+    {
+     "sample_id": "100081",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r16c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100085",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 11,210.00 > 10,000; approval 09:52 before posting 15:28.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r17c7"
+      ],
+      "text": "2026-08-19 09:52"
+     }
+    },
+    {
+     "sample_id": "100085",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r17c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100085",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100085",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 11,210.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100085",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r17c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100089",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 58,000.00 > 10,000; approval 10:59 before posting 16:41.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r18c7"
+      ],
+      "text": "2026-08-26 10:59"
+     }
+    },
+    {
+     "sample_id": "100089",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r18c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100089",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100089",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 58,000.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100089",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r18c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100093",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 125,900.00 > 10,000; approval 09:06 before posting 11:54.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r19c7"
+      ],
+      "text": "2026-08-09 09:06"
+     }
+    },
+    {
+     "sample_id": "100093",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r19c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100093",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100093",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 125,900.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100093",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r19c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100097",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 22,460.00 > 10,000; approval 10:13 before posting 12:07.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r20c7"
+      ],
+      "text": "2026-09-16 10:13"
+     }
+    },
+    {
+     "sample_id": "100097",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r20c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100097",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100097",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 22,460.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100097",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r20c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100101",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 39,990.00 > 10,000; approval 09:20 before posting 13:20.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r21c7"
+      ],
+      "text": "2026-09-23 09:20"
+     }
+    },
+    {
+     "sample_id": "100101",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r21c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100101",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100101",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 39,990.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100101",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r21c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100105",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 16,700.00 > 10,000; approval 10:27 before posting 14:33.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r22c7"
+      ],
+      "text": "2026-10-06 10:27"
+     }
+    },
+    {
+     "sample_id": "100105",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r22c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100105",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100105",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 16,700.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100105",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r22c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100109",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 940,000.00 > 10,000; approval 09:34 before posting 15:46.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r23c7"
+      ],
+      "text": "2026-10-13 09:34"
+     }
+    },
+    {
+     "sample_id": "100109",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_ROTH differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r23c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100109",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100109",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 940,000.00 is below CHF 1m; no Group Controller approval required.",
+     "citation": null
+    },
+    {
+     "sample_id": "100109",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r23c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100113",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 45,320.00 > 10,000; approval 10:41 before posting 16:59.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r24c7"
+      ],
+      "text": "2026-11-20 10:41"
+     }
+    },
+    {
+     "sample_id": "100113",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_KUNZ differs from approver AM_FREI.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r24c5"
+      ],
+      "text": "AM_FREI"
+     }
+    },
+    {
+     "sample_id": "100113",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100113",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 45,320.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100113",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r24c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    },
+    {
+     "sample_id": "100117",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "CHF 13,050.00 > 10,000; approval 09:48 before posting 11:12.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r25c7"
+      ],
+      "text": "2026-11-03 09:48"
+     }
+    },
+    {
+     "sample_id": "100117",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Preparer ACC_MEIER differs from approver AM_GASSER.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r25c5"
+      ],
+      "text": "AM_GASSER"
+     }
+    },
+    {
+     "sample_id": "100117",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Self-approval check is an active hard stop and the change log extract shows no changes to the workflow settings in FY2026.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r3c1"
+      ],
+      "text": "Active — hard stop"
+     }
+    },
+    {
+     "sample_id": "100117",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "CHF 13,050.00 is not above CHF 1m.",
+     "citation": null
+    },
+    {
+     "sample_id": "100117",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "Workflow history is retrievable.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r25c11"
+      ],
+      "text": "Approved · Posted"
+     }
+    }
+   ],
+   "conclusion": "exceptions",
+   "summary": "Of 25 sampled manual journal entries, 23 met all applicable attributes. Two exceptions were noted: 100061 (attribute A) was approved at 16:05, after it was posted at 11:32 on 2026-05-25, and 100033 (attribute D) was CHF 1,412,500.00 and posted with no Group Controller approval.",
+   "model": "anthropic/claude-sonnet-5.5",
+   "prompt_version": "evidence.v1"
+  },
+  {
+   "control_id": "ITG-05",
+   "samples": [
+    "2026-05",
+    "2026-10"
+   ],
+   "ticks": [
+    {
+     "sample_id": "2026-05",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Month-end is Sun 31.05.2026; signed Mon 08.06.2026 = 6 business days, which is within 10.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r6c2"
+      ],
+      "text": "signed 2026-06-08"
+     }
+    },
+    {
+     "sample_id": "2026-05",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "The SAP log shows 4 sessions and 4 were reviewed; the count sits inside the review file, so no separate independent extract was seen.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r5c1"
+      ],
+      "text": "Sessions in SAP firefighter log for May 2026: 4"
+     }
+    },
+    {
+     "sample_id": "2026-05",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "All 4 sessions carry a ticket with status Approved and the review result is 'Matched to approved ticket'.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r1c7",
+       "F1-r4c7",
+       "F1-r4c8"
+      ],
+      "text": "Matched to approved ticket"
+     }
+    },
+    {
+     "sample_id": "2026-05",
+     "attribute_id": "D",
+     "result": "n_a",
+     "note": "All May sessions have an approved ticket, so no CIO escalation was required.",
+     "citation": null
+    },
+    {
+     "sample_id": "2026-05",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "The signed review is stored in ServiceNow under RITM0072214.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-r6c3"
+      ],
+      "text": "stored in ServiceNow RITM0072214"
+     }
+    },
+    {
+     "sample_id": "2026-10",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Month-end is Sat 31.10.2026; signed Fri 06.11.2026 = 5 business days (Mon 02.11 is day 1), which is within 10.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r7c2"
+      ],
+      "text": "signed 2026-11-06"
+     }
+    },
+    {
+     "sample_id": "2026-10",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "The SAP log shows 5 sessions and 5 were reviewed; the count sits inside the review file, so no separate independent extract was seen.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r6c1"
+      ],
+      "text": "Sessions in SAP firefighter log for October 2026: 5"
+     }
+    },
+    {
+     "sample_id": "2026-10",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "4 sessions are matched to approved tickets; FF-1026-04 has no ticket and was correctly flagged as unticketed and escalated as the control prescribes.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r4c8"
+      ],
+      "text": "No ticket — escalated"
+     }
+    },
+    {
+     "sample_id": "2026-10",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Unticketed FF-1026-04 was escalated Mon 09.11.2026, 1 business day after the Fri 06.11.2026 review, which is within 2.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r4c9"
+      ],
+      "text": "2026-11-09"
+     }
+    },
+    {
+     "sample_id": "2026-10",
+     "attribute_id": "E",
+     "result": "tick",
+     "note": "The signed review is stored in ServiceNow under RITM0075530.",
+     "citation": {
+      "file_id": "F2",
+      "token_ids": [
+       "F2-r7c3"
+      ],
+      "text": "stored in ServiceNow RITM0075530"
+     }
+    }
+   ],
+   "conclusion": "no_exceptions",
+   "summary": "The control operated effectively for both sampled months: reviews were signed within 10 business days, covered the complete log, were matched to approved tickets and were retained in ServiceNow. No exceptions; the one unticketed October session (FF-1026-04) was escalated to the CIO within 2 business days, and completeness rests on the count stated in the review file rather than a separate SAP extract.",
+   "model": "anthropic/claude-sonnet-5.5",
+   "prompt_version": "evidence.v1"
+  },
+  {
+   "control_id": "ITG-06",
+   "samples": [
+    "PARAM-2026-05-18"
+   ],
+   "ticks": [
+    {
+     "sample_id": "PARAM-2026-05-18",
+     "attribute_id": "A",
+     "result": "tick",
+     "note": "Active values match the control: min length 12, expiry 90 days, lock after 5 failed attempts, and complexity parameters (letters, digits, specials) set to 1 each.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t9"
+      ],
+      "text": "login/min_password_lng"
+     }
+    },
+    {
+     "sample_id": "PARAM-2026-05-18",
+     "attribute_id": "B",
+     "result": "tick",
+     "note": "Display shows the active profile parameters, all with status Active and applied at every logon.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t4",
+       "F1-t12"
+      ],
+      "text": "Active profile parameters — password and logon (applied at every logon)"
+     }
+    },
+    {
+     "sample_id": "PARAM-2026-05-18",
+     "attribute_id": "C",
+     "result": "tick",
+     "note": "Baseline extract dated 2026-05-18 exists and matches the live extract taken 2026-05-18 09:12.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t33"
+      ],
+      "text": "Stored in ITGC configuration baseline: S4P / 2026-05-18 / password-parameters"
+     }
+    },
+    {
+     "sample_id": "PARAM-2026-05-18",
+     "attribute_id": "D",
+     "result": "tick",
+     "note": "Upgrade of 2026-05-16 was compared to ISS-07 v3.1 with no differences and signed off by the ITSO on 2026-05-19, the next business day (Tue), so there is nothing to resolve.",
+     "citation": {
+      "file_id": "F1",
+      "token_ids": [
+       "F1-t35"
+      ],
+      "text": "Compared and signed off by IT Security Officer P. Zürcher on 2026-05-19"
+     }
+    }
+   ],
+   "conclusion": "no_exceptions",
+   "summary": "All four attributes are met for the sampled extract; the password parameters agree to the standard, are active at logon, are stored in the baseline, and were compared and signed off after the 2026-05-16 upgrade. No exceptions noted.",
+   "model": "anthropic/claude-sonnet-5.5",
+   "prompt_version": "evidence.v1"
+  }
+ ]
+}

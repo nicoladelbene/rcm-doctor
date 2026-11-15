@@ -9,7 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "eval": "tsx scripts/eval.ts",
+    "eval": "tsx scripts/eval.ts && tsx scripts/eval-evidence.ts",
     "gen:demo": "tsx scripts/generate-demo-rcm.ts",
     "precompute": "tsx scripts/precompute-demo.ts",
     "record:demo": "tsx scripts/record-demo.ts",
@@ -17,7 +17,10 @@
     "gen:holdout": "tsx scripts/generate-holdout.ts",
     "review:holdout": "tsx scripts/precompute-demo.ts --input data/holdout/holdout-rcm.xlsx --out data/holdout/holdout-results.json",
     "eval:holdout": "tsx scripts/eval.ts --set holdout",
-    "precompute:testscripts": "tsx scripts/precompute-testscripts.ts"
+    "precompute:testscripts": "tsx scripts/precompute-testscripts.ts",
+    "gen:evidence": "tsx scripts/generate-evidence.ts",
+    "precompute:evidence": "tsx scripts/precompute-evidence.ts",
+    "eval:evidence": "tsx scripts/eval-evidence.ts"
   },
   "dependencies": {
     "next": "16.4.6",

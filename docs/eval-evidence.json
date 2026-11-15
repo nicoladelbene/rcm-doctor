@@ -1,0 +1,69 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt_version": "evidence.v1",
+  "controls": 5,
+  "cells": 163,
+  "planted": 3,
+  "detected": 3,
+  "detectedWithBox": 3,
+  "recall": 1,
+  "cleanCells": 160,
+  "falseExceptions": 0,
+  "falseExceptionRate": 0,
+  "unresolved": 0,
+  "conclusionsCorrect": 5,
+  "traceability": {
+    "results": 139,
+    "cited": 139,
+    "rate": 1
+  },
+  "perControl": [
+    {
+      "control_id": "P2P-05",
+      "expected": "no_exceptions",
+      "got": "no_exceptions",
+      "planted": 0,
+      "detected": 0,
+      "falseExceptions": 0,
+      "unresolved": 0
+    },
+    {
+      "control_id": "TRE-01",
+      "expected": "exceptions",
+      "got": "exceptions",
+      "planted": 1,
+      "detected": 1,
+      "falseExceptions": 0,
+      "unresolved": 0
+    },
+    {
+      "control_id": "R2R-01",
+      "expected": "exceptions",
+      "got": "exceptions",
+      "planted": 2,
+      "detected": 2,
+      "falseExceptions": 0,
+      "unresolved": 0
+    },
+    {
+      "control_id": "ITG-05",
+      "expected": "no_exceptions",
+      "got": "no_exceptions",
+      "planted": 0,
+      "detected": 0,
+      "falseExceptions": 0,
+      "unresolved": 0
+    },
+    {
+      "control_id": "ITG-06",
+      "expected": "no_exceptions",
+      "got": "no_exceptions",
+      "planted": 0,
+      "detected": 0,
+      "falseExceptions": 0,
+      "unresolved": 0
+    }
+  ],
+  "misses": [],
+  "extras": []
+}

@@ -1,0 +1,88 @@
+{
+  "P2P-05": {
+    "samples": [
+      "2026-03",
+      "2026-09"
+    ],
+    "exceptions": []
+  },
+  "TRE-01": {
+    "samples": [
+      "BAR-2026-01",
+      "BAR-2026-02",
+      "BAR-2026-03",
+      "BAR-2026-04"
+    ],
+    "exceptions": [
+      {
+        "sample_id": "BAR-2026-03",
+        "attribute_id": "C",
+        "tokens": [
+          "F1-t99"
+        ],
+        "why": "register updated 6 business days after the bank confirmation (10.06 → 18.06), limit is 2"
+      }
+    ]
+  },
+  "R2R-01": {
+    "samples": [
+      "100021",
+      "100025",
+      "100029",
+      "100033",
+      "100037",
+      "100041",
+      "100045",
+      "100049",
+      "100053",
+      "100057",
+      "100061",
+      "100065",
+      "100069",
+      "100073",
+      "100077",
+      "100081",
+      "100085",
+      "100089",
+      "100093",
+      "100097",
+      "100101",
+      "100105",
+      "100109",
+      "100113",
+      "100117"
+    ],
+    "exceptions": [
+      {
+        "sample_id": "100033",
+        "attribute_id": "D",
+        "tokens": [
+          "F1-r4c3"
+        ],
+        "why": "entry of CHF 1,412,500 above CHF 1m has no Group Controller approval"
+      },
+      {
+        "sample_id": "100061",
+        "attribute_id": "A",
+        "tokens": [
+          "F1-r11c2",
+          "F1-r11c7"
+        ],
+        "why": "Accounting Manager approval at 16:05, after posting at 11:32"
+      }
+    ]
+  },
+  "ITG-05": {
+    "samples": [
+      "2026-05",
+      "2026-10"
+    ],
+    "exceptions": []
+  },
+  "ITG-06": {
+    "samples": [
+      "PARAM-2026-05-18"
+    ],
+    "exceptions": []
+  }
+}

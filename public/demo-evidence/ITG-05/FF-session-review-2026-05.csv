@@ -1,0 +1,8 @@
+session_id,firefighter_id,user,start,end,reason,ticket,ticket_status,review_result,escalated_to_cio_on
+FF-0526-01,FF_BASIS_01,B.HUBER,2026-05-04 21:10,2026-05-04 22:02,Kernel patch,CHG0052210,Approved,Matched to approved ticket,
+FF-0526-02,FF_FI_01,C.WYSS,2026-05-12 08:15,2026-05-12 08:41,Period reopen,INC0098812,Approved,Matched to approved ticket,
+FF-0526-03,FF_BASIS_01,B.HUBER,2026-05-19 19:30,2026-05-19 20:05,Job repair,INC0099140,Approved,Matched to approved ticket,
+FF-0526-04,FF_SEC_01,A.STEINER,2026-05-27 17:02,2026-05-27 17:20,Role fix,CHG0052399,Approved,Matched to approved ticket,
+
+COMPLETENESS,Sessions in SAP firefighter log for May 2026: 4,Sessions reviewed: 4,,,,,,,
+REVIEW SIGN-OFF,IT Security Officer P. Zürcher,signed 2026-06-08,stored in ServiceNow RITM0072214,,,,,,
