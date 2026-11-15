@@ -20,5 +20,5 @@ Weekly increments → Sunday LinkedIn post. Read docs/ROADMAP.md for the plan.
   authorizations and things with no API (e.g. pinning repos, social preview image).
 
 ## Session protocol
-- Start of session: run /resume.
+- Start of session: run /resume. /resume also reads docs/WORKFLOW.md.
 - End of session (or when Nicola says "chiudiamo"/"wrap up"): run /wrap-up.

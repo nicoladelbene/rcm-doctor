@@ -1,6 +1,19 @@
 # STATUS
 _Last session: 2026-11-15 (launch v0.5.0) · Next session: 2026-12-05/06 · **Nicola in Japan until 30/11**_
 
+## Checklist 5 December (in order)
+1. [ ] **Top up the OpenRouter credit** (exhausted). Check the key limit.
+2. [ ] **Re-record `docs/media/launch-lifecycle-4x5.mp4`. It is broken:** the page fills only one corner of the frame.
+   Set the browser viewport to the video size, and check 3 frames (start, middle, end) before committing.
+3. [ ] **Finish `week-6`**: merge main, renumber its ADR 0015 → 0017, AI precompute, eval, merge (steps below).
+4. [ ] **Rewrite the drafts for posts 2–5** as deep dives on features that are already live (not announcements).
+5. [ ] **Cut false positives on holdout v2** (25%, 3/12). Note: the measured split is EN 43% vs DE 0%
+   (see Metrics). Check which language before starting.
+6. [ ] **Read comments and DMs on the launch post** and turn them into ROADMAP items.
+7. [ ] **Decide on npm publishing** of the MCP server (needs Nicola's npm login).
+
+Way of working: `docs/WORKFLOW.md`.
+
 ## Where we are
 - **v0.5.0 is on main and live** → https://rcm-doctor.vercel.app (demo: /?demo). Every push to main deploys production
   (Vercel Git integration); CI (lint, unit, MCP bundle check, eval, eval:holdout, eval:holdout2) on every push.
