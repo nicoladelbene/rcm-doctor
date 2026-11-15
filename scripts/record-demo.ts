@@ -11,9 +11,9 @@ import { join } from "node:path";
 import { chromium, type Page } from "@playwright/test";
 
 const BASE = process.env.RECORD_URL ?? "http://localhost:3100";
-/** RECORD_FLOW=testscript records the Week 2 flow into docs/media/week-2-*. */
+/** RECORD_FLOW=testscript records the Week 2 flow into docs/media/week-2-*; RECORD_FLOW=evidence the Week 3 flow into week-3-*. */
 const FLOW = process.env.RECORD_FLOW ?? "review";
-const PREFIX = FLOW === "testscript" ? "week-2-" : "";
+const PREFIX = FLOW === "testscript" ? "week-2-" : FLOW === "evidence" ? "week-3-" : "";
 const OUT = join(process.cwd(), "docs/media");
 const W = 1280;
 const H = 800;
@@ -58,10 +58,50 @@ await page.waitForTimeout(1300);
 // 1) Try the demo
 await glideClick(page, '[data-testid="try-demo"]');
 await page.getByTestId("results").waitFor();
-await page.waitForTimeout(FLOW === "testscript" ? 1600 : 2400); // summary animates
+await page.waitForTimeout(FLOW === "review" ? 2400 : 1600); // summary animates
 const drawer = page.getByTestId("drawer");
 
-if (FLOW === "testscript") {
+if (FLOW === "evidence") {
+  // 2) Straight to a control with an exception: the PDF box, the note, the description span
+  await moveTo(page, '[data-testid="evidence-summary"]', 16);
+  await page.waitForTimeout(700);
+  await glideClick(page, '[data-testid="open-evidence-TRE-01"]', 300);
+  await page.getByTestId("evidence").waitFor();
+  await page.waitForTimeout(1500);
+  await moveTo(page, '[data-testid="evidence-box"] >> nth=0', 22);
+  await page.waitForTimeout(1600);
+  await moveTo(page, '[data-testid="tick-detail"] mark', 18);
+  await page.waitForTimeout(1500);
+  // 3) Near-miss: weekend inside the 2-business-day window is a tick, not an exception
+  await glideClick(page, '[data-testid="cell-BAR-2026-02-C"]', 250);
+  await page.waitForTimeout(2000);
+  await glideClick(page, '[data-testid="cell-BAR-2026-01-B"]', 250);
+  await page.waitForTimeout(1800);
+  await page.screenshot({ path: join(OUT, `${PREFIX}screenshot-pdf.png`) });
+  // 4) CSV: 25 journal entries × 5 attributes, two exceptions
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(400);
+  await glideClick(page, '[data-testid="open-evidence-R2R-01"]', 300);
+  await page.getByTestId("evidence").waitFor();
+  await page.waitForTimeout(1600);
+  await glideClick(page, '[data-testid="cell-100061-A"]', 250);
+  await page.waitForTimeout(2200);
+  await glideClick(page, '[data-testid="cell-100057-D"]', 250);
+  await page.waitForTimeout(1800);
+  await page.screenshot({ path: join(OUT, `${PREFIX}screenshot-csv.png`) });
+  // 5) Screenshot evidence
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(400);
+  await glideClick(page, '[data-id="ITG-06"]', 300);
+  await drawer.waitFor();
+  await page.waitForTimeout(400);
+  await glideClick(page, '[data-testid="tab-evidence"]', 250);
+  await page.waitForTimeout(1200);
+  await glideClick(page, '[data-testid="cell-PARAM-2026-05-18-D"]', 250);
+  await page.waitForTimeout(2200);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(500);
+} else if (FLOW === "testscript") {
   // 2) A clean monthly control: sample size + traced attributes
   await glideClick(page, '[data-id="P2P-05"]', 300);
   await drawer.waitFor();
@@ -111,12 +151,14 @@ if (FLOW === "testscript") {
 }
 
 // Export
+if (FLOW !== "evidence") {
 await page.evaluate(() => document.querySelector('[data-testid="results"]')?.scrollIntoView({ behavior: "smooth", block: "start" }));
 await page.waitForTimeout(700);
 const dl = page.waitForEvent("download");
 await glideClick(page, '[data-testid="download-report"]', 300);
 await dl;
 await page.waitForTimeout(2200);
+}
 
 const videoPath = await page.video()!.path();
 await ctx.close();
@@ -127,7 +169,8 @@ const sp = await still.newPage();
 await sp.goto(`${BASE}/?demo`);
 await sp.getByTestId("results").waitFor();
 await sp.waitForTimeout(1500);
-await sp.locator(`[data-id="${FLOW === "testscript" ? "P2P-05" : "TRE-03"}"]`).click();
+if (FLOW === "evidence") await sp.getByTestId("open-evidence-TRE-01").click();
+else await sp.locator(`[data-id="${FLOW === "testscript" ? "P2P-05" : "TRE-03"}"]`).click();
 await sp.getByTestId("drawer").waitFor();
 if (FLOW === "testscript") await sp.getByTestId("tab-test").click();
 await sp.waitForTimeout(600);
@@ -144,8 +187,8 @@ renameSync(videoPath, webm);
 const ff = (args: string[]) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: "inherit" });
 ff(["-i", webm, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "20", "-preset", "slow", "-movflags", "+faststart", "-r", "30", join(OUT, `${PREFIX}demo.mp4`)]);
 const palette = join(tmp, "palette.png");
-const vf = FLOW === "testscript" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
-ff(["-i", webm, "-vf", `${vf},palettegen=max_colors=128:stats_mode=diff`, palette]);
+const vf = FLOW === "evidence" ? "fps=7,scale=860:-1:flags=lanczos" : FLOW === "testscript" ? "fps=8,scale=900:-1:flags=lanczos" : "fps=10,scale=960:-1:flags=lanczos"; // keeps GIFs under 8 MB
+ff(["-i", webm, "-vf", `${vf},palettegen=max_colors=${FLOW === "evidence" ? 96 : 128}:stats_mode=diff`, palette]);
 ff(["-i", webm, "-i", palette, "-lavfi", `${vf} [x]; [x][1:v] paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle`, join(OUT, `${PREFIX}demo.gif`)]);
 rmSync(webm);
 rmSync(tmp, { recursive: true, force: true });

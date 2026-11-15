@@ -36,3 +36,9 @@ test("evidence: upload without a key reads PDF and CSV in the browser", async ({
   await expect(ev.getByTestId("evidence-pages").locator("img")).toBeVisible();
   await expect(ev.getByTestId("evidence-conclusion")).toContainText("Incomplete");
 });
+
+test("api: evidence route enforces the key and validates the body", async ({ request }) => {
+  expect((await request.post("/api/evidence", { data: {} })).status()).toBe(401);
+  const bad = await request.post("/api/evidence", { data: { pack: {} }, headers: { "x-openrouter-key": "sk-or-v1-aaaaaaaaaaaaaaaaaaaaaaaa" } });
+  expect(bad.status()).toBe(400);
+});

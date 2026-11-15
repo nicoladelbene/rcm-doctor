@@ -44,6 +44,8 @@ rcm-doctor finds these problems, shows where they are in the text and proposes a
 
 **Test scripts (Week 2):** for each control, a test of design (walkthrough steps) and a test of operating effectiveness. The sample size comes from the frequency (illustrative minimums you can configure). Each test attribute carries its procedure and evidence, and points to the phrase of the control it tests. Controls with high-severity design findings are marked "remediate first" instead of being tested. Everything is included in the Excel export.
 
+**Evidence tester (Week 3, on branch `week-3`):** upload the evidence for a control (PDF, screenshot or CSV) and the agent ticks & ties every sampled item against every test attribute: ✓ met, ✗ exception, ? not evidenced, – not applicable. Each result draws a box on the PDF page or screenshot, or outlines the CSV cell, where the proof is, and points back to the phrase of the control description the attribute tests. A box is drawn only where code found the quoted text in the evidence. The conclusion (no exceptions / exceptions / incomplete) is computed from the results, not by the model. PDFs and CSVs are read in the browser (pdf.js); screenshots are transcribed by the vision model, so their boxes are marked approximate. The demo ships synthetic evidence for 5 controls, two of them with planted exceptions.
+
 **Traceability:** the model quotes the text, and code locates the quote in your RCM. A quote that cannot be found is dropped, never shown. The Excel export records each cited span with its field and character offsets.
 
 ## Evaluation
@@ -62,7 +64,9 @@ Two synthetic sets, both reviewed with the default model (`anthropic/claude-sonn
 **Known limits shown by the holdout:** the six AI attribute checks found all 15 labelled attribute defects. All 5 misses come from the deterministic rules. The owner and nature rules are English-only: they treat German roles such as "Leiter Kreditorenbuchhaltung" as person names (4 false positives) and miss German departments and "manuell". The segregation-of-duties pattern misses phrasings like "prepares … and then approves the same reconciliation". These will be fixed and then measured on a *new* holdout.
 
 Other models on the demo set: Haiku 5.5 reaches 82% recall with 4% false positives (~USD 0.04 per 40 controls, vs ~USD 0.41 for Sonnet). Rules alone reach 39% recall with 0% false positives.
-Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`](docs/eval-holdout.md) · [`docs/eval-models.md`](docs/eval-models.md). Reproduce offline: `npm run eval` and `npm run eval:holdout`. Both run in CI.
+**Evidence tester (Week 3):** on 5 synthetic evidence packs (163 sampled item × attribute checks, 3 planted exceptions plus deliberate near-misses such as an amount exactly at a threshold or a weekend inside a 2-business-day deadline), Sonnet 5.5 found **3/3** exceptions with the box on the proving text, raised **0** false exceptions on 160 clean checks, and tied **100%** of its ticks and exceptions to a verified box or cell. Same caveat as the demo set: evidence and prompt come from one author, so it is a regression test, not a benchmark. Report: [`docs/eval-evidence.md`](docs/eval-evidence.md).
+
+Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`](docs/eval-holdout.md) · [`docs/eval-evidence.md`](docs/eval-evidence.md) · [`docs/eval-models.md`](docs/eval-models.md). Reproduce offline: `npm run eval` (demo + evidence) and `npm run eval:holdout`. All run in CI.
 
 ## Use your own RCM
 
@@ -96,7 +100,7 @@ One increment per weekend ([full roadmap](docs/ROADMAP.md)):
 
 - **Week 1:** RCM review, demo mode, Excel export, eval ✅
 - **Week 2:** test-script generator (test of design + operating effectiveness, sample sizes by frequency) ✅
-- **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source
+- **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source (built, on branch `week-3`)
 - **Week 4:** automation-opportunity heatmap and business case per control
 - **Week 5:** MCP server + Claude skill
 - **Week 6:** AI-governance control pack (EU AI Act / ISO 42001 / FINMA expectations)

@@ -291,7 +291,6 @@ function Viewer({ pack, file, test, tick, sample }: { pack: EvidencePack; file: 
           <tbody>
             {table.map((row, r) => (
               <tr key={r} className={`${r === 0 ? "sticky top-0 z-[1] bg-sunken font-semibold text-ink-2" : "border-t border-rule"} ${r === sampleRow ? "bg-accent-soft/50" : ""}`}>
-                <td className="px-2 py-1 text-right font-mono text-[11px] text-muted">{r || ""}</td>
                 {row.map((c, ci) => {
                   const id = `${file.file_id}-r${r}c${ci}`;
                   const isStrong = strongCells.has(id);
@@ -305,8 +304,9 @@ function Viewer({ pack, file, test, tick, sample }: { pack: EvidencePack; file: 
                             }
                           : undefined
                       }
-                      className={`whitespace-nowrap px-2 py-1 font-mono ${isStrong ? `outline-2 -outline-offset-2 ${strong!.result === "exception" ? "bg-fail-soft outline-fail" : "bg-pass-soft outline-pass"} outline` : contextCells.has(id) ? "bg-pass-soft/50" : ""}`}
+                      className={`whitespace-nowrap px-2 py-1 font-mono ${ci === 0 ? `sticky left-0 z-[1] shadow-[1px_0_0_var(--rule)] ${r === 0 ? "bg-sunken" : r === sampleRow ? "bg-accent-soft" : "bg-surface"}` : ""} ${isStrong ? `outline-2 -outline-offset-2 ${strong!.result === "exception" ? "bg-fail-soft outline-fail" : "bg-pass-soft outline-pass"} outline` : contextCells.has(id) ? "bg-pass-soft/50" : ""}`}
                     >
+                      {ci === 0 && <span className="mr-2 inline-block w-4 text-right text-[10.5px] text-muted">{r || ""}</span>}
                       {c}
                     </td>
                   );
