@@ -1,32 +1,39 @@
 # STATUS
-_Last session: 2026-11-15 (Week 1) · Next session: 2026-12-05/06 (Week 2) · Nicola in Japan 19–30 Nov_
+_Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06 · Nicola in Japan 19–30 Nov_
 
 ## Where we are
-- Week 1 shipped. Live at https://rcm-doctor.vercel.app (demo: /?demo) · repo github.com/nicoladelbene/rcm-doctor (public, Apache-2.0).
-- Core (`src/core`): parser with header auto-mapping, 6 deterministic rules, OpenRouter LLM review (prompt review.v1,
-  JSON-schema output, zod validation, one repair retry), batching + cache, xlsx export, eval vs ground truth.
-- UI: keyless demo, upload + column mapping, rules-only or live AI review (BYOK), cited-span drawer, xlsx export.
-- Verified in production: e2e (3/3) and a live /api/review call.
-- Media: docs/media/demo.mp4 (17 s), demo.gif (5.3 MB), screenshot*.png. Post drafts: docs/posts/2026-11-15-week-1.md.
-- Vercel project linked (`.vercel/`, gitignored); deploy with `npx vercel deploy --prod`. No Git integration yet:
-  pushes to main do NOT auto-deploy.
+- **Week 1 is live** on main → https://rcm-doctor.vercel.app (demo: /?demo). Auto-deploy: Vercel Git integration,
+  every push to main deploys production; other branches get (protected) previews. CI (lint, unit, eval, eval:holdout) on every push/PR.
+- **Week 2 is READY on branch `week-2`. On 6 Dec only polish, merge and publish remain.** It contains the test-script
+  generator: ToD walkthrough + ToE attributes traced to source spans, sample size by frequency, "remediate first" blockers,
+  /api/testscript, drawer "Test script" tab, "Test scripts" export sheet, precomputed demo scripts, ADR 0012,
+  media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
+- **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
+  labelled by openai/gpt-5.6-sol before review; review prompt frozen (sha256 in data/holdout/review-prompt.sha256).
+- GitHub profile: bio set, "Current project" section added to nicoladelbene/nicoladelbene README.
 
-## Next exact step
-- Week 2: test-script generator. Start with `src/core/testscript.ts` + a zod schema for TestScript
-  (test of design + test of operating effectiveness, sample size by frequency), seeded from the demo RCM.
+## Next exact step (6 Dec)
+1. `git switch week-2 && git merge main` (should be clean), `npm run lint && npm test && npm run eval`, open the preview.
+2. Polish UI copy if needed, then `git switch main && git merge week-2 && git push` (auto-deploys production).
+3. Check https://rcm-doctor.vercel.app/?demo → "Test script" tab; pick a post variant in docs/posts/2026-12-06-week-2.md.
+4. Then start the German / rules fixes below, and measure on a NEW holdout (the current one is now "seen").
 
 ## Open questions for Nicola
-- LinkedIn post format: two variants drafted (A result hook, B problem hook). Pick one / discuss.
-- Connect the Vercel project to GitHub (dashboard → Settings → Git) so pushes auto-deploy?
-- GitHub social preview: upload docs/media/screenshot.png by hand (Settings → Social preview).
+- LinkedIn post format: variants A/B for Week 1 (updated with holdout) and Week 2 drafts. Pick / discuss.
+- Pin rcm-doctor and upload the social preview (no API).
 
 ## Known issues / tech debt
-- Eval set is small and written by the same author as the prompt: regression test, not a benchmark.
-- No rate limiting on /api/review (BYOK: abuse costs only the caller). Input limits: ≤10 controls, ≤4000 chars/field, ≤200 KB.
-- Dark mode not implemented. Gemini / DeepSeek options are not evaluated yet.
-- `npm run eval` offline evaluates the stored demo results; changing rules requires `npm run precompute` (~USD 0.41).
+- **German (holdout):** recall 70%, FP 50% on clean German controls. Causes: owner rule treats "Leiter …" as a person
+  name (4 FP) and misses German departments; nature rule misses "manuell". Not fixed on purpose (holdout integrity).
+- **SoD regex** misses "prepares … and then approves the same …" (2/2 holdout misses, English). The review prompt
+  delegates SoD to rules, so the AI does not catch it either. Fix in rules + re-measure on a new holdout.
+- Demo eval set is authored with the prompt (regression test, not a benchmark). Holdout labels contain generator noise.
+- Week 2 preview is behind Vercel Authentication (open it while logged in); e2e ran locally on the same commit.
+- No rate limiting on /api/* (BYOK); input limits ≤10 controls, ≤4000 chars/field, ≤200 KB. Dark mode not implemented.
 
 ## Metrics
-- Eval: recall 100 % (33/33) · false-positive rate 0 % (0/25 clean) · precision 89 % (demo RCM, anthropic/claude-sonnet-5.5, review.v1)
-- Haiku 5.5: recall 82 % · FP 4 % · Rules only: recall 39 % · FP 0 %
+- Demo eval: recall 100 % (33/33) · FP 0 % (0/25) · precision 89 % (anthropic/claude-sonnet-5.5, review.v1)
+- Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
+- Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
+- OpenRouter spend today: USD 1.91 of the USD 5 key limit
 - GitHub stars: __ · LinkedIn post views: __ (Nicola fills)
