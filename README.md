@@ -75,6 +75,49 @@ Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`
 
 **Privacy:** files are parsed in your browser. For the AI review, controls are sent in batches to this app's `/api/review` endpoint, which forwards them to OpenRouter with your key. The key is never logged or stored, and results are cached only in your browser's localStorage. Even so, use synthetic or anonymised data.
 
+## Use it inside Claude (MCP server + skill)
+
+rcm-doctor ships an [MCP](https://modelcontextprotocol.io) server (stdio) with two tools, built on the same `src/core` as the web app:
+
+| Tool | What it does |
+|---|---|
+| `review_rcm` | Design review per control: pass / weak / fail, findings that each cite the exact source text, automation score, suggested rewrite. |
+| `generate_test_scripts` | Test of design + test of operating effectiveness: sample size by frequency, population, test attributes traced to the text, "remediate first" blockers. |
+
+Input: `path` to an .xlsx/.xls/.csv RCM, `csv` text, or `source: "demo"` (the synthetic 40-control RCM, no key needed). Optional `control_ids`.
+Without `OPENROUTER_API_KEY` in the server's environment it runs the deterministic rules (or the precomputed demo); with it, the full AI review. The key stays in your config: it is never logged or returned by a tool.
+
+![Asking Claude to review an RCM through the MCP server](docs/media/week-5-demo.gif)
+
+**Claude Code**
+
+```bash
+claude mcp add rcm-doctor -- npx -y github:nicoladelbene/rcm-doctor
+# optional, for the AI step:
+claude mcp add rcm-doctor -e OPENROUTER_API_KEY=sk-or-... -- npx -y github:nicoladelbene/rcm-doctor
+```
+
+**Claude Desktop** — Settings → Developer → Edit config (`claude_desktop_config.json`), then restart:
+
+```json
+{
+  "mcpServers": {
+    "rcm-doctor": {
+      "command": "npx",
+      "args": ["-y", "github:nicoladelbene/rcm-doctor"],
+      "env": { "OPENROUTER_API_KEY": "sk-or-... (optional)" }
+    }
+  }
+}
+```
+
+From a clone (faster start, no download): `npm ci`, then use `"command": "node", "args": ["/path/to/rcm-doctor/mcp/dist/rcm-doctor-mcp.mjs"]`, or `npm run mcp` to run it from source.
+
+**Skill** — [`skills/rcm-doctor/SKILL.md`](skills/rcm-doctor/SKILL.md) tells Claude when to use the tools and how to present results (quote the cited text, never invent a finding, say which mode ran).
+Claude Code: copy the folder to `~/.claude/skills/rcm-doctor/` (or `.claude/skills/` in a project). Claude apps: zip the `rcm-doctor` folder and upload it under Settings → Capabilities → Skills.
+
+Then ask: *"Review the Treasury controls in my RCM (~/Documents/my-rcm.xlsx). What should I fix first?"* — or *"Show me rcm-doctor on the demo RCM"*.
+
 ## Run locally
 
 ```bash
@@ -100,7 +143,7 @@ One increment per weekend ([full roadmap](docs/ROADMAP.md)):
 - **Week 2:** test-script generator (test of design + operating effectiveness, sample sizes by frequency) ✅
 - **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source
 - **Week 4:** automation-opportunity heatmap and business case per control (built on branch `week-4`)
-- **Week 5:** MCP server + Claude skill
+- **Week 5:** MCP server + Claude skill (built on branch `week-5`)
 - **Week 6:** AI-governance control pack (EU AI Act / ISO 42001 / FINMA expectations)
 
 ## Disclaimer

@@ -15,6 +15,12 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   "illustrative" banner + label. ADR 0013,
   10-min demo `docs/demos/week-4-demo.md`, post `docs/posts/2026-12-20-week-4.md`, media `docs/media/week-4-*`. CI green.
   Merge order: week-2 → (week-3) → week-4; expect trivial conflicts in README/STATUS/e2e sheet names.
+- **Week 5 is READY on branch `week-5`** (from origin/main incl. Week 2; parallel session 15 Nov; not merged): MCP
+  server (stdio, `npx -y github:nicoladelbene/rcm-doctor`, bundled `mcp/dist/rcm-doctor-mcp.mjs`) with `review_rcm` +
+  `generate_test_scripts` over src/core, Claude skill `skills/rcm-doctor/SKILL.md`, README setup for Claude Code /
+  Desktop, integration test `tests/mcp.test.ts`, ADR 0015, video `docs/media/week-5-demo.*` (replay of a real
+  `claude -p` session), post `docs/posts/2027-01-week-5.md`. Note: the npx command points at main → works after merge
+  (tested with `#week-5`).
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
   labelled by openai/gpt-5.6-sol before review; review prompt frozen (sha256 in data/holdout/review-prompt.sha256).
 - GitHub profile: bio set, "Current project" section added to nicoladelbene/nicoladelbene README.
@@ -45,5 +51,6 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
 - Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
 - Week 4 (branch, demo, default assumptions): 15 candidates (7 priced, 8 per-transaction need a volume) · 295 h/yr (≈0.17 FTE) · CHF 32k · 560 build h (≈23 months) · 4 already automated · 4 blocked by design
+- Week 5: real Claude Code session 111 s, USD 0.29 (Claude Code) + one live 40-control review on OpenRouter
 - OpenRouter spend today: USD 1.91 of the USD 5 key limit
 - GitHub stars: __ · LinkedIn post views: __ (Nicola fills)

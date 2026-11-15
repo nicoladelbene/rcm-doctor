@@ -12,7 +12,8 @@ const promptCache = new Map<string, string>();
 /** Load a versioned prompt from src/core/prompts (default: the review prompt). */
 export function loadPrompt(version: string = PROMPT_VERSION): string {
   if (!promptCache.has(version)) {
-    const raw = readFileSync(join(process.cwd(), "src/core/prompts", `${version}.md`), "utf8");
+    // RCM_DOCTOR_ROOT lets the MCP server find the prompts when started from another directory.
+    const raw = readFileSync(join(process.env.RCM_DOCTOR_ROOT ?? process.cwd(), "src/core/prompts", `${version}.md`), "utf8");
     promptCache.set(version, raw.replace(/^<!--[\s\S]*?-->\s*/, ""));
   }
   return promptCache.get(version)!;
