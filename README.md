@@ -44,6 +44,8 @@ rcm-doctor finds these problems, shows where they are in the text and proposes a
 
 **Test scripts (Week 2):** for each control, a test of design (walkthrough steps) and a test of operating effectiveness. The sample size comes from the frequency (illustrative minimums you can configure). Each test attribute carries its procedure and evidence, and points to the phrase of the control it tests. Controls with high-severity design findings are marked "remediate first" instead of being tested. Everything is included in the Excel export.
 
+**Automation opportunities (Week 4):** a process × control-type heatmap of the automation score, and for each control scoring ≥ 4 a business case: hours saved per year from the frequency, ITAC or RPA/script (with the words that justify it cited), prerequisites, payback, and "remediate the design first" where needed. Every assumption (minutes per run, volumes, share removed, hourly rate, build effort) is on screen, editable, and exported. No extra AI call.
+
 **Traceability:** the model quotes the text, and code locates the quote in your RCM. A quote that cannot be found is dropped, never shown. The Excel export records each cited span with its field and character offsets.
 
 ## Evaluation
@@ -97,7 +99,7 @@ One increment per weekend ([full roadmap](docs/ROADMAP.md)):
 - **Week 1:** RCM review, demo mode, Excel export, eval ✅
 - **Week 2:** test-script generator (test of design + operating effectiveness, sample sizes by frequency) ✅
 - **Week 3:** evidence tester: tick & tie each attribute to uploaded evidence, with boxes on the source
-- **Week 4:** automation-opportunity heatmap and business case per control
+- **Week 4:** automation-opportunity heatmap and business case per control (built on branch `week-4`)
 - **Week 5:** MCP server + Claude skill
 - **Week 6:** AI-governance control pack (EU AI Act / ISO 42001 / FINMA expectations)
 

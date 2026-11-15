@@ -4,7 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHECK_LABELS, CHECK_IDS, type CheckId, type Control, type Review, type ReviewRun, type Severity, type Status } from "@/core/schema";
 import { summarize } from "@/core/summary";
 import type { TestScript, TestScriptRun } from "@/core/testscript";
+import { buildHeatmap, DEFAULT_ASSUMPTIONS, sanitizeAssumptions, type Assumptions, type Overrides } from "@/core/automation";
 import { downloadReport, runReview, runTestScripts } from "../lib/client";
+import { AutomationView } from "./AutomationView";
 import { Drawer, type DrawerTab } from "./Drawer";
 import { Highlighted } from "./Highlighted";
 import { ResultsTable } from "./ResultsTable";
@@ -31,6 +33,7 @@ interface Dataset {
 }
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
+const ASSUMPTIONS_KEY = "rcm-doctor:automation-assumptions:v1";
 
 export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | null; holdout?: EvalHeadline | null }) {
   const [data, setData] = useState<Dataset | null>(null);
@@ -41,6 +44,33 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
   const [sort, setSort] = useState<"worst" | "rcm">("worst");
   const [toast, setToast] = useState<string | null>(null);
   const [tab, setTab] = useState<DrawerTab>("review");
+  // Week 4: results view + automation assumptions (in memory; declared and editable in the UI).
+  const [view, setView] = useState<"review" | "automation">("review");
+  const [assumptions, setAssumptions] = useState<Assumptions>(DEFAULT_ASSUMPTIONS);
+  const [overrides, setOverrides] = useState<Overrides>({});
+  // Assumptions survive a reload in this browser only (per-viewer convenience; storage may be unavailable).
+  const assumptionsLoaded = useRef(false);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      try {
+        const raw = localStorage.getItem(ASSUMPTIONS_KEY);
+        if (raw) setAssumptions(sanitizeAssumptions(JSON.parse(raw)));
+      } catch {
+        /* private mode or corrupt value: keep defaults */
+      }
+      assumptionsLoaded.current = true;
+    }, 0);
+    return () => clearTimeout(t);
+  }, []);
+  useEffect(() => {
+    if (!assumptionsLoaded.current) return;
+    try {
+      if (JSON.stringify(assumptions) === JSON.stringify(DEFAULT_ASSUMPTIONS)) localStorage.removeItem(ASSUMPTIONS_KEY);
+      else localStorage.setItem(ASSUMPTIONS_KEY, JSON.stringify(assumptions));
+    } catch {
+      /* storage blocked: assumptions still work for this session */
+    }
+  }, [assumptions]);
   // Held in memory for this tab only, so test scripts can be drafted after the review. Never persisted.
   const keyRef = useRef<{ apiKey?: string; model: string } | null>(null);
   const [canDraft, setCanDraft] = useState(false);
@@ -81,6 +111,7 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
         demo: true,
       });
       setOpenId(null);
+      setOverrides({});
       scrollToResults();
     } catch (e) {
       setError((e as Error).message);
@@ -91,8 +122,12 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
 
   // Deep link: /?demo opens the demo directly (used by the README and the recording).
   useEffect(() => {
-    if (!new URLSearchParams(window.location.search).has("demo")) return;
-    const t = setTimeout(loadDemo, 0);
+    const qs = new URLSearchParams(window.location.search);
+    if (!qs.has("demo")) return;
+    const t = setTimeout(() => {
+      if (qs.get("view") === "automation") setView("automation");
+      loadDemo();
+    }, 0);
     return () => clearTimeout(t);
   }, [loadDemo]);
 
@@ -131,6 +166,7 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
         scripts,
       });
       setOpenId(null);
+      setOverrides({});
       scrollToResults();
     } catch (e) {
       if (!ac.signal.aborted) setError((e as Error).message);
@@ -244,8 +280,9 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
               <button
                 type="button"
                 onClick={async () => {
-                  const name = await downloadReport(data.controls, data.reviews, data.label, data.scripts);
-                  setToast(`${name} downloaded · findings, scores, rewrites${data.scripts ? " and test scripts" : ""}`);
+                  const heatmap = buildHeatmap(data.controls, data.reviews, assumptions, overrides);
+                  const name = await downloadReport(data.controls, data.reviews, data.label, data.scripts, { heatmap, assumptions });
+                  setToast(`${name} downloaded · findings, scores, rewrites${data.scripts ? ", test scripts" : ""} and automation cases`);
                   setTimeout(() => setToast(null), 3500);
                 }}
                 data-testid="download-report"
@@ -259,6 +296,42 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
               </div>
             </div>
 
+            <div className="mb-5 flex border-b border-rule" role="tablist" aria-label="Results view">
+              {(
+                [
+                  ["review", "Design review"],
+                  ["automation", "Automation opportunities"],
+                ] as const
+              ).map(([v, l]) => (
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={view === v}
+                  data-testid={`view-${v}`}
+                  onClick={() => setView(v)}
+                  className={`-mb-px border-b-2 px-3.5 py-2 text-[14px] font-medium transition-colors ${view === v ? "border-ink text-ink" : "border-transparent text-muted hover:text-ink"}`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+
+            {view === "automation" ? (
+              <AutomationView
+                controls={data.controls}
+                reviews={data.reviews}
+                assumptions={assumptions}
+                onAssumptions={setAssumptions}
+                overrides={overrides}
+                onOverrides={setOverrides}
+                onOpenControl={(id) => {
+                  setTab("review");
+                  setOpenId(id);
+                }}
+              />
+            ) : (
+              <>
             <SummaryBar summary={summary} activeCheck={f.check} onPickCheck={(check) => setF((x) => ({ ...x, check }))} />
 
             {/* Toolbar */}
@@ -315,6 +388,8 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
 
             <ResultsTable rows={rows} onOpen={setOpenId} selectedId={openId} />
             <p className="mt-3 text-[12.5px] text-muted">Click a row to see cited spans, findings and the suggested rewrite. Use ↑ ↓ in the drawer to move between controls.</p>
+              </>
+            )}
           </div>
         )}
 
@@ -355,7 +430,7 @@ function Header() {
         <Link href="/" className="flex items-center gap-2.5">
           <Logo />
           <span className="font-mono text-[15px] font-medium tracking-tight text-ink">rcm-doctor</span>
-          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline">week 1</span>
+          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline">week 4</span>
         </Link>
         <nav className="flex items-center gap-5 text-[13.5px] text-ink-2">
           <a href={`${GITHUB}/blob/main/docs/eval-latest.md`} className="hidden hover:text-ink sm:inline">
