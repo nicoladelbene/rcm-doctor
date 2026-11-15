@@ -32,13 +32,24 @@ export function AutomationView({
   const [cell, setCell] = useState<{ process: string; type: string } | null>(null);
   const h = useMemo(() => buildHeatmap(controls, reviews, a, overrides), [controls, reviews, a, overrides]);
   const byId = useMemo(() => new Map(controls.map((c) => [c.control_id, c])), [controls]);
-  const cases = h.cases
+  const inCell = h.cases
     .filter((x) => x.status === "candidate")
     .filter((x) => !cell || (x.process === cell.process && x.control_type === cell.type))
     .sort((x, y) => y.hours_saved - x.hours_saved || x.control_id.localeCompare(y.control_id));
+  const cases = inCell.filter((x) => !x.needs_volume);
+  const pending = inCell.filter((x) => x.needs_volume);
+  const setOverride = (id: string, o: Overrides[string] | null) => {
+    const next = { ...overrides };
+    if (o) next[id] = o;
+    else delete next[id];
+    onOverrides(next);
+  };
 
   return (
     <div data-testid="automation">
+      <p className="mb-4 flex items-center gap-2 rounded-md border border-weak/25 bg-weak-soft/50 px-3.5 py-2 text-[13px] text-ink-2" data-testid="illustrative-banner">
+        <span className="font-semibold text-weak">Illustrative defaults</span> — edit assumptions to your context.
+      </p>
       <Totals h={h} a={a} />
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_340px]">
@@ -48,7 +59,7 @@ export function AutomationView({
           <div className="mt-8 mb-3 flex flex-wrap items-baseline justify-between gap-2">
             <h3 className="font-serif text-[20px] font-semibold text-ink">
               Business cases{cell ? ` · ${cell.process} / ${cell.type}` : ""}
-              <span className="ml-2 font-sans text-[13px] font-normal text-muted tnum">{cases.length} controls, largest saving first</span>
+              <span className="ml-2 font-sans text-[13px] font-normal text-muted tnum">{cases.length} priced, largest saving first</span>
             </h3>
             {cell && (
               <button type="button" className="text-[13px] text-accent underline underline-offset-2" onClick={() => setCell(null)}>
@@ -56,9 +67,10 @@ export function AutomationView({
               </button>
             )}
           </div>
+          {pending.length > 0 && <PendingVolume pending={pending} overrides={overrides} onOverride={setOverride} onOpen={onOpenControl} />}
           {cases.length === 0 ? (
             <p className="rounded-lg border border-dashed border-rule-strong bg-surface p-8 text-center text-[14px] text-muted">
-              No control in this cell has an automation score ≥ {a.threshold}.
+              {pending.length ? "No priced business case here yet: enter a volume above." : `No control in this cell has an automation score ≥ ${a.threshold}.`}
             </p>
           ) : (
             <div className="space-y-3">
@@ -68,12 +80,7 @@ export function AutomationView({
                   x={x}
                   control={byId.get(x.control_id)!}
                   override={overrides[x.control_id]}
-                  onOverride={(o) => {
-                    const next = { ...overrides };
-                    if (o) next[x.control_id] = o;
-                    else delete next[x.control_id];
-                    onOverrides(next);
-                  }}
+                  onOverride={(o) => setOverride(x.control_id, o)}
                   onOpen={() => onOpenControl(x.control_id)}
                 />
               ))}
@@ -92,7 +99,11 @@ export function AutomationView({
 function Totals({ h, a }: { h: Heatmap; a: Assumptions }) {
   const t = h.totals;
   const items: [string, string, string][] = [
-    [`Candidates (score ≥ ${a.threshold})`, String(t.candidates), t.blocked ? `${t.blocked} need a design fix first` : "none blocked by design"],
+    [
+      `Candidates (score ≥ ${a.threshold})`,
+      String(t.candidates),
+      [t.needs_volume ? `${t.needs_volume} need a volume (not in totals)` : "", t.blocked ? `${t.blocked} need a design fix first` : ""].filter(Boolean).join(" · ") || "all priced, none blocked",
+    ],
     ["Hours saved / year", fmt(t.hours_saved), `≈ ${t.fte.toLocaleString("de-CH")} FTE at ${fmt(a.hoursPerFte)} h`],
     ["CHF saved / year", fmt(t.chf_saved), `at CHF ${a.hourlyRate}/h, before build cost`],
     ["Build effort", `${fmt(t.build_hours)} h`, `one-off · ${t.hours_saved ? `pays back in ${Math.round((t.build_hours / t.hours_saved) * 12)} months overall` : "no saving"}`],
@@ -185,7 +196,9 @@ function HeatGrid({
                           {c.controls} ctrl · {c.candidates} ≥ {threshold}
                           {c.automated ? ` · ${c.automated} auto` : ""}
                         </span>
-                        <span className="text-[11.5px] font-medium opacity-90 tnum">{fmt(Math.round(c.hours_saved))} h/yr</span>
+                        <span className="text-[11.5px] font-medium opacity-90 tnum">
+                          {fmt(Math.round(c.hours_saved))} h/yr{c.needs_volume ? ` · ${c.needs_volume} need volume` : ""}
+                        </span>
                       </button>
                     </td>
                   );
@@ -198,6 +211,61 @@ function HeatGrid({
       </div>
       <p className="mt-2 text-[12.5px] text-muted">Click a cell to see its business cases. Scores come from the AI review; hours come from the assumptions on the right.</p>
     </div>
+  );
+}
+
+function PendingVolume({
+  pending,
+  overrides,
+  onOverride,
+  onOpen,
+}: {
+  pending: BusinessCase[];
+  overrides: Overrides;
+  onOverride: (id: string, o: Overrides[string] | null) => void;
+  onOpen: (id: string) => void;
+}) {
+  return (
+    <section className="mb-4 rounded-lg border border-dashed border-rule-strong bg-surface p-4" data-testid="pending-volume">
+      <h4 className="text-[14px] font-semibold text-ink">
+        {pending.length} per-transaction control{pending.length > 1 ? "s" : ""}: enter the annual volume to include {pending.length > 1 ? "them" : "it"}
+      </h4>
+      <p className="mt-0.5 text-[12.5px] text-muted">An RCM does not say how many invoices, payments or changes there are. Until you do, these stay out of hours, CHF, FTE and payback.</p>
+      <ul className="mt-3 divide-y divide-rule">
+        {pending.map((x) => (
+          <li key={x.control_id} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2 text-[13px]" data-testid="pending-row" data-id={x.control_id}>
+            <button type="button" onClick={() => onOpen(x.control_id)} className="font-mono text-[12.5px] font-medium text-accent underline decoration-accent/30 underline-offset-2">
+              {x.control_id}
+            </button>
+            <span className="text-muted">
+              {x.process} · {x.control_type}
+            </span>
+            <AutomationMeter score={x.score} />
+            <span className="rounded-[4px] bg-accent-soft px-1.5 py-px text-[12px] text-accent-ink">{x.approach ? APPROACH_LABELS[x.approach] : ""}</span>
+            <label className="ml-auto inline-flex items-center gap-1.5 text-ink-2">
+              <input
+                type="number"
+                min={0}
+                placeholder="volume"
+                aria-label={`Annual volume for ${x.control_id}`}
+                data-testid="volume-input"
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter") return;
+                  const v = Number((e.target as HTMLInputElement).value);
+                  if (v > 0) onOverride(x.control_id, { ...overrides[x.control_id], runsPerYear: v });
+                }}
+                onBlur={(e) => {
+                  const v = Number(e.target.value);
+                  if (v > 0) onOverride(x.control_id, { ...overrides[x.control_id], runsPerYear: v });
+                }}
+                className="w-[90px] rounded-[5px] border border-rule-strong bg-surface px-1.5 py-0.5 text-right font-mono text-[13px]"
+              />
+              / yr × {x.minutes_per_run} min
+            </label>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -371,7 +439,7 @@ function AssumptionsPanel({ a, onChange, overrides, onClearOverrides }: { a: Ass
         <Row label="Effort removed, score 5">
           <Pct value={a.shareRemoved[5]} onChange={(v) => onChange({ ...a, shareRemoved: { ...a.shareRemoved, 5: v } })} />
         </Row>
-        <Row label="Hourly rate, CHF (fully loaded)">
+        <Row label={<>Hourly rate, CHF <span className="text-muted">(fully loaded, illustrative)</span></>}>
           <Num value={a.hourlyRate} onChange={(v) => onChange({ ...a, hourlyRate: num(v) })} testId="assume-rate" />
         </Row>
         <Row label="Productive hours per FTE">
@@ -398,7 +466,11 @@ function AssumptionsPanel({ a, onChange, overrides, onClearOverrides }: { a: Ass
             <tr key={f} className="border-b border-rule last:border-b-0">
               <td className="py-1 pr-2 text-ink-2">{FREQ_LABELS[f]}</td>
               <td className="py-1 text-right">
-                <Num value={a.runsPerYear[f]} onChange={(v) => onChange({ ...a, runsPerYear: { ...a.runsPerYear, [f]: num(v) } })} testId={`assume-runs-${f}`} />
+                {f === "event" ? (
+                  <span className="text-[12px] text-muted">per control</span>
+                ) : (
+                  <Num value={a.runsPerYear[f]} onChange={(v) => onChange({ ...a, runsPerYear: { ...a.runsPerYear, [f]: num(v) } })} testId={`assume-runs-${f}`} />
+                )}
               </td>
               <td className="py-1 pl-1 text-right">
                 <Num value={a.minutesPerRun[f]} onChange={(v) => onChange({ ...a, minutesPerRun: { ...a.minutesPerRun, [f]: num(v) } })} testId={`assume-min-${f}`} />
@@ -408,7 +480,7 @@ function AssumptionsPanel({ a, onChange, overrides, onClearOverrides }: { a: Ass
         </tbody>
       </table>
       <p className="mt-2 text-[12px] leading-snug text-muted">
-        “Per transaction” volume is a placeholder: set the real volume on each card.
+        Per-transaction controls have no default volume: enter it per control to include them in the totals.
         {overrides > 0 && (
           <>
             {" "}
@@ -424,7 +496,7 @@ function AssumptionsPanel({ a, onChange, overrides, onClearOverrides }: { a: Ass
   );
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
   return (
     <label className="flex items-center justify-between gap-3">
       <span className="text-ink-2">{label}</span>

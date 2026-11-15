@@ -15,7 +15,11 @@ prerequisites. Assumptions must be declared and editable in the UI. Traceability
   from a table by frequency; the share removed depends on the score (4 → 60 %, 5 → 90 %). CHF = hours × hourly rate.
   Payback = build hours (ITAC 40 h, RPA/script 80 h) ÷ hours saved. Verdict: strong ≤ 12 months, moderate ≤ 36, else weak.
 - **All numbers are `DEFAULT_ASSUMPTIONS`, illustrative and generic**, shown in an Assumptions panel where each can be
-  changed (plus per-control overrides of volume and minutes, since "per transaction" volume is unknowable from an RCM).
+  changed (plus per-control overrides of volume and minutes). A banner says "Illustrative defaults — edit assumptions
+  to your context"; the hourly rate is labelled "fully loaded, illustrative".
+- **Per-transaction controls have no default volume** (amended 15 Nov, Nicola): an RCM does not say how many invoices
+  or payments there are. Until the user enters a volume they are listed separately ("N per-transaction controls: enter
+  the annual volume to include them") and excluded from hours, CHF, FTE, build effort and payback.
   The assumptions are exported with the cases (sheet "Automation") and kept in the viewer's browser (localStorage,
   sanitised on load; "Reset defaults" clears it). No firm methodology or benchmark is used.
 - **Approach by rule, with a citation.** ITAC when the control is preventive, runs in a system of record (not
@@ -28,6 +32,7 @@ prerequisites. Assumptions must be declared and editable in the UI. Traceability
 - The heatmap groups by process × control type (Preventive / Detective / other values as found); colour = average score.
 
 ## Consequences
-Demo RCM with defaults: 15 candidates, 695 h/yr (≈ 0.41 FTE), CHF 76k/yr, 880 build hours (≈ 15 months payback
-overall), 4 already automated, 4 candidates need a design fix first. The numbers are only as good as the assumptions —
+Demo RCM with defaults: 15 candidates, of which 8 per-transaction wait for a volume; the 7 priced ones save 295 h/yr
+(≈ 0.17 FTE), CHF 32k/yr, for 560 build hours (≈ 23 months payback overall); 4 already automated; 4 candidates need a
+design fix first. The numbers are only as good as the assumptions —
 which is why they are on screen and in the export. The cue-word approach rule is a heuristic, not tested against a holdout.

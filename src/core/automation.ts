@@ -16,6 +16,10 @@ import { blockersFrom, samplingFrequency, type SampleFreq } from "./testscript";
 export type RunFreq = Exclude<SampleFreq, "continuous" | "unknown">;
 export const RUN_FREQS: RunFreq[] = ["event", "daily", "weekly", "monthly", "quarterly", "semiannual", "annual"];
 
+/** Frequencies with a calendar count. "event" has none: its volume must come from the user, per control. */
+export type CalFreq = Exclude<RunFreq, "event">;
+export const CAL_FREQS: CalFreq[] = ["daily", "weekly", "monthly", "quarterly", "semiannual", "annual"];
+
 export const FREQ_LABELS: Record<RunFreq, string> = {
   event: "Per transaction / event",
   daily: "Daily",
@@ -29,8 +33,8 @@ export const FREQ_LABELS: Record<RunFreq, string> = {
 export interface Assumptions {
   /** Controls with an automation score at or above this get a business case. */
   threshold: number;
-  /** Occurrences per year by frequency. "event" is a volume guess: override it per control. */
-  runsPerYear: Record<RunFreq, number>;
+  /** Occurrences per year by calendar frequency. Per-transaction controls have no default: the user enters the volume. */
+  runsPerYear: Record<CalFreq, number>;
   /** Manual effort per occurrence, in minutes, by frequency (performer + reviewer + evidence filing). */
   minutesPerRun: Record<RunFreq, number>;
   /** Share of the manual effort that automation removes, by score (the rest is exception handling / judgment). */
@@ -46,7 +50,7 @@ export interface Assumptions {
 /** Illustrative, generic defaults. Every number is shown and editable in the UI; none is firm methodology. */
 export const DEFAULT_ASSUMPTIONS: Assumptions = {
   threshold: 4,
-  runsPerYear: { event: 500, daily: 250, weekly: 52, monthly: 12, quarterly: 4, semiannual: 2, annual: 1 },
+  runsPerYear: { daily: 250, weekly: 52, monthly: 12, quarterly: 4, semiannual: 2, annual: 1 },
   minutesPerRun: { event: 10, daily: 30, weekly: 60, monthly: 180, quarterly: 240, semiannual: 300, annual: 480 },
   shareRemoved: { 4: 0.6, 5: 0.9 },
   hourlyRate: 110,
@@ -63,13 +67,13 @@ export function sanitizeAssumptions(raw: unknown): Assumptions {
   const o = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
   const n = (v: unknown, fb: number, max = Infinity) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.min(v, max) : fb);
   const rec = (v: unknown) => (v && typeof v === "object" ? (v as Record<string, unknown>) : {});
-  const byFreq = (v: unknown, fb: Record<RunFreq, number>) =>
-    Object.fromEntries(RUN_FREQS.map((f) => [f, n(rec(v)[f], fb[f])])) as Record<RunFreq, number>;
+  const byFreq = <F extends RunFreq>(freqs: F[], v: unknown, fb: Record<F, number>) =>
+    Object.fromEntries(freqs.map((f) => [f, n(rec(v)[f], fb[f])])) as Record<F, number>;
   const t = n(o.threshold, d.threshold);
   return {
     threshold: [3, 4, 5].includes(t) ? t : d.threshold,
-    runsPerYear: byFreq(o.runsPerYear, d.runsPerYear),
-    minutesPerRun: byFreq(o.minutesPerRun, d.minutesPerRun),
+    runsPerYear: byFreq(CAL_FREQS, o.runsPerYear, d.runsPerYear),
+    minutesPerRun: byFreq(RUN_FREQS, o.minutesPerRun, d.minutesPerRun),
     shareRemoved: { 4: n(rec(o.shareRemoved)[4], d.shareRemoved[4], 1), 5: n(rec(o.shareRemoved)[5], d.shareRemoved[5], 1) },
     hourlyRate: n(o.hourlyRate, d.hourlyRate),
     hoursPerFte: n(o.hoursPerFte, d.hoursPerFte),
@@ -176,6 +180,8 @@ export interface BusinessCase {
   /** High-severity design findings: fix the design before automating it. */
   blockers: string[];
   overridden: boolean;
+  /** Per-transaction candidate without a user-entered volume: excluded from hours, CHF, FTE and payback. */
+  needs_volume: boolean;
   /** strong: pays back within 12 months · moderate: within 36 · weak: later or never. */
   verdict: "strong" | "moderate" | "weak" | null;
 }
@@ -230,12 +236,13 @@ export function businessCase(c: Control, review: Review | null | undefined, a: A
   const { approach, why, span } = chooseApproach(c);
   const o = ov[c.control_id] ?? {};
   const known = freq !== "continuous" && freq !== "unknown";
-  const runs = o.runsPerYear ?? (known ? a.runsPerYear[freq] : 0);
+  const needsVolume = status === "candidate" && freq === "event" && o.runsPerYear === undefined;
+  const runs = o.runsPerYear ?? (known && freq !== "event" ? a.runsPerYear[freq] : 0);
   const minutes = o.minutesPerRun ?? (known ? a.minutesPerRun[freq] : 0);
   const share = automated ? 0 : a.shareRemoved[score >= 5 ? 5 : 4];
   const hoursToday = automated ? 0 : (runs * minutes) / 60;
   const saved = status === "candidate" ? hoursToday * share : 0;
-  const build = status === "candidate" ? a.buildHours[approach] : 0;
+  const build = status === "candidate" && !needsVolume ? a.buildHours[approach] : 0;
   return {
     control_id: c.control_id,
     process: c.process || "(no process)",
@@ -257,7 +264,8 @@ export function businessCase(c: Control, review: Review | null | undefined, a: A
     prerequisites: status === "candidate" ? prerequisitesFor(c, review, approach) : [],
     blockers: status === "candidate" ? blockersFrom(review) : [],
     overridden: o.runsPerYear !== undefined || o.minutesPerRun !== undefined,
-    verdict: status !== "candidate" ? null : saved <= 0 ? "weak" : (build / saved) * 12 <= 12 ? "strong" : (build / saved) * 12 <= 36 ? "moderate" : "weak",
+    needs_volume: needsVolume,
+    verdict: status !== "candidate" || needsVolume ? null : saved <= 0 ? "weak" : (build / saved) * 12 <= 12 ? "strong" : (build / saved) * 12 <= 36 ? "moderate" : "weak",
   };
 }
 
@@ -273,6 +281,8 @@ export interface HeatCell {
   candidates: number;
   automated: number;
   hours_saved: number;
+  /** Candidates waiting for a user-entered volume (not in hours_saved). */
+  needs_volume: number;
 }
 
 export interface Heatmap {
@@ -280,7 +290,7 @@ export interface Heatmap {
   types: string[];
   cells: HeatCell[];
   cases: BusinessCase[];
-  totals: { candidates: number; automated: number; hours_saved: number; chf_saved: number; fte: number; build_hours: number; blocked: number };
+  totals: { candidates: number; needs_volume: number; automated: number; hours_saved: number; chf_saved: number; fte: number; build_hours: number; blocked: number };
 }
 
 export function buildHeatmap(controls: Control[], reviews: Review[], a: Assumptions = DEFAULT_ASSUMPTIONS, ov: Overrides = {}): Heatmap {
@@ -302,6 +312,7 @@ export function buildHeatmap(controls: Control[], reviews: Review[], a: Assumpti
         candidates: xs.filter((x) => x.status === "candidate").length,
         automated: xs.filter((x) => x.status === "automated").length,
         hours_saved: round1(xs.reduce((n, x) => n + x.hours_saved, 0)),
+        needs_volume: xs.filter((x) => x.needs_volume).length,
       });
     }
   const cand = cases.filter((x) => x.status === "candidate");
@@ -313,6 +324,7 @@ export function buildHeatmap(controls: Control[], reviews: Review[], a: Assumpti
     cases,
     totals: {
       candidates: cand.length,
+      needs_volume: cand.filter((x) => x.needs_volume).length,
       automated: cases.filter((x) => x.status === "automated").length,
       hours_saved: Math.round(hours),
       chf_saved: Math.round(cand.reduce((n, x) => n + x.chf_saved, 0)),
@@ -327,11 +339,12 @@ export function buildHeatmap(controls: Control[], reviews: Review[], a: Assumpti
 export function assumptionRows(a: Assumptions): [string, string | number][] {
   return [
     ["Business case threshold (automation score ≥)", a.threshold],
-    ...RUN_FREQS.map((f) => [`Occurrences per year — ${FREQ_LABELS[f]}`, a.runsPerYear[f]] as [string, number]),
+    ...CAL_FREQS.map((f) => [`Occurrences per year — ${FREQ_LABELS[f]}`, a.runsPerYear[f]] as [string, number]),
+    ["Occurrences per year — Per transaction / event", "no default: entered per control; excluded from totals until entered"],
     ...RUN_FREQS.map((f) => [`Minutes per occurrence — ${FREQ_LABELS[f]}`, a.minutesPerRun[f]] as [string, number]),
     ["Share of effort removed — score 4", a.shareRemoved[4]],
     ["Share of effort removed — score 5", a.shareRemoved[5]],
-    ["Hourly rate (CHF, fully loaded)", a.hourlyRate],
+    ["Hourly rate (CHF, fully loaded, illustrative)", a.hourlyRate],
     ["Productive hours per FTE per year", a.hoursPerFte],
     ["Build effort — ITAC (hours)", a.buildHours.itac],
     ["Build effort — RPA / script (hours)", a.buildHours.rpa],

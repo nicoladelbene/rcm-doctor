@@ -120,6 +120,22 @@ test("week 4: automation heatmap, business cases and editable assumptions", asyn
   await auto.locator('[data-cell="Treasury|Detective"]').click();
   await expect(cards.first()).toContainText("Treasury");
 
+  await auto.locator('[data-cell="Treasury|Detective"]').click(); // clear the cell filter
+
+  // Per-transaction controls stay out of the totals until a volume is entered.
+  await expect(auto.getByTestId("illustrative-banner")).toBeVisible();
+  const pending = auto.getByTestId("pending-row");
+  const nPending = await pending.count();
+  expect(nPending).toBeGreaterThan(0);
+  const h0 = Number((await hours.textContent())!.replace(/\D/g, ""));
+  await pending.first().getByTestId("volume-input").fill("1200");
+  await pending.first().getByTestId("volume-input").press("Enter");
+  await expect(pending).toHaveCount(nPending - 1);
+  await expect(hours).not.toHaveText(String(h0));
+  expect(Number((await hours.textContent())!.replace(/\D/g, ""))).toBeGreaterThan(h0);
+  await expect(cards).toHaveCount(total + 1);
+  await auto.locator('[data-cell="Treasury|Detective"]').click();
+
   // Card ID opens the control in the review drawer.
   await cards.first().getByRole("button").first().click();
   await expect(page.getByTestId("drawer")).toBeVisible();

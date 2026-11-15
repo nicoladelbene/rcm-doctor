@@ -80,6 +80,15 @@ if (FLOW === "automation") {
   await page.waitForTimeout(1600);
   await glideClick(page, '[data-testid="reset-assumptions"]', 250);
   await page.waitForTimeout(900);
+  // 3b) A per-transaction control enters the totals once its volume is known
+  await page.locator('[data-testid="pending-volume"]').evaluate((el) => el.scrollIntoView({ behavior: "smooth", block: "center" }));
+  await page.waitForTimeout(1000);
+  await glideClick(page, '[data-testid="volume-input"] >> nth=0', 250);
+  await page.keyboard.type("1200", { delay: 160 });
+  await page.keyboard.press("Enter");
+  await page.waitForTimeout(700);
+  await page.evaluate(() => document.querySelector('[data-testid="automation"]')?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  await page.waitForTimeout(1500);
   // 4) Drill into a cell: Treasury detective controls and their business cases
   await glideClick(page, '[data-cell="Treasury|Detective"]', 300);
   await page.waitForTimeout(500);

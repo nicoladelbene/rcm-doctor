@@ -45,6 +45,17 @@ describe("business case arithmetic", () => {
     expect(b.hours_saved).toBe(180); // 3000 × 4 min × 90%
   });
 
+  it("a per-transaction candidate without a user volume is excluded from hours, CHF, build and payback", () => {
+    const c = ctl({ frequency: "Per transaction", control_type: "Preventive", control_description: "The AP clerk approves each invoice in the SAP workflow." });
+    const b = businessCase(c, rev(4));
+    expect(b.needs_volume).toBe(true);
+    expect([b.hours_saved, b.chf_saved, b.build_hours, b.payback_months, b.verdict]).toEqual([0, 0, 0, null, null]);
+    const h = buildHeatmap([c], [rev(4)]);
+    expect(h.totals).toMatchObject({ candidates: 1, needs_volume: 1, hours_saved: 0, chf_saved: 0, build_hours: 0 });
+    const withVol = buildHeatmap([c], [rev(4)], DEFAULT_ASSUMPTIONS, { "A-1": { runsPerYear: 1200 } });
+    expect(withVol.totals).toMatchObject({ needs_volume: 0, hours_saved: 120, build_hours: 40 }); // 1200 × 10 min × 60%
+  });
+
   it("raising the threshold drops score-4 controls from the business case", () => {
     const b = businessCase(ctl({}), rev(4), { ...DEFAULT_ASSUMPTIONS, threshold: 5 });
     expect(b.status).toBe("below");
@@ -109,6 +120,7 @@ describe("heatmap on the demo RCM", () => {
     for (const id of expected) expect(covered).toContain(id);
     expect(h.totals.candidates).toBe(h.cases.filter((c) => c.status === "candidate").length);
     expect(h.totals.hours_saved).toBeGreaterThan(0);
+    expect(h.totals.needs_volume).toBe(h.cases.filter((c) => c.status === "candidate" && c.frequency === "event").length);
   });
   it("every cited approach span is verbatim source text", () => {
     for (const c of h.cases) {
@@ -132,7 +144,7 @@ describe("export", () => {
     const wb = buildReportWorkbook(controls, run.reviews, {}, undefined, { heatmap: buildHeatmap(controls, run.reviews, a), assumptions: a });
     expect(wb.SheetNames).toEqual(["Review", "Findings", "Automation", "Summary"]);
     const rows = XLSX.utils.sheet_to_json<unknown[]>(wb.Sheets.Automation, { header: 1 });
-    expect(rows.some((r) => r[0] === "Hourly rate (CHF, fully loaded)" && r[1] === 95)).toBe(true);
+    expect(rows.some((r) => r[0] === "Hourly rate (CHF, fully loaded, illustrative)" && r[1] === 95)).toBe(true);
     expect(rows.filter((r) => typeof r[0] === "string" && /^[A-Z0-9]+-\d\d$/.test(r[0] as string)).length).toBe(buildHeatmap(controls, run.reviews, a).totals.candidates);
   });
 });

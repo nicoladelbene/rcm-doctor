@@ -10,7 +10,9 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
 - **Week 4 is READY on branch `week-4`** (parallel session, 15 Nov; not merged, prod untouched): automation heatmap
   (process × control type) + business case per control with score ≥ 4 (hours/yr, CHF, ITAC vs RPA/script with cited cue,
-  prerequisites, payback), all assumptions editable in the UI and exported (sheet "Automation"). ADR 0013,
+  prerequisites, payback), all assumptions editable in the UI, kept in localStorage and exported (sheet "Automation").
+  Phase 1 review approved by Nicola (15 Nov): per-transaction controls excluded from totals until a volume is entered;
+  "illustrative" banner + label. ADR 0013,
   10-min demo `docs/demos/week-4-demo.md`, post `docs/posts/2026-12-20-week-4.md`, media `docs/media/week-4-*`. CI green.
   Merge order: week-2 → (week-3) → week-4; expect trivial conflicts in README/STATUS/e2e sheet names.
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
@@ -28,8 +30,8 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - Pin rcm-doctor and upload the social preview (no API).
 
 ## Known issues / tech debt
-- Week 4: ITAC/RPA choice is a cue-word heuristic (not measured); "per transaction" volume is a placeholder. Assumptions persist
-  in localStorage (per browser); per-control overrides do not. Nicola to confirm default assumptions (ADR 0013).
+- Week 4: ITAC/RPA choice is a cue-word heuristic (not measured). Assumptions persist
+  in localStorage (per browser); per-control overrides do not. Default assumptions remain illustrative (ADR 0013).
 - **German (holdout):** recall 70%, FP 50% on clean German controls. Causes: owner rule treats "Leiter …" as a person
   name (4 FP) and misses German departments; nature rule misses "manuell". Not fixed on purpose (holdout integrity).
 - **SoD regex** misses "prepares … and then approves the same …" (2/2 holdout misses, English). The review prompt
@@ -42,6 +44,6 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - Demo eval: recall 100 % (33/33) · FP 0 % (0/25) · precision 89 % (anthropic/claude-sonnet-5.5, review.v1)
 - Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
 - Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
-- Week 4 (branch, demo, default assumptions): 15 candidates · 695 h/yr (≈0.41 FTE) · CHF 76k · 880 build h · 4 already automated · 4 blocked by design
+- Week 4 (branch, demo, default assumptions): 15 candidates (7 priced, 8 per-transaction need a volume) · 295 h/yr (≈0.17 FTE) · CHF 32k · 560 build h (≈23 months) · 4 already automated · 4 blocked by design
 - OpenRouter spend today: USD 1.91 of the USD 5 key limit
 - GitHub stars: __ · LinkedIn post views: __ (Nicola fills)
