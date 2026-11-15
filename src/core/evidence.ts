@@ -85,12 +85,16 @@ export function parseCsv(csv: string): string[][] {
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (quoted) {
-      if (ch === '"' && text[i + 1] === '"') (cell += '"'), i++;
-      else if (ch === '"') quoted = false;
+      if (ch === '"' && text[i + 1] === '"') {
+        cell += '"';
+        i++;
+      } else if (ch === '"') quoted = false;
       else cell += ch;
     } else if (ch === '"') quoted = true;
-    else if (ch === sep) row.push(cell), (cell = "");
-    else if (ch === "\n" || ch === "\r") {
+    else if (ch === sep) {
+      row.push(cell);
+      cell = "";
+    } else if (ch === "\n" || ch === "\r") {
       if (ch === "\r" && text[i + 1] === "\n") i++;
       row.push(cell);
       rows.push(row);
@@ -98,7 +102,10 @@ export function parseCsv(csv: string): string[][] {
       cell = "";
     } else cell += ch;
   }
-  if (cell || row.length) row.push(cell), rows.push(row);
+  if (cell || row.length) {
+    row.push(cell);
+    rows.push(row);
+  }
   return rows.filter((r) => r.some((c) => c.trim()));
 }
 
@@ -377,17 +384,23 @@ export function evaluateEvidence(tests: EvidenceTest[], truth: EvidenceGroundTru
         const exp = gt.exceptions.find((e) => e.sample_id === s && e.attribute_id === a);
         const expectedNe = gt.not_evidenced?.some((e) => e.sample_id === s && e.attribute_id === a);
         if (exp) {
-          planted++, pc++;
+          planted++;
+          pc++;
           if (tick?.result === "exception") {
-            detected++, dc++;
+            detected++;
+            dc++;
             if (tick.citation?.token_ids.some((id) => exp.tokens.includes(id))) detectedWithBox++;
           } else misses.push(`${cid} ${s} ${a}: expected exception (${exp.why}), got ${tick?.result ?? "nothing"}`);
         } else {
           cleanCells++;
           if (tick?.result === "exception") {
-            falseExceptions++, fc++;
+            falseExceptions++;
+            fc++;
             extras.push(`${cid} ${s} ${a}: false exception — ${tick.note}`);
-          } else if (tick?.result === "not_evidenced" && !expectedNe) unresolved++, uc++;
+          } else if (tick?.result === "not_evidenced" && !expectedNe) {
+            unresolved++;
+            uc++;
+          }
         }
       }
     const expected: Conclusion = gt.exceptions.length ? "exceptions" : gt.not_evidenced?.length ? "incomplete" : "no_exceptions";

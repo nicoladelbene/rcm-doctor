@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHECK_LABELS, CHECK_IDS, type CheckId, type Control, type Review, type ReviewRun, type Severity, type Status } from "@/core/schema";
 import { summarize } from "@/core/summary";
 import type { TestScript, TestScriptRun } from "@/core/testscript";
+import type { EvidencePack, EvidenceRun, EvidenceTest } from "@/core/evidence";
+import { DEFAULT_MODEL } from "@/core/models";
 import { downloadReport, runReview, runTestScripts } from "../lib/client";
 import { Drawer, type DrawerTab } from "./Drawer";
 import { Highlighted } from "./Highlighted";
@@ -28,6 +30,8 @@ interface Dataset {
   demo: boolean;
   /** Week 2 test scripts, when generated. */
   scripts?: TestScript[];
+  /** Week 3 evidence packs and tick & tie results, by control id. */
+  evidence?: Record<string, { pack: EvidencePack; test: EvidenceTest }>;
 }
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
@@ -44,6 +48,8 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
   // Held in memory for this tab only, so test scripts can be drafted after the review. Never persisted.
   const keyRef = useRef<{ apiKey?: string; model: string } | null>(null);
   const [canDraft, setCanDraft] = useState(false);
+  // Same key, as state, for the evidence tab (render needs it). Never persisted.
+  const [runner, setRunner] = useState<{ apiKey?: string; model: string }>({ model: DEFAULT_MODEL });
   const [f, setF] = useState<{ process: string; status: Status | "all"; severity: Severity | "all"; check: CheckId | null; keyOnly: boolean; q: string }>({
     process: "all",
     status: "all",
@@ -63,18 +69,28 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
     try {
       const res = await fetch("/demo-data");
       if (!res.ok) throw new Error(`Demo data unavailable (${res.status})`);
-      const { controls, run, testscripts } = (await res.json()) as {
+      const { controls, run, testscripts, evidence } = (await res.json()) as {
         controls: Control[];
         run: ReviewRun & { duration_seconds?: number };
         testscripts: TestScriptRun | null;
+        evidence: { packs: EvidencePack[]; run: EvidenceRun } | null;
       };
       keyRef.current = null;
+      setRunner({ model: DEFAULT_MODEL });
       setCanDraft(false);
       setF((x) => ({ ...x, process: "all", status: "all", severity: "all", check: null, keyOnly: false, q: "" }));
       setData({
         controls,
         reviews: run.reviews,
         scripts: testscripts?.scripts,
+        evidence: evidence
+          ? Object.fromEntries(
+              evidence.packs.flatMap((pack) => {
+                const test = evidence.run.tests.find((t) => t.control_id === pack.control_id);
+                return test ? [[pack.control_id, { pack, test }]] : [];
+              }),
+            )
+          : undefined,
         label: "Demo RCM · Alpenfirn Industries AG (fictional)",
         model: run.model,
         note: `Precomputed with ${run.model} on ${run.generated_at.slice(0, 10)}${run.duration_seconds ? ` · live run took ${Math.round(run.duration_seconds)} s` : ""}`,
@@ -113,6 +129,7 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
       });
       const failed = reviews.filter((x) => x.llm_error);
       keyRef.current = { apiKey: r.apiKey, model: r.model };
+      setRunner({ apiKey: r.apiKey, model: r.model });
       setCanDraft(!!r.apiKey);
       // Without a key, the deterministic part of the test scripts (sample size, blockers) is free and instant.
       const scripts = r.apiKey ? undefined : await runTestScripts(r.controls, reviews, { model: "rules-only" });
@@ -241,6 +258,37 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
                   </button>
                 )
               )}
+              {data.evidence && Object.keys(data.evidence).length > 0 && (
+                <span className="text-[13px] text-ink-2" data-testid="evidence-summary">
+                  <span className="font-medium text-ink">Evidence:</span> {Object.keys(data.evidence).length} controls tested ·{" "}
+                  {(() => {
+                    const ex = Object.values(data.evidence).filter((e) => e.test.conclusion === "exceptions");
+                    return ex.length ? (
+                      <>
+                        exceptions in{" "}
+                        {ex.map((e, i) => (
+                          <Fragment key={e.pack.control_id}>
+                            {i > 0 && ", "}
+                            <button
+                              type="button"
+                              className="font-mono text-fail underline decoration-fail/40 underline-offset-2 hover:decoration-fail"
+                              data-testid={`open-evidence-${e.pack.control_id}`}
+                              onClick={() => {
+                                setTab("evidence");
+                                setOpenId(e.pack.control_id);
+                              }}
+                            >
+                              {e.pack.control_id}
+                            </button>
+                          </Fragment>
+                        ))}
+                      </>
+                    ) : (
+                      "no exceptions"
+                    );
+                  })()}
+                </span>
+              )}
               <button
                 type="button"
                 onClick={async () => {
@@ -331,6 +379,12 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
           script={data?.scripts?.find((t) => t.control_id === open.control.control_id)}
           tab={tab}
           onTab={setTab}
+          evidence={{
+            ...data?.evidence?.[open.control.control_id],
+            runner,
+            onResult: (pack, test) =>
+              setData((d) => (d ? { ...d, evidence: { ...d.evidence, [pack.control_id]: { pack, test } } } : d)),
+          }}
           onClose={() => setOpenId(null)}
           onPrev={openIdx > 0 ? () => setOpenId(rows[openIdx - 1].control.control_id) : undefined}
           onNext={openIdx >= 0 && openIdx < rows.length - 1 ? () => setOpenId(rows[openIdx + 1].control.control_id) : undefined}
