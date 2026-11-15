@@ -24,7 +24,8 @@
     "gen:evidence": "tsx scripts/generate-evidence.ts",
     "precompute:evidence": "tsx scripts/precompute-evidence.ts",
     "eval:evidence": "tsx scripts/eval-evidence.ts",
-    "og": "tsx scripts/make-og.ts"
+    "og": "tsx scripts/make-og.ts",
+    "record:lifecycle": "tsx scripts/record-lifecycle.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",

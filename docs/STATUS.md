@@ -2,6 +2,12 @@
 _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06 · Nicola in Japan 19–30 Nov_
 
 ## Where we are
+- **Launch branch `release/launch`** (15 Nov, from origin/main + week-4 + week-5 + week-3; not merged — the main session
+  merges it at 18:30): lifecycle home (Review → Test → Evidence → Automate + "Use it inside Claude (MCP)", each step deep-links
+  to its demo view), version badge v0.5.0 (package.json), Open Graph image `src/app/opengraph-image.png` (copy for GitHub
+  social preview: `docs/media/og-image.png`, upload by hand), launch video `docs/media/launch-lifecycle-{16x9,4x5}.mp4` +
+  GIF (`npm run record:lifecycle`). ADRs: week-3 = 0014, week-5 renumbered to 0015. Still to do: re-merge origin/main
+  (Week 1.1); e2e + video on the Vercel preview need the Vercel connector authorised for the team (preview is protected).
 - **Week 1 is live** on main → https://rcm-doctor.vercel.app (demo: /?demo). Auto-deploy: Vercel Git integration,
   every push to main deploys production; other branches get (protected) previews. CI (lint, unit, eval, eval:holdout) on every push/PR.
 - **Week 2 is READY on branch `week-2`. On 6 Dec only polish, merge and publish remain.** It contains the test-script

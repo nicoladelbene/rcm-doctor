@@ -9,6 +9,8 @@ It reviews each control the way a senior controls reviewer would. Every finding 
 
 ### Try it in 30 seconds → **[https://rcm-doctor.vercel.app](https://rcm-doctor.vercel.app/?demo)**
 
+![Review → Test → Evidence → Automate in 30 seconds](docs/media/launch-lifecycle.gif)
+
 The demo needs no API key: it opens a synthetic 40-control RCM with precomputed results.
 
 ---
