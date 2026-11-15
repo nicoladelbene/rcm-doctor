@@ -24,7 +24,7 @@ const OUT_REL = oi > 0 ? process.argv[oi + 1] : "data/holdout";
 const OUT = join(process.cwd(), OUT_REL);
 // Companies already used by earlier sets: a new holdout must be about a different one.
 const USED_COMPANIES = ["Alpenfirn", "Limmatquell"];
-if (existsSync(join(OUT, "generation.json")) && !process.argv.includes("--force"))
+if (existsSync(join(OUT, "holdout.ground-truth.json")) && !process.argv.includes("--force"))
   throw new Error("Holdout already exists. Pass --force only if you really mean to replace it.");
 mkdirSync(OUT, { recursive: true });
 
@@ -42,6 +42,8 @@ Write exactly 30 controls:
   Monatsabschluss, Kreditoren/Debitoren, Zahlungsfreigabe, Schlüsselkontrolle). In German controls, ALL text fields
   (process names may stay English) are in German, including owner, frequency, type, nature and evidence values.
   The other 20 controls are in English. Mix the languages across processes.
+  ORDER: controls 1 to 10 of the array are the German ones (language "de"); controls 11 to 30 are English
+  (language "en"). Exactly 10 "de", not 9, not 11.
 - At least 10 controls must be CLEAN: a well-designed control with no defect at all.
 - The rest have realistic defects, 1–4 each. Across the set, every defect type below must appear at least twice.
 - Write the way real RCMs are written: some precise, some sloppy, some passive voice. Vary length.
@@ -127,6 +129,8 @@ const clean = gen.controls.filter((c) => c.defects.length === 0).length;
 const counts = Object.fromEntries(CHECK_IDS.map((c) => [c, gen.controls.filter((x) => x.defects.includes(c)).length]));
 console.log(`${gen.company.name} (${gen.company.industry}) · German: ${de} · clean: ${clean}`);
 console.log(counts);
+// Structural spec violations are rejected BEFORE anything is written (no review has run at this point).
+if (de !== 10 || clean < 10) throw new Error(`Spec violation (German ${de}/10, clean ${clean}≥10): not written, rerun.`);
 
 writeFileSync(
   join(OUT, "generation.json"),
