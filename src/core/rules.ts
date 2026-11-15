@@ -27,6 +27,15 @@ export function normalizeFrequency(v: string): Freq | null {
   if (/(quarter|qtr)/.test(s)) return "quarterly";
   if (/(month)/.test(s)) return "monthly";
   if (/(annual|year)/.test(s)) return "annual";
+  // German (Swiss) column values. Periodic words first, so "pro Monat" is monthly, not event-driven.
+  if (/(laufend|kontinuierlich|systemseitig|echtzeit)/.test(s)) return "continuous";
+  if (/(täglich|taeglich|arbeitstäglich)/.test(s)) return "daily";
+  if (/(wöchentlich|woechentlich)/.test(s)) return "weekly";
+  if (/(halbjährlich|halbjaehrlich|semester)/.test(s)) return "semiannual";
+  if (/(quartal|vierteljährlich)/.test(s)) return "quarterly";
+  if (/(monatlich|monat)/.test(s)) return "monthly";
+  if (/(jährlich|jaehrlich|jahr)/.test(s)) return "annual";
+  if (/(pro |je |bei jede|bei bedarf|ereignis|transaktion|fallweise|anlassbezogen|laufend)/.test(s)) return "event";
   return null;
 }
 
@@ -41,6 +50,13 @@ const FREQ_PATTERNS: { re: RegExp; freq: Freq }[] = [
   { re: /\b(quarterly|every quarter|each quarter|on a quarterly basis)\b/i, freq: "quarterly" },
   { re: /\b(monthly|every month|each month|on a monthly basis)\b/i, freq: "monthly" },
   { re: /\b(annually|yearly|every year|each year|once a year|on an annual basis)\b/i, freq: "annual" },
+  // German. \b is ASCII-only in JS, so "jährlich" inside "vierteljährlich" does not match the annual pattern.
+  { re: /\b(täglich|arbeitstäglich|jeden (arbeits)?tag)\b/i, freq: "daily" },
+  { re: /\b(wöchentlich|jede woche)\b/i, freq: "weekly" },
+  { re: /\b(halbjährlich)\b/i, freq: "semiannual" },
+  { re: /\b(quartalsweise|vierteljährlich|jedes quartal|pro quartal)\b/i, freq: "quarterly" },
+  { re: /\b(monatlich|jeden monat|pro monat)\b/i, freq: "monthly" },
+  { re: /\b(jährlich|einmal pro jahr|jedes jahr)\b/i, freq: "annual" },
 ];
 
 export function frequenciesInText(text: string): { freq: Freq; start: number; end: number }[] {
@@ -81,11 +97,14 @@ export function checkFrequencyMismatch(c: Control): Finding[] {
 
 const MANUAL_MARKERS =
   /\b(manually|manual(?! override)|reviews?|reviewed|signs?|signed|sign-off|initials|ticks?|prints?|spreadsheet|excel|e-?mails?|checks? (that|whether)|inspects?|visually|by hand)\b/i;
+/** German manual-step markers. Bare "prüft" is excluded on purpose: "Das System prüft …" is automated. */
+const MANUAL_MARKERS_DE =
+  /(?<![\p{L}])(manuell\w*|von hand|visiert|visum|visieren|unterzeichne\w*|unterschreib\w*|unterschrift|abgehakt|ausgedruckt|ausdruck\w*|excel-?\w*|per e-?mail)(?![\p{L}])/iu;
 
 export function checkNatureMismatch(c: Control): Finding[] {
   const nature = c.nature.toLowerCase();
-  if (!/automat/.test(nature) || /(it[- ]dependent|semi|manual)/.test(nature)) return [];
-  const m = MANUAL_MARKERS.exec(c.control_description);
+  if (!/automat/.test(nature) || /(it[- ]dependent|semi|manual|manuell|gestützt|gestuetzt)/.test(nature)) return [];
+  const m = MANUAL_MARKERS.exec(c.control_description) ?? MANUAL_MARKERS_DE.exec(c.control_description);
   if (!m) return [];
   return [
     finding(
@@ -98,7 +117,11 @@ export function checkNatureMismatch(c: Control): Finding[] {
 
 const ROLE_WORDS =
   /\b(manager|head|controller|accountant|officer|director|lead|team|analyst|clerk|cfo|ceo|cio|ciso|coo|treasurer|administrator|admin|specialist|coordinator|owner|committee|board|system|desk|department|function|supervisor|partner|assistant|engineer|architect|champion|steward|custodian|approver|preparer|reviewer|centre|center|group|services|operations|unit|payroll|desk|chief|vp|president|secretary|auditor|agent|keeper|planner|buyer|officer)\b/i;
-const GENERIC_DEPARTMENTS = /^(finance|accounting|it|treasury|procurement|purchasing|sales|hr|operations|management|tbd|n\/a|na|-|various|all)$/i;
+/** German role stems, matched inside compounds ("Kreditorenbuchhalterin", "Leiter Hauptbuch"). */
+const ROLE_STEMS_DE =
+  /(leiter|leiterin|leitung|verantwortlich|sachbearbeit|buchhalter|chef|vorgesetzt|ausschuss|verwaltungsrat|spezialist|koordinator|beauftragt|referent|assistent|controller|treasurer|manager|prüfer|administrator|teamleit|bereichsleit|abteilungsleit)/i;
+const GENERIC_DEPARTMENTS =
+  /^(finance|accounting|it|treasury|procurement|purchasing|sales|hr|operations|management|tbd|n\/a|na|-|various|all|finanzen|finanzabteilung|buchhaltung|rechnungswesen|personal|personalabteilung|personalwesen|informatik|it-abteilung|einkauf|verkauf|controlling|verwaltung|administration|kreditorenbuchhaltung|debitorenbuchhaltung|lohnbuchhaltung|hauptbuchhaltung|diverse|alle|offen)$/i;
 const PERSON_NAME = /^(?:[A-ZÄÖÜ][a-zäöüéèàçñ'’-]+|[A-Z]\.)(?:\s+(?:von|van|de|del|der|di|da|le|la)\b)?(?:\s+[A-ZÄÖÜ][a-zäöüéèàçñ'’-]+){1,2}$/;
 
 export function checkOwner(c: Control): Finding[] {
@@ -107,7 +130,7 @@ export function checkOwner(c: Control): Finding[] {
   if (!owner) return [finding("owner_invalid", "Control owner is empty.", null)];
   if (GENERIC_DEPARTMENTS.test(owner))
     return [finding("owner_invalid", `Owner "${owner}" is a department or placeholder, not an accountable role.`, span)];
-  if (!ROLE_WORDS.test(owner) && PERSON_NAME.test(owner))
+  if (!ROLE_WORDS.test(owner) && !ROLE_STEMS_DE.test(owner) && PERSON_NAME.test(owner))
     return [finding("owner_invalid", `Owner "${owner}" looks like a person's name. Use a role, so the control survives staff changes.`, span)];
   return [];
 }
@@ -115,6 +138,14 @@ export function checkOwner(c: Control): Finding[] {
 const SOD_PATTERNS: RegExp[] = [
   // Verb forms only ("prepares ... and approves"), so nouns like "preparer and reviewer sign-offs" don't fire.
   /\b(prepares|creates|enters|initiates|raises|posts|records|inputs|sets up|maintains|processes|amends|changes|books)\s+(?:[\w/()-]+\s+){0,6}?and\s+(?:also\s+)?(approves|reviews|releases|authori[sz]es|signs off|signs)\b/i,
+  // Same actor later in the sentence: "prepares the reconciliation, investigates … and then approves the same …".
+  // The gap may not introduce a new actor ("the Treasurer", "a Manager"), which would mean duties are split.
+  /\b(prepares|creates|enters|initiates|raises|posts|records|inputs|maintains|processes|amends|changes|books)\b(?:(?!\b(?:the|a|an|by)\s+[A-Z])[^.;]){0,200}?\b(?:and|,)\s+(?:then\s+|also\s+|subsequently\s+|afterwards\s+)(approves|releases|authori[sz]es|signs off)\b/i,
+  /\b(prepares|creates|enters|initiates|processes)\b[^.;]{0,200}?\bsole\s+(?:final\s+)?approv\w*/i,
+  /\bapproves the same\b/i,
+  // German: "erstellt … und genehmigt", "erfasst die Zahlung und gibt sie frei". German nouns are capitalised,
+  // so a new actor is detected by article + role noun ("der Leiter Finanzen"), not by capitalisation.
+  /(?<![\p{L}])(erstellt|erfasst|bucht|bereitet|verarbeitet)(?![\p{L}])(?:(?!\b(?:der|die|vom|von der)\s+[\p{L}-]*(?:leiter|verantwortlich|sachbearbeit|buchhalter|chef|manager|controller|treasurer|prüfer|spezialist|assistent|vorgesetzt))[^.;]){0,160}?\bund\s+(?:anschliessend\s+|danach\s+|auch\s+|selbst\s+)?(genehmigt|visiert|bewilligt|gibt|unterzeichnet|freigibt)(?![\p{L}])/iu,
   /\b(approv|review|releas|authori[sz])\w*\s+(?:\w+\s+){0,3}?(?:his|her|their|its) own\b/i,
   /\bsame (person|individual|user|employee|role)\b[^.]*\b(approv|review|releas|prepar)/i,
   /\b(approv|review|releas|prepar)\w*[^.]*\bsame (person|individual|user|employee|role)\b/i,

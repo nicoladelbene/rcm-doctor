@@ -2,9 +2,9 @@
  * Generates a HOLDOUT RCM with an independent model family (not Claude), including ground-truth labels
  * produced by the generator itself, BEFORE and SEPARATELY from any review.
  *
- *   OPENROUTER_API_KEY=... npm run gen:holdout [-- --model openai/gpt-5.6-sol]
+ *   OPENROUTER_API_KEY=... npm run gen:holdout [-- --model openai/gpt-5.6-sol] [--out-dir data/holdout-v2]
  *
- * Writes data/holdout/{generation.json, holdout-rcm.xlsx, holdout-rcm.csv, holdout.ground-truth.json, holdout.meta.json}.
+ * Writes <out-dir> (default data/holdout)/{generation.json, holdout-rcm.xlsx, holdout-rcm.csv, holdout.ground-truth.json, holdout.meta.json}.
  * Run ONCE. Regenerating replaces the holdout set; never edit labels after seeing review results.
  */
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
@@ -19,7 +19,11 @@ if (!key) throw new Error("OPENROUTER_API_KEY is not set");
 const mi = process.argv.indexOf("--model");
 const model = mi > 0 ? process.argv[mi + 1] : "openai/gpt-5.6-sol";
 if (/anthropic|claude/i.test(model)) throw new Error("The holdout generator must not be a Claude model.");
-const OUT = join(process.cwd(), "data/holdout");
+const oi = process.argv.indexOf("--out-dir");
+const OUT_REL = oi > 0 ? process.argv[oi + 1] : "data/holdout";
+const OUT = join(process.cwd(), OUT_REL);
+// Companies already used by earlier sets: a new holdout must be about a different one.
+const USED_COMPANIES = ["Alpenfirn", "Limmatquell"];
 if (existsSync(join(OUT, "generation.json")) && !process.argv.includes("--force"))
   throw new Error("Holdout already exists. Pass --force only if you really mean to replace it.");
 mkdirSync(OUT, { recursive: true });
@@ -28,8 +32,8 @@ mkdirSync(OUT, { recursive: true });
 const PROMPT = `You are an experienced internal-controls practitioner building a TEST SET for evaluating an automated
 Risk & Control Matrix (RCM) reviewer. You write realistic controls AND label their design defects.
 
-Company: invent ONE fictional Swiss company (not a real one, not "Alpenfirn"), in an industry other than
-industrial manufacturing (e.g. medtech, food, logistics, private hospital, retail). Currency CHF. Give it a name ending in AG.
+Company: invent ONE fictional Swiss company (not a real one, not ${USED_COMPANIES.map((c) => `"${c}"`).join(", ")}, and not a private hospital), in an industry other than
+industrial manufacturing (e.g. medtech, food, logistics, retail, insurance broker, energy utility). Currency CHF. Give it a name ending in AG.
 
 Write exactly 30 controls:
 - Processes: Procure-to-Pay, Order-to-Cash, Treasury, Record-to-Report, ITGC, and HR/Payroll (spread them).
@@ -114,6 +118,8 @@ const content: string = json.choices[0].message.content;
 const gen = Gen.parse(extractJson(content));
 
 // Structural checks only (no look at review output, no label edits).
+if (USED_COMPANIES.some((c) => gen.company.name.toLowerCase().includes(c.toLowerCase())))
+  throw new Error(`Generator reused an earlier company: ${gen.company.name}`);
 const ids = new Set(gen.controls.map((c) => c.control_id));
 if (ids.size !== 30) throw new Error("duplicate control ids");
 const de = gen.controls.filter((c) => c.language === "de").length;
@@ -141,4 +147,4 @@ writeFileSync(
   join(OUT, "holdout.meta.json"),
   JSON.stringify({ company: gen.company, generator_model: model, languages: Object.fromEntries(gen.controls.map((c) => [c.control_id, c.language])) }, null, 2) + "\n",
 );
-console.log("Wrote data/holdout/");
+console.log(`Wrote ${OUT_REL}/`);

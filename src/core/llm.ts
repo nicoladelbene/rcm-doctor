@@ -31,6 +31,8 @@ const AttrSchema = z.object({
 export const LlmControlResultSchema = z.object({
   control_id: z.string(),
   attributes: z.object(Object.fromEntries(ATTRIBUTE_CHECKS.map((k) => [k, AttrSchema])) as Record<(typeof ATTRIBUTE_CHECKS)[number], typeof AttrSchema>),
+  /** review.v2: segregation of duties assessed by the reviewer (optional for v1 compatibility). */
+  sod_conflict: z.object({ present: z.boolean(), quote: z.string().nullable(), comment: z.string() }).optional(),
   automation_score: z.number().int().min(0).max(5),
   automation_rationale: z.string(),
   suggested_rewrite: z.string(),
@@ -60,7 +62,7 @@ export const RESPONSE_JSON_SCHEMA = {
         items: {
           type: "object",
           additionalProperties: false,
-          required: ["control_id", "attributes", "automation_score", "automation_rationale", "suggested_rewrite"],
+          required: ["control_id", "attributes", "sod_conflict", "automation_score", "automation_rationale", "suggested_rewrite"],
           properties: {
             control_id: { type: "string" },
             attributes: {
@@ -68,6 +70,12 @@ export const RESPONSE_JSON_SCHEMA = {
               additionalProperties: false,
               required: [...ATTRIBUTE_CHECKS],
               properties: Object.fromEntries(ATTRIBUTE_CHECKS.map((k) => [k, attrJson])),
+            },
+            sod_conflict: {
+              type: "object",
+              additionalProperties: false,
+              required: ["present", "quote", "comment"],
+              properties: { present: { type: "boolean" }, quote: { type: ["string", "null"] }, comment: { type: "string" } },
             },
             automation_score: { type: "integer", minimum: 0, maximum: 5 },
             automation_rationale: { type: "string" },

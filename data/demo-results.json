@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-15T13:49:06.782Z",
+  "generated_at": "2026-11-15T14:59:59.708Z",
   "model": "anthropic/claude-sonnet-5.5",
-  "prompt_version": "review.v1",
+  "prompt_version": "review.v2",
   "source": "data/demo-rcm.xlsx",
-  "duration_seconds": 58.4,
+  "duration_seconds": 64.2,
   "reviews": [
     {
       "control_id": "P2P-01",
@@ -15,9 +15,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Head of AP Operations compares",
+            "text": "the Head of AP Operations compares the SAP change report field by field with the approved request form",
             "start": 58,
-            "end": 92
+            "end": 160
           }
         },
         {
@@ -72,10 +72,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "The field-by-field comparison of the change report against the request is rules-based and could be scripted, but the call-back needs a human.",
+      "automation_rationale": "The field-by-field comparison of change report and request form is rules-based and could be scripted, while the call-back remains manual.",
       "suggested_rewrite": "Upon each request to create or change vendor master data, the Head of AP Operations compares the SAP change report field by field with the approved request form before the vendor is unblocked for payment. For bank detail changes, the AP Master Data Specialist first performs a call-back to the vendor using a phone number from an independent source. Any mismatch is rejected and logged. The approved workflow item and the call-back log are retained in SAP.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-02",
@@ -97,9 +97,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "automatically blocked for payment until released through the price-variance workflow",
-            "start": 198,
-            "end": 282
+            "text": "automated three-way match of purchase order, goods receipt and invoice",
+            "start": 44,
+            "end": 114
           }
         },
         {
@@ -139,10 +139,10 @@
         }
       ],
       "automation_score": 5,
-      "automation_rationale": "The control is already a system-enforced three-way match with configured tolerances and an automatic payment block.",
+      "automation_rationale": "Already a system-enforced configuration (three-way match with tolerance blocks), i.e. an ITAC.",
       "suggested_rewrite": "At invoice posting, SAP S/4HANA performs an automated three-way match of purchase order, goods receipt and invoice. Invoices with a price variance above 2% or CHF 500, or any quantity variance, are automatically blocked for payment until released through the price-variance workflow. The tolerance configuration is evidenced by the SAP tolerance key report retained in the ITGC configuration baseline.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-03",
@@ -158,14 +158,14 @@
         {
           "check": "evidence",
           "severity": "high",
-          "message": "No evidence artefact or location is stated; add sign-off, ticket or system log and where it is kept.",
+          "message": "No sign-off, report or system log is stated; add the retained artefact and its location.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "precision",
           "severity": "high",
-          "message": "No check criteria or tolerance are given; define what makes an invoice 'correct' and the threshold.",
+          "message": "No criterion for what counts as correct or when to investigate; define the check items and thresholds.",
           "evidence_span": null,
           "source": "llm"
         },
@@ -184,7 +184,7 @@
         {
           "check": "who",
           "severity": "med",
-          "message": "A department is named, not a role; name the role that checks the invoices.",
+          "message": "A department is not a role; name the position that checks the invoices, e.g. AP Clerk.",
           "evidence_span": {
             "field": "control_description",
             "text": "Finance",
@@ -196,7 +196,7 @@
         {
           "check": "what",
           "severity": "med",
-          "message": "'Ensures' is vague; state what is checked, e.g. match to PO and goods receipt, and the outcome.",
+          "message": "'Ensures' and 'checked' do not say what is compared against what; define the concrete check.",
           "evidence_span": {
             "field": "control_description",
             "text": "ensures that supplier invoices are checked and are correct",
@@ -244,10 +244,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Invoice checks against PO and goods receipt are rules-based and could be scripted or handled by a system matching tool.",
-      "suggested_rewrite": "Before each payment run, the [role, e.g. AP Clerk] compares each supplier invoice with the [purchase order and goods receipt] and investigates any difference above [threshold, e.g. CHF 500 or 2%]; invoices with unresolved differences are not released for payment. The control operates daily. The [role] documents the check by [sign-off / system log / ticket] retained in [evidence location].",
+      "automation_rationale": "Invoice checks against PO and goods receipt are rules-based and could be scripted or run as an automated match.",
+      "suggested_rewrite": "Daily, before payment release, the [role, e.g. AP Clerk] compares each supplier invoice with the purchase order and goods receipt for [checks, e.g. price, quantity, vendor, bank details]. Any difference above [threshold, e.g. CHF 500 or 2%] is investigated and resolved before payment. The check is evidenced by [sign-off or system log] retained in [evidence location].",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-04",
@@ -259,9 +259,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the responsible Cost Centre Manager",
-            "start": 105,
-            "end": 140
+            "text": "The Cost Centre Manager approves or rejects the requisition in the workflow",
+            "start": 254,
+            "end": 329
           }
         },
         {
@@ -269,9 +269,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The Cost Centre Manager approves or rejects the requisition in the workflow",
-            "start": 254,
-            "end": 329
+            "text": "routes each purchase requisition above CHF 5,000 to the responsible Cost Centre Manager for approval",
+            "start": 53,
+            "end": 153
           }
         },
         {
@@ -316,10 +316,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Workflow routing and the PO release block are system-enforced; only the approval decision itself needs a human.",
+      "automation_rationale": "The workflow routing and PO release block are system-enforced; only the human approval decision remains manual.",
       "suggested_rewrite": "Before a purchase order can be released, SAP S/4HANA routes each purchase requisition above CHF 5,000 to the responsible Cost Centre Manager for approval according to the approval matrix; requisitions above CHF 100,000 additionally require CFO approval. The Cost Centre Manager approves or rejects the requisition in the workflow, and the PO cannot be released until approval is complete. Approval history is retained in the SAP workflow log.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-05",
@@ -331,9 +331,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the AP Team Lead reviews",
+            "text": "the AP Team Lead reviews the GR/IR clearing account ageing report",
             "start": 41,
-            "end": 65
+            "end": 106
           }
         },
         {
@@ -388,10 +388,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Selecting open items by age and amount is rules-based and scriptable; investigating and clearing them still needs human judgment.",
+      "automation_rationale": "The ageing and threshold filtering is rules-based and scriptable; the investigation of open items still needs human follow-up.",
       "suggested_rewrite": "By the 5th business day after month-end, the AP Team Lead reviews the GR/IR clearing account ageing report from SAP S/4HANA and investigates all open items older than 90 days or above CHF 25,000; corrections are posted only after Accounting Manager approval. The signed ageing report and investigation notes are filed in the month-end close folder on SharePoint.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-06",
@@ -411,9 +411,14 @@
         },
         {
           "check": "when",
-          "severity": "med",
-          "message": "No trigger stated; specify the approval occurs before the PO is released to the vendor.",
-          "evidence_span": null,
+          "severity": "low",
+          "message": "Scope is defined but no timing or trigger relative to the process, e.g. before PO release to the vendor.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "above CHF 10,000 for non-catalogue items",
+            "start": 60,
+            "end": 100
+          },
           "source": "llm"
         }
       ],
@@ -463,17 +468,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "above CHF 10,000 for non-catalogue items",
+            "text": "above CHF 10,000",
             "start": 60,
-            "end": 100
+            "end": 76
           }
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "SAP release strategies can enforce value-based approval workflows, leaving only the approver's decision as human judgment.",
-      "suggested_rewrite": "For each non-catalogue purchase order above CHF 10,000, the [buyer role, different from approver] creates the PO and the Purchasing Manager approves it in SAP before it is released to the vendor [confirm timing]. The approval is documented in the SAP release strategy log. The control operates per transaction.",
+      "automation_rationale": "The SAP release strategy can enforce threshold-based approval by a separate approver, leaving only exception handling manual.",
+      "suggested_rewrite": "[Timing, e.g. before the purchase order is released to the vendor], the [approver role, different from the Purchasing Manager] approves purchase orders above CHF 10,000 for non-catalogue items created by the Purchasing Manager, using the SAP release strategy. Each approval is recorded per transaction in the SAP release strategy log.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-07",
@@ -495,9 +500,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "blocks posting of any exact match with a hard error message",
-            "start": 141,
-            "end": 200
+            "text": "compares vendor, invoice reference, amount and invoice date with all invoices posted in the last 24 months and blocks posting of any exact match",
+            "start": 30,
+            "end": 174
           }
         },
         {
@@ -513,20 +518,15 @@
         {
           "check": "frequency",
           "ok": true,
-          "span": {
-            "field": "control_description",
-            "text": "At invoice entry",
-            "start": 0,
-            "end": 16
-          }
+          "span": null
         },
         {
           "check": "evidence",
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The duplicate-check settings are evidenced by a configuration screenshot retained in the ITGC configuration baseline",
-            "start": 202,
+            "text": "configuration screenshot retained in the ITGC configuration baseline",
+            "start": 250,
             "end": 318
           }
         },
@@ -537,10 +537,10 @@
         }
       ],
       "automation_score": 5,
-      "automation_rationale": "The control is already a system-enforced configuration that blocks duplicate postings.",
-      "suggested_rewrite": "At invoice entry, SAP S/4HANA compares vendor, invoice reference, amount and invoice date with all invoices posted in the last 24 months and blocks posting of any exact match with a hard error message. The control operates continuously on every invoice. The duplicate-check settings are evidenced by a configuration screenshot retained in the ITGC configuration baseline.",
+      "automation_rationale": "Already a system-enforced configuration that blocks duplicate postings.",
+      "suggested_rewrite": "At invoice entry, SAP S/4HANA compares vendor, invoice reference, amount and invoice date with all invoices posted in the last 24 months and blocks posting of any exact match with a hard error message. The duplicate-check settings are evidenced by a configuration screenshot retained in the ITGC configuration baseline.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-08",
@@ -622,10 +622,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Filtering one-time vendor payments above a threshold and matching to invoice and approval is rules-based and scriptable, with human follow-up on exceptions.",
+      "automation_rationale": "Selecting one-time vendor payments above a threshold and matching them to invoices and approvals is rules-based and scriptable.",
       "suggested_rewrite": "Each quarter, within 10 business days after quarter-end, the AP Team Lead reviews the SAP report of all payments to one-time vendor accounts and investigates every payment above CHF 2,000 against the supporting invoice and approval. The signed report is retained in the AP SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-09",
@@ -637,9 +637,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the AP Accountant prepares the accrual",
-            "start": 35,
-            "end": 73
+            "text": "The Accounting Manager",
+            "start": 133,
+            "end": 155
           }
         },
         {
@@ -665,20 +665,15 @@
         {
           "check": "frequency",
           "ok": true,
-          "span": {
-            "field": "control_description",
-            "text": "after month-end",
-            "start": 18,
-            "end": 33
-          }
+          "span": null
         },
         {
           "check": "evidence",
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The review is evidenced by sign-off in the close checklist tool",
-            "start": 297,
+            "text": "sign-off in the close checklist tool",
+            "start": 324,
             "end": 360
           }
         },
@@ -694,10 +689,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Accrual calculation from the GR/IR report and the variance test against the prior month are rules-based and scriptable.",
-      "suggested_rewrite": "By business day 3 after each month-end, the AP Accountant prepares the accrual for goods received not invoiced from the SAP GR/IR report. Before the entry is posted, the Accounting Manager reviews the accrual against the report and investigates movements above CHF 50,000 or 10% versus the prior month. The review is evidenced by sign-off in the close checklist tool.",
+      "automation_rationale": "Accrual calculation from the GR/IR report and variance flagging against thresholds can be scripted, leaving review of exceptions manual.",
+      "suggested_rewrite": "By business day 3 after month-end, the AP Accountant prepares the accrual for goods received not invoiced from the SAP GR/IR report. Before the entry is posted, the Accounting Manager reviews the accrual against the report and investigates movements above CHF 50,000 or 10% versus the prior month. The review is evidenced by sign-off in the close checklist tool.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "P2P-10",
@@ -766,10 +761,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Matching supplier statement balances to the vendor ledger and flagging differences above a threshold is rules-based and suited to a reconciliation tool.",
+      "automation_rationale": "Matching vendor statements to the ledger and flagging differences above a threshold can be run in a reconciliation tool.",
       "suggested_rewrite": "Within 15 business days after each quarter-end, the AP Accountant reconciles the supplier statements of the 20 largest vendors by spend to the SAP vendor ledger and investigates differences above CHF 1,000. The AP Team Lead reviews and signs the reconciliation pack, which is stored in the AP SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-01",
@@ -791,9 +786,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "automatically blocks any order that would take the customer's total exposure above the approved credit limit",
+            "text": "automatically blocks any order",
             "start": 41,
-            "end": 149
+            "end": 71
           }
         },
         {
@@ -833,10 +828,10 @@
         }
       ],
       "automation_score": 5,
-      "automation_rationale": "The control is already a system-enforced credit block configured in SAP.",
+      "automation_rationale": "The credit block is already a system-enforced configuration in SAP, making it an ITAC.",
       "suggested_rewrite": "When a sales order is saved, SAP S/4HANA automatically blocks any order that would take the customer's total exposure above the approved credit limit. Blocked orders can only be released by the Credit Manager. The block-and-release log is retained in SAP credit management, and the credit-check configuration is evidenced by the configuration report in the ITGC configuration baseline.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-02",
@@ -861,9 +856,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Billing Specialist manually compares the SAP price conditions with the signed customer price lists in Excel",
+            "text": "the Billing Specialist manually compares",
             "start": 32,
-            "end": 143
+            "end": 72
           }
         },
         {
@@ -871,9 +866,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Billing Specialist manually compares the SAP price conditions with the signed customer price lists in Excel",
-            "start": 32,
-            "end": 143
+            "text": "compares the SAP price conditions with the signed customer price lists in Excel and corrects differences",
+            "start": 64,
+            "end": 168
           }
         },
         {
@@ -911,17 +906,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "corrects differences above 0.5%",
-            "start": 148,
+            "text": "differences above 0.5%",
+            "start": 157,
             "end": 179
           }
         }
       ],
-      "automation_score": 3,
-      "automation_rationale": "Comparing SAP price conditions with the price lists is a rules-based match that could be scripted or run in a reconciliation tool.",
-      "suggested_rewrite": "Before the monthly billing run, the Billing Specialist compares the SAP price conditions with the signed customer price lists in Excel and corrects differences above 0.5% before billing. The Billing Specialist initials the comparison and files it in the billing folder on SharePoint.",
+      "automation_score": 4,
+      "automation_rationale": "Comparing price conditions with a price list under a fixed 0.5% tolerance is rules-based and scriptable, leaving only exceptions for human follow-up.",
+      "suggested_rewrite": "Before each monthly billing run, the Billing Specialist compares the SAP price conditions with the signed customer price lists in Excel and corrects all differences above 0.5% before billing. The initialled comparison is filed in the billing folder on SharePoint.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-03",
@@ -933,9 +928,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Revenue Accountant",
+            "text": "the Revenue Accountant compares",
             "start": 45,
-            "end": 67
+            "end": 76
           }
         },
         {
@@ -943,9 +938,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "compares the proof-of-delivery date with the billing date for all deliveries in the last 5 and first 5 business days of the period",
+            "text": "compares the proof-of-delivery date with the billing date",
             "start": 68,
-            "end": 198
+            "end": 125
           }
         },
         {
@@ -963,8 +958,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "each month-end",
-            "start": 29,
+            "text": "after each month-end",
+            "start": 23,
             "end": 43
           }
         },
@@ -983,17 +978,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "investigates any shipment above CHF 20,000 billed in the wrong period",
-            "start": 203,
+            "text": "any shipment above CHF 20,000 billed in the wrong period",
+            "start": 216,
             "end": 272
           }
         }
       ],
-      "automation_score": 4,
-      "automation_rationale": "Date comparison and threshold filtering are fully scriptable, leaving only exception follow-up and adjustment approval to humans.",
+      "automation_score": 3,
+      "automation_rationale": "Date comparison and threshold filtering are rules-based and scriptable; investigating the exceptions still requires human judgment.",
       "suggested_rewrite": "Within 3 business days after each month-end, the Revenue Accountant compares the proof-of-delivery date with the billing date for all deliveries in the last 5 and first 5 business days of the period and investigates any shipment above CHF 20,000 billed in the wrong period. The Accounting Manager approves adjustments before posting. The signed cut-off checklist is retained in the month-end close folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-04",
@@ -1002,14 +997,14 @@
         {
           "check": "who",
           "severity": "high",
-          "message": "Passive voice; the description names no role who performs the review.",
+          "message": "Passive voice; state which role performs the review of customer master data changes.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "what",
           "severity": "med",
-          "message": "Review is stated but 'appropriateness' and the supporting documents are not defined.",
+          "message": "Supporting documents are mentioned, but 'appropriateness' and 'followed up' are vague; define what is checked and how follow-up is done.",
           "evidence_span": {
             "field": "control_description",
             "text": "reviewed for appropriateness against supporting documents",
@@ -1021,21 +1016,21 @@
         {
           "check": "when",
           "severity": "med",
-          "message": "No timing or trigger is given for the review.",
+          "message": "No timing or trigger is given; state when the review is performed after changes occur.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "frequency",
           "severity": "med",
-          "message": "No frequency in the description or column; state how often the review runs.",
+          "message": "No frequency in the description; state how often the review is performed.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "precision",
           "severity": "med",
-          "message": "'Unauthorised' is not defined; state what counts as an exception, e.g. no approved change request.",
+          "message": "Criterion is not defined; specify the population (e.g. all changes to credit limits, payment terms, bank data) and what counts as authorised.",
           "evidence_span": {
             "field": "control_description",
             "text": "any unauthorised change is followed up",
@@ -1083,10 +1078,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "System change logs can be matched automatically against approved change requests, leaving only exceptions for human follow-up.",
-      "suggested_rewrite": "[Frequency, e.g. monthly], within [timing, e.g. 5 business days after period end], the [role, independent of master data maintenance, e.g. Sales Operations Manager] reviews the SAP customer master data change log for 100% of changes to payment terms, credit limits and bank data against [supporting documents, e.g. approved change requests] and follows up any change without approved support. The reviewer signs the change log printout and files it in the O2C master data binder.",
+      "automation_rationale": "A system change-log report matched against approved change requests could be scripted, with exceptions followed up manually.",
+      "suggested_rewrite": "[Timing, e.g. weekly], the [reviewer role] reviews the SAP change log of all customer master data changes (payment terms, credit limits, bank data) against approved supporting documents and investigates any change without matching documentation. The reviewer signs the change log printout, and it is filed in the O2C master data binder. Frequency: [frequency].",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-05",
@@ -1098,8 +1093,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "must be approved in the SAP workflow by the Head of Customer Service",
-            "start": 50,
+            "text": "approved in the SAP workflow by the Head of Customer Service",
+            "start": 58,
             "end": 118
           }
         },
@@ -1108,9 +1103,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "every credit note above CHF 5,000 must be approved in the SAP workflow",
-            "start": 16,
-            "end": 86
+            "text": "The system prevents posting without the required approvals",
+            "start": 185,
+            "end": 243
           }
         },
         {
@@ -1148,17 +1143,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "every credit note above CHF 5,000",
-            "start": 16,
-            "end": 49
+            "text": "credit notes above CHF 50,000 additionally require CFO approval",
+            "start": 120,
+            "end": 183
           }
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "The workflow and posting block are system-enforced, while the approval decision itself remains a human action.",
-      "suggested_rewrite": "Before posting, every credit note above CHF 5,000 must be approved in the SAP workflow by the Head of Customer Service; credit notes above CHF 50,000 additionally require CFO approval. SAP prevents posting without the required approvals. The workflow approval history is retained in SAP.",
+      "automation_rationale": "Workflow routing and posting blocks are system-enforced; only the approval decision itself requires human judgment.",
+      "suggested_rewrite": "Before posting, every credit note above CHF 5,000 must be approved in the SAP workflow by the Head of Customer Service; credit notes above CHF 50,000 additionally require CFO approval. The system prevents posting without the required approvals. The workflow approval history is retained in SAP.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-06",
@@ -1170,9 +1165,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Credit Manager reviews the SAP AR ageing report",
+            "text": "the Credit Manager",
             "start": 35,
-            "end": 86
+            "end": 53
           }
         },
         {
@@ -1180,8 +1175,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "assesses every balance overdue more than 90 days or above CHF 50,000 for recoverability, and proposes provision adjustments",
-            "start": 88,
+            "text": "reviews the SAP AR ageing report, assesses every balance overdue more than 90 days or above CHF 50,000 for recoverability, and proposes provision adjustments",
+            "start": 54,
             "end": 211
           }
         },
@@ -1227,10 +1222,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "The ageing and threshold selection is rules-based and scriptable, while the recoverability assessment and approval still need human judgment.",
+      "automation_rationale": "Ageing selection by age and amount can be scripted, but the recoverability assessment still needs judgment.",
       "suggested_rewrite": "By business day 5 after month-end, the Credit Manager reviews the SAP AR ageing report, assesses every balance overdue more than 90 days or above CHF 50,000 for recoverability, and proposes provision adjustments, which the Group Controller approves before posting. The signed ageing review and the provision calculation are stored in the month-end close folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-07",
@@ -1239,14 +1234,14 @@
         {
           "check": "evidence",
           "severity": "high",
-          "message": "State what evidence is retained (e.g. signed exception report) and where it is stored.",
+          "message": "No evidence artefact or retention location is described; add sign-off and where it is stored.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "what",
           "severity": "med",
-          "message": "Replace 'monitors', 'make sure' and 'looked at' with a concrete action such as review, investigate or approve.",
+          "message": "'Monitors', 'make sure' and 'looked at' are vague; state the concrete review, investigation and outcome.",
           "evidence_span": {
             "field": "control_description",
             "text": "monitors pricing exceptions to make sure discounts are appropriate",
@@ -1262,9 +1257,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The Sales Director monitors pricing exceptions",
+            "text": "The Sales Director",
             "start": 0,
-            "end": 46
+            "end": 18
           }
         },
         {
@@ -1309,10 +1304,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Discount exceptions above a fixed percentage can be extracted automatically from pricing data, leaving only exception follow-up to a human.",
-      "suggested_rewrite": "Within 5 business days after month-end, the Sales Director reviews the report of all pricing exceptions with discounts above 15%, investigates each one against [approval criterion, e.g. approved discount policy], and documents the outcome. The signed exception report is stored in [evidence location]. This control operates monthly.",
+      "automation_rationale": "Discounts above a fixed percentage can be reported by the system and routed for exception-based approval.",
+      "suggested_rewrite": "Within 5 business days after month-end, the Sales Director reviews the [system report] of pricing exceptions, investigates every discount above 15% against [approval criteria, e.g. approved price list or discount authority], documents the outcome, and retains the signed review in [evidence location]. The review is performed monthly.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-08",
@@ -1324,9 +1319,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the AR Team Lead reviews the SAP unapplied-cash report",
+            "text": "the AR Team Lead",
             "start": 29,
-            "end": 83
+            "end": 45
           }
         },
         {
@@ -1334,9 +1329,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "reviews the SAP unapplied-cash report (generated from the camt.053 bank statement import) and investigates any item",
+            "text": "reviews the SAP unapplied-cash report (generated from the camt.053 bank statement import) and investigates any item open for more than 3 business days or above CHF 10,000",
             "start": 46,
-            "end": 161
+            "end": 216
           }
         },
         {
@@ -1354,9 +1349,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Every business day",
+            "text": "Every business day by 12:00",
             "start": 0,
-            "end": 18
+            "end": 27
           }
         },
         {
@@ -1381,10 +1376,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Report generation and threshold filtering are already system-based, so only exception follow-up needs human action.",
+      "automation_rationale": "Report generation and exception selection are system-driven; only follow-up of flagged items needs human action.",
       "suggested_rewrite": "Every business day by 12:00, the AR Team Lead reviews the SAP unapplied-cash report (generated from the camt.053 bank statement import) and investigates any item open for more than 3 business days or above CHF 10,000. The reviewed report is saved with e-signature in the AR SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-09",
@@ -1400,7 +1395,7 @@
         {
           "check": "precision",
           "severity": "med",
-          "message": "Define a quantitative follow-up threshold, e.g. variance in CHF or percent, instead of 'unusual'.",
+          "message": "'Unusual' is undefined; set a variance threshold in amount and/or percent for follow-up.",
           "evidence_span": {
             "field": "control_description",
             "text": "unusual fluctuations",
@@ -1416,9 +1411,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The Revenue Accountant reviews the monthly revenue analytics",
+            "text": "The Revenue Accountant",
             "start": 0,
-            "end": 60
+            "end": 22
           }
         },
         {
@@ -1468,10 +1463,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Variance calculations against budget and prior year can be scripted with threshold flagging, while explanations need human judgment.",
-      "suggested_rewrite": "Within 4 business days after month-end, the Revenue Accountant reviews the monthly revenue analytics by customer and product versus budget and prior year and follows up every variance above [threshold, e.g. CHF 10,000 or 5%]. Review is evidenced by sign-off on the revenue analysis in the close folder, including documented explanations for followed-up variances.",
+      "automation_rationale": "Variance comparison against budget and prior year can be scripted with threshold-based exception reporting.",
+      "suggested_rewrite": "Within 4 business days after month-end, the Revenue Accountant reviews the monthly revenue analytics by customer and product versus budget and prior year and investigates every variance above [threshold, e.g. CHF 50,000 or 10%]. Review is evidenced by sign-off on the revenue analysis in the close folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "O2C-10",
@@ -1483,9 +1478,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the Legal Counsel and the Head of Sales review it",
+            "text": "the Legal Counsel and the Head of Sales",
             "start": 108,
-            "end": 157
+            "end": 147
           }
         },
         {
@@ -1513,9 +1508,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Before any customer contract with annual value above CHF 250,000 or payment terms beyond 60 days is signed",
+            "text": "Before any customer contract",
             "start": 0,
-            "end": 106
+            "end": 28
           }
         },
         {
@@ -1540,10 +1535,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Threshold-based routing and approval could be enforced by a CRM workflow, but the checklist review is still manual.",
-      "suggested_rewrite": "Before any customer contract with annual value above CHF 250,000 or payment terms beyond 60 days is signed, the Legal Counsel and the Head of Sales review it against the contract policy checklist and escalate any deviation to the CFO for approval. The signed checklist is attached to the contract record in the CRM. This control operates per contract.",
+      "automation_rationale": "A CRM workflow could route contracts by value and payment terms, while the checklist review stays manual.",
+      "suggested_rewrite": "Before any customer contract with annual value above CHF 250,000 or payment terms beyond 60 days is signed, the Legal Counsel and the Head of Sales review it against the contract policy checklist and escalate any deviation to the CFO for approval. The signed checklist is attached to the contract record in the CRM.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-01",
@@ -1585,8 +1580,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "open, close or modify any bank account",
-            "start": 33,
+            "text": "Before the bank is instructed to open, close or modify any bank account",
+            "start": 0,
             "end": 71
           }
         },
@@ -1607,10 +1602,10 @@
         }
       ],
       "automation_score": 2,
-      "automation_rationale": "Dual approval could be supported by an electronic workflow, but it still relies on human authorisation decisions.",
+      "automation_rationale": "Approval could run in an electronic workflow with enforced dual sign-off, but the request and register update remain largely manual.",
       "suggested_rewrite": "Before the bank is instructed to open, close or modify any bank account, the Group Treasurer and the CFO both approve the request form with their signatures. Within 2 business days after the bank confirms, the Treasury Analyst updates the bank account register. The approved request and the updated register are retained in the treasury SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-02",
@@ -1642,9 +1637,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "releases it only after agreeing the total amount and number of payments",
-            "start": 172,
-            "end": 243
+            "text": "only after agreeing the total amount and number of payments to the approved SAP payment proposal",
+            "start": 184,
+            "end": 280
           }
         },
         {
@@ -1679,10 +1674,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "The total and count match against the SAP proposal could be automated, with humans handling exceptions; dual release is already enforced by the platform.",
-      "suggested_rewrite": "For every payment run, the Treasury Analyst uploads the SAP payment file to the e-banking platform. A second authorised signatory (Group Treasurer or Treasury Manager) releases it only after agreeing the total amount and number of payments to the approved SAP payment proposal; any difference stops the release. The bank platform enforces release by two different users. The release log is retained in the e-banking audit trail.",
+      "automation_rationale": "Total and count comparison is scriptable and dual release is already system-enforced, leaving exception-based human follow-up.",
+      "suggested_rewrite": "For every payment run, the Treasury Analyst uploads the SAP payment file to the e-banking platform, and a second authorised signatory (Group Treasurer or Treasury Manager) releases it only after agreeing the total amount and number of payments to the approved SAP payment proposal; any difference stops the release. The bank platform enforces release by two different users. The release log is retained in the e-banking audit trail.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-03",
@@ -1703,24 +1698,36 @@
         {
           "check": "evidence",
           "severity": "med",
-          "message": "Name the artefact (e.g. approval record, invoice copy) and its exact location.",
+          "message": "Name the artefact (e.g. invoice copy, approval record) and its exact location in e-banking.",
           "evidence_span": {
             "field": "control_description",
-            "text": "Each payment is supported by an invoice and evidence is kept in e-banking",
-            "start": 133,
+            "text": "evidence is kept in e-banking",
+            "start": 177,
             "end": 206
+          },
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Threshold sets scope only; approval criteria are undefined and payments up to CHF 1,000 are not addressed.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "above CHF 1,000",
+            "start": 68,
+            "end": 83
           },
           "source": "llm"
         },
         {
           "check": "when",
           "severity": "low",
-          "message": "No trigger stated; specify that approval occurs before the payment is released to the bank.",
+          "message": "No timing relative to payment release; state that approval occurs before release.",
           "evidence_span": {
             "field": "control_description",
-            "text": "outside the payment run",
+            "text": "outside the payment run in the e-banking portal",
             "start": 84,
-            "end": 107
+            "end": 131
           },
           "source": "llm"
         }
@@ -1731,9 +1738,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The Treasury Manager prepares and approves",
+            "text": "The Treasury Manager",
             "start": 0,
-            "end": 42
+            "end": 20
           }
         },
         {
@@ -1756,9 +1763,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Each payment",
+            "text": "Each payment is supported by an invoice",
             "start": 133,
-            "end": 145
+            "end": 172
           }
         },
         {
@@ -1768,25 +1775,33 @@
         },
         {
           "check": "precision",
-          "ok": true,
-          "span": {
-            "field": "control_description",
-            "text": "above CHF 1,000",
-            "start": 68,
-            "end": 83
-          }
+          "ok": false,
+          "span": null
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Amount limits and approval routing could be enforced by e-banking workflow rules, though invoice support still needs human checking.",
-      "suggested_rewrite": "Before release, the Treasury Manager prepares manual (urgent) payments above CHF 1,000 outside the payment run in the e-banking portal, and [independent approver role] approves each one against the supporting invoice. The approval record and the invoice copy are retained in [evidence location, e.g. e-banking payment record]. Applies to each payment.",
+      "automation_rationale": "Invoice-to-payment matching and approval can be enforced through e-banking workflow rules with exception-based follow-up.",
+      "suggested_rewrite": "The Treasury Manager prepares manual (urgent) payments above CHF 1,000 outside the payment run in the e-banking portal, and [independent approver role] approves each payment [timing, e.g. before release] after agreeing it to the supporting invoice [approval criteria, e.g. amount and beneficiary]. The invoice and approval record are retained in [evidence location, e.g. e-banking payment record].",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-04",
-      "status": "pass",
-      "findings": [],
+      "status": "weak",
+      "findings": [
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Deadline covers preparation only; add when the Group Treasurer completes the review.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Every Monday by 12:00",
+            "start": 0,
+            "end": 21
+          },
+          "source": "llm"
+        }
+      ],
       "attributes": [
         {
           "check": "who",
@@ -1810,22 +1825,17 @@
         },
         {
           "check": "when",
-          "ok": true,
-          "span": {
-            "field": "control_description",
-            "text": "Every Monday by 12:00",
-            "start": 0,
-            "end": 21
-          }
+          "ok": false,
+          "span": null
         },
         {
           "check": "frequency",
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Every Monday",
+            "text": "Every Monday by 12:00",
             "start": 0,
-            "end": 12
+            "end": 21
           }
         },
         {
@@ -1850,10 +1860,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Variance calculation against thresholds is rules-based and scriptable from the TMS, leaving human investigation of exceptions.",
-      "suggested_rewrite": "Every Monday by 12:00, the Treasury Analyst prepares the 13-week rolling cash forecast from the TMS. The Group Treasurer reviews it and investigates variances between actuals and the prior-week forecast above CHF 500,000 or 10%, documenting explanations in the forecast file. The approved forecast is saved in the treasury SharePoint folder.",
+      "automation_rationale": "Forecast generation from the TMS and the variance threshold calculation can be scripted; only explanations need human judgement.",
+      "suggested_rewrite": "Every Monday by 12:00, the Treasury Analyst prepares the 13-week rolling cash forecast from the TMS. [Timing, e.g. by Monday 17:00], the Group Treasurer reviews it and investigates variances between actuals and the prior-week forecast above CHF 500,000 or 10%, documenting explanations in the forecast file. The approved forecast is saved in the treasury SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-05",
@@ -1862,19 +1872,19 @@
         {
           "check": "precision",
           "severity": "med",
-          "message": "Scope is complete, but no criterion for investigating or clearing reconciling items is given.",
+          "message": "Scope is complete, but no criterion for investigating or clearing reconciling items (e.g. any difference or age).",
           "evidence_span": {
             "field": "control_description",
-            "text": "all bank account balances",
-            "start": 35,
-            "end": 60
+            "text": "reconciles all bank account balances in SAP to the bank statements",
+            "start": 24,
+            "end": 90
           },
           "source": "llm"
         },
         {
           "check": "frequency",
           "severity": "low",
-          "message": "Annual bank reconciliation is implausible for a key cash control; operate at least monthly.",
+          "message": "Annual bank reconciliation is implausibly infrequent for cash risk; operate at least monthly.",
           "evidence_span": {
             "field": "control_description",
             "text": "annually",
@@ -1937,10 +1947,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Bank-to-ledger matching can be largely automated in a reconciliation tool, with humans following up on exceptions.",
-      "suggested_rewrite": "[At least monthly; currently annually], within [timing, e.g. 10 business days after period end], the Treasury Accountant reconciles all bank account balances in SAP to the bank statements and investigates reconciling items [criterion, e.g. any unmatched item or older than 30 days]. The Group Treasurer reviews the reconciliation. Signed reconciliations are filed in the treasury close folder.",
+      "automation_rationale": "Bank statement matching can be automated in a reconciliation tool, leaving only unmatched items for human follow-up.",
+      "suggested_rewrite": "[At least monthly, e.g. within X business days after period-end], the Treasury Accountant reconciles all bank account balances in SAP to the bank statements and investigates [criterion, e.g. any difference or items older than X days]. The Group Treasurer reviews the reconciliation [timing]. Signed reconciliations are filed in the treasury close folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-06",
@@ -1961,7 +1971,7 @@
         {
           "check": "who",
           "severity": "med",
-          "message": "Only the CFO is named; the approver for deals up to CHF 5m is not identified (passive 'are approved').",
+          "message": "Only the CFO is named, for deals above CHF 5m. The approver for hedges up to CHF 5m is not stated (passive voice).",
           "evidence_span": {
             "field": "control_description",
             "text": "deals above CHF 5m require CFO approval",
@@ -2000,7 +2010,12 @@
         {
           "check": "frequency",
           "ok": true,
-          "span": null
+          "span": {
+            "field": "control_description",
+            "text": "before execution",
+            "start": 23,
+            "end": 39
+          }
         },
         {
           "check": "evidence",
@@ -2023,11 +2038,11 @@
           }
         }
       ],
-      "automation_score": 4,
-      "automation_rationale": "Hedge ratio and amount thresholds can be enforced by TMS limit checks and workflow routing, leaving humans to approve exceptions.",
-      "suggested_rewrite": "Before execution of each FX hedge, [approver role, e.g. Treasury Manager], who is not the dealer who entered the deal, approves the deal ticket in the TMS against the hedging policy (hedge ratio 50–80% of forecast exposures over the next 12 months). Deals above CHF 5m additionally require CFO approval. The approved deal tickets are stored in the TMS.",
+      "automation_score": 3,
+      "automation_rationale": "Hedge ratio and amount-threshold checks and approval routing could be enforced as rules and workflow in the TMS, though approval remains a human decision.",
+      "suggested_rewrite": "Before execution, [role, e.g. Group Treasurer] approves each FX hedge against the hedging policy (hedge ratio 50–80% of forecast exposures over the next 12 months); deals above CHF 5m additionally require CFO approval. For every transaction, the approved deal ticket is stored in the TMS.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-07",
@@ -2096,10 +2111,10 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "The comparison of bank lists with the matrix and leaver list is rules-based and could be scripted, though bank lists are obtained externally.",
+      "automation_rationale": "Comparing bank signatory lists with the matrix and HR leaver list is rules-based and could be scripted, with human sign-off on removals.",
       "suggested_rewrite": "Each quarter, within 10 business days after quarter-end, the Treasury Manager compares the signatory lists obtained directly from each bank with the approved signatory matrix and the HR leaver list. Any signatory not in the matrix, or who has left, is removed within 5 business days through a request signed by the Group Treasurer and the CFO. The signed comparison is retained in the treasury SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "TRE-08",
@@ -2111,9 +2126,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "the TMS reconciles the bank balances imported via camt.053 with the SAP cash accounts",
-            "start": 20,
-            "end": 105
+            "text": "The Treasury Analyst investigates and clears every exception",
+            "start": 172,
+            "end": 232
           }
         },
         {
@@ -2121,9 +2136,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "investigates and clears every exception",
-            "start": 193,
-            "end": 232
+            "text": "the TMS reconciles the bank balances imported via camt.053 with the SAP cash accounts",
+            "start": 20,
+            "end": 105
           }
         },
         {
@@ -2168,10 +2183,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Reconciliation and exception reporting are already system-run, with only exception follow-up done by a human.",
+      "automation_rationale": "Reconciliation and exception reporting are already system-performed; only exception investigation needs human follow-up.",
       "suggested_rewrite": "Every business day, the TMS reconciles the bank balances imported via camt.053 with the SAP cash accounts and generates an exception report of all differences above CHF 1. The Treasury Analyst investigates and clears every exception by the end of the next business day and documents the resolution in the TMS exception log.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-01",
@@ -2183,8 +2198,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "an Accounting Manager other than the person who entered it",
-            "start": 95,
+            "text": "by an Accounting Manager other than the person who entered it",
+            "start": 92,
             "end": 153
           }
         },
@@ -2233,17 +2248,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "above CHF 10,000",
-            "start": 43,
+            "text": "every manual journal entry above CHF 10,000",
+            "start": 16,
             "end": 59
           }
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "SAP workflow already routes by threshold and blocks self-approval; only the approval judgment remains human.",
+      "automation_rationale": "Workflow routing, thresholds and self-approval prevention are system-enforced; only the approval judgment is human.",
       "suggested_rewrite": "Before posting, every manual journal entry above CHF 10,000 is approved in the SAP workflow by an Accounting Manager other than the person who entered it; the system prevents self-approval. Entries above CHF 1m additionally require Group Controller approval. The workflow history is retained in SAP.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-02",
@@ -2264,7 +2279,7 @@
         {
           "check": "precision",
           "severity": "med",
-          "message": "'Significant' is undefined; state a quantitative variance threshold that triggers follow-up.",
+          "message": "'Significant' is undefined. State a quantitative threshold or percentage for variances requiring follow-up.",
           "evidence_span": {
             "field": "control_description",
             "text": "significant variances",
@@ -2332,10 +2347,10 @@
         }
       ],
       "automation_score": 2,
-      "automation_rationale": "Flux analysis is a manual review that could be supported by system-generated variance reports and threshold flagging.",
-      "suggested_rewrite": "Quarterly, within 8 business days after period end, the Group Controller reviews the consolidated balance sheet and P&L flux analysis and investigates all variances above [threshold, e.g. CHF 500k or 10%], obtaining explanations from [responsible role]. The review is evidenced by e-mail sign-off stored in the consolidation folder.",
+      "automation_rationale": "Flux analysis can be system-generated with variance flags, but the review and follow-up require human judgment.",
+      "suggested_rewrite": "The Group Controller reviews the consolidated balance sheet and P&L flux analysis quarterly, within 8 business days after period end, and investigates all variances above [threshold, e.g. CHF X or Y%], documenting explanations. The review is evidenced by e-mail sign-off stored in the consolidation folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-03",
@@ -2347,8 +2362,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Senior Accountant",
-            "start": 39,
+            "text": "the Senior Accountant",
+            "start": 35,
             "end": 56
           }
         },
@@ -2404,15 +2419,22 @@
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "Threshold-based reconciliation and ageing checks can be scripted or run in a reconciliation tool with exception-based review.",
-      "suggested_rewrite": "By business day 7 after month-end, the Senior Accountant reconciles every balance sheet account above CHF 100,000 to sub-ledgers or third-party evidence. The Accounting Manager then reviews each reconciliation and investigates unreconciled differences above CHF 5,000 or items older than 60 days. Both sign-offs are recorded in the reconciliation tool each month.",
+      "automation_rationale": "Matching balances to sub-ledgers and flagging differences or aged items is rules-based and can be run in a reconciliation tool, with human follow-up.",
+      "suggested_rewrite": "Monthly, by business day 7 after month-end, the Senior Accountant reconciles every balance sheet account above CHF 100,000 to sub-ledgers or third-party evidence. The Accounting Manager then reviews each reconciliation and investigates unreconciled differences above CHF 5,000 or items older than 60 days. Both sign-offs are recorded in the reconciliation tool.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-04",
-      "status": "weak",
+      "status": "fail",
       "findings": [
+        {
+          "check": "precision",
+          "severity": "high",
+          "message": "No criterion defines what 'complete' means or which exceptions must be investigated.",
+          "evidence_span": null,
+          "source": "llm"
+        },
         {
           "check": "owner_invalid",
           "severity": "med",
@@ -2423,7 +2445,7 @@
         {
           "check": "who",
           "severity": "med",
-          "message": "Name a specific role (e.g. Accounting Manager) rather than a team.",
+          "message": "A team is not a role; name the role that performs and signs off the checklist.",
           "evidence_span": {
             "field": "control_description",
             "text": "the Accounting team",
@@ -2435,23 +2457,11 @@
         {
           "check": "what",
           "severity": "med",
-          "message": "'Monitored' and 'ensure' are vague; state the concrete check performed against the checklist.",
+          "message": "'Monitored' and 'ensure' are vague; state the concrete checks performed against the close checklist.",
           "evidence_span": {
             "field": "control_description",
             "text": "monitored by the Accounting team to ensure all entries are complete",
             "start": 19,
-            "end": 86
-          },
-          "source": "llm"
-        },
-        {
-          "check": "precision",
-          "severity": "med",
-          "message": "Define what counts as complete and which open or missing items must be investigated.",
-          "evidence_span": {
-            "field": "control_description",
-            "text": "ensure all entries are complete",
-            "start": 55,
             "end": 86
           },
           "source": "llm"
@@ -2505,10 +2515,10 @@
         }
       ],
       "automation_score": 2,
-      "automation_rationale": "Checklist completion and open-entry status can be supported by system reports or close-management tooling, but follow-up remains manual.",
-      "suggested_rewrite": "Within 5 business days after month-end, the [role, e.g. Accounting Manager] reviews the month-end close checklist, agrees each task is completed and all required entries are posted, and investigates any task or entry that is open or missing [criterion, e.g. any item not completed by the deadline]. The signed-off checklist is kept on SharePoint [folder location] each month.",
+      "automation_rationale": "Checklist completion and posting status can be supported by close-management tool reports, but the completeness review still requires manual judgment.",
+      "suggested_rewrite": "Monthly, within 5 business days after month-end, the [role, e.g. Accounting Manager] compares the close checklist with posted entries, confirms every checklist item is completed and investigates [criterion, e.g. any open checklist item or unposted entry]. The [role] signs off the close checklist, which is kept on SharePoint [folder location].",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-05",
@@ -2520,8 +2530,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Group Reporting Accountant",
-            "start": 64,
+            "text": "the Group Reporting Accountant",
+            "start": 60,
             "end": 90
           }
         },
@@ -2577,10 +2587,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Intercompany matching and difference thresholds are rules-based and can be automated in the consolidation system, leaving exception follow-up to humans.",
-      "suggested_rewrite": "By business day 4 after month-end and before consolidation, the Group Reporting Accountant reconciles intercompany balances between all entities in the consolidation system and agrees every difference above CHF 10,000 with the counterpart entity controller. The Group Reporting Manager reviews and signs off the intercompany matching report, which is retained in the consolidation folder each month.",
+      "automation_rationale": "Intercompany matching and difference flagging can be largely automated in the consolidation system, leaving exception follow-up with counterpart controllers.",
+      "suggested_rewrite": "Monthly, by business day 4 after month-end and before consolidation, the Group Reporting Accountant reconciles intercompany balances between all entities in the consolidation system and agrees every difference above CHF 10,000 with the counterpart entity controller. The Group Reporting Manager reviews and signs off the intercompany matching report, which is retained in the consolidation folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "R2R-06",
@@ -2592,8 +2602,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Group Controller",
-            "start": 54,
+            "text": "the Group Controller",
+            "start": 50,
             "end": 70
           }
         },
@@ -2649,10 +2659,10 @@
         }
       ],
       "automation_score": 1,
-      "automation_rationale": "Impairment assumptions and value-in-use judgement are largely manual; only the headroom calculation and threshold flag can be system-supported.",
+      "automation_rationale": "Value-in-use assumptions and impairment conclusions rely on judgment; only the headroom calculation and flagging could be system-supported.",
       "suggested_rewrite": "Annually, within 20 business days after year-end, the Group Controller reviews the impairment test for each cash-generating unit, compares carrying amount with value in use, and escalates any unit with headroom below 10% to the CFO and the Audit Committee. The approved impairment memo is filed in the year-end close folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-01",
@@ -2664,8 +2674,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Business Application Owner",
-            "start": 62,
+            "text": "each Business Application Owner",
+            "start": 57,
             "end": 88
           }
         },
@@ -2714,17 +2724,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "100% of users with sensitive roles",
-            "start": 168,
+            "text": "covering 100% of users with sensitive roles",
+            "start": 159,
             "end": 202
           }
         }
       ],
       "automation_score": 3,
-      "automation_rationale": "User-to-role extraction and role-conflict flagging can be scripted or run in an access governance tool, with human confirmation of exceptions.",
-      "suggested_rewrite": "Each quarter, within 15 business days after quarter-end, each Business Application Owner reviews 100% of users with sensitive roles (e.g. vendor master maintenance, payment release) in the SAP access listing for their area and flags access inconsistent with the user's job role. The IT Security Officer removes flagged access within 5 business days, tracked in a ServiceNow ticket. The signed review and tickets are retained in ServiceNow.",
+      "automation_rationale": "Access listings and role-conflict comparisons can be scripted or run in an access-governance tool, with owners handling exceptions.",
+      "suggested_rewrite": "Each quarter, within 15 business days after quarter-end, each Business Application Owner reviews the SAP user access listing for their area against job roles, covering 100% of users with sensitive roles (e.g. vendor master maintenance, payment release), and flags any access not consistent with the user's role. The IT Security Officer removes flagged access within 5 business days and tracks each removal to closure in a ServiceNow ticket. The signed review and the tickets are retained in ServiceNow.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-02",
@@ -2746,9 +2756,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "approves the change in ServiceNow based on documented test results; SAP transport management only accepts transports linked to an approved change ticket",
+            "text": "approves the change in ServiceNow based on documented test results",
             "start": 66,
-            "end": 218
+            "end": 132
           }
         },
         {
@@ -2786,17 +2796,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "documented test results",
-            "start": 109,
+            "text": "based on documented test results",
+            "start": 100,
             "end": 132
           }
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "The transport block is already system-enforced; only the CAB approval remains manual, and it could be workflow-driven with exception-based follow-up.",
+      "automation_rationale": "The transport-to-ticket link is already system-enforced; only the CAB approval decision remains a human step.",
       "suggested_rewrite": "Before any transport to SAP production, the Change Advisory Board approves the change in ServiceNow based on documented test results. SAP transport management only accepts transports linked to an approved change ticket, and developers have no access to import into production. The ticket with test evidence and CAB approval is retained in ServiceNow.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-03",
@@ -2831,9 +2841,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "checks whether the overnight SAP batch jobs and bank interface jobs completed, using the job monitoring dashboard",
+            "text": "checks whether the overnight SAP batch jobs and bank interface jobs completed",
             "start": 55,
-            "end": 168
+            "end": 132
           }
         },
         {
@@ -2851,9 +2861,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Every business day by 09:00",
+            "text": "Every business day",
             "start": 0,
-            "end": 27
+            "end": 18
           }
         },
         {
@@ -2861,8 +2871,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Evidence: daily checklist with initials in the IT operations SharePoint folder",
-            "start": 276,
+            "text": "daily checklist with initials in the IT operations SharePoint folder",
+            "start": 286,
             "end": 354
           }
         },
@@ -2878,10 +2888,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Job status checks and incident creation can be automated through monitoring alerts, leaving humans to resolve exceptions.",
-      "suggested_rewrite": "Every business day by 09:00, the IT Operations Analyst checks whether the overnight SAP batch jobs and bank interface jobs completed, using the job monitoring dashboard, and opens a ServiceNow incident for every failed or delayed job [define delay, e.g. not complete by 07:00], which is resolved within 1 business day. The initialled daily checklist is retained in the IT operations SharePoint folder.",
+      "automation_rationale": "Job monitoring tools can alert on failures and create incidents automatically, leaving humans to follow up on exceptions.",
+      "suggested_rewrite": "Every business day by 09:00, the IT Operations Analyst checks in the job monitoring dashboard whether the overnight SAP batch jobs and bank interface jobs completed, and opens a ServiceNow incident for every failed or delayed job, which is resolved within 1 business day. The initialled daily checklist is retained in the IT operations SharePoint folder.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-04",
@@ -2897,14 +2907,14 @@
         {
           "check": "evidence",
           "severity": "high",
-          "message": "State the artefact retained, e.g. ticket or system log, and where it is stored.",
+          "message": "No evidence is described; state the ticket, system log or deactivation report and where it is kept.",
           "evidence_span": null,
           "source": "llm"
         },
         {
           "check": "who",
           "severity": "med",
-          "message": "A team is named rather than a role; specify who performs the deactivation, e.g. Service Desk Agent.",
+          "message": "A team is named rather than a role; name the role that disables accounts, e.g. Service Desk Agent.",
           "evidence_span": {
             "field": "control_description",
             "text": "the IT Service Desk",
@@ -2935,9 +2945,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "Upon notification from HR of each leaver",
-            "start": 0,
-            "end": 40
+            "text": "within 1 business day of the termination date",
+            "start": 109,
+            "end": 154
           }
         },
         {
@@ -2945,8 +2955,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "each leaver",
-            "start": 29,
+            "text": "Upon notification from HR of each leaver",
+            "start": 0,
             "end": 40
           }
         },
@@ -2962,10 +2972,10 @@
         }
       ],
       "automation_score": 4,
-      "automation_rationale": "Account disabling can be triggered automatically from the HR leaver event via identity management, leaving humans to handle exceptions.",
-      "suggested_rewrite": "Upon notification from HR of each leaver, the [role, e.g. Service Desk Agent] in the IT Service Desk disables the leaver's network and SAP accounts within 1 business day of the termination date. The completed deactivation ticket or system log is retained in [evidence location, e.g. ServiceNow].",
+      "automation_rationale": "Leaver deprovisioning can be triggered automatically from HR data via identity management, leaving only exceptions to humans.",
+      "suggested_rewrite": "Upon notification from HR of each leaver, the [role, e.g. IT Service Desk Agent] disables the leaver's network and SAP accounts within 1 business day of the termination date. The deactivation is recorded in [ticket/system log] and retained in [evidence location].",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-05",
@@ -2995,8 +3005,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "reviews the log of all SAP superuser and firefighter sessions, verifies each session against an approved ServiceNow ticket",
-            "start": 77,
+            "text": "verifies each session against an approved ServiceNow ticket",
+            "start": 140,
             "end": 199
           }
         },
@@ -3035,17 +3045,17 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "any session without a ticket",
-            "start": 215,
-            "end": 243
+            "text": "escalates any session without a ticket to the CIO within 2 business days",
+            "start": 205,
+            "end": 277
           }
         }
       ],
-      "automation_score": 3,
-      "automation_rationale": "Matching sessions to approved tickets is a rules-based comparison that could be scripted, with human follow-up on exceptions.",
+      "automation_score": 4,
+      "automation_rationale": "Matching session logs to approved tickets is rules-based and can be automated, with human follow-up on exceptions only.",
       "suggested_rewrite": "Each month, within 10 business days after month-end, the IT Security Officer reviews the log of all SAP superuser and firefighter sessions, verifies each session against an approved ServiceNow ticket, and escalates any session without a ticket to the CIO within 2 business days. The signed log review is retained in ServiceNow.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     },
     {
       "control_id": "ITG-06",
@@ -3087,9 +3097,9 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "At every logon",
-            "start": 0,
-            "end": 14
+            "text": "after every SAP upgrade",
+            "start": 333,
+            "end": 356
           }
         },
         {
@@ -3097,8 +3107,8 @@
           "ok": true,
           "span": {
             "field": "control_description",
-            "text": "The parameter settings are evidenced by a system parameter extract stored in the ITGC configuration baseline",
-            "start": 159,
+            "text": "system parameter extract stored in the ITGC configuration baseline",
+            "start": 201,
             "end": 267
           }
         },
@@ -3109,10 +3119,10 @@
         }
       ],
       "automation_score": 5,
-      "automation_rationale": "This is a system configuration enforced automatically; the baseline comparison could also be scripted.",
-      "suggested_rewrite": "At every logon, SAP S/4HANA enforces the password parameters: minimum 12 characters, complexity rules, 90-day expiry and account lock after 5 failed attempts. After every SAP upgrade, the IT Security Officer compares a system parameter extract to the security standard. The extract is stored in the ITGC configuration baseline.",
+      "automation_rationale": "Fully system-enforced configuration; the post-upgrade comparison could also be scripted.",
+      "suggested_rewrite": "At every logon, SAP S/4HANA enforces the password parameters: minimum 12 characters, complexity rules, 90-day expiry and account lock after 5 failed attempts. After every SAP upgrade, the IT Security Officer compares the parameter settings to the security standard. A system parameter extract is stored in the ITGC configuration baseline.",
       "model": "anthropic/claude-sonnet-5.5",
-      "prompt_version": "review.v1"
+      "prompt_version": "review.v2"
     }
   ]
 }

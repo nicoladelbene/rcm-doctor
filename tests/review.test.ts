@@ -106,3 +106,17 @@ describe("reviewBatchWithLlm", () => {
     expect(extractJson('Sure! {"a":1} hope that helps')).toEqual({ a: 1 });
   });
 });
+
+describe("review.v2 SoD from the reviewer", () => {
+  it("adds an AI SoD finding when rules miss it, and does not duplicate rule findings", () => {
+    const c = ctl("S", "The Payroll Lead runs payroll, and is the only person who signs it off for bank release.");
+    const r = buildReview(c, { ...llmResult("S"), sod_conflict: { present: true, quote: "is the only person who signs it off", comment: "Same role runs and signs off." } }, "m");
+    const sod = r.findings.filter((f) => f.check === "sod_conflict");
+    expect(sod).toHaveLength(1);
+    expect(sod[0].source).toBe("llm");
+    expect(sod[0].evidence_span?.text).toBe("is the only person who signs it off");
+    const c2 = ctl("T", "The Treasury Manager prepares and approves payments.");
+    const r2 = buildReview(c2, { ...llmResult("T"), sod_conflict: { present: true, quote: "prepares and approves", comment: "x" } }, "m");
+    expect(r2.findings.filter((f) => f.check === "sod_conflict").map((f) => f.source)).toEqual(["rule"]);
+  });
+});

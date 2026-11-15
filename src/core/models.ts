@@ -1,5 +1,5 @@
 /** Client-safe constants (no Node imports). */
-export const PROMPT_VERSION = "review.v1";
+export const PROMPT_VERSION = "review.v2"; // v1 kept for reproducibility of earlier results
 export const DEFAULT_MODEL = "anthropic/claude-sonnet-5.5"; // ADR 0010
 export const SUGGESTED_MODELS = [
   { id: "anthropic/claude-sonnet-5.5", label: "Claude Sonnet 5.5", note: "default · best eval · ~$0.40 / 40 controls" },
