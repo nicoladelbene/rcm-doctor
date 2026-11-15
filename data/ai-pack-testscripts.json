@@ -1,0 +1,588 @@
+{
+  "generated_at": "2026-11-15T16:58:53.336Z",
+  "model": "rules-only",
+  "prompt_version": "deterministic",
+  "source": "data/ai-pack-rcm.xlsx",
+  "scripts": [
+    {
+      "control_id": "AIG-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "quarterly",
+        "size": 2,
+        "label": "Quarterly",
+        "basis": "Quarterly control: test 2 of 4 quarters (include the year-end quarter if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIG-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIG-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIG-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "annual",
+        "size": 1,
+        "label": "Annual",
+        "basis": "Annual control: test the one occurrence in the period."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIG-05",
+      "toe_ready": false,
+      "blockers": [
+        "evidence: No evidence is named. State the artefact and location, e.g. LMS completion report stored in [location].",
+        "frequency: Frequency is not stated: define it before a sample can be selected."
+      ],
+      "sample": {
+        "frequency": "unknown",
+        "size": null,
+        "label": "Unknown",
+        "basis": "Frequency is not stated: define it before a sample can be selected."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AID-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AID-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AID-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AID-04",
+      "toe_ready": false,
+      "blockers": [
+        "nature_mismatch: Nature is \"Automated\", but the description describes a manual step (\"reviewed\").",
+        "evidence: The description does not say what evidence of the alert and its review is kept, or where."
+      ],
+      "sample": {
+        "frequency": "continuous",
+        "size": 1,
+        "label": "Automated / continuous",
+        "basis": "Automated control: test one instance (test of one), relying on effective ITGCs (change and access) over the period."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIH-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIH-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIH-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "semiannual",
+        "size": 2,
+        "label": "Semi-annual",
+        "basis": "Semi-annual control: test both occurrences."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIH-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIH-05",
+      "toe_ready": false,
+      "blockers": [
+        "sod_conflict: The same role appears to both perform and approve/review the activity. Separate preparer and reviewer."
+      ],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIM-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIM-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIM-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIM-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "annual",
+        "size": 1,
+        "label": "Annual",
+        "basis": "Annual control: test the one occurrence in the period."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIM-05",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIV-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIV-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIV-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "quarterly",
+        "size": 2,
+        "label": "Quarterly",
+        "basis": "Quarterly control: test 2 of 4 quarters (include the year-end quarter if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIL-01",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIL-02",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "event",
+        "size": 25,
+        "label": "Per transaction / event",
+        "basis": "Recurring, event-driven control: test 25 occurrences selected randomly (test all if the population is smaller)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIL-03",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "monthly",
+        "size": 2,
+        "label": "Monthly",
+        "basis": "Monthly control: test 2 of 12 months (include a period-end month if relied on)."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    },
+    {
+      "control_id": "AIL-04",
+      "toe_ready": true,
+      "blockers": [],
+      "sample": {
+        "frequency": "weekly",
+        "size": 5,
+        "label": "Weekly",
+        "basis": "Weekly control: test 5 of ~52 weeks, spread across the period."
+      },
+      "population": "[Obtain a complete listing of control occurrences for the period from the system of record.]",
+      "tod_steps": [
+        "Inquire with the control owner how the control is performed, and with what inputs and outputs.",
+        "Obtain the evidence for one recent occurrence and trace it through the control as described.",
+        "Confirm the performer, timing, threshold and retained evidence match the control description.",
+        "Conclude whether the control, as designed, addresses the stated risk."
+      ],
+      "attributes": [],
+      "exception_definition": "Any sampled occurrence where the control was not performed as described.",
+      "model": "rules-only",
+      "prompt_version": "deterministic"
+    }
+  ]
+}

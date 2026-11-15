@@ -1,0 +1,1691 @@
+{
+  "generated_at": "2026-11-15T16:58:52.918Z",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt_version": "review.v1",
+  "source": "data/ai-pack-rcm.xlsx",
+  "duration_seconds": 8.9,
+  "reviews": [
+    {
+      "control_id": "AIG-01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer",
+            "start": 57,
+            "end": 82
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles the central AI inventory in ServiceNow with the IT application register",
+            "start": 83,
+            "end": 165
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "within 15 business days after quarter-end",
+            "start": 14,
+            "end": 55
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Each quarter",
+            "start": 0,
+            "end": 12
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed reconciliation is retained in the AI governance SharePoint folder",
+            "start": 403,
+            "end": 479
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Every system found outside the inventory is added within 10 business days with an owner, purpose and provisional risk class",
+            "start": 278,
+            "end": 401
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing the inventory with the application register, contract list and GenAI tool list is a rules-based match that could be scripted or run in a reconciliation tool.",
+      "suggested_rewrite": "Each quarter, within 15 business days after quarter-end, the AI Governance Officer reconciles the central AI inventory in ServiceNow with the IT application register, the procurement contract list (contracts tagged 'AI' or with AI features) and the list of enabled GenAI tools, investigating every mismatch. Every system found outside the inventory is added within 10 business days with an owner, purpose and provisional risk class. A [independent reviewer role] signs the reconciliation, which is retained in the AI governance SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIG-02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Criteria for the high/medium/low rating and the CRO's approval basis are not defined.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "plus the internal materiality rating (high / medium / low)",
+            "start": 261,
+            "end": 319
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer",
+            "start": 69,
+            "end": 94
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "classifies it with the AI classification questionnaire",
+            "start": 95,
+            "end": 149
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before an AI system is put into use or its intended purpose changes",
+            "start": 0,
+            "end": 67
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before an AI system is put into use or its intended purpose changes",
+            "start": 0,
+            "end": 67
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "no system is enabled in production without an approved classification in the AI inventory",
+            "start": 396,
+            "end": 485
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "Classification needs judgment, but the questionnaire workflow and the block on production enablement without approval could be system-supported.",
+      "suggested_rewrite": "Before an AI system is put into use or its intended purpose changes, the AI Governance Officer classifies it using the AI classification questionnaire: prohibited practice (EU AI Act Art. 5), high-risk under Annex III, transparency obligations, or minimal risk, plus the internal materiality rating (high / medium / low) per [rating criteria]. The Chief Risk Officer reviews and approves the classification against [approval criteria]; the approved questionnaire is stored in the AI inventory, and no system is enabled in production without it.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIG-03",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Content areas are listed, but no approval criteria or conditions for rejection or rework are defined.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "covering the affected persons, the specific risks of harm, the human-oversight measures and the complaint mechanism",
+            "start": 93,
+            "end": 208
+          },
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "Only an implied one-time trigger; the column says 'Per change', so state whether reassessment on change is required.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Before first use of a high-risk AI system",
+            "start": 0,
+            "end": 41
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the business owner completes an impact assessment",
+            "start": 43,
+            "end": 92
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The AI Governance Officer reviews it and the AI Committee approves it",
+            "start": 210,
+            "end": 279
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before first use of a high-risk AI system",
+            "start": 0,
+            "end": 41
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the approved assessment is stored with the system's inventory record",
+            "start": 281,
+            "end": 349
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "Assessing impact and approving it requires human judgment, but workflow tooling could enforce completion and approval gates before go-live.",
+      "suggested_rewrite": "Before first use of a high-risk AI system [and before each significant change, per frequency column 'Per change'], the business owner completes an impact assessment covering the affected persons, the specific risks of harm, the human-oversight measures and the complaint mechanism. The AI Governance Officer reviews it against [approval criteria] and the AI Committee approves it, with approval recorded in [minutes/workflow]. The approved assessment is stored with the system's inventory record; the system is not released without approval.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIG-04",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "No review criteria are defined, such as regulatory changes, incidents or RACI gaps to be checked.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "the AI Committee reviews the AI policy",
+            "start": 10,
+            "end": 48
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Only a frequency word; no fixed timing such as a month or deadline relative to the policy cycle.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Annually",
+            "start": 0,
+            "end": 8
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Committee reviews the AI policy",
+            "start": 10,
+            "end": 48
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Committee reviews the AI policy, including the RACI for development, deployment, monitoring and use of AI, and the Executive Board approves it",
+            "start": 10,
+            "end": 159
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Annually",
+            "start": 0,
+            "end": 8
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The approved policy and minutes are filed in the AI governance SharePoint folder",
+            "start": 161,
+            "end": 241
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 1,
+      "automation_rationale": "Policy review and board approval are judgment-based, with only reminders and document storage supportable by tools.",
+      "suggested_rewrite": "Annually by [month/date], the AI Committee reviews the AI policy, including the RACI for development, deployment, monitoring and use of AI, against [review criteria, e.g. regulatory changes, incidents, organisational changes], and the Executive Board approves it. The approved policy and Executive Board minutes are filed in the AI governance SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIG-05",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No evidence is named. State the artefact and location, e.g. LMS completion report stored in [location].",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Management\" is a department or placeholder, not an accountable role.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Management",
+            "start": 0,
+            "end": 10
+          },
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "'Management' is a group, not a named role. Name the accountable role, e.g. Head of AI Governance or HR Learning Lead.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Management",
+            "start": 0,
+            "end": 10
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "'Makes sure' is vague. State the concrete action, e.g. assign the training, track completion, and follow up on overdue staff.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "makes sure employees are trained on AI",
+            "start": 11,
+            "end": 49
+          },
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "med",
+          "message": "No frequency is stated in the description or the frequency column. Specify how often the control operates, e.g. annually plus on joining.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "'As needed' is not a trigger. Define when training is assigned, e.g. on joining, on role change, or before getting AI tool access.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "as needed",
+            "start": 50,
+            "end": 59
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": null
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "A learning management system could assign training and report completion automatically, but deciding who needs what content and following up remain manual.",
+      "suggested_rewrite": "The [role, e.g. Head of AI Governance] assigns AI-awareness training to all employees who use or oversee AI systems [timing, e.g. within 30 days of joining or a role change, and before access to AI tools is granted], and repeats it [frequency, e.g. annually]. The [role] reviews the completion report from [system, e.g. LMS] and follows up on any incomplete assignments within [timeframe]. The completion report and follow-up records are retained in [evidence location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AID-01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the data pipeline for the credit-limit scoring model runs automated checks",
+            "start": 29,
+            "end": 103
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "runs automated checks on the input file: completeness of mandatory fields, value ranges, duplicates and data age",
+            "start": 82,
+            "end": 194
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Every business day by 08:00",
+            "start": 0,
+            "end": 27
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Every business day",
+            "start": 0,
+            "end": 18
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The check results are logged in the data-quality dashboard",
+            "start": 397,
+            "end": 455
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "If more than 1% of records fail, the run is stopped automatically",
+            "start": 226,
+            "end": 291
+          }
+        }
+      ],
+      "automation_score": 5,
+      "automation_rationale": "The checks, threshold-based run stop and incident creation are already automated, leaving only human incident resolution.",
+      "suggested_rewrite": "Every business day by 08:00, the data pipeline for the credit-limit scoring model automatically checks the input file for completeness of mandatory fields, value ranges, duplicates and data age (no record older than 3 days). If more than 1% of records fail, the run is stopped automatically and a ServiceNow incident is opened for the Data Steward, who resolves it before the model is rerun. Check results are logged in the data-quality dashboard and incidents are retained in ServiceNow.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AID-02",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Data Science Lead documents",
+            "start": 50,
+            "end": 81
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "documents the data sources, sampling period and representativeness by gender, age band and nationality, and runs the bias test suite",
+            "start": 72,
+            "end": 204
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before each retraining of the CV-screening model",
+            "start": 0,
+            "end": 48
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "each retraining",
+            "start": 7,
+            "end": 22
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed data sheet is stored in the model repository",
+            "start": 408,
+            "end": 463
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "selection-rate ratio of at least 0.8 for each group versus the most selected group",
+            "start": 206,
+            "end": 288
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "The bias test and the 0.8 threshold gate can be scripted into the retraining pipeline, leaving human sign-off only on the data sheet and exceptions.",
+      "suggested_rewrite": "Before each retraining of the CV-screening model, the Data Science Lead documents the data sources, sampling period and representativeness by gender, age band and nationality, and runs the bias test suite (selection-rate ratio of at least 0.8 for each group versus the most selected group). The HR Analytics Manager reviews and signs the data sheet. Retraining does not proceed while any group is below 0.8. The signed data sheet is stored in the model repository.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AID-03",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "The DPO's approval criteria are not defined, for example a valid legal basis or licence covering AI training.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "approves the entry",
+            "start": 205,
+            "end": 223
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Data Steward records",
+            "start": 62,
+            "end": 86
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "records the source, owner, legal basis or licence and retention period in the data catalogue",
+            "start": 79,
+            "end": 171
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "before the dataset can be accessed by the data science workspace",
+            "start": 224,
+            "end": 288
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "For every new dataset used to train or fine-tune an AI model",
+            "start": 0,
+            "end": 60
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The catalogue entry and the approval are retained in the data catalogue",
+            "start": 290,
+            "end": 361
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Mandatory catalogue fields and an access gate in the data science workspace can be system-enforced, leaving only the DPO's approval as a human step.",
+      "suggested_rewrite": "For every new dataset used to train or fine-tune an AI model, the Data Steward records the source, owner, legal basis or licence and retention period in the data catalogue. Before the dataset can be accessed by the data science workspace, the Data Protection Officer approves the entry only if [approval criteria, e.g. legal basis or licence is valid for AI training and retention period is defined]. The catalogue entry and the approval are retained in the data catalogue.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AID-04",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "nature_mismatch",
+          "severity": "high",
+          "message": "Nature is \"Automated\", but the description describes a manual step (\"reviewed\").",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "reviewed",
+            "start": 182,
+            "end": 190
+          },
+          "source": "rule"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "The description does not say what evidence of the alert and its review is kept, or where.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "The platform is clear for the calculation and alert, but the reviewer of the alert is not named. Add a role.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "The alert is reviewed",
+            "start": 169,
+            "end": 190
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "Calculation and alerting are concrete, but 'reviewed' does not say what the reviewer does or what happens after review.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "The alert is reviewed",
+            "start": 169,
+            "end": 190
+          },
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "The threshold is not quantified, for example a PSI value, and no criterion is given for investigating or closing an alert.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "when drift exceeds the threshold",
+            "start": 135,
+            "end": 167
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "The alert trigger is defined, but there is no deadline for reviewing the alert after it is raised.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "when drift exceeds the threshold",
+            "start": 135,
+            "end": 167
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Drift calculation and alerting are already automated; only the exception-based human review and follow-up remain manual.",
+      "suggested_rewrite": "Every [week, per frequency column], the forecasting platform calculates the population stability index for the key input features of the demand-forecasting model and sends an alert when drift exceeds [threshold, e.g. PSI > 0.2]. The Supply Chain Analytics Lead reviews each alert within [timing, e.g. 5 business days], investigates the cause, and records the conclusion and any action taken in the drift alert log at [evidence location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIH-01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "a trained HR Recruiter",
+            "start": 56,
+            "end": 78
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reviews the CV before the rejection is sent and either confirms or overrides the model's proposal",
+            "start": 79,
+            "end": 176
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "before the rejection is sent",
+            "start": 94,
+            "end": 122
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "For every candidate rejected by the CV-screening model",
+            "start": 0,
+            "end": 54
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Confirmations and overrides are logged in the applicant tracking system",
+            "start": 323,
+            "end": 394
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "For every candidate rejected by the CV-screening model",
+            "start": 0,
+            "end": 54
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "The system already blocks rejections without confirmation, but the substantive CV review is human judgment that can only be supported by tooling.",
+      "suggested_rewrite": "For every candidate rejected by the CV-screening model, a trained HR Recruiter reviews the CV before the rejection is sent and either confirms or overrides the model's proposal in the applicant tracking system, entering a reason for each override. The system does not send a rejection without the recruiter's confirmation. Confirmations and overrides are logged in the applicant tracking system.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIH-02",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the system owner confirms in the access request",
+            "start": 74,
+            "end": 121
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the IT Security Officer grants the role only with this confirmation",
+            "start": 215,
+            "end": 282
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before a user is granted the 'AI overseer' role in a high-risk AI system",
+            "start": 0,
+            "end": 72
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Each quarter the system owner recertifies all overseer roles",
+            "start": 284,
+            "end": 344
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Access requests and recertifications are retained in ServiceNow",
+            "start": 346,
+            "end": 409
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "completed the AI-oversight training (pass mark 80%) within the last 12 months",
+            "start": 136,
+            "end": 213
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Training completion and validity could be checked automatically against an LMS integrated with ServiceNow, with workflow-enforced approval and human follow-up only on exceptions.",
+      "suggested_rewrite": "Before a user is granted the 'AI overseer' role in a high-risk AI system, the system owner confirms in the ServiceNow access request that the user completed the AI-oversight training (pass mark 80%) within the last 12 months. The IT Security Officer grants the role only with this confirmation. Each quarter, the system owner recertifies all overseer roles. Access requests and recertifications are retained in ServiceNow.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIH-03",
+      "status": "pass",
+      "findings": [],
+      "attributes": [],
+      "automation_score": 2,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIH-04",
+      "status": "pass",
+      "findings": [],
+      "attributes": [],
+      "automation_score": 2,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIH-05",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "sod_conflict",
+          "severity": "high",
+          "message": "The same role appears to both perform and approve/review the activity. Separate preparer and reviewer.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "prepares and approves",
+            "start": 69,
+            "end": 90
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [],
+      "automation_score": 3,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIM-01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [],
+      "automation_score": 3,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIM-02",
+      "status": "pass",
+      "findings": [],
+      "attributes": [],
+      "automation_score": 3,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIM-03",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "freq_mismatch",
+          "severity": "med",
+          "message": "Description says \"Each quarter\" but the frequency column says \"Monthly\".",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Each quarter",
+            "start": 0,
+            "end": 12
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the HR Analytics Manager",
+            "start": 13,
+            "end": 37
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "analyses all recruiter overrides of the CV-screening model by reason code and candidate group",
+            "start": 38,
+            "end": 131
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "within 20 business days after quarter-end",
+            "start": 214,
+            "end": 255
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Each quarter",
+            "start": 0,
+            "end": 12
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The analysis and minutes are filed in the AI governance SharePoint folder",
+            "start": 257,
+            "end": 330
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "findings above a 10% override rate in any group",
+            "start": 146,
+            "end": 193
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Override-rate calculation by reason code and group is rules-based and can be scripted or dashboarded, while the committee presentation remains manual.",
+      "suggested_rewrite": "Each quarter, the HR Analytics Manager analyses all recruiter overrides of the CV-screening model by reason code and candidate group, and presents findings above a 10% override rate in any group to the AI Committee within 20 business days after quarter-end. The analysis and AI Committee minutes are filed in the AI governance SharePoint folder.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIM-04",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "A function is named, not a role; name the role performing and signing off the review, e.g. Head of Internal Audit.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Internal Audit",
+            "start": 10,
+            "end": 24
+          },
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "'Material' is not defined; state the criteria or inventory that determines which AI systems are in scope.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "each material AI system",
+            "start": 84,
+            "end": 107
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Only a frequency word; no fixed timing or deadline for fieldwork or for reporting to the Audit Committee.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Annually",
+            "start": 0,
+            "end": 8
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reviews the development, validation, monitoring and use of each material AI system",
+            "start": 25,
+            "end": 107
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Annually",
+            "start": 0,
+            "end": 8
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Reports are retained in the audit management system",
+            "start": 256,
+            "end": 307
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 1,
+      "automation_rationale": "Independent audit review of model development and use requires professional judgment; only plan tracking and report storage can be system-supported.",
+      "suggested_rewrite": "Annually, [timing, e.g. per the approved audit plan], the [role, e.g. Head of Internal Audit] reviews the development, validation, monitoring and use of each material AI system, as defined by [materiality criteria / AI inventory], on a rotating plan that covers every material system at least every 3 years. Findings with owners and due dates are reported to the Audit Committee [timing]. Reports are retained in the audit management system.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIM-05",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Standard is referenced but completeness criteria and handling of deficiencies are not defined; name the standard and rejection rule.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "checks it against the documentation standard",
+            "start": 264,
+            "end": 308
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI System Owner updates the model card",
+            "start": 55,
+            "end": 97
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer checks it against the documentation standard and signs it off",
+            "start": 238,
+            "end": 325
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Within 10 business days after each production release",
+            "start": 0,
+            "end": 53
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "after each production release",
+            "start": 24,
+            "end": 53
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "signs it off in the model repository",
+            "start": 313,
+            "end": 349
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Completeness of model card fields and release-to-sign-off timing can be checked by scripts or repository workflow, while content quality still needs human review.",
+      "suggested_rewrite": "Within 10 business days after each production release, the AI System Owner updates the model card (purpose, data sources and quality checks, model choice, performance measures, assumptions, limitations, tests, controls and fallback). The AI Governance Officer checks it against [name of documentation standard], confirming all required sections are complete and [criterion, e.g. no section blank or outdated], returns any deviation for correction, and signs it off in the model repository, which retains the signed-off model card.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIV-01",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "No approval criteria are defined, e.g. minimum answers or conditions for rejection or escalation.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer approves the assessment",
+            "start": 228,
+            "end": 277
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Procurement Manager obtains the completed AI vendor questionnaire",
+            "start": 82,
+            "end": 151
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer approves the assessment",
+            "start": 228,
+            "end": 277
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before signing or renewing any contract for software or services that contain AI",
+            "start": 0,
+            "end": 80
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before signing or renewing any contract",
+            "start": 0,
+            "end": 39
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The contract cannot be released in the procurement system without the approval attached",
+            "start": 279,
+            "end": 366
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "The system block on contract release is already enforceable; only the content-based approval of the assessment needs human judgment.",
+      "suggested_rewrite": "Before signing or renewing any contract for software or services that contain AI, the Procurement Manager obtains the completed AI vendor questionnaire (training data, model type, testing, incident handling, sub-processors). The AI Governance Officer approves the assessment against [approval criteria, e.g. required answers, risk rating] and documents the decision. The procurement system blocks contract release unless the approved assessment is attached, which is retained as evidence in the procurement system.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIV-02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Legal Counsel\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Legal Counsel",
+            "start": 0,
+            "end": 13
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [],
+      "automation_score": 2,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 402: This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits."
+    },
+    {
+      "control_id": "AIV-03",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Procurement\" is a department or placeholder, not an accountable role.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Procurement",
+            "start": 0,
+            "end": 11
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [],
+      "automation_score": 2,
+      "automation_rationale": "Heuristic estimate from the nature column (no LLM run).",
+      "suggested_rewrite": "",
+      "model": "rules-only",
+      "prompt_version": "rules",
+      "llm_error": "OpenRouter 429: Rate limit exceeded: new-account-rpm/anthropic/claude-sonnet-5.5-20260928. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly."
+    },
+    {
+      "control_id": "AIL-01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the IT Operations Manager checks the log-completeness report",
+            "start": 214,
+            "end": 274
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "checks the log-completeness report (runs versus log entries) and investigates any gap",
+            "start": 240,
+            "end": 325
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "within 5 business days",
+            "start": 337,
+            "end": 359
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Each month",
+            "start": 203,
+            "end": 213
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed report is retained in ServiceNow",
+            "start": 361,
+            "end": 404
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "any gap above 0.1%",
+            "start": 318,
+            "end": 336
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Logging is already automated and the runs-versus-entries comparison is rules-based and scriptable, leaving only exception follow-up for a human.",
+      "suggested_rewrite": "The applicant tracking system automatically records every CV-screening run (input reference, model version, score, recruiter decision, timestamp) in a write-once log store with a retention of 24 months. Each month, [timing, e.g. by the 5th business day after month-end], the IT Operations Manager checks the log-completeness report (runs versus log entries) and investigates any gap above 0.1% within 5 business days. The signed report is retained in ServiceNow.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIL-02",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AI Governance Officer assesses",
+            "start": 53,
+            "end": 87
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "assesses within 1 business day whether it is a serious incident",
+            "start": 79,
+            "end": 142
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "For every incident ticket tagged 'AI' in ServiceNow",
+            "start": 0,
+            "end": 51
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "For every incident ticket tagged 'AI' in ServiceNow",
+            "start": 0,
+            "end": 51
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the assessment and notifications are recorded on the ticket",
+            "start": 420,
+            "end": 479
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "death or serious harm to health, critical infrastructure disruption, infringement of fundamental-rights obligations, serious harm to property or the environment",
+            "start": 144,
+            "end": 304
+          }
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "Classification of incident severity requires judgment, but ticket tagging, deadline tracking and notification workflow could be system-supported.",
+      "suggested_rewrite": "For every incident ticket tagged 'AI' in ServiceNow, the AI Governance Officer assesses within 1 business day whether it is a serious incident (death or serious harm to health, critical infrastructure disruption, infringement of fundamental-rights obligations, serious harm to property or the environment). Serious incidents are reported to the provider immediately and escalated to the Chief Risk Officer the same day. The assessment and notifications are recorded on the ticket.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIL-03",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Monthly cadence is stated but not the deadline or trigger, e.g. within X business days after month-end.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Each month",
+            "start": 0,
+            "end": 10
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Compliance Officer reviews",
+            "start": 11,
+            "end": 41
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "confirms each was assessed and answered within 20 business days, and escalates overdue items to the AI Committee",
+            "start": 144,
+            "end": 256
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Each month",
+            "start": 0,
+            "end": 10
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed review is filed in the compliance SharePoint folder",
+            "start": 258,
+            "end": 320
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "all AI concerns and complaints received through the speak-up channel and the customer complaint form",
+            "start": 42,
+            "end": 142
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing receipt and response dates against a 20-day SLA and flagging overdue items is rules-based and could be scripted from a case-management tool, though the two intake channels are separate.",
+      "suggested_rewrite": "Each month, within [timing, e.g. 5 business days after month-end], the Compliance Officer reviews all AI concerns and complaints received through the speak-up channel and the customer complaint form, confirms each was assessed and answered within 20 business days, and escalates overdue items to the AI Committee. The Compliance Officer signs the review and files it in the compliance SharePoint folder [exact path].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "AIL-04",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Blocks occur in real time, but the weekly review lacks a fixed day or deadline.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Weekly, the IT Security Officer reviews the block log",
+            "start": 180,
+            "end": 233
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the IT Security Officer reviews the block log",
+            "start": 188,
+            "end": 233
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The secure web gateway blocks access to GenAI services not on the approved list",
+            "start": 0,
+            "end": 79
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Weekly",
+            "start": 180,
+            "end": 186
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The reviewed log is retained in ServiceNow",
+            "start": 327,
+            "end": 369
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "(3 or more per user per week)",
+            "start": 267,
+            "end": 296
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Blocking is already system-enforced and the repeated-attempt threshold could be alerted automatically, leaving only exception-based follow-up with line managers.",
+      "suggested_rewrite": "The secure web gateway blocks access to GenAI services not on the approved list, and the data-loss-prevention rule blocks uploads classified 'Confidential' to approved GenAI tools in real time. Every [day, e.g. Monday by 12:00], the IT Security Officer reviews the prior week's block log and follows up repeated attempts (3 or more per user per week) with the user's line manager. The reviewed log is retained in ServiceNow.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    }
+  ]
+}

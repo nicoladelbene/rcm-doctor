@@ -28,7 +28,22 @@ interface Dataset {
   demo: boolean;
   /** Week 2 test scripts, when generated. */
   scripts?: TestScript[];
+  /** Week 6: framework references per control (AI systems controls pack). */
+  mappings?: Record<string, FrameworkRefs>;
 }
+
+export interface FrameworkRefs {
+  euAiAct: string;
+  iso42001: string;
+  nistAiRmf: string;
+  finma: string;
+}
+
+const DEMO_SETS = {
+  demo: { label: "Demo RCM · Alpenfirn Industries AG (fictional)" },
+  ai: { label: "AI systems controls pack · Alpenfirn Industries AG (fictional)" },
+} as const;
+export type DemoSet = keyof typeof DEMO_SETS;
 
 const GITHUB = "https://github.com/nicoladelbene/rcm-doctor";
 
@@ -57,17 +72,19 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
 
   const scrollToResults = () => setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
 
-  const loadDemo = useCallback(async () => {
+  const loadDemo = useCallback(async (set: DemoSet = "demo") => {
     setError(null);
-    setLoading({ done: 0, total: 0, label: "Loading the demo RCM" });
+    setLoading({ done: 0, total: 0, label: set === "ai" ? "Loading the AI systems controls pack" : "Loading the demo RCM" });
     try {
-      const res = await fetch("/demo-data");
+      const res = await fetch(`/demo-data?set=${set}`);
       if (!res.ok) throw new Error(`Demo data unavailable (${res.status})`);
-      const { controls, run, testscripts } = (await res.json()) as {
+      const { controls, run, testscripts, mappings } = (await res.json()) as {
         controls: Control[];
         run: ReviewRun & { duration_seconds?: number };
         testscripts: TestScriptRun | null;
+        mappings: Record<string, FrameworkRefs> | null;
       };
+      const rulesOnly = run.reviews.filter((r) => r.llm_error).length;
       keyRef.current = null;
       setCanDraft(false);
       setF((x) => ({ ...x, process: "all", status: "all", severity: "all", check: null, keyOnly: false, q: "" }));
@@ -75,9 +92,13 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
         controls,
         reviews: run.reviews,
         scripts: testscripts?.scripts,
-        label: "Demo RCM · Alpenfirn Industries AG (fictional)",
+        mappings: mappings ?? undefined,
+        label: DEMO_SETS[set].label,
         model: run.model,
-        note: `Precomputed with ${run.model} on ${run.generated_at.slice(0, 10)}${run.duration_seconds ? ` · live run took ${Math.round(run.duration_seconds)} s` : ""}`,
+        note:
+          `Precomputed with ${run.model} on ${run.generated_at.slice(0, 10)}` +
+          (rulesOnly ? ` · ${rulesOnly} of ${run.reviews.length} controls reviewed by the rules only (AI step unavailable)` : run.duration_seconds ? ` · live run took ${Math.round(run.duration_seconds)} s` : "") +
+          (set === "ai" ? " · each control is mapped to verified EU AI Act, ISO/IEC 42001, NIST AI RMF and FINMA references" : ""),
         demo: true,
       });
       setOpenId(null);
@@ -91,8 +112,9 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
 
   // Deep link: /?demo opens the demo directly (used by the README and the recording).
   useEffect(() => {
-    if (!new URLSearchParams(window.location.search).has("demo")) return;
-    const t = setTimeout(loadDemo, 0);
+    const q = new URLSearchParams(window.location.search);
+    if (!q.has("demo")) return;
+    const t = setTimeout(() => loadDemo(q.get("demo") === "ai" ? "ai" : "demo"), 0);
     return () => clearTimeout(t);
   }, [loadDemo]);
 
@@ -329,6 +351,7 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
           review={open.review}
           position={openIdx >= 0 ? `${openIdx + 1} / ${rows.length}` : ""}
           script={data?.scripts?.find((t) => t.control_id === open.control.control_id)}
+          refs={data?.mappings?.[open.control.control_id]}
           tab={tab}
           onTab={setTab}
           onClose={() => setOpenId(null)}
@@ -396,7 +419,7 @@ function Hero({
   holdout,
   busy,
 }: {
-  onDemo: () => void;
+  onDemo: (set?: DemoSet) => void;
   onUpload: () => void;
   evalHeadline: EvalHeadline | null;
   holdout: EvalHeadline | null;
@@ -418,7 +441,7 @@ function Hero({
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={onDemo}
+            onClick={() => onDemo("demo")}
             disabled={busy}
             data-testid="try-demo"
             className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-3 text-[15.5px] font-medium text-paper shadow-[0_1px_0_rgba(0,0,0,0.2)] transition-colors hover:bg-ink-2 disabled:opacity-60"
@@ -435,6 +458,15 @@ function Hero({
             className="rounded-md border border-ink bg-surface px-5 py-3 text-[15.5px] font-medium text-ink transition-colors hover:bg-sunken disabled:opacity-60"
           >
             Upload your RCM
+          </button>
+          <button
+            type="button"
+            onClick={() => onDemo("ai")}
+            disabled={busy}
+            data-testid="try-ai-pack"
+            className="rounded-md border border-accent/50 bg-accent-soft/50 px-5 py-3 text-[15.5px] font-medium text-accent-ink transition-colors hover:bg-accent-soft disabled:opacity-60"
+          >
+            AI systems controls pack
           </button>
           <a href="/rcm-template.xlsx" download className="px-1 text-[14px] text-accent underline decoration-accent/30 underline-offset-[3px] hover:decoration-accent">
             Download template

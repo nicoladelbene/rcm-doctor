@@ -24,7 +24,7 @@ const scripts = await generateTestScripts(controls, reviews, {
   llm: (items) => testScriptBatchWithLlm(items, { apiKey: key, model }),
   model,
   batchSize: 5,
-  concurrency: 4,
+  concurrency: Number(process.env.LLM_CONCURRENCY ?? 4),
   onProgress: (d, t) => process.stdout.write(`\r${d}/${t} scripts`),
 });
 const secs = Number(((Date.now() - t0) / 1000).toFixed(1));

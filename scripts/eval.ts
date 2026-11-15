@@ -15,6 +15,7 @@ const arg = (name: string) => (process.argv.includes(name) ? process.argv[proces
 const set = arg("--set") ?? "demo";
 const SETS = {
   demo: { rcm: "data/demo-rcm.xlsx", truth: "data/demo-rcm.ground-truth.json", results: "data/demo-results.json", out: "docs/eval-latest", gate: true },
+  ai: { rcm: "data/ai-pack-rcm.xlsx", truth: "data/ai-pack.ground-truth.json", results: "data/ai-pack-results.json", out: "docs/eval-ai-pack", gate: false },
   holdout: { rcm: "data/holdout/holdout-rcm.xlsx", truth: "data/holdout/holdout.ground-truth.json", results: "data/holdout/holdout-results.json", out: "docs/eval-holdout", gate: false },
 } as const;
 const cfg = SETS[set as keyof typeof SETS];
@@ -47,7 +48,7 @@ if (live) {
 
 const report = evaluate(reviews, truth);
 const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
-let md = evalMarkdown(report, { ...meta, date: new Date().toISOString().slice(0, 10), truthPath: cfg.truth, command: set === "demo" ? "npm run eval" : "npm run eval:holdout" });
+let md = evalMarkdown(report, { ...meta, date: new Date().toISOString().slice(0, 10), truthPath: cfg.truth, command: set === "demo" ? "npm run eval" : `npm run eval:${set}` });
 
 // Per-language breakdown (holdout has a language map).
 const metaPath = "data/holdout/holdout.meta.json";

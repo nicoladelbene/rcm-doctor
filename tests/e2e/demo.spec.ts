@@ -84,3 +84,16 @@ test("api: testscript route enforces key and limits", async ({ request }) => {
   const bad = await request.post("/api/testscript", { headers: { "x-openrouter-key": "sk-or-v1-" + "a".repeat(40) }, data: { items: [] } });
   expect(bad.status()).toBe(400);
 });
+
+test("week 6: the AI systems controls pack is a second demo RCM with framework mappings", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("try-ai-pack").click();
+  await expect(page.getByText("AI systems controls pack · Alpenfirn")).toBeVisible();
+  await expect(page.getByTestId("result-row")).toHaveCount(26);
+  await page.locator('[data-id="AIH-01"]').click();
+  const refs = page.getByTestId("framework-refs");
+  await expect(refs).toContainText("Art. 14(4)(d)");
+  await expect(refs).toContainText("MAP 3.5");
+  await page.getByTestId("tab-test").click();
+  await expect(page.getByTestId("sample-size")).toHaveText("25");
+});

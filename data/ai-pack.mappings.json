@@ -1,0 +1,158 @@
+{
+  "AIG-01": {
+    "euAiAct": "",
+    "iso42001": "A.4.2",
+    "nistAiRmf": "GOVERN 1.6",
+    "finma": "2.1; 2.2"
+  },
+  "AIG-02": {
+    "euAiAct": "Art. 5(1); Art. 6(2) + Annex III",
+    "iso42001": "A.5.2",
+    "nistAiRmf": "MAP 1.1; MAP 1.5",
+    "finma": "2.2"
+  },
+  "AIG-03": {
+    "euAiAct": "Art. 27(1)",
+    "iso42001": "A.5.2; A.5.3; A.5.4",
+    "nistAiRmf": "MAP 5.1",
+    "finma": ""
+  },
+  "AIG-04": {
+    "euAiAct": "",
+    "iso42001": "A.2.2; A.2.4; A.3.2",
+    "nistAiRmf": "GOVERN 2.1",
+    "finma": "2.1"
+  },
+  "AIG-05": {
+    "euAiAct": "Art. 4",
+    "iso42001": "A.4.6",
+    "nistAiRmf": "GOVERN 2.2",
+    "finma": "2.1"
+  },
+  "AID-01": {
+    "euAiAct": "Art. 26(4)",
+    "iso42001": "A.7.4",
+    "nistAiRmf": "",
+    "finma": "2.3"
+  },
+  "AID-02": {
+    "euAiAct": "Art. 10(2)(f); Art. 10(3)",
+    "iso42001": "A.7.2; A.7.4",
+    "nistAiRmf": "MEASURE 2.11",
+    "finma": "2.3"
+  },
+  "AID-03": {
+    "euAiAct": "",
+    "iso42001": "A.7.3; A.7.5",
+    "nistAiRmf": "MAP 4.1",
+    "finma": "2.3"
+  },
+  "AID-04": {
+    "euAiAct": "",
+    "iso42001": "A.6.2.6",
+    "nistAiRmf": "MEASURE 2.4",
+    "finma": "2.4"
+  },
+  "AIH-01": {
+    "euAiAct": "Art. 14(4)(d); Art. 26(2)",
+    "iso42001": "A.9.2",
+    "nistAiRmf": "MAP 3.5; GOVERN 3.2",
+    "finma": ""
+  },
+  "AIH-02": {
+    "euAiAct": "Art. 26(2)",
+    "iso42001": "A.4.6",
+    "nistAiRmf": "MAP 3.4",
+    "finma": "2.1"
+  },
+  "AIH-03": {
+    "euAiAct": "Art. 14(4)(e)",
+    "iso42001": "",
+    "nistAiRmf": "MANAGE 2.4",
+    "finma": ""
+  },
+  "AIH-04": {
+    "euAiAct": "Art. 50(1); Art. 26(11)",
+    "iso42001": "A.8.2",
+    "nistAiRmf": "MEASURE 2.8",
+    "finma": ""
+  },
+  "AIH-05": {
+    "euAiAct": "",
+    "iso42001": "",
+    "nistAiRmf": "MEASURE 2.9",
+    "finma": "2.6"
+  },
+  "AIM-01": {
+    "euAiAct": "Art. 15(1)",
+    "iso42001": "A.6.2.4; A.6.2.5",
+    "nistAiRmf": "MEASURE 2.1; MEASURE 2.3",
+    "finma": "2.4; 2.7"
+  },
+  "AIM-02": {
+    "euAiAct": "Art. 26(5)",
+    "iso42001": "A.6.2.6",
+    "nistAiRmf": "MEASURE 2.4; MANAGE 4.1",
+    "finma": "2.4"
+  },
+  "AIM-03": {
+    "euAiAct": "",
+    "iso42001": "A.6.2.6",
+    "nistAiRmf": "MEASURE 3.1",
+    "finma": "2.4"
+  },
+  "AIM-04": {
+    "euAiAct": "",
+    "iso42001": "",
+    "nistAiRmf": "GOVERN 1.5",
+    "finma": "2.7"
+  },
+  "AIM-05": {
+    "euAiAct": "",
+    "iso42001": "A.6.2.7",
+    "nistAiRmf": "",
+    "finma": "2.5"
+  },
+  "AIV-01": {
+    "euAiAct": "",
+    "iso42001": "A.10.3",
+    "nistAiRmf": "GOVERN 6.1",
+    "finma": "2.1"
+  },
+  "AIV-02": {
+    "euAiAct": "Art. 25(1)(b)",
+    "iso42001": "A.10.2",
+    "nistAiRmf": "GOVERN 6.2",
+    "finma": "2.1"
+  },
+  "AIV-03": {
+    "euAiAct": "",
+    "iso42001": "A.10.3",
+    "nistAiRmf": "MANAGE 3.1",
+    "finma": ""
+  },
+  "AIL-01": {
+    "euAiAct": "Art. 12(1); Art. 26(6)",
+    "iso42001": "A.6.2.8",
+    "nistAiRmf": "",
+    "finma": ""
+  },
+  "AIL-02": {
+    "euAiAct": "Art. 3(49); Art. 26(5); Art. 73(2)",
+    "iso42001": "A.8.4",
+    "nistAiRmf": "MANAGE 4.3; GOVERN 4.3",
+    "finma": ""
+  },
+  "AIL-03": {
+    "euAiAct": "",
+    "iso42001": "A.3.3",
+    "nistAiRmf": "GOVERN 5.1",
+    "finma": ""
+  },
+  "AIL-04": {
+    "euAiAct": "",
+    "iso42001": "A.9.2",
+    "nistAiRmf": "MEASURE 2.10",
+    "finma": "2.3"
+  }
+}

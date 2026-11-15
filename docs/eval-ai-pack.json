@@ -1,0 +1,220 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v1",
+  "source": "data/ai-pack-results.json (2026-11-15)",
+  "controls": 26,
+  "cleanControls": 21,
+  "plantedDefects": 18,
+  "detected": 13,
+  "recall": 0.7222222222222222,
+  "cleanFpRate": 0.47619047619047616,
+  "extraFindings": 17,
+  "precision": 0.43333333333333335,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 3,
+      "tp": 2,
+      "fn": 1,
+      "fp": 1,
+      "recall": 0.6666666666666666
+    },
+    {
+      "check": "what",
+      "expected": 2,
+      "tp": 1,
+      "fn": 1,
+      "fp": 1,
+      "recall": 0.5
+    },
+    {
+      "check": "when",
+      "expected": 2,
+      "tp": 1,
+      "fn": 1,
+      "fp": 5,
+      "recall": 0.5
+    },
+    {
+      "check": "frequency",
+      "expected": 1,
+      "tp": 1,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 2,
+      "tp": 1,
+      "fn": 1,
+      "fp": 1,
+      "recall": 0.5
+    },
+    {
+      "check": "precision",
+      "expected": 2,
+      "tp": 1,
+      "fn": 1,
+      "fp": 7,
+      "recall": 0.5
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 1,
+      "tp": 1,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 1,
+      "tp": 1,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 1,
+      "tp": 1,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 0,
+      "tp": 0,
+      "fn": 0,
+      "fp": 0,
+      "recall": null
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 1,
+      "tp": 1,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [
+    {
+      "control_id": "AIV-03",
+      "check": "who"
+    },
+    {
+      "control_id": "AIV-03",
+      "check": "what"
+    },
+    {
+      "control_id": "AIV-03",
+      "check": "when"
+    },
+    {
+      "control_id": "AIV-03",
+      "check": "evidence"
+    },
+    {
+      "control_id": "AIV-03",
+      "check": "precision"
+    }
+  ],
+  "falsePositives": [
+    {
+      "control_id": "AIG-02",
+      "check": "precision",
+      "message": "Criteria for the high/medium/low rating and the CRO's approval basis are not defined."
+    },
+    {
+      "control_id": "AIG-03",
+      "check": "precision",
+      "message": "Content areas are listed, but no approval criteria or conditions for rejection or rework are defined."
+    },
+    {
+      "control_id": "AIG-03",
+      "check": "frequency",
+      "message": "Only an implied one-time trigger; the column says 'Per change', so state whether reassessment on change is required."
+    },
+    {
+      "control_id": "AIG-04",
+      "check": "precision",
+      "message": "No review criteria are defined, such as regulatory changes, incidents or RACI gaps to be checked."
+    },
+    {
+      "control_id": "AIG-04",
+      "check": "when",
+      "message": "Only a frequency word; no fixed timing such as a month or deadline relative to the policy cycle."
+    },
+    {
+      "control_id": "AID-03",
+      "check": "precision",
+      "message": "The DPO's approval criteria are not defined, for example a valid legal basis or licence covering AI training."
+    },
+    {
+      "control_id": "AID-04",
+      "check": "evidence",
+      "message": "The description does not say what evidence of the alert and its review is kept, or where."
+    },
+    {
+      "control_id": "AID-04",
+      "check": "what",
+      "message": "Calculation and alerting are concrete, but 'reviewed' does not say what the reviewer does or what happens after review."
+    },
+    {
+      "control_id": "AID-04",
+      "check": "when",
+      "message": "The alert trigger is defined, but there is no deadline for reviewing the alert after it is raised."
+    },
+    {
+      "control_id": "AIM-04",
+      "check": "who",
+      "message": "A function is named, not a role; name the role performing and signing off the review, e.g. Head of Internal Audit."
+    },
+    {
+      "control_id": "AIM-04",
+      "check": "precision",
+      "message": "'Material' is not defined; state the criteria or inventory that determines which AI systems are in scope."
+    },
+    {
+      "control_id": "AIM-04",
+      "check": "when",
+      "message": "Only a frequency word; no fixed timing or deadline for fieldwork or for reporting to the Audit Committee."
+    },
+    {
+      "control_id": "AIM-05",
+      "check": "precision",
+      "message": "Standard is referenced but completeness criteria and handling of deficiencies are not defined; name the standard and rejection rule."
+    },
+    {
+      "control_id": "AIV-01",
+      "check": "precision",
+      "message": "No approval criteria are defined, e.g. minimum answers or conditions for rejection or escalation."
+    },
+    {
+      "control_id": "AIV-02",
+      "check": "owner_invalid",
+      "message": "Owner \"Legal Counsel\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "AIL-03",
+      "check": "when",
+      "message": "Monthly cadence is stated but not the deadline or trigger, e.g. within X business days after month-end."
+    },
+    {
+      "control_id": "AIL-04",
+      "check": "when",
+      "message": "Blocks occur in real time, but the weekly review lacks a fixed day or deadline."
+    }
+  ]
+}

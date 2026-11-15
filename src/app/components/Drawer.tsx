@@ -44,6 +44,7 @@ export function Drawer({
   script,
   tab = "review",
   onTab,
+  refs,
 }: {
   control: Control;
   review: Review;
@@ -54,6 +55,8 @@ export function Drawer({
   script?: TestScript;
   tab?: DrawerTab;
   onTab?: (t: DrawerTab) => void;
+  /** Week 6: verified framework references (AI systems controls pack). */
+  refs?: { euAiAct: string; iso42001: string; nistAiRmf: string; finma: string };
 }) {
   // Hovered finding number, scoped to the control it was set on (resets on navigation without an effect).
   const [hover, setHover] = useState<{ id: string; n: number } | null>(null);
@@ -196,6 +199,7 @@ export function Drawer({
           </div>
         ) : (
         <div className="space-y-8 px-6 py-6 sm:px-8">
+          {refs && <FrameworkRefs refs={refs} />}
           {/* Description with cited spans */}
           <section>
             <SectionTitle>Control description</SectionTitle>
@@ -403,5 +407,33 @@ function IconBtn({ label, onClick, disabled, children }: { label: string; onClic
         {children}
       </svg>
     </button>
+  );
+}
+
+const REF_ROWS = [
+  ["euAiAct", "EU AI Act", "Regulation (EU) 2024/1689"],
+  ["iso42001", "ISO/IEC 42001", "2023, Annex A"],
+  ["nistAiRmf", "NIST AI RMF", "1.0 (AI 100-1)"],
+  ["finma", "FINMA", "Guidance 08/2024, section"],
+] as const;
+
+/** Week 6: where this control comes from. Empty = no verified reference fits (never guessed). */
+function FrameworkRefs({ refs }: { refs: { euAiAct: string; iso42001: string; nistAiRmf: string; finma: string } }) {
+  return (
+    <section data-testid="framework-refs">
+      <h3 className="text-[12px] font-semibold uppercase tracking-[0.09em] text-ink-2">Framework mapping</h3>
+      <dl className="mt-2 grid grid-cols-[130px_1fr] gap-x-4 gap-y-1.5 rounded-md border border-rule bg-surface px-4 py-3 text-[13.5px]">
+        {REF_ROWS.map(([k, name, note]) => (
+          <div key={k} className="contents">
+            <dt className="text-muted">
+              {name}
+              <span className="block text-[11px]">{note}</span>
+            </dt>
+            <dd className={refs[k] ? "font-mono text-[13px] text-ink" : "text-[12.5px] italic text-muted"}>{refs[k] || "— no verified reference"}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-1.5 text-[12px] text-muted">References checked on the web on 2026-11-15; a reference is left empty rather than guessed. Not legal advice.</p>
+    </section>
   );
 }

@@ -1,0 +1,51 @@
+{
+  "AIG-01": [],
+  "AIG-02": [],
+  "AIG-03": [],
+  "AIG-04": [],
+  "AIG-05": [
+    "who",
+    "what",
+    "when",
+    "frequency",
+    "evidence",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "AID-01": [],
+  "AID-02": [],
+  "AID-03": [],
+  "AID-04": [
+    "precision",
+    "who",
+    "nature_mismatch"
+  ],
+  "AIH-01": [],
+  "AIH-02": [],
+  "AIH-03": [],
+  "AIH-04": [],
+  "AIH-05": [
+    "sod_conflict"
+  ],
+  "AIM-01": [],
+  "AIM-02": [],
+  "AIM-03": [
+    "freq_mismatch"
+  ],
+  "AIM-04": [],
+  "AIM-05": [],
+  "AIV-01": [],
+  "AIV-02": [],
+  "AIV-03": [
+    "who",
+    "what",
+    "when",
+    "evidence",
+    "precision",
+    "owner_invalid"
+  ],
+  "AIL-01": [],
+  "AIL-02": [],
+  "AIL-03": [],
+  "AIL-04": []
+}
