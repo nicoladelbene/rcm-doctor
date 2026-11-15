@@ -9,7 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "eval": "tsx scripts/eval.ts",
+    "eval": "tsx scripts/eval.ts && tsx scripts/eval-evidence.ts",
     "gen:demo": "tsx scripts/generate-demo-rcm.ts",
     "precompute": "tsx scripts/precompute-demo.ts",
     "record:demo": "tsx scripts/record-demo.ts",
@@ -20,11 +20,15 @@
     "precompute:testscripts": "tsx scripts/precompute-testscripts.ts",
     "mcp": "tsx mcp/server.ts",
     "build:mcp": "esbuild mcp/server.ts --bundle --platform=node --format=esm --target=node22 --outfile=mcp/dist/rcm-doctor-mcp.mjs --banner:js=\"import { createRequire as __cr } from 'node:module'; const require = __cr(import.meta.url);\" --minify --legal-comments=none --log-level=warning && chmod +x mcp/dist/rcm-doctor-mcp.mjs",
-    "record:mcp": "tsx scripts/record-mcp-session.ts"
+    "record:mcp": "tsx scripts/record-mcp-session.ts",
+    "gen:evidence": "tsx scripts/generate-evidence.ts",
+    "precompute:evidence": "tsx scripts/precompute-evidence.ts",
+    "eval:evidence": "tsx scripts/eval-evidence.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
     "next": "16.4.6",
+    "pdfjs-dist": "^6.5.438",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",

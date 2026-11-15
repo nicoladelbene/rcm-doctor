@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/review": ["./src/core/prompts/**/*"],
     "/api/testscript": ["./src/core/prompts/**/*"],
-    "/demo-data": ["./data/demo-rcm.xlsx", "./data/demo-results.json", "./data/demo-testscripts.json"],
+    "/api/evidence": ["./src/core/prompts/**/*"],
+    "/demo-data": ["./data/demo-rcm.xlsx", "./data/demo-results.json", "./data/demo-testscripts.json", "./data/evidence/packs.json", "./data/demo-evidence-results.json"],
   },
   async headers() {
     return [

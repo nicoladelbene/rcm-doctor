@@ -1,0 +1,9 @@
+session_id,firefighter_id,user,start,end,reason,ticket,ticket_status,review_result,escalated_to_cio_on
+FF-1026-01,FF_BASIS_01,B.HUBER,2026-10-02 22:00,2026-10-02 23:15,Support package,CHG0055931,Approved,Matched to approved ticket,
+FF-1026-02,FF_FI_01,C.WYSS,2026-10-07 07:50,2026-10-07 08:10,Posting period,INC0104410,Approved,Matched to approved ticket,
+FF-1026-03,FF_MM_01,D.ODERMATT,2026-10-15 14:22,2026-10-15 14:58,Stuck IDocs,INC0104987,Approved,Matched to approved ticket,
+FF-1026-04,FF_BASIS_01,E.KELLER,2026-10-21 18:40,2026-10-21 18:52,Not stated,,,No ticket — escalated,2026-11-09
+FF-1026-05,FF_SEC_01,A.STEINER,2026-10-28 16:05,2026-10-28 16:31,Role fix,CHG0056102,Approved,Matched to approved ticket,
+
+COMPLETENESS,Sessions in SAP firefighter log for October 2026: 5,Sessions reviewed: 5,,,,,,,
+REVIEW SIGN-OFF,IT Security Officer P. Zürcher,signed 2026-11-06,stored in ServiceNow RITM0075530,,,,,,

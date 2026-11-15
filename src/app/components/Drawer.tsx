@@ -12,8 +12,10 @@ import { AutomationMeter, SeverityTag, StatusGlyph, StatusPill } from "./bits";
 import { Highlighted, WithPlaceholders, type Cite } from "./Highlighted";
 import type { TestScript } from "@/core/testscript";
 import { TestScriptPanel } from "./TestScriptPanel";
+import type { EvidencePack, EvidenceTest } from "@/core/evidence";
+import { EvidencePanel, type EvidenceRunner } from "./EvidencePanel";
 
-export type DrawerTab = "review" | "test";
+export type DrawerTab = "review" | "test" | "evidence";
 
 /** Phrased as the property being checked, so a ✓ reads naturally. */
 const RULE_PASS_LABEL: Record<(typeof RULE_CHECKS)[number], string> = {
@@ -44,6 +46,7 @@ export function Drawer({
   script,
   tab = "review",
   onTab,
+  evidence,
 }: {
   control: Control;
   review: Review;
@@ -54,6 +57,8 @@ export function Drawer({
   script?: TestScript;
   tab?: DrawerTab;
   onTab?: (t: DrawerTab) => void;
+  /** Week 3: evidence pack + tick & tie result for this control, and how to run a new one. */
+  evidence?: { pack?: EvidencePack; test?: EvidenceTest; runner: EvidenceRunner; onResult: (p: EvidencePack, t: EvidenceTest) => void };
 }) {
   // Hovered finding number, scoped to the control it was set on (resets on navigation without an effect).
   const [hover, setHover] = useState<{ id: string; n: number } | null>(null);
@@ -123,7 +128,7 @@ export function Drawer({
       <div
         ref={panelRef}
         data-testid="drawer"
-        className="anim-drawer relative flex h-full w-full max-w-[880px] flex-col overflow-y-auto border-l border-rule-strong bg-paper shadow-[0_0_40px_rgba(22,25,29,0.18)]"
+        className={`anim-drawer relative flex h-full w-full ${tab === "evidence" ? "max-w-[1240px]" : "max-w-[880px]"} flex-col overflow-y-auto border-l border-rule-strong bg-paper shadow-[0_0_40px_rgba(22,25,29,0.18)]`}
       >
         {/* Header */}
         <div className="sticky top-0 z-10 border-b border-rule bg-paper/95 px-6 py-4 backdrop-blur sm:px-8">
@@ -167,6 +172,7 @@ export function Drawer({
                 [
                   ["review", "Design review"],
                   ["test", "Test script"],
+                  ["evidence", "Evidence"],
                 ] as const
               ).map(([t, label]) => (
                 <button
@@ -184,13 +190,24 @@ export function Drawer({
                       {script.toe_ready ? `n=${script.sample.size}` : "blocked"}
                     </span>
                   )}
+                  {t === "evidence" && evidence?.test && evidence.test.conclusion !== "incomplete" && (
+                    <span
+                      className={`ml-1.5 rounded-full px-1.5 text-[11px] ${evidence.test.conclusion === "exceptions" ? "bg-fail-soft text-fail" : "bg-pass-soft text-pass"}`}
+                    >
+                      {evidence.test.conclusion === "exceptions" ? `${evidence.test.ticks.filter((x) => x.result === "exception").length} exc.` : "✓"}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {tab === "test" ? (
+        {tab === "evidence" && evidence ? (
+          <div className="px-6 py-6 sm:px-8">
+            <EvidencePanel control={control} script={script} pack={evidence.pack} test={evidence.test} runner={evidence.runner} onResult={evidence.onResult} />
+          </div>
+        ) : tab === "test" ? (
           <div className="px-6 py-6 sm:px-8">
             <TestScriptPanel control={control} script={script} />
           </div>

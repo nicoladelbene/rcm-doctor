@@ -1,0 +1,26 @@
+je_number,posting_date,posting_time,amount_chf,entered_by,approver_1,approver_1_role,approved_1_at,approver_2,approver_2_role,approved_2_at,workflow_status
+100021,2026-01-03,11:00,"18,420.00",ACC_MEIER,AM_GASSER,Accounting Manager,2026-01-03 09:00,,,,Approved · Posted
+100025,2026-01-10,12:13,"245,000.00",ACC_ROTH,AM_FREI,Accounting Manager,2026-01-10 10:07,,,,Approved · Posted
+100029,2026-01-17,13:26,"12,980.50",ACC_KUNZ,AM_GASSER,Accounting Manager,2026-01-17 09:14,,,,Approved · Posted
+100033,2026-02-24,14:39,"1,412,500.00",ACC_MEIER,AM_FREI,Accounting Manager,2026-02-24 10:21,,,,Approved · Posted
+100037,2026-02-07,15:52,"33,750.00",ACC_ROTH,AM_GASSER,Accounting Manager,2026-02-07 09:28,,,,Approved · Posted
+100041,2026-03-14,16:05,"61,200.00",ACC_KUNZ,AM_FREI,Accounting Manager,2026-03-14 10:35,,,,Approved · Posted
+100045,2026-03-21,11:18,"10,450.00",ACC_MEIER,AM_GASSER,Accounting Manager,2026-03-21 09:42,,,,Approved · Posted
+100049,2026-04-04,12:31,"1,000,000.00",ACC_ROTH,AM_FREI,Accounting Manager,2026-04-04 10:49,,,,Approved · Posted
+100053,2026-04-11,13:44,"27,300.00",ACC_KUNZ,AM_GASSER,Accounting Manager,2026-04-11 09:56,,,,Approved · Posted
+100057,2026-04-18,14:57,"2,350,000.00",ACC_MEIER,AM_FREI,Accounting Manager,2026-04-18 10:03,GC_LEHMANN,Group Controller,2026-04-18 10:39,Approved · Posted
+100061,2026-05-25,11:32,"86,300.00",ACC_ROTH,AM_GASSER,Accounting Manager,2026-05-25 16:05,,,,Approved · Posted
+100065,2026-05-08,16:23,"14,999.90",ACC_KUNZ,AM_FREI,Accounting Manager,2026-05-08 10:17,,,,Approved · Posted
+100069,2026-06-15,11:36,"402,180.00",ACC_MEIER,AM_GASSER,Accounting Manager,2026-06-15 09:24,,,,Approved · Posted
+100073,2026-06-22,12:49,"19,875.00",ACC_ROTH,AM_FREI,Accounting Manager,2026-06-22 10:31,,,,Approved · Posted
+100077,2026-07-05,13:02,"73,640.00",ACC_KUNZ,AM_GASSER,Accounting Manager,2026-07-05 09:38,,,,Approved · Posted
+100081,2026-07-12,14:15,"1,180,400.00",ACC_MEIER,AM_FREI,Accounting Manager,2026-07-12 10:45,GC_LEHMANN,Group Controller,2026-07-12 10:45,Approved · Posted
+100085,2026-08-19,15:28,"11,210.00",ACC_ROTH,AM_GASSER,Accounting Manager,2026-08-19 09:52,,,,Approved · Posted
+100089,2026-08-26,16:41,"58,000.00",ACC_KUNZ,AM_FREI,Accounting Manager,2026-08-26 10:59,,,,Approved · Posted
+100093,2026-08-09,11:54,"125,900.00",ACC_MEIER,AM_GASSER,Accounting Manager,2026-08-09 09:06,,,,Approved · Posted
+100097,2026-09-16,12:07,"22,460.00",ACC_ROTH,AM_FREI,Accounting Manager,2026-09-16 10:13,,,,Approved · Posted
+100101,2026-09-23,13:20,"39,990.00",ACC_KUNZ,AM_GASSER,Accounting Manager,2026-09-23 09:20,,,,Approved · Posted
+100105,2026-10-06,14:33,"16,700.00",ACC_MEIER,AM_FREI,Accounting Manager,2026-10-06 10:27,,,,Approved · Posted
+100109,2026-10-13,15:46,"940,000.00",ACC_ROTH,AM_GASSER,Accounting Manager,2026-10-13 09:34,,,,Approved · Posted
+100113,2026-11-20,16:59,"45,320.00",ACC_KUNZ,AM_FREI,Accounting Manager,2026-11-20 10:41,,,,Approved · Posted
+100117,2026-11-03,11:12,"13,050.00",ACC_MEIER,AM_GASSER,Accounting Manager,2026-11-03 09:48,,,,Approved · Posted

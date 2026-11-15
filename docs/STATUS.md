@@ -8,6 +8,11 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   generator: ToD walkthrough + ToE attributes traced to source spans, sample size by frequency, "remediate first" blockers,
   /api/testscript, drawer "Test script" tab, "Test scripts" export sheet, precomputed demo scripts, ADR 0012,
   media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
+- **Week 3 is BUILT on branch `week-3`** (parallel session, 15 Nov; not merged, prod untouched): evidence tester — upload
+  PDF/screenshot/CSV, tick & tie every sample item × test attribute, boxes on the evidence + link to the description span.
+  Synthetic evidence for 5 demo controls (2 with planted exceptions), `npm run eval:evidence` (in `npm run eval`), ADR 0014,
+  10-min demo `docs/demo-week-3.md`, media `docs/media/week-3-*`, post draft `docs/posts/2026-12-13-week-3.md`.
+  Merge order: week-2 first, then `git switch week-3 && git merge main`.
 - **Week 4 is READY on branch `week-4`** (parallel session, 15 Nov; not merged, prod untouched): automation heatmap
   (process × control type) + business case per control with score ≥ 4 (hours/yr, CHF, ITAC vs RPA/script with cited cue,
   prerequisites, payback), all assumptions editable in the UI, kept in localStorage and exported (sheet "Automation").
@@ -49,6 +54,7 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 ## Metrics
 - Demo eval: recall 100 % (33/33) · FP 0 % (0/25) · precision 89 % (anthropic/claude-sonnet-5.5, review.v1)
 - Holdout: recall 82 % (23/28) · FP 17 % (2/12) · precision 82 % · EN 89 % / 0 % · DE 70 % / 50 %
+- Week 3 (branch): 5 controls, 163 checks in 51 s · 3/3 planted exceptions boxed · 0/160 false exceptions · 139/139 tied to a verified box/cell
 - Week 2 (branch): 40 scripts in 77 s · 30 ToE-ready / 10 blocked · 95 % (172/181) test attributes cite a verified span
 - Week 4 (branch, demo, default assumptions): 15 candidates (7 priced, 8 per-transaction need a volume) · 295 h/yr (≈0.17 FTE) · CHF 32k · 560 build h (≈23 months) · 4 already automated · 4 blocked by design
 - Week 5: real Claude Code session 111 s, USD 0.29 (Claude Code) + one live 40-control review on OpenRouter
