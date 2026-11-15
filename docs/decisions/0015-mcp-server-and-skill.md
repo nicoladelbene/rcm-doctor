@@ -1,4 +1,4 @@
-# 0014 — Week 5: MCP server (stdio) + Claude skill
+# 0015 — Week 5: MCP server (stdio) + Claude skill
 
 - Status: accepted (on branch week-5)
 - Date: 2026-11-15

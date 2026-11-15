@@ -11,7 +11,7 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
 - **Week 5 is READY on branch `week-5`** (from origin/main incl. Week 2; parallel session 15 Nov; not merged): MCP
   server (stdio, `npx -y github:nicoladelbene/rcm-doctor`, bundled `mcp/dist/rcm-doctor-mcp.mjs`) with `review_rcm` +
   `generate_test_scripts` over src/core, Claude skill `skills/rcm-doctor/SKILL.md`, README setup for Claude Code /
-  Desktop, integration test `tests/mcp.test.ts`, ADR 0014, video `docs/media/week-5-demo.*` (replay of a real
+  Desktop, integration test `tests/mcp.test.ts`, ADR 0015, video `docs/media/week-5-demo.*` (replay of a real
   `claude -p` session), post `docs/posts/2027-01-week-5.md`. Note: the npx command points at main → works after merge
   (tested with `#week-5`).
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
