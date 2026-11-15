@@ -1,4 +1,4 @@
-# 0013 — Week 1.1: German rules, SoD in the review prompt, holdout v2
+# 0015 — Week 1.1: German rules, SoD in the review prompt, holdout v2
 
 **Status:** accepted · 2026-11-15
 
