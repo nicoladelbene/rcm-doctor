@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import pkg from "../../../package.json";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHECK_LABELS, CHECK_IDS, type CheckId, type Control, type Review, type ReviewRun, type Severity, type Status } from "@/core/schema";
 import { summarize } from "@/core/summary";
@@ -140,9 +141,14 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
   useEffect(() => {
     const qs = new URLSearchParams(window.location.search);
     if (!qs.has("demo")) return;
-    const t = setTimeout(() => {
+    // Optional: &view=automation, &control=ID, &tab=review|test|evidence (lifecycle links on the home page).
+    const t = setTimeout(async () => {
       if (qs.get("view") === "automation") setView("automation");
-      loadDemo();
+      await loadDemo();
+      const tabQ = qs.get("tab");
+      if (tabQ === "review" || tabQ === "test" || tabQ === "evidence") setTab(tabQ);
+      const control = qs.get("control");
+      if (control) setOpenId(control);
     }, 0);
     return () => clearTimeout(t);
   }, [loadDemo]);
@@ -441,7 +447,12 @@ export function App({ evalHeadline, holdout }: { evalHeadline: EvalHeadline | nu
           </div>
         )}
 
-        {!data && !loading && <HowItWorks />}
+        {!data && !loading && (
+          <>
+            <Lifecycle />
+            <HowItWorks />
+          </>
+        )}
       </main>
 
       <Footer />
@@ -484,7 +495,7 @@ function Header() {
         <Link href="/" className="flex items-center gap-2.5">
           <Logo />
           <span className="font-mono text-[15px] font-medium tracking-tight text-ink">rcm-doctor</span>
-          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline">week 4</span>
+          <span className="hidden rounded-[4px] border border-rule-strong px-1.5 py-px font-mono text-[11px] text-muted sm:inline" data-testid="version">v{pkg.version}</span>
         </Link>
         <nav className="flex items-center gap-5 text-[13.5px] text-ink-2">
           <a href={`${GITHUB}/blob/main/docs/eval-latest.md`} className="hidden hover:text-ink sm:inline">
@@ -621,6 +632,46 @@ function Hero({
             </a>
           </p>
         )}
+      </div>
+    </section>
+  );
+}
+
+const STEPS: { n: string; title: string; text: string; href: string; cta: string }[] = [
+  { n: "1", title: "Review", text: "Six design attributes and six consistency rules per control. Every finding cites the exact words it is based on.", href: "/?demo&control=TRE-03&tab=review", cta: "See a failing control" },
+  { n: "2", title: "Test", text: "A test script per control: walkthrough, sample size from the frequency, attributes traced to the text. Broken designs are blocked, not tested.", href: "/?demo&control=P2P-05&tab=test", cta: "Open a test script" },
+  { n: "3", title: "Evidence", text: "Upload the evidence and tick & tie every sample against every attribute, with a box on the page where the proof is, and the exceptions.", href: "/?demo&control=TRE-01&tab=evidence", cta: "Tick & tie a bank reconciliation" },
+  { n: "4", title: "Automate", text: "Heatmap of automation potential by process and control type; a business case per candidate on assumptions you can see and change.", href: "/?demo&view=automation", cta: "Open the heatmap" },
+];
+
+function Lifecycle() {
+  return (
+    <section className="border-t border-rule" data-testid="lifecycle">
+      <div className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6">
+        <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-accent">The control lifecycle</p>
+        <h2 className="mt-2 font-serif text-[30px] font-semibold text-ink">Review → Test → Evidence → Automate</h2>
+        <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s) => (
+            <li key={s.n} className="flex flex-col rounded-lg border border-rule bg-surface p-5">
+              <span className="font-mono text-[12px] text-muted">Step {s.n}</span>
+              <h3 className="mt-1 font-serif text-[21px] font-semibold text-ink">{s.title}</h3>
+              <p className="mt-1.5 flex-1 text-[14px] leading-relaxed text-ink-2">{s.text}</p>
+              <a href={s.href} data-testid={`step-${s.title.toLowerCase()}`} className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-medium text-accent underline decoration-accent/30 underline-offset-[3px] hover:decoration-accent">
+                {s.cta} →
+              </a>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-ink/15 bg-accent-soft/60 px-5 py-4" data-testid="mcp-card">
+          <div>
+            <h3 className="font-serif text-[19px] font-semibold text-ink">Use it inside Claude (MCP)</h3>
+            <p className="mt-0.5 text-[14px] text-ink-2">An MCP server and a Claude skill: ask Claude Code or Claude Desktop to review your RCM and draft test scripts.</p>
+          </div>
+          <code className="max-w-full overflow-x-auto rounded-md bg-surface px-3 py-2 font-mono text-[12.5px] text-ink">claude mcp add rcm-doctor -- npx -y github:nicoladelbene/rcm-doctor</code>
+          <a href={`${GITHUB}#use-it-inside-claude-mcp-server--skill`} className="text-[14px] font-medium text-accent underline underline-offset-[3px]">
+            Setup for Claude Desktop →
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -140,3 +140,34 @@ test("week 4: automation heatmap, business cases and editable assumptions", asyn
   await cards.first().getByRole("button").first().click();
   await expect(page.getByTestId("drawer")).toBeVisible();
 });
+
+test("launch: home tells the lifecycle and each step opens the matching demo view", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByTestId("version")).toHaveText(/^v\d+\.\d+\.\d+$/);
+  await expect(page.getByTestId("lifecycle")).toContainText("Review → Test → Evidence → Automate");
+  await expect(page.getByTestId("mcp-card")).toContainText("Use it inside Claude (MCP)");
+
+  await page.getByTestId("step-review").click();
+  await expect(page.getByTestId("drawer").locator("mark.cite-fail", { hasText: "prepares and approves" })).toBeVisible();
+
+  await page.goto("/");
+  await page.getByTestId("step-test").click();
+  await expect(page.getByTestId("testscript").getByTestId("sample-size")).toHaveText("2");
+
+  await page.goto("/");
+  await page.getByTestId("step-evidence").click();
+  await expect(page.getByTestId("evidence")).toBeVisible();
+
+  await page.goto("/");
+  await page.getByTestId("step-automate").click();
+  await expect(page.getByTestId("heatmap")).toBeVisible();
+});
+
+test("launch: Open Graph image is served", async ({ page, request }) => {
+  await page.goto("/");
+  const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+  expect(og).toMatch(/opengraph-image/);
+  const res = await request.get(new URL(og!).pathname + (new URL(og!).search || ""));
+  expect(res.status()).toBe(200);
+  expect(res.headers()["content-type"]).toContain("image/png");
+});

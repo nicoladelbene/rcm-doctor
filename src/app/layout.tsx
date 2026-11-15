@@ -7,6 +7,7 @@ const serif = Source_Serif_4({ variable: "--font-serif", subsets: ["latin"], wei
 const mono = JetBrains_Mono({ variable: "--font-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://rcm-doctor.vercel.app"),
   title: "rcm-doctor — AI review for Risk & Control Matrices",
   description:
     "Open-source reviewer for Risk & Control Matrices (internal controls / IKS). Six design attributes, six consistency rules, an automation score and a rewrite per control — every finding cites the exact source text.",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description: "Every finding cites the exact source text. Evaluated against ground truth. Try the demo, no key needed.",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
