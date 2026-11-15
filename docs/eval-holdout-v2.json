@@ -1,0 +1,491 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v2",
+  "source": "data/holdout-v2/holdout-results.json (2026-11-15)",
+  "controls": 30,
+  "cleanControls": 12,
+  "plantedDefects": 63,
+  "detected": 58,
+  "recall": 0.9206349206349206,
+  "cleanFpRate": 0.25,
+  "extraFindings": 11,
+  "precision": 0.8405797101449275,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 7,
+      "tp": 7,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "what",
+      "expected": 5,
+      "tp": 5,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "when",
+      "expected": 6,
+      "tp": 6,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "frequency",
+      "expected": 4,
+      "tp": 4,
+      "fn": 0,
+      "fp": 4,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 8,
+      "tp": 8,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "precision",
+      "expected": 9,
+      "tp": 9,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 3,
+      "tp": 1,
+      "fn": 2,
+      "fp": 2,
+      "recall": 0.3333333333333333
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 3,
+      "tp": 2,
+      "fn": 1,
+      "fp": 1,
+      "recall": 0.6666666666666666
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 6,
+      "tp": 5,
+      "fn": 1,
+      "fp": 0,
+      "recall": 0.8333333333333334
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 4,
+      "tp": 3,
+      "fn": 1,
+      "fp": 0,
+      "recall": 0.75
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 5,
+      "tp": 5,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [
+    {
+      "control_id": "O2C-H02",
+      "check": "freq_mismatch"
+    },
+    {
+      "control_id": "P2P-H04",
+      "check": "owner_invalid"
+    },
+    {
+      "control_id": "R2R-H04",
+      "check": "freq_mismatch"
+    },
+    {
+      "control_id": "ITG-H04",
+      "check": "nature_mismatch"
+    },
+    {
+      "control_id": "HRP-H04",
+      "check": "sod_conflict"
+    }
+  ],
+  "falsePositives": [
+    {
+      "control_id": "ITG-H01",
+      "check": "frequency",
+      "message": "'Regelmässig' is not a frequency; state the quarterly cadence in the description."
+    },
+    {
+      "control_id": "P2P-H03",
+      "check": "evidence",
+      "message": "The description names no retained artefact; state the block log or tolerance configuration and where it is kept."
+    },
+    {
+      "control_id": "P2P-H03",
+      "check": "precision",
+      "message": "'If experience shows' is not a testable or configurable criterion; state the quantity tolerance as a fixed rule."
+    },
+    {
+      "control_id": "ITG-H02",
+      "check": "nature_mismatch",
+      "message": "Nature is \"Automated\", but the description describes a manual step (\"sign\")."
+    },
+    {
+      "control_id": "HRP-H02",
+      "check": "freq_mismatch",
+      "message": "Description says \"monthly\" but the frequency column says \"Per termination / at least weekly\"."
+    },
+    {
+      "control_id": "HRP-H02",
+      "check": "frequency",
+      "message": "A monthly report conflicts with a per-exit 24-hour trigger; state whether the control runs per termination or monthly."
+    },
+    {
+      "control_id": "O2C-H04",
+      "check": "what",
+      "message": "Review and approval are not concretely defined; state what is checked, e.g. supporting documents and authorisation."
+    },
+    {
+      "control_id": "O2C-H04",
+      "check": "frequency",
+      "message": "Only the column states monthly; the description does not, and monthly is unclear for approving issued memos."
+    },
+    {
+      "control_id": "TRE-H04",
+      "check": "freq_mismatch",
+      "message": "Description says \"daily\" but the frequency column says \"Every 3 years\"."
+    },
+    {
+      "control_id": "TRE-H04",
+      "check": "when",
+      "message": "No trigger or fixed point in the process; state when the comparison runs, e.g. before payment runs."
+    },
+    {
+      "control_id": "TRE-H05",
+      "check": "frequency",
+      "message": "Frequency appears only in the column, not in the description; semi-annual is borderline given leaver risk."
+    }
+  ],
+  "byLanguage": {
+    "de": {
+      "controls": 10,
+      "cleanControls": 5,
+      "plantedDefects": 21,
+      "detected": 20,
+      "recall": 0.9523809523809523,
+      "cleanFpRate": 0,
+      "extraFindings": 1,
+      "precision": 0.9523809523809523,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 1,
+          "tp": 0,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "O2C-H02",
+          "check": "freq_mismatch"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "ITG-H01",
+          "check": "frequency",
+          "message": "'Regelmässig' is not a frequency; state the quarterly cadence in the description."
+        }
+      ]
+    },
+    "en": {
+      "controls": 20,
+      "cleanControls": 7,
+      "plantedDefects": 42,
+      "detected": 38,
+      "recall": 0.9047619047619048,
+      "cleanFpRate": 0.42857142857142855,
+      "extraFindings": 10,
+      "precision": 0.7916666666666666,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 4,
+          "tp": 4,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 4,
+          "tp": 4,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 3,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 6,
+          "tp": 6,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 6,
+          "tp": 6,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 2,
+          "tp": 1,
+          "fn": 1,
+          "fp": 2,
+          "recall": 0.5
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 2,
+          "tp": 1,
+          "fn": 1,
+          "fp": 1,
+          "recall": 0.5
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 4,
+          "tp": 3,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0.75
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 3,
+          "tp": 2,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0.6666666666666666
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "P2P-H04",
+          "check": "owner_invalid"
+        },
+        {
+          "control_id": "R2R-H04",
+          "check": "freq_mismatch"
+        },
+        {
+          "control_id": "ITG-H04",
+          "check": "nature_mismatch"
+        },
+        {
+          "control_id": "HRP-H04",
+          "check": "sod_conflict"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "P2P-H03",
+          "check": "evidence",
+          "message": "The description names no retained artefact; state the block log or tolerance configuration and where it is kept."
+        },
+        {
+          "control_id": "P2P-H03",
+          "check": "precision",
+          "message": "'If experience shows' is not a testable or configurable criterion; state the quantity tolerance as a fixed rule."
+        },
+        {
+          "control_id": "ITG-H02",
+          "check": "nature_mismatch",
+          "message": "Nature is \"Automated\", but the description describes a manual step (\"sign\")."
+        },
+        {
+          "control_id": "HRP-H02",
+          "check": "freq_mismatch",
+          "message": "Description says \"monthly\" but the frequency column says \"Per termination / at least weekly\"."
+        },
+        {
+          "control_id": "HRP-H02",
+          "check": "frequency",
+          "message": "A monthly report conflicts with a per-exit 24-hour trigger; state whether the control runs per termination or monthly."
+        },
+        {
+          "control_id": "O2C-H04",
+          "check": "what",
+          "message": "Review and approval are not concretely defined; state what is checked, e.g. supporting documents and authorisation."
+        },
+        {
+          "control_id": "O2C-H04",
+          "check": "frequency",
+          "message": "Only the column states monthly; the description does not, and monthly is unclear for approving issued memos."
+        },
+        {
+          "control_id": "TRE-H04",
+          "check": "freq_mismatch",
+          "message": "Description says \"daily\" but the frequency column says \"Every 3 years\"."
+        },
+        {
+          "control_id": "TRE-H04",
+          "check": "when",
+          "message": "No trigger or fixed point in the process; state when the comparison runs, e.g. before payment runs."
+        },
+        {
+          "control_id": "TRE-H05",
+          "check": "frequency",
+          "message": "Frequency appears only in the column, not in the description; semi-annual is borderline given leaver risk."
+        }
+      ]
+    }
+  }
+}

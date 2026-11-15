@@ -1,0 +1,347 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v2",
+  "source": "data/holdout/holdout-results.review-v2.json (2026-11-15)",
+  "controls": 30,
+  "cleanControls": 12,
+  "plantedDefects": 28,
+  "detected": 28,
+  "recall": 1,
+  "cleanFpRate": 0,
+  "extraFindings": 1,
+  "precision": 0.9655172413793104,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "what",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "when",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "frequency",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "precision",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [],
+  "falsePositives": [
+    {
+      "control_id": "HRP-H28",
+      "check": "when",
+      "message": "Trigger is stated but not the timing relative to bank release; add a deadline such as before release."
+    }
+  ],
+  "byLanguage": {
+    "de": {
+      "controls": 10,
+      "cleanControls": 4,
+      "plantedDefects": 10,
+      "detected": 10,
+      "recall": 1,
+      "cleanFpRate": 0,
+      "extraFindings": 0,
+      "precision": 1,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "frequency",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "recall": null
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [],
+      "falsePositives": []
+    },
+    "en": {
+      "controls": 20,
+      "cleanControls": 8,
+      "plantedDefects": 18,
+      "detected": 18,
+      "recall": 1,
+      "cleanFpRate": 0,
+      "extraFindings": 1,
+      "precision": 0.9473684210526315,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [],
+      "falsePositives": [
+        {
+          "control_id": "HRP-H28",
+          "check": "when",
+          "message": "Trigger is stated but not the timing relative to bank release; add a deadline such as before release."
+        }
+      ]
+    }
+  }
+}

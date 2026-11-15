@@ -26,6 +26,8 @@ export interface LlmAttribute {
 export interface LlmResult {
   control_id: string;
   attributes: Record<(typeof ATTRIBUTE_CHECKS)[number], LlmAttribute>;
+  /** review.v2 */
+  sod_conflict?: { present: boolean; quote: string | null; comment: string };
   automation_score: number;
   automation_rationale: string;
   suggested_rewrite: string;
@@ -58,6 +60,17 @@ export function buildReview(control: Control, llm: LlmResult | null, model: stri
         });
       }
     }
+  }
+
+  // review.v2: the reviewer also assesses SoD. The rule finding wins when both fire (one finding per check).
+  if (llm?.sod_conflict?.present && !findings.some((f) => f.check === "sod_conflict")) {
+    findings.push({
+      check: "sod_conflict",
+      severity: DEFAULT_SEVERITY.sod_conflict,
+      message: llm.sod_conflict.comment || "The same role performs and approves the activity.",
+      evidence_span: locateSpan(control, "control_description", llm.sod_conflict.quote),
+      source: "llm",
+    });
   }
 
   const order = { high: 0, med: 1, low: 2 } as const;

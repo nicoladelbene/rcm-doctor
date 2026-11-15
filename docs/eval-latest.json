@@ -1,15 +1,15 @@
 {
   "model": "anthropic/claude-sonnet-5.5",
-  "promptVersion": "review.v1",
+  "promptVersion": "review.v2",
   "source": "data/demo-results.json (2026-11-15)",
   "controls": 40,
   "cleanControls": 25,
   "plantedDefects": 33,
   "detected": 33,
   "recall": 1,
-  "cleanFpRate": 0,
-  "extraFindings": 4,
-  "precision": 0.8918918918918919,
+  "cleanFpRate": 0.04,
+  "extraFindings": 6,
+  "precision": 0.8461538461538461,
   "perCheck": [
     {
       "check": "who",
@@ -32,7 +32,7 @@
       "expected": 3,
       "tp": 3,
       "fn": 0,
-      "fp": 0,
+      "fp": 1,
       "recall": 1
     },
     {
@@ -56,7 +56,7 @@
       "expected": 5,
       "tp": 5,
       "fn": 0,
-      "fp": 1,
+      "fp": 2,
       "recall": 1
     },
     {
@@ -113,22 +113,32 @@
     {
       "control_id": "O2C-04",
       "check": "what",
-      "message": "Review is stated but 'appropriateness' and the supporting documents are not defined."
+      "message": "Supporting documents are mentioned, but 'appropriateness' and 'followed up' are vague; define what is checked and how follow-up is done."
     },
     {
       "control_id": "O2C-04",
       "check": "precision",
-      "message": "'Unauthorised' is not defined; state what counts as an exception, e.g. no approved change request."
+      "message": "Criterion is not defined; specify the population (e.g. all changes to credit limits, payment terms, bank data) and what counts as authorised."
     },
     {
       "control_id": "TRE-03",
       "check": "evidence",
-      "message": "Name the artefact (e.g. approval record, invoice copy) and its exact location."
+      "message": "Name the artefact (e.g. invoice copy, approval record) and its exact location in e-banking."
+    },
+    {
+      "control_id": "TRE-03",
+      "check": "precision",
+      "message": "Threshold sets scope only; approval criteria are undefined and payments up to CHF 1,000 are not addressed."
+    },
+    {
+      "control_id": "TRE-04",
+      "check": "when",
+      "message": "Deadline covers preparation only; add when the Group Treasurer completes the review."
     },
     {
       "control_id": "ITG-04",
       "check": "who",
-      "message": "A team is named rather than a role; specify who performs the deactivation, e.g. Service Desk Agent."
+      "message": "A team is named rather than a role; name the role that disables accounts, e.g. Service Desk Agent."
     }
   ]
 }

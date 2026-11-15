@@ -1,0 +1,583 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v1",
+  "source": "data/holdout-v2/holdout-results.baseline-week1.json (2026-11-15)",
+  "controls": 30,
+  "cleanControls": 12,
+  "plantedDefects": 63,
+  "detected": 54,
+  "recall": 0.8571428571428571,
+  "cleanFpRate": 0.5833333333333334,
+  "extraFindings": 17,
+  "precision": 0.7605633802816901,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 7,
+      "tp": 7,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "what",
+      "expected": 5,
+      "tp": 5,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "when",
+      "expected": 6,
+      "tp": 6,
+      "fn": 0,
+      "fp": 2,
+      "recall": 1
+    },
+    {
+      "check": "frequency",
+      "expected": 4,
+      "tp": 4,
+      "fn": 0,
+      "fp": 4,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 8,
+      "tp": 8,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "precision",
+      "expected": 9,
+      "tp": 9,
+      "fn": 0,
+      "fp": 2,
+      "recall": 1
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 3,
+      "tp": 1,
+      "fn": 2,
+      "fp": 2,
+      "recall": 0.3333333333333333
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 3,
+      "tp": 1,
+      "fn": 2,
+      "fp": 1,
+      "recall": 0.3333333333333333
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 6,
+      "tp": 4,
+      "fn": 2,
+      "fp": 5,
+      "recall": 0.6666666666666666
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 4,
+      "tp": 1,
+      "fn": 3,
+      "fp": 0,
+      "recall": 0.25
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 5,
+      "tp": 5,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [
+    {
+      "control_id": "P2P-H02",
+      "check": "owner_invalid"
+    },
+    {
+      "control_id": "O2C-H02",
+      "check": "freq_mismatch"
+    },
+    {
+      "control_id": "TRE-H02",
+      "check": "nature_mismatch"
+    },
+    {
+      "control_id": "R2R-H02",
+      "check": "sod_conflict"
+    },
+    {
+      "control_id": "P2P-H04",
+      "check": "owner_invalid"
+    },
+    {
+      "control_id": "P2P-H06",
+      "check": "sod_conflict"
+    },
+    {
+      "control_id": "R2R-H04",
+      "check": "freq_mismatch"
+    },
+    {
+      "control_id": "ITG-H04",
+      "check": "nature_mismatch"
+    },
+    {
+      "control_id": "HRP-H04",
+      "check": "sod_conflict"
+    }
+  ],
+  "falsePositives": [
+    {
+      "control_id": "P2P-H01",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Kreditorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "O2C-H01",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Debitorenmanagement\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "TRE-H01",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "TRE-H01",
+      "check": "precision",
+      "message": "Criteria for the review of the full run and for what counts as inconsistent are not defined; the threshold covers only matching."
+    },
+    {
+      "control_id": "R2R-H01",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Rechnungswesen\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "O2C-H02",
+      "check": "when",
+      "message": "Quarter-end is stated but no deadline; add e.g. within 10 business days after quarter-end."
+    },
+    {
+      "control_id": "TRE-H02",
+      "check": "owner_invalid",
+      "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes."
+    },
+    {
+      "control_id": "ITG-H01",
+      "check": "frequency",
+      "message": "Regularly is not a frequency; state quarterly, as the frequency column does."
+    },
+    {
+      "control_id": "P2P-H03",
+      "check": "evidence",
+      "message": "Description names no retained artefact; state the block log and the approval record for released invoices, and where they are kept."
+    },
+    {
+      "control_id": "P2P-H03",
+      "check": "precision",
+      "message": "Price tolerance is precise, but 'if experience shows' is an unclear condition; state the quantity tolerance as a plain rule."
+    },
+    {
+      "control_id": "ITG-H02",
+      "check": "nature_mismatch",
+      "message": "Nature is \"Automated\", but the description describes a manual step (\"sign\")."
+    },
+    {
+      "control_id": "HRP-H02",
+      "check": "freq_mismatch",
+      "message": "Description says \"monthly\" but the frequency column says \"Per termination / at least weekly\"."
+    },
+    {
+      "control_id": "HRP-H02",
+      "check": "frequency",
+      "message": "A monthly report conflicts with a 24-hour post-exit trigger; state whether the control runs per termination or weekly."
+    },
+    {
+      "control_id": "O2C-H04",
+      "check": "frequency",
+      "message": "Frequency appears only in the column; state it in the description and clarify it relative to credit memo issuance."
+    },
+    {
+      "control_id": "TRE-H04",
+      "check": "freq_mismatch",
+      "message": "Description says \"daily\" but the frequency column says \"Every 3 years\"."
+    },
+    {
+      "control_id": "TRE-H04",
+      "check": "when",
+      "message": "Only the look-ahead window is given; state when the check runs, e.g. each business day before payment runs."
+    },
+    {
+      "control_id": "TRE-H05",
+      "check": "frequency",
+      "message": "Frequency appears only in the column (semi-annual), is lenient for unauthorized signatory risk, and is absent from the description."
+    }
+  ],
+  "byLanguage": {
+    "de": {
+      "controls": 10,
+      "cleanControls": 5,
+      "plantedDefects": 21,
+      "detected": 17,
+      "recall": 0.8095238095238095,
+      "cleanFpRate": 0.8,
+      "extraFindings": 8,
+      "precision": 0.68,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 1,
+          "tp": 0,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 1,
+          "tp": 0,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 2,
+          "tp": 1,
+          "fn": 1,
+          "fp": 5,
+          "recall": 0.5
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 1,
+          "tp": 0,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 1,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "P2P-H02",
+          "check": "owner_invalid"
+        },
+        {
+          "control_id": "O2C-H02",
+          "check": "freq_mismatch"
+        },
+        {
+          "control_id": "TRE-H02",
+          "check": "nature_mismatch"
+        },
+        {
+          "control_id": "R2R-H02",
+          "check": "sod_conflict"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "P2P-H01",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Kreditorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "O2C-H01",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Debitorenmanagement\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "TRE-H01",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "TRE-H01",
+          "check": "precision",
+          "message": "Criteria for the review of the full run and for what counts as inconsistent are not defined; the threshold covers only matching."
+        },
+        {
+          "control_id": "R2R-H01",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Rechnungswesen\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "O2C-H02",
+          "check": "when",
+          "message": "Quarter-end is stated but no deadline; add e.g. within 10 business days after quarter-end."
+        },
+        {
+          "control_id": "TRE-H02",
+          "check": "owner_invalid",
+          "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes."
+        },
+        {
+          "control_id": "ITG-H01",
+          "check": "frequency",
+          "message": "Regularly is not a frequency; state quarterly, as the frequency column does."
+        }
+      ]
+    },
+    "en": {
+      "controls": 20,
+      "cleanControls": 7,
+      "plantedDefects": 42,
+      "detected": 37,
+      "recall": 0.8809523809523809,
+      "cleanFpRate": 0.42857142857142855,
+      "extraFindings": 9,
+      "precision": 0.8043478260869565,
+      "perCheck": [
+        {
+          "check": "who",
+          "expected": 4,
+          "tp": 4,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "what",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "when",
+          "expected": 4,
+          "tp": 4,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "frequency",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 3,
+          "recall": 1
+        },
+        {
+          "check": "evidence",
+          "expected": 6,
+          "tp": 6,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "precision",
+          "expected": 6,
+          "tp": 6,
+          "fn": 0,
+          "fp": 1,
+          "recall": 1
+        },
+        {
+          "check": "freq_mismatch",
+          "expected": 2,
+          "tp": 1,
+          "fn": 1,
+          "fp": 2,
+          "recall": 0.5
+        },
+        {
+          "check": "nature_mismatch",
+          "expected": 2,
+          "tp": 1,
+          "fn": 1,
+          "fp": 1,
+          "recall": 0.5
+        },
+        {
+          "check": "owner_invalid",
+          "expected": 4,
+          "tp": 3,
+          "fn": 1,
+          "fp": 0,
+          "recall": 0.75
+        },
+        {
+          "check": "sod_conflict",
+          "expected": 3,
+          "tp": 1,
+          "fn": 2,
+          "fp": 0,
+          "recall": 0.3333333333333333
+        },
+        {
+          "check": "missing_risk_link",
+          "expected": 2,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        },
+        {
+          "check": "key_no_evidence",
+          "expected": 3,
+          "tp": 3,
+          "fn": 0,
+          "fp": 0,
+          "recall": 1
+        }
+      ],
+      "misses": [
+        {
+          "control_id": "P2P-H04",
+          "check": "owner_invalid"
+        },
+        {
+          "control_id": "P2P-H06",
+          "check": "sod_conflict"
+        },
+        {
+          "control_id": "R2R-H04",
+          "check": "freq_mismatch"
+        },
+        {
+          "control_id": "ITG-H04",
+          "check": "nature_mismatch"
+        },
+        {
+          "control_id": "HRP-H04",
+          "check": "sod_conflict"
+        }
+      ],
+      "falsePositives": [
+        {
+          "control_id": "P2P-H03",
+          "check": "evidence",
+          "message": "Description names no retained artefact; state the block log and the approval record for released invoices, and where they are kept."
+        },
+        {
+          "control_id": "P2P-H03",
+          "check": "precision",
+          "message": "Price tolerance is precise, but 'if experience shows' is an unclear condition; state the quantity tolerance as a plain rule."
+        },
+        {
+          "control_id": "ITG-H02",
+          "check": "nature_mismatch",
+          "message": "Nature is \"Automated\", but the description describes a manual step (\"sign\")."
+        },
+        {
+          "control_id": "HRP-H02",
+          "check": "freq_mismatch",
+          "message": "Description says \"monthly\" but the frequency column says \"Per termination / at least weekly\"."
+        },
+        {
+          "control_id": "HRP-H02",
+          "check": "frequency",
+          "message": "A monthly report conflicts with a 24-hour post-exit trigger; state whether the control runs per termination or weekly."
+        },
+        {
+          "control_id": "O2C-H04",
+          "check": "frequency",
+          "message": "Frequency appears only in the column; state it in the description and clarify it relative to credit memo issuance."
+        },
+        {
+          "control_id": "TRE-H04",
+          "check": "freq_mismatch",
+          "message": "Description says \"daily\" but the frequency column says \"Every 3 years\"."
+        },
+        {
+          "control_id": "TRE-H04",
+          "check": "when",
+          "message": "Only the look-ahead window is given; state when the check runs, e.g. each business day before payment runs."
+        },
+        {
+          "control_id": "TRE-H05",
+          "check": "frequency",
+          "message": "Frequency appears only in the column (semi-annual), is lenient for unauthorized signatory risk, and is absent from the description."
+        }
+      ]
+    }
+  }
+}

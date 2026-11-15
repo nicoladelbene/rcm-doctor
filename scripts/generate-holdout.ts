@@ -2,9 +2,9 @@
  * Generates a HOLDOUT RCM with an independent model family (not Claude), including ground-truth labels
  * produced by the generator itself, BEFORE and SEPARATELY from any review.
  *
- *   OPENROUTER_API_KEY=... npm run gen:holdout [-- --model openai/gpt-5.6-sol]
+ *   OPENROUTER_API_KEY=... npm run gen:holdout [-- --model openai/gpt-5.6-sol] [--out-dir data/holdout-v2]
  *
- * Writes data/holdout/{generation.json, holdout-rcm.xlsx, holdout-rcm.csv, holdout.ground-truth.json, holdout.meta.json}.
+ * Writes <out-dir> (default data/holdout)/{generation.json, holdout-rcm.xlsx, holdout-rcm.csv, holdout.ground-truth.json, holdout.meta.json}.
  * Run ONCE. Regenerating replaces the holdout set; never edit labels after seeing review results.
  */
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
@@ -19,8 +19,12 @@ if (!key) throw new Error("OPENROUTER_API_KEY is not set");
 const mi = process.argv.indexOf("--model");
 const model = mi > 0 ? process.argv[mi + 1] : "openai/gpt-5.6-sol";
 if (/anthropic|claude/i.test(model)) throw new Error("The holdout generator must not be a Claude model.");
-const OUT = join(process.cwd(), "data/holdout");
-if (existsSync(join(OUT, "generation.json")) && !process.argv.includes("--force"))
+const oi = process.argv.indexOf("--out-dir");
+const OUT_REL = oi > 0 ? process.argv[oi + 1] : "data/holdout";
+const OUT = join(process.cwd(), OUT_REL);
+// Companies already used by earlier sets: a new holdout must be about a different one.
+const USED_COMPANIES = ["Alpenfirn", "Limmatquell"];
+if (existsSync(join(OUT, "holdout.ground-truth.json")) && !process.argv.includes("--force"))
   throw new Error("Holdout already exists. Pass --force only if you really mean to replace it.");
 mkdirSync(OUT, { recursive: true });
 
@@ -28,8 +32,8 @@ mkdirSync(OUT, { recursive: true });
 const PROMPT = `You are an experienced internal-controls practitioner building a TEST SET for evaluating an automated
 Risk & Control Matrix (RCM) reviewer. You write realistic controls AND label their design defects.
 
-Company: invent ONE fictional Swiss company (not a real one, not "Alpenfirn"), in an industry other than
-industrial manufacturing (e.g. medtech, food, logistics, private hospital, retail). Currency CHF. Give it a name ending in AG.
+Company: invent ONE fictional Swiss company (not a real one, not ${USED_COMPANIES.map((c) => `"${c}"`).join(", ")}, and not a private hospital), in an industry other than
+industrial manufacturing (e.g. medtech, food, logistics, retail, insurance broker, energy utility). Currency CHF. Give it a name ending in AG.
 
 Write exactly 30 controls:
 - Processes: Procure-to-Pay, Order-to-Cash, Treasury, Record-to-Report, ITGC, and HR/Payroll (spread them).
@@ -38,6 +42,8 @@ Write exactly 30 controls:
   Monatsabschluss, Kreditoren/Debitoren, Zahlungsfreigabe, Schlüsselkontrolle). In German controls, ALL text fields
   (process names may stay English) are in German, including owner, frequency, type, nature and evidence values.
   The other 20 controls are in English. Mix the languages across processes.
+  ORDER: controls 1 to 10 of the array are the German ones (language "de"); controls 11 to 30 are English
+  (language "en"). Exactly 10 "de", not 9, not 11.
 - At least 10 controls must be CLEAN: a well-designed control with no defect at all.
 - The rest have realistic defects, 1–4 each. Across the set, every defect type below must appear at least twice.
 - Write the way real RCMs are written: some precise, some sloppy, some passive voice. Vary length.
@@ -114,6 +120,8 @@ const content: string = json.choices[0].message.content;
 const gen = Gen.parse(extractJson(content));
 
 // Structural checks only (no look at review output, no label edits).
+if (USED_COMPANIES.some((c) => gen.company.name.toLowerCase().includes(c.toLowerCase())))
+  throw new Error(`Generator reused an earlier company: ${gen.company.name}`);
 const ids = new Set(gen.controls.map((c) => c.control_id));
 if (ids.size !== 30) throw new Error("duplicate control ids");
 const de = gen.controls.filter((c) => c.language === "de").length;
@@ -121,6 +129,8 @@ const clean = gen.controls.filter((c) => c.defects.length === 0).length;
 const counts = Object.fromEntries(CHECK_IDS.map((c) => [c, gen.controls.filter((x) => x.defects.includes(c)).length]));
 console.log(`${gen.company.name} (${gen.company.industry}) · German: ${de} · clean: ${clean}`);
 console.log(counts);
+// Structural spec violations are rejected BEFORE anything is written (no review has run at this point).
+if (de !== 10 || clean < 10) throw new Error(`Spec violation (German ${de}/10, clean ${clean}≥10): not written, rerun.`);
 
 writeFileSync(
   join(OUT, "generation.json"),
@@ -141,4 +151,4 @@ writeFileSync(
   join(OUT, "holdout.meta.json"),
   JSON.stringify({ company: gen.company, generator_model: model, languages: Object.fromEntries(gen.controls.map((c) => [c.control_id, c.language])) }, null, 2) + "\n",
 );
-console.log("Wrote data/holdout/");
+console.log(`Wrote ${OUT_REL}/`);

@@ -4,10 +4,10 @@ Model `anthropic/claude-sonnet-5.5` · prompt `evidence.v1` · results `data/dem
 
 | Metric | Value |
 |---|---:|
-| Controls / sample items × attributes | 5 / 163 |
+| Controls / sample items × attributes | 5 / 189 |
 | Planted exceptions found | 100% (3/3) |
 | …with the box on the proving text | 3/3 |
-| False exceptions on clean items | 0% (0/160) |
+| False exceptions on clean items | 0% (0/186) |
 | Clean items left "not evidenced" (for a human) | 0 |
 | Control conclusions correct | 5/5 |
 | Results tied to a verified box / cell | 100% (139/139) |

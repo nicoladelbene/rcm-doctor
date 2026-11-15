@@ -1,0 +1,2628 @@
+{
+  "generated_at": "2026-11-15T15:21:49.351Z",
+  "model": "anthropic/claude-sonnet-5.5",
+  "prompt_version": "review.v1",
+  "source": "/Users/nicoladelbene/Projects/rcm-doctor/data/holdout-v2/holdout-rcm.xlsx",
+  "duration_seconds": 76.3,
+  "reviews": [
+    {
+      "control_id": "P2P-H01",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Leiter Kreditorenbuchhaltung\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Leiter Kreditorenbuchhaltung",
+            "start": 0,
+            "end": 28
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "der Leiter Kreditorenbuchhaltung",
+            "start": 96,
+            "end": 128
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "die Änderungsmeldung gegen das Handelsregister sowie die Bankbestätigung auf 100% Übereinstimmung",
+            "start": 164,
+            "end": 261
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Vor der Freigabe eines neuen oder geänderten Kreditors mit geänderter IBAN",
+            "start": 0,
+            "end": 74
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "täglich",
+            "start": 156,
+            "end": 163
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "mittels elektronischem Visum im SAP-Workflow dokumentiert und zusammen mit den Prüfbelegen im SAP-Archiv abgelegt",
+            "start": 326,
+            "end": 439
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "100% Übereinstimmung",
+            "start": 241,
+            "end": 261
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "The rules-based comparison of change requests with registry and bank data could be scripted, with human follow-up on exceptions.",
+      "suggested_rewrite": "Before releasing a new or changed vendor with a changed IBAN in SAP S/4HANA, the Head of Accounts Payable checks daily, per transaction, the change notification against the commercial register and the bank confirmation for 100% match. If any deviation exists, the vendor is blocked. The release is documented by electronic approval in the SAP workflow and stored with the supporting documents in the SAP archive.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "O2C-H01",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Leiter Debitorenmanagement\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Leiter Debitorenmanagement",
+            "start": 0,
+            "end": 26
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "SAP S/4HANA",
+            "start": 45,
+            "end": 56
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "blockiert das System den Auftrag automatisch für die Auslieferung (Liefersperre)",
+            "start": 216,
+            "end": 296
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Bei der Erfassung eines Kundenauftrags",
+            "start": 0,
+            "end": 38
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Bei der Erfassung eines Kundenauftrags",
+            "start": 0,
+            "end": 38
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "protokolliert die Sperre im System-Log von SAP",
+            "start": 301,
+            "end": 347
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": null
+        }
+      ],
+      "automation_score": 5,
+      "automation_rationale": "The control is already automated as a system-enforced credit-limit check and delivery block in SAP.",
+      "suggested_rewrite": "When a sales order is entered, SAP S/4HANA automatically checks whether the order value plus the open customer balance exceeds the defined credit limit by more than CHF 0. If so, the system automatically sets a delivery block on the order and records the block in the SAP system log. The check runs for every sales order.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "TRE-H01",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Leiter Treasury",
+            "start": 0,
+            "end": 15
+          },
+          "source": "rule"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Criteria for the review of the full run and for what counts as inconsistent are not defined; the threshold covers only matching.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Unstimmige Posten",
+            "start": 298,
+            "end": 315
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "der Leiter Treasury und der CFO",
+            "start": 60,
+            "end": 91
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "jeden Zahlungslauf im UBS E-Banking",
+            "start": 159,
+            "end": 194
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Vor der Übermittlung eines Zahlungslaufs an die Bank",
+            "start": 0,
+            "end": 52
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "jeden Zahlungslauf",
+            "start": 159,
+            "end": 177
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Die digitale Signatur beider Freigeber wird im E-Banking-Audit-Log gespeichert",
+            "start": 371,
+            "end": 449
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Matching payments against approved invoices is rules-based and scriptable, while dual signature approval stays human.",
+      "suggested_rewrite": "Before a payment run is transmitted to the bank, the Head of Treasury and the CFO jointly review every payment run in UBS E-Banking under dual signature, for each weekly payment run. Individual payments above CHF 50'000 are additionally matched to the approved invoice in SAP. Any item not matching [criteria, e.g. payee, amount, bank details] is removed from the run before release. Both digital signatures are stored in the E-Banking audit log.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H01",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Leiter Rechnungswesen\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Leiter Rechnungswesen",
+            "start": 0,
+            "end": 21
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "der Hauptbuchhalter",
+            "start": 44,
+            "end": 63
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "eine Abstimmung zwischen den Salden der Kreditoren- und Debitoren-Nebenbücher und den entsprechenden Hauptbuch-Abstimmkonten in SAP",
+            "start": 64,
+            "end": 195
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Bis zum 3. Arbeitstag nach Monatsende",
+            "start": 0,
+            "end": 37
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "nach Monatsende",
+            "start": 22,
+            "end": 37
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "mit digitalem Visum versehen und im IKS-Ordner auf SharePoint abgelegt",
+            "start": 358,
+            "end": 428
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Jede Differenz grösser als CHF 100",
+            "start": 203,
+            "end": 237
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Subledger-to-GL balance comparison with a fixed threshold can be scripted or run in a reconciliation tool, with exceptions followed up manually.",
+      "suggested_rewrite": "By the 3rd business day after month-end, the General Ledger Accountant reconciles the balances of the accounts payable and accounts receivable subledgers to the corresponding GL reconciliation accounts in SAP. Each difference greater than CHF 100 is investigated and cleared before the posting period is closed. The Head of Accounting reviews the reconciliation, signs it digitally and stores it in the ICS folder on SharePoint. This is performed monthly.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "P2P-H02",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No evidence or retention location is stated; define the artefact and where it is kept.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "A department is named, not a role; name the specific performing role.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Die Finanzabteilung",
+            "start": 0,
+            "end": 19
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "'Überwacht' and 'stellt sicher' are vague; state the concrete review or matching action.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "überwacht die offenen Kreditorenrechnungen und stellt sicher, dass grössere Abweichungen geklärt werden",
+            "start": 20,
+            "end": 123
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No timing or trigger is stated; define when the review takes place.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "med",
+          "message": "No frequency in the description or column; state how often the control operates.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "'Grössere' is undefined; state a quantitative threshold or investigation criterion.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "grössere Abweichungen",
+            "start": 87,
+            "end": 108
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "Open-invoice and three-way-match variance reporting could support the review, but follow-up and clearing of deviations remain manual.",
+      "suggested_rewrite": "[Frequency, e.g. weekly], the [role, e.g. AP Team Lead] reviews the open vendor invoice report in [system] and compares each invoice with the related purchase order and goods receipt. Every variance above [threshold, e.g. CHF 1,000 or 5%] is investigated and resolved before payment [timing]. The reviewer signs off the report and stores it with the investigation notes in [evidence location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "O2C-H02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Markus Keller\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Markus Keller",
+            "start": 0,
+            "end": 13
+          },
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "Performer is a named person, not a role; use the role title, e.g. Head of Sales Controlling.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Herr Markus Keller",
+            "start": 29,
+            "end": 47
+          },
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Unusual is not testable; define a discount percentage or amount threshold.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "ungewöhnliche Rabatte",
+            "start": 87,
+            "end": 108
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Quarter-end is stated but no deadline; add e.g. within 10 business days after quarter-end.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Am Ende jedes Quartals",
+            "start": 0,
+            "end": 22
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "prüft Herr Markus Keller das Preisänderungsprotokoll in SAP",
+            "start": 23,
+            "end": 82
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Am Ende jedes Quartals",
+            "start": 0,
+            "end": 22
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "gibt die Liste per E-Mail frei, welche im Laufwerk G: gespeichert wird",
+            "start": 113,
+            "end": 183
+          }
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Discount outliers in the price change log can be flagged by a scripted rule, leaving only the release to a person.",
+      "suggested_rewrite": "Within [timing, e.g. 10 business days] after each quarter-end, the [role, e.g. Head of Sales Controlling] reviews the SAP price change log for discounts above [threshold, e.g. 10% or CHF X] and investigates each exception. The reviewer approves the list by email, and the email and list are saved on drive G: [folder]. An independent person prepares the log extract.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "TRE-H02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Leiter Treasury\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Leiter Treasury",
+            "start": 0,
+            "end": 15
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Sachbearbeiter Treasury",
+            "start": 62,
+            "end": 85
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "gleicht jede Position manuell mit dem SAP-Bankkonto ab",
+            "start": 133,
+            "end": 187
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Innerhalb von zwei Arbeitstagen nach Wochenschluss",
+            "start": 0,
+            "end": 50
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "nach Wochenschluss",
+            "start": 32,
+            "end": 50
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "legt das visierte Abstimmblatt im physischen Bundesordner im Büro ab",
+            "start": 232,
+            "end": 300
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "klärt sämtliche Differenzen über CHF 0",
+            "start": 189,
+            "end": 227
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Bank statement to ledger matching is a standard automated bank reconciliation with exception-based follow-up, not printing and manual ticking.",
+      "suggested_rewrite": "Within two business days after each week-end, the Treasury Clerk reconciles every item of the Zürcher Kantonalbank statements to the SAP bank account and investigates all differences above CHF 0. The [reviewer role, different from the preparer] signs the reconciliation sheet, which is filed in the physical binder in the office [location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "missing_risk_link",
+          "severity": "med",
+          "message": "No risk ID and no control objective.",
+          "evidence_span": null,
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Bilanzbuchhalter",
+            "start": 52,
+            "end": 68
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "gibt diese eigenen Buchungen anschliessend selbst im System frei",
+            "start": 122,
+            "end": 186
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Vor dem endgültigen Buchen im Hauptbuch",
+            "start": 0,
+            "end": 39
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Vor dem endgültigen Buchen im Hauptbuch",
+            "start": 0,
+            "end": 39
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Der Buchungsbeleg samt Freigabevermerk wird in SAP archiviert",
+            "start": 188,
+            "end": 249
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "manuelle Journalbuchungen über CHF 10'000",
+            "start": 69,
+            "end": 110
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "SAP workflow with approval limits and a block on self-approval can enforce this, leaving only the approver's judgment.",
+      "suggested_rewrite": "Before final posting to the general ledger, the Balance Sheet Accountant enters manual journal entries above CHF 10'000 in SAP. A different person, [approver role, e.g. Head of Accounting], reviews and releases each entry in SAP, and the system blocks release by the preparer. The entry document with the approval note is archived in SAP.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "ITG-H01",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "high",
+          "message": "Passive wording names no performer; state the role, e.g. IT Security Lead or the role owner.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No artefact is named; state the signed review report and its storage location.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "Looking through lists is vague; state what is compared, e.g. against HR leaver and transfer lists.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "durchgesehen",
+            "start": 47,
+            "end": 59
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No trigger or deadline; add e.g. within 10 business days after quarter-end.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Conspicuous is not a criterion; define e.g. 100% of users with critical roles or leavers with active access.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "auffällige Berechtigungen",
+            "start": 64,
+            "end": 89
+          },
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "Regularly is not a frequency; state quarterly, as the frequency column does.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "regelmässig",
+            "start": 35,
+            "end": 46
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing SAP authorisations against HR leaver and transfer data is a rules-based check that a script or GRC tool can run.",
+      "suggested_rewrite": "Quarterly, within [timing, e.g. 10 business days] after quarter-end, the [role, e.g. IT Security Lead] reviews the SAP authorisation lists for [scope, e.g. 100% of users with sensitive roles] and for users who have left or changed department. Unjustified access is removed within [timeframe]. The signed review report is retained in [evidence location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "HRP-H01",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Leiterin HR",
+            "start": 79,
+            "end": 90
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "prüft die Leiterin HR das Lohnjournal sowie das Differenzprotokoll zum Vormonat in Abacus",
+            "start": 69,
+            "end": 158
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Spätestens am 22. jedes Monats vor der Zahlungsfreigabe im E-Banking",
+            "start": 0,
+            "end": 68
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "jedes Monats",
+            "start": 18,
+            "end": 30
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "visiert die Leiterin HR das Lohnjournal elektronisch in Abacus, wo es revisionssicher archiviert wird",
+            "start": 385,
+            "end": 486
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Jede Abweichung des Bruttolohns von mehr als CHF 500 pro Mitarbeitendem",
+            "start": 160,
+            "end": 231
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Variance flagging against a CHF 500 threshold and joiner or leaver lists can be automated, leaving exception follow-up and sign-off to a person.",
+      "suggested_rewrite": "By the 22nd of each month, before payment release in e-banking, the Head of HR reviews the payroll journal and the variance log against the prior month in Abacus. Every gross salary variance above CHF 500 per employee and all joiners and leavers are verified against signed employment contracts and change forms. After all variances are resolved, the Head of HR signs off the payroll journal electronically in Abacus, where it is archived.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "P2P-H03",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "Description names no retained artefact; state the block log and the approval record for released invoices, and where they are kept.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "Price tolerance is precise, but 'if experience shows' is an unclear condition; state the quantity tolerance as a plain rule.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "if experience shows any quantity variance above 0 units",
+            "start": 226,
+            "end": 281
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "SAP S/4HANA automatically performs a three-way match",
+            "start": 22,
+            "end": 74
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "SAP automatically blocks the invoice for payment until resolved and approved by the Head of Procurement",
+            "start": 283,
+            "end": 386
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Upon invoice posting",
+            "start": 0,
+            "end": 20
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Upon invoice posting",
+            "start": 0,
+            "end": 20
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 5,
+      "automation_rationale": "The control is already a system-configured three-way match with an automatic payment block (ITAC).",
+      "suggested_rewrite": "Upon invoice posting, SAP S/4HANA automatically performs a three-way match between the supplier invoice, the approved purchase order and the goods receipt. If the price variance exceeds 2% or CHF 200 (whichever is lower), or any quantity variance above 0 units exists, SAP automatically blocks the invoice for payment until the Head of Procurement resolves and approves it. Block and release events are logged in [evidence location, e.g. SAP payment block log].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "O2C-H03",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Revenue Accountant compares",
+            "start": 40,
+            "end": 71
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "compares all dispatches above CHF 5,000 recorded in the Warehouse Management System",
+            "start": 63,
+            "end": 146
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Within 2 business days after month-end",
+            "start": 0,
+            "end": 38
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "after month-end",
+            "start": 23,
+            "end": 38
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed cut-off reconciliation worksheet is reviewed by the Corporate Controller and saved in the Month-End Close folder on SharePoint",
+            "start": 414,
+            "end": 551
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "all dispatches above CHF 5,000",
+            "start": 72,
+            "end": 102
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing WMS dispatch dates, proof-of-delivery and posting dates is a rules-based match that could be scripted.",
+      "suggested_rewrite": "Within 2 business days after month-end, the Revenue Accountant compares all dispatches above CHF 5,000 recorded in the Warehouse Management System during the last 3 days of the closing month and the first 3 days of the new month against the courier proof-of-delivery and the invoice posting date in SAP. Any shipment where risk had not transferred before midnight on the balance sheet date is reversed or accrued. The Corporate Controller reviews and signs the cut-off reconciliation worksheet, which is saved in the Month-End Close folder on SharePoint.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "TRE-H03",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Treasury Manager reconciles",
+            "start": 23,
+            "end": 54
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles all open FX forward contracts in 360T and SAP Treasury against the rolling 12-month EUR and USD cash-flow exposure forecast",
+            "start": 44,
+            "end": 178
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Every Friday by 16:00",
+            "start": 0,
+            "end": 21
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Every Friday by 16:00",
+            "start": 0,
+            "end": 21
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The reconciliation report is digitally signed by the CFO in DocuSign and archived in the Treasury SharePoint repository",
+            "start": 357,
+            "end": 476
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Any hedge ratio exceeding 80% of forecasted net exposure or any single trade above CHF 1,000,000 without prior CFO approval",
+            "start": 180,
+            "end": 303
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Matching trade data from 360T and SAP Treasury to the forecast and flagging threshold breaches is rules-based and scriptable.",
+      "suggested_rewrite": "Every Friday by 16:00, the Treasury Manager reconciles all open FX forward contracts in 360T and SAP Treasury against the rolling 12-month EUR and USD cash-flow exposure forecast. Any hedge ratio exceeding 80% of forecasted net exposure, or any single trade above CHF 1,000,000 without prior CFO approval, is escalated immediately to the CFO for remediation. The CFO digitally signs the reconciliation report in DocuSign, and it is archived in the Treasury SharePoint repository.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H03",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Cost Accounting Manager generates",
+            "start": 45,
+            "end": 82
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "recalculates the obsolescence provision",
+            "start": 133,
+            "end": 172
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "By business day 4 of each quarter-end close",
+            "start": 0,
+            "end": 43
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "each quarter-end close",
+            "start": 21,
+            "end": 43
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The Head of Controlling reviews and approves the calculation workbook via ServiceNow Close Management, where the workbook and approval timestamp are stored",
+            "start": 459,
+            "end": 614
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Variances greater than CHF 2,500 against the general ledger reserve account",
+            "start": 351,
+            "end": 426
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "The aging-based reserve calculation is rules-driven and could run in SAP, leaving only exception review and approval to a person.",
+      "suggested_rewrite": "By business day 4 of each quarter-end close, the Cost Accounting Manager generates the SAP Inventory Aging and Shelf-Life Report and recalculates the obsolescence provision: 50% reserve for items with remaining sterile shelf-life under 6 months or zero movement in 180 days, and 100% reserve for expired items or items with zero movement in 360 days. Variances greater than CHF 2,500 against the general ledger reserve account are adjusted via journal entry. The Head of Controlling reviews and approves the workbook in ServiceNow Close Management, where the workbook and approval timestamp are stored.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "ITG-H02",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "nature_mismatch",
+          "severity": "high",
+          "message": "Nature is \"Automated\", but the description describes a manual step (\"sign\").",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "sign",
+            "start": 187,
+            "end": 191
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "SAP Solution Manager (ChaRM) enforces a mandatory workflow",
+            "start": 86,
+            "end": 144
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Transports lacking both approvals are automatically blocked from import by ChaRM",
+            "start": 331,
+            "end": 411
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Prior to importing any transport request into the SAP S/4HANA Production environment",
+            "start": 0,
+            "end": 84
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "importing any transport request",
+            "start": 9,
+            "end": 40
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "all workflow approvals are permanently logged in SAP Solution Manager",
+            "start": 417,
+            "end": 486
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": null
+        }
+      ],
+      "automation_score": 5,
+      "automation_rationale": "The control is already system-enforced through ChaRM workflow configuration (ITAC).",
+      "suggested_rewrite": "Prior to importing any transport request into the SAP S/4HANA Production environment, SAP Solution Manager (ChaRM) enforces a mandatory workflow requiring documented user acceptance test sign-off by the Business Process Owner and technical release approval by the IT Release Manager, who cannot be the developer of the transport. ChaRM automatically blocks import of any transport lacking both approvals, and all workflow approvals are permanently logged in SAP Solution Manager.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "HRP-H02",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "freq_mismatch",
+          "severity": "med",
+          "message": "Description says \"monthly\" but the frequency column says \"Per termination / at least weekly\".",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "monthly",
+            "start": 100,
+            "end": 107
+          },
+          "source": "rule"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "A monthly report conflicts with a 24-hour post-exit trigger; state whether the control runs per termination or weekly.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "monthly Termination Report",
+            "start": 100,
+            "end": 126
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the HR Operations Specialist",
+            "start": 56,
+            "end": 84
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles the monthly Termination Report from Workday against active payroll records in Abacus and active user accounts in Active Directory",
+            "start": 85,
+            "end": 225
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Within 24 hours of an employee's contractual exit date",
+            "start": 0,
+            "end": 54
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The completed offboarding checklist and reconciliation sign-off are archived in the closed ticket in ServiceNow",
+            "start": 360,
+            "end": 471
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "a discrepancy of 1 or more days past the termination date",
+            "start": 274,
+            "end": 331
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "The comparison of HR, payroll and directory records against the exit date is rules-based and scriptable, leaving only exception follow-up to a person.",
+      "suggested_rewrite": "Within 24 hours of each employee's contractual exit date (per termination and at least weekly), the HR Operations Specialist reconciles the Workday Termination Report against active payroll records in Abacus and active user accounts in Active Directory. Any account or payroll record still active 1 or more days past the termination date is immediately deactivated. The completed offboarding checklist and reconciliation sign-off are archived in the closed ServiceNow ticket.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "P2P-H04",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No evidence of the review or its location is described.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "Names a department only; specify the role that performs the review, e.g. [Procurement Manager].",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Procurement",
+            "start": 0,
+            "end": 11
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "'Looks at' and 'ensures' are vague; state the concrete action, e.g. approve or reject against budget.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "looks at open purchase requisitions and ensures that spending is reasonable",
+            "start": 12,
+            "end": 87
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No timing or trigger, e.g. before requisition converts to a purchase order.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "med",
+          "message": "No frequency stated in the description or the frequency column.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "'Reasonable' is not a testable criterion; define the budget or threshold test applied.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "reasonable",
+            "start": 77,
+            "end": 87
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Budget availability checks on requisitions are standard rules-based system controls, with humans handling only exceptions.",
+      "suggested_rewrite": "[Timing, e.g. before a requisition is converted to a purchase order], the [role, e.g. Procurement Manager] reviews each open purchase requisition against available budget and approves or rejects it. Requisitions exceeding available budget or [threshold, e.g. CHF 10,000] are rejected or escalated to [escalation role]. The control operates [frequency, e.g. per requisition], and the approval or rejection is retained in [evidence location, e.g. ERP workflow log].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "P2P-H05",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "nature_mismatch",
+          "severity": "high",
+          "message": "Nature is \"Automated\", but the description describes a manual step (\"manually\").",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "manually",
+            "start": 101,
+            "end": 109
+          },
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the AP Accountant",
+            "start": 40,
+            "end": 57
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "manually investigates all open items older than 60 days exceeding CHF 500 by contacting buyers and suppliers, posts clearing entries",
+            "start": 101,
+            "end": 233
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "On the 5th business day of every month",
+            "start": 0,
+            "end": 38
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "every month",
+            "start": 27,
+            "end": 38
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "saves the signed reconciliation file in SharePoint",
+            "start": 239,
+            "end": 289
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "all open items older than 60 days exceeding CHF 500",
+            "start": 123,
+            "end": 174
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "The aging report and the age/amount filter are scriptable, but investigation with buyers and suppliers still needs human follow-up.",
+      "suggested_rewrite": "On the 5th business day of every month, the AP Accountant downloads the GR/IR aging report from SAP, investigates all open items older than 60 days and exceeding CHF 500 by contacting buyers and suppliers, and posts clearing entries. The [reviewer role, e.g. Head of Accounts Payable], who is not the preparer, reviews and signs the reconciliation, which is saved in SharePoint [folder path].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "P2P-H06",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Senior Buyer who created the purchase order in SAP",
+            "start": 71,
+            "end": 125
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reviews the pricing against the framework contract and releases the purchase order in the SAP workflow",
+            "start": 126,
+            "end": 228
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before a purchase order above CHF 25,000 is transmitted to the vendor",
+            "start": 0,
+            "end": 69
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before a purchase order above CHF 25,000 is transmitted to the vendor",
+            "start": 0,
+            "end": 69
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The approval timestamp is stored in SAP",
+            "start": 230,
+            "end": 269
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reviews the pricing against the framework contract",
+            "start": 126,
+            "end": 176
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "SAP workflow release exists already and the price-to-contract comparison can be system-checked, leaving only exception approvals to a person.",
+      "suggested_rewrite": "Before a purchase order above CHF 25,000 is transmitted to the vendor, the [approver role, e.g. Procurement Manager], who did not create the purchase order, reviews its pricing against the framework contract and releases it in the SAP workflow. This applies to every such purchase order. The approval timestamp and approver are stored in the SAP PO release history log.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "O2C-H04",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "high",
+          "message": "Passive voice; no performer is named. Specify the role that reviews and approves credit memos.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No evidence of review or approval, or its location, is described.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Commercial Finance\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Commercial Finance",
+            "start": 0,
+            "end": 18
+          },
+          "source": "rule"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No timing or trigger, e.g. before the credit memo is posted to the customer account.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "'Unusual' is not testable; define a threshold or criterion, e.g. credit memos above CHF X or a % of the original invoice.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "unusual amounts",
+            "start": 50,
+            "end": 65
+          },
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "Frequency appears only in the column; state it in the description and clarify it relative to credit memo issuance.",
+          "evidence_span": null,
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "are reviewed for unusual amounts and approved",
+            "start": 33,
+            "end": 78
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Threshold-based selection of credit memos and workflow approval are rules-based and scriptable, with human review of exceptions.",
+      "suggested_rewrite": "[Timing, e.g. before posting], the [role, e.g. Commercial Finance Manager], who did not issue the credit memo, reviews all credit memos issued to customers. Credit memos above [threshold, e.g. CHF 5,000 or 10% of the original invoice] or lacking supporting documentation are investigated before approval. The review runs monthly, and the approval is retained in [evidence location, e.g. ERP workflow log or signed review report].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "O2C-H05",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "freq_mismatch",
+          "severity": "med",
+          "message": "Description says \"every month\" but the frequency column says \"Quarterly\".",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "every month",
+            "start": 21,
+            "end": 32
+          },
+          "source": "rule"
+        },
+        {
+          "check": "missing_risk_link",
+          "severity": "med",
+          "message": "No risk ID and no control objective.",
+          "evidence_span": null,
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Credit Controller",
+            "start": 34,
+            "end": 55
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles the SAP AR Aging report against the bad debt allowance policy",
+            "start": 56,
+            "end": 128
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "On business day 3 of every month",
+            "start": 0,
+            "end": 32
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "every month",
+            "start": 21,
+            "end": 32
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "electronic sign-off in BlackLine",
+            "start": 324,
+            "end": 356
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "investigates variances above CHF 1,000",
+            "start": 220,
+            "end": 258
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "The ageing-to-policy calculation is rules-based and can be scripted, leaving only exception follow-up and sign-off to humans.",
+      "suggested_rewrite": "On business day 3 of every month, the Credit Controller reconciles the SAP AR Aging report against the bad debt allowance policy (50% for invoices >90 days overdue, 100% for invoices >180 days overdue or in bankruptcy), investigates variances above CHF 1,000, and submits the bad debt schedule to the Head of Accounting for electronic sign-off in BlackLine, where the signed schedule is retained.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "TRE-H04",
+      "status": "weak",
+      "findings": [
+        {
+          "check": "freq_mismatch",
+          "severity": "med",
+          "message": "Description says \"daily\" but the frequency column says \"Every 3 years\".",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "daily",
+            "start": 58,
+            "end": 63
+          },
+          "source": "rule"
+        },
+        {
+          "check": "when",
+          "severity": "low",
+          "message": "Only the look-ahead window is given; state when the check runs, e.g. each business day before payment runs.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "for the week",
+            "start": 144,
+            "end": 156
+          },
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "Three-yearly is implausible for a liquidity control and contradicts the 'daily' balances and cash sheet.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Once every three years",
+            "start": 0,
+            "end": 22
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Treasury Analyst",
+            "start": 24,
+            "end": 44
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "compares the daily bank cash balances in ZKB and UBS against scheduled AP and payroll payment runs for the week",
+            "start": 45,
+            "end": 156
+          }
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed daily cash sheet is archived in SharePoint",
+            "start": 239,
+            "end": 292
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "if any account balance drops below CHF 100,000",
+            "start": 191,
+            "end": 237
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Balance retrieval, comparison to scheduled payments and threshold alerting can be automated via bank connectivity or a treasury system, with human follow-up on exceptions.",
+      "suggested_rewrite": "[Frequency, e.g. each business day] at [timing, e.g. before payment run release], the Treasury Analyst compares the daily bank cash balances in ZKB and UBS against scheduled AP and payroll payment runs for the week and initiates intercompany sweeps if any account balance drops below CHF 100,000. The Treasury Analyst signs the daily cash sheet, and it is archived in SharePoint, with review by [independent reviewer role].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "TRE-H05",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No artefact or location is retained; state sign-off, the compared lists and where they are stored.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "high",
+          "message": "No criterion given; define e.g. any difference between bank signatory lists and the Commercial Register is investigated.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Owner \"Sandra Meier\" looks like a person's name. Use a role, so the control survives staff changes.",
+          "evidence_span": {
+            "field": "control_owner",
+            "text": "Sandra Meier",
+            "start": 0,
+            "end": 12
+          },
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "A person's name is given instead of a role; name the role, e.g. Head of Treasury.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "Sandra Meier",
+            "start": 0,
+            "end": 12
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "Vague verbs; specify a concrete comparison of the lists to the Commercial Register and the handling of differences.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "oversees the bank signatory lists and makes sure they are up to date",
+            "start": 13,
+            "end": 81
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No timing or trigger is stated; define when the check runs, e.g. within X days after period-end.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "low",
+          "message": "Frequency appears only in the column (semi-annual), is lenient for unauthorized signatory risk, and is absent from the description.",
+          "evidence_span": null,
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "Comparison of signatory lists to Commercial Register extracts and HR leaver data can be supported by reports, but still needs manual extraction and judgment.",
+      "suggested_rewrite": "[Semi-annually], within [timing, e.g. 5 business days after period-end], the [role, e.g. Head of Treasury] compares each bank's signatory list with the current Commercial Register of Canton Zug extract and the leaver list, investigates and corrects any difference, and requests bank updates where needed. The signed comparison and the lists are retained in [evidence location], and [independent reviewer role] reviews them.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H04",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Fixed Asset Accountant",
+            "start": 37,
+            "end": 63
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "compares each addition against the invoice and approved CapEx Request Form",
+            "start": 154,
+            "end": 228
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Within 3 business days of month-end",
+            "start": 0,
+            "end": 35
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "all asset additions posted during the month",
+            "start": 106,
+            "end": 149
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The reviewed report is signed off in BlackLine",
+            "start": 409,
+            "end": 455
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "exceeds the CHF 5,000 capitalization threshold",
+            "start": 253,
+            "end": 299
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Threshold testing of additions and matching to invoices and approvals is rules-based and scriptable, leaving exceptions for human review.",
+      "suggested_rewrite": "Within 3 business days of month-end, the Fixed Asset Accountant reviews the SAP Capitalization Report for all asset additions posted during the month and compares each addition against the invoice and approved CapEx Request Form to verify that the item exceeds the CHF 5,000 capitalization threshold and provides future economic benefit. Any misclassified expense is reclassified to OPEX before period close. [Independent reviewer role] signs off the reviewed report in BlackLine.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H05",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "The description names no artefact or location; state the signed matrix and where it is stored.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "'Material' is undefined; state a numeric threshold or investigate any difference.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "material differences",
+            "start": 128,
+            "end": 148
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Consolidation Manager",
+            "start": 35,
+            "end": 60
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles intercompany AR and AP balances in SAP",
+            "start": 61,
+            "end": 110
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "By business day 4 after month-end",
+            "start": 0,
+            "end": 33
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "after month-end",
+            "start": 18,
+            "end": 33
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Intercompany matching and difference flagging can be automated in SAP or a reconciliation tool, with human follow-up on exceptions.",
+      "suggested_rewrite": "By business day 4 after month-end, the Consolidation Manager reconciles intercompany AR and AP balances in SAP and investigates differences above [threshold, e.g. CHF 10,000 or 5%]. The reconciled intercompany matrix is signed off by [independent reviewer role] and retained in [evidence location, e.g. SAP].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "R2R-H06",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "sod_conflict",
+          "severity": "high",
+          "message": "The same role appears to both perform and approve/review the activity. Separate preparer and reviewer.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "approves their own",
+            "start": 257,
+            "end": 275
+          },
+          "source": "rule"
+        },
+        {
+          "check": "missing_risk_link",
+          "severity": "med",
+          "message": "No risk ID: the control is not linked to a risk.",
+          "evidence_span": null,
+          "source": "rule"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Head of Tax prepares",
+            "start": 82,
+            "end": 106
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles taxable income to pre-tax book income in SAP",
+            "start": 178,
+            "end": 233
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before finalizing the year-end financial statements on business day 8 of January",
+            "start": 0,
+            "end": 80
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "year-end financial statements",
+            "start": 22,
+            "end": 51
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "The signed Excel calculation is archived in BlackLine",
+            "start": 337,
+            "end": 390
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "to within CHF 500",
+            "start": 234,
+            "end": 251
+          }
+        }
+      ],
+      "automation_score": 2,
+      "automation_rationale": "The tax calculation involves judgment, but the reconciliation of taxable to book income could be supported by SAP reports or BlackLine tooling.",
+      "suggested_rewrite": "Before finalizing the year-end financial statements on business day 8 of January, the Head of Tax prepares the Swiss federal and Zug cantonal tax provision calculation in Excel and reconciles taxable income to pre-tax book income in SAP to within CHF 500. An independent [reviewer role, e.g. CFO] reviews and approves the calculation worksheet before the accrual is booked in SAP. The signed Excel calculation is archived in BlackLine.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "ITG-H03",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "key_no_evidence",
+          "severity": "high",
+          "message": "Key control with no evidence defined in the evidence column.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "No evidence such as a job log, ticket or sign-off is described or located.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "high",
+          "message": "No criterion defines what counts as a failure or must be investigated, e.g. any failed or incomplete job.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "owner_invalid",
+          "severity": "med",
+          "message": "Control owner is empty.",
+          "evidence_span": null,
+          "source": "rule"
+        },
+        {
+          "check": "who",
+          "severity": "med",
+          "message": "Only a department is named; specify the role responsible for monitoring, e.g. batch job operator.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "IT Operations",
+            "start": 0,
+            "end": 13
+          },
+          "source": "llm"
+        },
+        {
+          "check": "what",
+          "severity": "med",
+          "message": "'Monitors' and 'makes sure' are vague; state what is checked, and how failures are investigated and resolved.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "monitors batch jobs and makes sure interfaces run smoothly",
+            "start": 14,
+            "end": 72
+          },
+          "source": "llm"
+        },
+        {
+          "check": "when",
+          "severity": "med",
+          "message": "No timing or trigger is given, e.g. after completion of the nightly batch run.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "frequency",
+          "severity": "med",
+          "message": "Frequency is not stated in the description or the column; nightly interfaces need at least daily checks.",
+          "evidence_span": null,
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "what",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "when",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "frequency",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Batch job status checks and failure alerting are readily automated in a scheduler, leaving only exception follow-up to people.",
+      "suggested_rewrite": "After each nightly batch run [timing, e.g. by 07:00 each business day], the [role, e.g. IT Operations Batch Operator] reviews the [job scheduler/monitoring tool] status of the Warehouse Management to SAP S/4HANA interface jobs. Any failed, incomplete or missing job is investigated and rerun, with a ticket raised in [ticketing system]. The reviewed job log and tickets are retained in [evidence location]. Frequency: [daily].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "ITG-H04",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Database Administrator performs",
+            "start": 38,
+            "end": 73
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "performs a full test restoration of the encrypted SAP HANA production backup onto an isolated sandbox server",
+            "start": 65,
+            "end": 173
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "On the last Saturday of each quarter",
+            "start": 0,
+            "end": 36
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "each quarter",
+            "start": 24,
+            "end": 36
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "uploads the restoration log and test completion certificate to ServiceNow",
+            "start": 267,
+            "end": 340
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "verifies 100% database consistency via HANA DBCC checks with zero unrecoverable blocks",
+            "start": 175,
+            "end": 261
+          }
+        }
+      ],
+      "automation_score": 4,
+      "automation_rationale": "Restore and consistency checks can be scripted and scheduled, with human follow-up only on failures.",
+      "suggested_rewrite": "On the last Saturday of each quarter, the Database Administrator performs a full test restoration of the encrypted SAP HANA production backup onto an isolated sandbox server, verifies 100% database consistency via HANA DBCC checks with zero unrecoverable blocks, and uploads the restoration log and test completion certificate to ServiceNow. [Independent reviewer role] reviews the uploaded results.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "HRP-H03",
+      "status": "pass",
+      "findings": [],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Compensation & Benefits Manager reconciles",
+            "start": 32,
+            "end": 78
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "reconciles each sales representative's commission calculation against audited net revenue per customer in SAP and the signed target agreement",
+            "start": 68,
+            "end": 209
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Prior to the March payroll run",
+            "start": 0,
+            "end": 30
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the March payroll run",
+            "start": 9,
+            "end": 30
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "which is archived in Workday",
+            "start": 364,
+            "end": 392
+          }
+        },
+        {
+          "check": "precision",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Any variance exceeding CHF 50",
+            "start": 211,
+            "end": 240
+          }
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing commission calculations to revenue and target data is rules-based and could be scripted, with manual follow-up on variances.",
+      "suggested_rewrite": "Prior to the March payroll run, the Compensation & Benefits Manager reconciles each sales representative's commission calculation against audited net revenue per customer in SAP and the signed target agreement. Any variance exceeding CHF 50 is corrected before upload to Abacus. The Head of HR and CFO digitally sign the final commission payout table in DocuSign, which is archived in Workday.",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    },
+    {
+      "control_id": "HRP-H04",
+      "status": "fail",
+      "findings": [
+        {
+          "check": "evidence",
+          "severity": "high",
+          "message": "Description does not state what evidence is retained or where, e.g. signed log in a named location.",
+          "evidence_span": null,
+          "source": "llm"
+        },
+        {
+          "check": "precision",
+          "severity": "med",
+          "message": "State the scope (all changes) and that any mismatch is investigated and resolved before payroll lock.",
+          "evidence_span": {
+            "field": "control_description",
+            "text": "compares changes against HR files",
+            "start": 127,
+            "end": 160
+          },
+          "source": "llm"
+        }
+      ],
+      "attributes": [
+        {
+          "check": "who",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "the Payroll Specialist prints",
+            "start": 59,
+            "end": 88
+          }
+        },
+        {
+          "check": "what",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "prints the Abacus Master Data Change Log and compares changes against HR files",
+            "start": 82,
+            "end": 160
+          }
+        },
+        {
+          "check": "when",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "Before the monthly payroll lock on the 20th of each month",
+            "start": 0,
+            "end": 57
+          }
+        },
+        {
+          "check": "frequency",
+          "ok": true,
+          "span": {
+            "field": "control_description",
+            "text": "each month",
+            "start": 47,
+            "end": 57
+          }
+        },
+        {
+          "check": "evidence",
+          "ok": false,
+          "span": null
+        },
+        {
+          "check": "precision",
+          "ok": false,
+          "span": null
+        }
+      ],
+      "automation_score": 3,
+      "automation_rationale": "Comparing system change logs to approved HR data is rules-based and could be scripted, with human follow-up on exceptions.",
+      "suggested_rewrite": "Before the monthly payroll lock on the 20th of each month, the Payroll Specialist prints the Abacus Master Data Change Log and compares 100% of changes to base salary and bank account details against the supporting HR files. Any mismatch is investigated and resolved before the payroll lock. [Independent reviewer role] reviews and signs the log, which is retained in the HR binder [evidence location].",
+      "model": "anthropic/claude-sonnet-5.5",
+      "prompt_version": "review.v1"
+    }
+  ]
+}

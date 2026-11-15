@@ -106,3 +106,37 @@ describe("demo RCM ground truth", () => {
         if (f.evidence_span) expect(String(c[f.evidence_span.field]).slice(f.evidence_span.start, f.evidence_span.end)).toBe(f.evidence_span.text);
   });
 });
+
+describe("Week 1.1: German and extended SoD", () => {
+  it("normalizes German frequency values and finds German frequency words", () => {
+    expect(normalizeFrequency("Monatlich")).toBe("monthly");
+    expect(normalizeFrequency("Quartalsweise")).toBe("quarterly");
+    expect(normalizeFrequency("Pro Zahlungslauf")).toBe("event");
+    expect(normalizeFrequency("Halbjährlich")).toBe("semiannual");
+    expect(frequenciesInText("Die Abstimmung erfolgt vierteljährlich.").map((h) => h.freq)).toEqual(["quarterly"]);
+    expect(frequenciesInText("Nach dem Monatsabschluss")).toEqual([]);
+    const [f] = checkFrequencyMismatch(base({ control_description: "Der Leiter prüft quartalsweise die Liste.", frequency: "Monatlich" }));
+    expect(f.evidence_span?.text).toBe("quartalsweise");
+  });
+  it("treats German roles as roles and German departments as departments", () => {
+    for (const o of ["Leiter Kreditorenbuchhaltung", "Leiterin Lohnbuchhaltung", "Teamleiter Debitoren", "Treasury Manager"])
+      expect(checkOwner(base({ control_owner: o })), o).toEqual([]);
+    for (const o of ["Finanzen", "Personalabteilung", "Buchhaltung"]) expect(checkOwner(base({ control_owner: o }))[0].message).toMatch(/department/);
+    expect(checkOwner(base({ control_owner: "Sarah Keller" }))).toHaveLength(1);
+  });
+  it("detects manual steps in German automated controls, but not system checks", () => {
+    expect(checkNatureMismatch(base({ nature: "Automatisiert", control_description: "Der Treasury Manager vergleicht die Summe manuell." }))[0].evidence_span?.text).toBe("manuell");
+    expect(checkNatureMismatch(base({ nature: "Automatisiert", control_description: "Das System prüft jede Rechnung auf Duplikate." }))).toEqual([]);
+    expect(checkNatureMismatch(base({ nature: "IT-gestützt manuell", control_description: "manuell" }))).toEqual([]);
+  });
+  it("flags 'and then approves the same' and 'sole approval', not split duties", () => {
+    expect(checkSod(base({ control_description: "The Payroll Manager prepares the reconciliation, investigates all differences above CHF 10 and then approves the same reconciliation." }))).toHaveLength(1);
+    expect(checkSod(base({ control_description: "The Treasury Analyst prepares the bank file, compares totals, and then provides the sole final approval in e-banking." }))).toHaveLength(1);
+    expect(checkSod(base({ control_description: "The analyst prepares the file, and the Treasurer then approves it." }))).toEqual([]);
+    expect(checkSod(base({ control_description: "The clerk prepares the list and the Head of AP reviews and approves it." }))).toEqual([]);
+  });
+  it("flags German SoD, not split German duties", () => {
+    expect(checkSod(base({ control_description: "Die Leiterin Treasury erfasst die Zahlung und gibt sie anschliessend selbst frei." }))).toHaveLength(1);
+    expect(checkSod(base({ control_description: "Der Sachbearbeiter erstellt die Abstimmung und der Leiter Finanzen genehmigt sie." }))).toEqual([]);
+  });
+});

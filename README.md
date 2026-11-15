@@ -54,23 +54,39 @@ rcm-doctor finds these problems, shows where they are in the text and proposes a
 
 ## Evaluation
 
-Two synthetic sets, both reviewed with the default model (`anthropic/claude-sonnet-5.5`) and prompt `review.v1`:
+All runs use the default model (`anthropic/claude-sonnet-5.5`). Recall = labelled defects found; FP = clean controls with at least one finding.
 
-| Set | Controls | Labelled defects | Recall | False positives on clean controls | Precision |
-|---|---:|---:|---:|---:|---:|
-| **Demo** (authored with the prompt; regression test) | 40 (EN) | 33 | **100%** (33/33) | **0%** (0/25) | 89% |
-| **Holdout** (independent, see below) | 30 | 28 | **82%** (23/28) | **17%** (2/12) | 82% |
-| ↳ English | 20 | 18 | 89% (16/18) | 0% (0/8) | 94% |
-| ↳ German (Swiss IKS terminology) | 10 | 10 | 70% (7/10) | 50% (2/4) | 64% |
+| Set | System | Controls | Defects | Recall | FP on clean | Precision |
+|---|---|---:|---:|---:|---:|---:|
+| **Demo** (authored with the prompt; regression test) | Week 1.1 (`review.v2`) | 40 EN | 33 | **100%** (33/33) | **4%** (1/25) | 85% |
+| **Holdout v1** — gpt-5.6-sol, first measurement | Week 1 (`review.v1`) | 30 (10 DE) | 28 | 82% (23/28) | 17% (2/12) | 82% |
+| **Holdout v2** — gemini-4-argon, never seen | Week 1 (baseline) | 30 (10 DE) | 63 | 86% (54/63) | 58% (7/12) | 76% |
+| **Holdout v2** — gemini-4-argon, never seen | **Week 1.1** (`review.v2`) | 30 (10 DE) | 63 | **92%** (58/63) | **25%** (3/12) | 84% |
 
-**Holdout methodology:** `openai/gpt-5.6-sol` (a non-Claude model) generated 30 controls for a different fictional company, 10 of them in German, and labelled their defects in the same call. The labels were committed before any review ran, the review prompt was frozen (its SHA-256 is in `data/holdout/`), and nothing was tuned afterwards, so the numbers include the generator's own label noise.
+By language:
 
-**Known limits shown by the holdout:** the six AI attribute checks found all 15 labelled attribute defects. All 5 misses come from the deterministic rules. The owner and nature rules are English-only: they treat German roles such as "Leiter Kreditorenbuchhaltung" as person names (4 false positives) and miss German departments and "manuell". The segregation-of-duties pattern misses phrasings like "prepares … and then approves the same reconciliation". These will be fixed and then measured on a *new* holdout.
+| | Holdout v1 · Week 1 | Holdout v2 · Week 1 | Holdout v2 · Week 1.1 |
+|---|---|---|---|
+| English: recall / FP on clean | 89% / 0% (0/8) | 88% / 43% (3/7) | 90% / 43% (3/7) |
+| German: recall / FP on clean | 70% / 50% (2/4) | 81% / 80% (4/5) | **95% / 0%** (0/5) |
 
 Other models on the demo set: Haiku 5.5 reaches 82% recall with 4% false positives (~USD 0.04 per 40 controls, vs ~USD 0.41 for Sonnet). Rules alone reach 39% recall with 0% false positives.
 **Evidence tester (Week 3):** on 5 synthetic evidence packs (163 sampled item × attribute checks, 3 planted exceptions plus deliberate near-misses such as an amount exactly at a threshold or a weekend inside a 2-business-day deadline), Sonnet 5.5 found **3/3** exceptions with the box on the proving text, raised **0** false exceptions on 160 clean checks, and tied **100%** of its ticks and exceptions to a verified box or cell. Same caveat as the demo set: evidence and prompt come from one author, so it is a regression test, not a benchmark. Report: [`docs/eval-evidence.md`](docs/eval-evidence.md).
 
 Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`](docs/eval-holdout.md) · [`docs/eval-evidence.md`](docs/eval-evidence.md) · [`docs/eval-models.md`](docs/eval-models.md). Reproduce offline: `npm run eval` (demo + evidence) and `npm run eval:holdout`. All run in CI.
+**Methodology:** for each holdout, a non-Claude model generated 30 controls for a new fictional Swiss company (10 in German, Swiss IKS terms) and labelled the defects in the same call. The labels were committed before any review. The reviewer was frozen first, with SHA-256 hashes in `data/holdout*/`. Labels are the generator's and were not edited, so the numbers include the generator's own label noise. Holdout v2 was generated *after* the Week 1.1 fixes were frozen. Its rejected attempts and the one post-freeze change are listed in [`data/holdout-v2/GENERATION-LOG.md`](data/holdout-v2/GENERATION-LOG.md).
+
+### Changelog (honest version)
+- **Week 1.1** (Nov 15): German rules (`Leiter …` / `…verantwortliche` are roles, German departments are flagged, `manuell` is recognised), more segregation-of-duties phrasings, and SoD assessed by the AI as well (prompt `review.v2`).
+  - **German on unseen data:** false positives on clean German controls went from 80% to 0%, and German recall from 81% to 95% (holdout v2, same model, same day).
+  - **Not fixed:** English false positives on holdout v2 are still 43% (3/7 clean controls), mostly a strict "frequency"/"when" reading. Frequency-mismatch catches 1 of 3 cases.
+  - **Demo:** one new false positive (1/25), which was 0/25 with v1.
+- Holdout v1 re-run with Week 1.1 scores 100% / 0%, but that set was **seen** while writing the fixes, so it is not evidence and is not in the table ([report](docs/eval-holdout-v1-rerun.md)).
+- **Transport fix after the freeze:** the token budget was raised and truncated answers are now reported as such, because Sonnet 5.5 reasoning tokens truncated long German batches. The prompt and rules were not changed.
+- **Week 1** (Nov 15): first release; holdout v1 measured once with the frozen `review.v1`.
+
+Other models on the demo set (`review.v1`): Haiku 5.5 reaches 82% recall with 4% false positives (~USD 0.04 per 40 controls, vs ~USD 0.41 for Sonnet). Rules alone reach 39% recall with 0% false positives.
+Reports: [`docs/eval-latest.md`](docs/eval-latest.md) · [`docs/eval-holdout.md`](docs/eval-holdout.md) (v1) · [`docs/eval-holdout-v2.md`](docs/eval-holdout-v2.md) · [`docs/eval-holdout-v2-baseline.md`](docs/eval-holdout-v2-baseline.md) · [`docs/eval-models.md`](docs/eval-models.md). Reproduce offline: `npm run eval`, `npm run eval:holdout`, `npm run eval:holdout2`. All run in CI.
 
 ## Use your own RCM
 

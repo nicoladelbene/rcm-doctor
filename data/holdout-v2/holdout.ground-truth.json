@@ -1,0 +1,113 @@
+{
+  "P2P-H01": [],
+  "O2C-H01": [],
+  "TRE-H01": [],
+  "R2R-H01": [],
+  "P2P-H02": [
+    "who",
+    "what",
+    "when",
+    "frequency",
+    "evidence",
+    "precision",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "O2C-H02": [
+    "who",
+    "precision",
+    "freq_mismatch",
+    "owner_invalid"
+  ],
+  "TRE-H02": [
+    "nature_mismatch"
+  ],
+  "R2R-H02": [
+    "sod_conflict",
+    "missing_risk_link"
+  ],
+  "ITG-H01": [
+    "who",
+    "what",
+    "when",
+    "evidence",
+    "precision",
+    "key_no_evidence"
+  ],
+  "HRP-H01": [],
+  "P2P-H03": [],
+  "O2C-H03": [],
+  "TRE-H03": [],
+  "R2R-H03": [],
+  "ITG-H02": [],
+  "HRP-H02": [],
+  "P2P-H04": [
+    "who",
+    "what",
+    "when",
+    "frequency",
+    "evidence",
+    "precision",
+    "owner_invalid"
+  ],
+  "P2P-H05": [
+    "nature_mismatch"
+  ],
+  "P2P-H06": [
+    "sod_conflict"
+  ],
+  "O2C-H04": [
+    "who",
+    "when",
+    "evidence",
+    "precision",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "O2C-H05": [
+    "freq_mismatch",
+    "missing_risk_link"
+  ],
+  "TRE-H04": [
+    "frequency"
+  ],
+  "TRE-H05": [
+    "who",
+    "what",
+    "when",
+    "evidence",
+    "precision",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "R2R-H04": [
+    "freq_mismatch"
+  ],
+  "R2R-H05": [
+    "evidence",
+    "precision"
+  ],
+  "R2R-H06": [
+    "sod_conflict",
+    "missing_risk_link"
+  ],
+  "ITG-H03": [
+    "who",
+    "what",
+    "when",
+    "frequency",
+    "evidence",
+    "precision",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "ITG-H04": [
+    "nature_mismatch"
+  ],
+  "HRP-H03": [],
+  "HRP-H04": [
+    "evidence",
+    "precision",
+    "sod_conflict"
+  ]
+}

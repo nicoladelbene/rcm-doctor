@@ -34,6 +34,8 @@ const AttrSchema = z.object({
 export const LlmControlResultSchema = z.object({
   control_id: z.string(),
   attributes: z.object(Object.fromEntries(ATTRIBUTE_CHECKS.map((k) => [k, AttrSchema])) as Record<(typeof ATTRIBUTE_CHECKS)[number], typeof AttrSchema>),
+  /** review.v2: segregation of duties assessed by the reviewer (optional for v1 compatibility). */
+  sod_conflict: z.object({ present: z.boolean(), quote: z.string().nullable(), comment: z.string() }).optional(),
   automation_score: z.number().int().min(0).max(5),
   automation_rationale: z.string(),
   suggested_rewrite: z.string(),
@@ -63,7 +65,7 @@ export const RESPONSE_JSON_SCHEMA = {
         items: {
           type: "object",
           additionalProperties: false,
-          required: ["control_id", "attributes", "automation_score", "automation_rationale", "suggested_rewrite"],
+          required: ["control_id", "attributes", "sod_conflict", "automation_score", "automation_rationale", "suggested_rewrite"],
           properties: {
             control_id: { type: "string" },
             attributes: {
@@ -71,6 +73,12 @@ export const RESPONSE_JSON_SCHEMA = {
               additionalProperties: false,
               required: [...ATTRIBUTE_CHECKS],
               properties: Object.fromEntries(ATTRIBUTE_CHECKS.map((k) => [k, attrJson])),
+            },
+            sod_conflict: {
+              type: "object",
+              additionalProperties: false,
+              required: ["present", "quote", "comment"],
+              properties: { present: { type: "boolean" }, quote: { type: ["string", "null"] }, comment: { type: "string" } },
             },
             automation_score: { type: "integer", minimum: 0, maximum: 5 },
             automation_rationale: { type: "string" },
@@ -158,6 +166,9 @@ export async function post(opts: LlmCallOptions, body: Record<string, unknown>) 
   }
   const json = JSON.parse(text);
   const content: string | undefined = json?.choices?.[0]?.message?.content;
+  // Reasoning tokens count against max_tokens: a truncated answer is a budget problem, not a format problem.
+  if (json?.choices?.[0]?.finish_reason === "length")
+    throw new LlmError(`Model output truncated at max_tokens (${body.max_tokens}); raise the token budget or the batch is too large`);
   if (!content) throw new LlmError(`Empty response from model${json?.error?.message ? `: ${json.error.message}` : ""}`);
   return content;
 }
@@ -215,7 +226,8 @@ export async function reviewBatchWithLlm(controls: Control[], opts: LlmCallOptio
     messages: (repair) => buildMessages(controls, repair),
     itemSchema: LlmControlResultSchema,
     jsonSchema: RESPONSE_JSON_SCHEMA,
-    maxTokens: 1200 * controls.length + 500,
+    // Budget includes the model's reasoning tokens (~3.5k observed on Sonnet 5.5) and longer German output.
+    maxTokens: 2000 * controls.length + 4000,
     opts,
   });
 }
@@ -307,7 +319,7 @@ export async function testScriptBatchWithLlm(items: TestScriptInput[], opts: Llm
     messages: (repair) => buildTestScriptMessages(items, repair),
     itemSchema: LlmTestScriptSchema,
     jsonSchema: TESTSCRIPT_JSON_SCHEMA,
-    maxTokens: 1500 * items.length + 500,
+    maxTokens: 2000 * items.length + 4000,
     opts,
   });
 }
