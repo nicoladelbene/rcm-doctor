@@ -1,0 +1,90 @@
+{
+  "P2P-01": [],
+  "P2P-02": [],
+  "P2P-03": [
+    "who",
+    "what",
+    "evidence",
+    "precision",
+    "owner_invalid",
+    "key_no_evidence"
+  ],
+  "P2P-04": [],
+  "P2P-05": [],
+  "P2P-06": [
+    "when",
+    "sod_conflict"
+  ],
+  "P2P-07": [],
+  "P2P-08": [
+    "freq_mismatch"
+  ],
+  "P2P-09": [],
+  "P2P-10": [],
+  "O2C-01": [],
+  "O2C-02": [
+    "nature_mismatch"
+  ],
+  "O2C-03": [],
+  "O2C-04": [
+    "who",
+    "when",
+    "frequency"
+  ],
+  "O2C-05": [],
+  "O2C-06": [],
+  "O2C-07": [
+    "what",
+    "evidence"
+  ],
+  "O2C-08": [],
+  "O2C-09": [
+    "precision",
+    "missing_risk_link"
+  ],
+  "O2C-10": [],
+  "TRE-01": [],
+  "TRE-02": [],
+  "TRE-03": [
+    "when",
+    "sod_conflict"
+  ],
+  "TRE-04": [],
+  "TRE-05": [
+    "frequency",
+    "precision"
+  ],
+  "TRE-06": [
+    "who",
+    "owner_invalid"
+  ],
+  "TRE-07": [],
+  "TRE-08": [],
+  "R2R-01": [],
+  "R2R-02": [
+    "freq_mismatch",
+    "precision"
+  ],
+  "R2R-03": [],
+  "R2R-04": [
+    "who",
+    "what",
+    "precision",
+    "owner_invalid"
+  ],
+  "R2R-05": [],
+  "R2R-06": [],
+  "ITG-01": [],
+  "ITG-02": [],
+  "ITG-03": [
+    "nature_mismatch"
+  ],
+  "ITG-04": [
+    "evidence",
+    "key_no_evidence"
+  ],
+  "ITG-05": [
+    "missing_risk_link"
+  ],
+  "ITG-06": []
+}
