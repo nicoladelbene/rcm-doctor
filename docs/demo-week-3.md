@@ -13,4 +13,4 @@ Setup: `npm run dev -- -p 3200` (or the branch preview), open http://localhost:3
 | 9–10 | `npm run eval` | Demo review gate + evidence gate: 3/3 planted exceptions, 0/160 false exceptions, 100% tied to a verified box. Caveat: authored with the prompt — regression test, not a benchmark. |
 
 Files: evidence generator `scripts/evidence-demo-data.ts` + `scripts/generate-evidence.ts`, core `src/core/evidence.ts`,
-prompt `src/core/prompts/evidence.v1.md`, UI `src/app/components/EvidencePanel.tsx`, ADR 0013.
+prompt `src/core/prompts/evidence.v1.md`, UI `src/app/components/EvidencePanel.tsx`, ADR 0014.

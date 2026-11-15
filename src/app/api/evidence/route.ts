@@ -5,10 +5,14 @@ import { DEFAULT_MODEL } from "@/core/models";
 import { TestScriptSchema } from "@/core/testscript";
 import { BodyControlSchema, err, llmErrorResponse, ModelSchema } from "../_shared/limits";
 
+/** Screenshots take two model calls (transcription, then tick & tie): allow up to 2 minutes. */
 export const maxDuration = 120;
 
-/** Evidence requests may carry up to 3 screenshots, so this route allows more than the 200 KB of the others (Vercel limit 4.5 MB). */
-const MAX_BYTES = 4_000_000;
+/**
+ * Evidence requests may carry screenshots, so this route allows more than the 200 KB of the others. The browser
+ * compresses screenshots to ≤ 2.4 MB of binary in total (≈ 3.2 MB as base64); 3.5 MB stays well under Vercel's 4.5 MB.
+ */
+const MAX_BYTES = 3_500_000;
 const BodySchema = z.object({
   model: ModelSchema,
   control: BodyControlSchema,
@@ -23,9 +27,9 @@ export async function POST(req: Request) {
   const apiKey = req.headers.get("x-openrouter-key")?.trim();
   if (!apiKey) return err(401, "Missing OpenRouter API key.");
   if (!/^[\w-]{20,200}$/.test(apiKey)) return err(400, "That does not look like an OpenRouter API key.");
-  if (Number(req.headers.get("content-length") ?? 0) > MAX_BYTES) return err(413, "Evidence too large (max ~4 MB in total; use smaller screenshots).");
+  if (Number(req.headers.get("content-length") ?? 0) > MAX_BYTES) return err(413, "Evidence too large (max ~3.5 MB per request; use fewer or smaller screenshots).");
   const text = await req.text();
-  if (text.length > MAX_BYTES) return err(413, "Evidence too large (max ~4 MB in total; use smaller screenshots).");
+  if (Buffer.byteLength(text) > MAX_BYTES) return err(413, "Evidence too large (max ~3.5 MB per request; use fewer or smaller screenshots).");
   let body: z.infer<typeof BodySchema>;
   try {
     body = BodySchema.parse(JSON.parse(text));

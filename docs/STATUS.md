@@ -10,7 +10,7 @@ _Last session: 2026-11-15 (Week 1 + Week 2 build) · Next session: 2026-12-05/06
   media (docs/media/week-2-*), post draft docs/posts/2026-12-06-week-2.md. CI green, preview deployed, prod untouched.
 - **Week 3 is BUILT on branch `week-3`** (parallel session, 15 Nov; not merged, prod untouched): evidence tester — upload
   PDF/screenshot/CSV, tick & tie every sample item × test attribute, boxes on the evidence + link to the description span.
-  Synthetic evidence for 5 demo controls (2 with planted exceptions), `npm run eval:evidence` (in `npm run eval`), ADR 0013,
+  Synthetic evidence for 5 demo controls (2 with planted exceptions), `npm run eval:evidence` (in `npm run eval`), ADR 0014,
   10-min demo `docs/demo-week-3.md`, media `docs/media/week-3-*`, post draft `docs/posts/2026-12-13-week-3.md`.
   Merge order: week-2 first, then `git switch week-3 && git merge main`.
 - **Holdout eval** (data/holdout, `npm run eval:holdout`): 30 controls for Limmatquell Privatkliniken AG, generated and
