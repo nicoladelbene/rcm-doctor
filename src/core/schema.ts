@@ -153,6 +153,7 @@ export const ReviewRunSchema = z.object({
   model: z.string(),
   prompt_version: z.string(),
   source: z.string(),
+  duration_seconds: z.number().optional(),
   reviews: z.array(ReviewSchema),
 });
 export type ReviewRun = z.infer<typeof ReviewRunSchema>;

@@ -12,7 +12,7 @@ let promptCache: string | null = null;
 export function loadPrompt(): string {
   if (!promptCache) {
     const raw = readFileSync(join(process.cwd(), "src/core/prompts", `${PROMPT_VERSION}.md`), "utf8");
-    promptCache = raw.replace(/^<!--.*?-->\s*/s, "");
+    promptCache = raw.replace(/^<!--[\s\S]*?-->\s*/, "");
   }
   return promptCache;
 }

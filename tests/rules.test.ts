@@ -103,6 +103,6 @@ describe("demo RCM ground truth", () => {
   it("every finding with a span points at the exact source text", () => {
     for (const c of controls)
       for (const f of runRules(c))
-        if (f.evidence_span) expect(c[f.evidence_span.field].slice(f.evidence_span.start, f.evidence_span.end)).toBe(f.evidence_span.text);
+        if (f.evidence_span) expect(String(c[f.evidence_span.field]).slice(f.evidence_span.start, f.evidence_span.end)).toBe(f.evidence_span.text);
   });
 });
