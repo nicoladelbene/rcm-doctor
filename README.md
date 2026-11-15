@@ -5,7 +5,7 @@ It reviews each control the way a senior controls reviewer would. Every finding 
 
 ![rcm-doctor demo: a 40-control RCM is reviewed, a failing treasury control opens with its cited spans and a suggested rewrite, and the report is exported to Excel](docs/media/demo.gif)
 
-### Try it in 30 seconds → **[__VERCEL_URL__](__VERCEL_URL__/?demo)**
+### Try it in 30 seconds → **[https://rcm-doctor.vercel.app](https://rcm-doctor.vercel.app/?demo)**
 
 The demo needs no API key: it opens a synthetic 40-control RCM with precomputed results.
 

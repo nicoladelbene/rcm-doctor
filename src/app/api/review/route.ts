@@ -8,7 +8,7 @@ export const maxDuration = 60;
 /** Input limits: keep requests small and cheap; the client batches. */
 const LIMITS = { maxControls: 10, maxFieldChars: 4000, maxBodyBytes: 200_000 } as const;
 
-const field = z.string().max(LIMITS.maxFieldChars);
+const field = z.string().max(LIMITS.maxFieldChars).default("");
 const BodySchema = z.object({
   model: z.string().regex(/^[\w.-]+\/[\w.:-]+$/).max(100).optional(),
   controls: z
