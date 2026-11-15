@@ -24,7 +24,7 @@ _Last session: 2026-11-15 (launch v0.5.0) · Next session: 2026-12-05/06 · **Ni
 
 ## Open questions for Nicola
 - Pick a launch post variant (A/B) and post it with `launch-lifecycle-4x5.mp4`; link in the first comment.
-- Upload `docs/media/og-image.png` as GitHub social preview and pin the repo (no API).
+- Upload `docs/media/og-image.png` as GitHub social preview (no API).
 - npm publish of the MCP server: yes/no (needs your npm login).
 
 ## Known issues / tech debt
