@@ -143,6 +143,8 @@ export const ReviewSchema = z.object({
   suggested_rewrite: z.string(),
   model: z.string(),
   prompt_version: z.string(),
+  /** Set when the LLM step failed and only deterministic rules ran. */
+  llm_error: z.string().optional(),
 });
 export type Review = z.infer<typeof ReviewSchema>;
 

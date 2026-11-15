@@ -1,13 +1,26 @@
-# 0010 — Default model: anthropic/claude-haiku-5.5
+# 0010 — Default model: anthropic/claude-sonnet-5.5 (Haiku 5.5 as budget option)
 
-- Status: accepted
+- Status: accepted (revised same day after the first eval)
 - Date: 2026-11-15
 
 ## Context
-BOOTSTRAP asks for a strong, inexpensive current model from the OpenRouter list, user-selectable. On 2026-11-15 the OpenRouter /models list shows anthropic/claude-haiku-5.5 at USD 0.10 / 0.50 per million input/output tokens, 1M context, with structured_outputs support.
+BOOTSTRAP asks for a strong, inexpensive current model from the OpenRouter list, user-selectable.
+On 2026-11-15 the OpenRouter /models list offers, with structured-output support:
+anthropic/claude-haiku-5.5 (USD 0.10 / 0.50 per M tokens) and anthropic/claude-sonnet-5.5 (USD 2 / 10).
+
+First plan was Haiku 5.5. The eval on the 40-control demo RCM (prompt review.v1) showed:
+
+| Model | Recall | FP on clean controls | Precision | Cost per 40 controls |
+|---|---:|---:|---:|---:|
+| anthropic/claude-sonnet-5.5 | 100% (33/33) | 0% | 89% | ~USD 0.41 |
+| anthropic/claude-haiku-5.5 | 82% (27/33) | 4% | 93% | ~USD 0.04 |
+
+Haiku missed every planted "when / trigger" defect (0/3).
 
 ## Decision
-Default model for user reviews: `anthropic/claude-haiku-5.5`. The UI offers a short curated list (also anthropic/claude-sonnet-5.5, google/gemini-3.8-flash, deepseek/deepseek-v4.1-flash) plus a free-text model id. Precomputed demo results use a stronger model where possible (claude-sonnet-5.5) and record which model produced them.
+Default model = `anthropic/claude-sonnet-5.5`. The UI offers Haiku 5.5 as the budget option, plus
+Gemini 3.8 Flash, DeepSeek V4.1 Flash and a free-text model id. Demo results are precomputed with Sonnet 5.5.
 
 ## Consequences
-A 40-control review costs well under one US cent with the default. If the model is retired, update this ADR and the default in src/core/llm.ts.
+A full 40-control review costs well under USD 1 with the default. Verifiability beats a 10x cost saving
+for this audience. Re-run the eval when the prompt or the default changes; update this ADR if the model is retired.

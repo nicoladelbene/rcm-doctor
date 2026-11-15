@@ -1,0 +1,134 @@
+{
+  "model": "anthropic/claude-sonnet-5.5",
+  "promptVersion": "review.v1",
+  "source": "data/demo-results.json (2026-11-15)",
+  "controls": 40,
+  "cleanControls": 25,
+  "plantedDefects": 33,
+  "detected": 33,
+  "recall": 1,
+  "cleanFpRate": 0,
+  "extraFindings": 4,
+  "precision": 0.8918918918918919,
+  "perCheck": [
+    {
+      "check": "who",
+      "expected": 4,
+      "tp": 4,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "what",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "when",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "frequency",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "evidence",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "precision",
+      "expected": 5,
+      "tp": 5,
+      "fn": 0,
+      "fp": 1,
+      "recall": 1
+    },
+    {
+      "check": "freq_mismatch",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "nature_mismatch",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "owner_invalid",
+      "expected": 3,
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "sod_conflict",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "missing_risk_link",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    },
+    {
+      "check": "key_no_evidence",
+      "expected": 2,
+      "tp": 2,
+      "fn": 0,
+      "fp": 0,
+      "recall": 1
+    }
+  ],
+  "misses": [],
+  "falsePositives": [
+    {
+      "control_id": "O2C-04",
+      "check": "what",
+      "message": "Review is stated but 'appropriateness' and the supporting documents are not defined."
+    },
+    {
+      "control_id": "O2C-04",
+      "check": "precision",
+      "message": "'Unauthorised' is not defined; state what counts as an exception, e.g. no approved change request."
+    },
+    {
+      "control_id": "TRE-03",
+      "check": "evidence",
+      "message": "Name the artefact (e.g. approval record, invoice copy) and its exact location."
+    },
+    {
+      "control_id": "ITG-04",
+      "check": "who",
+      "message": "A team is named rather than a role; specify who performs the deactivation, e.g. Service Desk Agent."
+    }
+  ]
+}

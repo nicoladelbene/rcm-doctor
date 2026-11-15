@@ -36,5 +36,6 @@
     "vitest": "^5.1.0"
   },
   "description": "Open-source AI reviewer for Risk & Control Matrices (internal controls / IKS).",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "type": "module"
 }
